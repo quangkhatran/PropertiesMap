@@ -25,6 +25,8 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     letter-spacing:2px;
     color:white;
     text-decoration:none;
+    height:60px;
+    line-height:60px;
 }
 
 /* CONTACT */
@@ -201,6 +203,79 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     color: black;
 }
 
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        position: fixed;
+        top:0;
+        left:0;
+        right:0;
+        height:60px;
+        padding:0 16px;
+        z-index:2000;
+        background: rgba(10,15,20,0.7);
+        backdrop-filter: blur(10px);
+    }
+
+    .logo { font-size:16px; }
+    .nav-link { font-size:13px; }
+
+    /* MAP FULL SCREEN */
+    #map {
+        position: fixed;
+        top:60px;
+        left:0;
+        right:0;
+        bottom:0;
+        z-index:1;
+    }
+
+    /* HIDE DESKTOP SIDEBAR */
+    .sidebar {
+        position: fixed;
+        left:0;
+        right:0;
+        bottom:0;
+
+        height:65vh;
+
+        background:#0b0f14;
+        border-top-left-radius:20px;
+        border-top-right-radius:20px;
+
+        z-index:2000;
+        overflow:auto;
+
+        padding:16px;
+
+        transform: translateY(70%);
+        transition: 0.3s ease;
+        box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
+    }
+
+    /* HANDLE */
+    .sidebar::before {
+        content:"";
+        width:40px;
+        height:5px;
+        background:#555;
+        border-radius:10px;
+        display:block;
+        margin:0 auto 10px;
+    }
+
+    /* FIX BODY */
+    body {
+        padding-top:60px;
+    }
+
+    /* REMOVE DESKTOP LAYOUT */
+    .dashboard {
+        display:block;
+        height:auto;
+    }
+}
 
 </style>
 </head>
@@ -579,6 +654,39 @@ window.addEventListener("scroll", () => {
 
     lastScroll = current;
 });
+</script>
+
+<script>
+const sheet = document.querySelector(".sidebar");
+
+let startY = 0;
+let currentY = 0;
+
+sheet.addEventListener("touchstart", (e)=>{
+    startY = e.touches[0].clientY;
+});
+
+sheet.addEventListener("touchmove", (e)=>{
+    currentY = e.touches[0].clientY;
+    const diff = currentY - startY;
+
+    if(diff > 0){
+        sheet.style.transform = `translateY(${70 + diff/5}%)`;
+    }
+});
+
+sheet.addEventListener("touchend", ()=>{
+    const diff = currentY - startY;
+
+    if(diff > 120){
+        sheet.style.transform = "translateY(75%)"; // đóng sâu hơn
+    } else if(diff < -80){
+        sheet.style.transform = "translateY(0%)"; // mở full
+    } else {
+        sheet.style.transform = "translateY(40%)"; // 🔥 trạng thái giữa
+    }
+});
+
 </script>
 </body>
 </html>
