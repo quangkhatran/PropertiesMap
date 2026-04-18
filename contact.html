@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+body {
+    margin:0;
+    font-family:Inter;
+    background:#0b0f14;
+    color:white;
+}
+
+.navbar {
+    position:fixed;
+    top:0;
+    left:0;        /* 🔥 thêm */
+    right:0;       /* 🔥 thêm */
+
+    height:70px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:0 40px;
+
+    background:rgba(10,15,20,0.6);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #222;
+
+    box-sizing:border-box; /* 🔥 bắt buộc */
+}
+
+.nav-left {
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo {
+    font-family:'Playfair Display';
+    font-size:20px;
+    letter-spacing:2px;
+    color:white;
+    text-decoration:none;
+}
+
+.nav-link {
+    font-family:'Playfair Display';
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ccc;
+}
+
+.nav-link:hover {
+    opacity:1;
+    color:#00ffd5;
+}
+
+
+
+/* CONTENT */
+.container {
+    margin-top:100px;
+    display:flex;
+    justify-content:center;
+    padding:40px;
+}
+
+.contact-card {
+    width:100%;
+    max-width:600px;
+    background:#111;
+    border-radius:16px;
+    padding:30px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.6);
+}
+
+/* TITLE */
+.contact-card h1 {
+    font-family:'Playfair Display';
+    margin-bottom:10px;
+}
+
+.contact-card p {
+    color:#aaa;
+    margin-bottom:20px;
+}
+
+/* INPUT */
+input, textarea {
+    width:100%;
+    padding:12px;
+    margin-bottom:14px;
+
+    background:#0b0f14;
+    border:1px solid #222;
+    border-radius:10px;
+
+    color:white;
+    font-size:14px;
+}
+
+input:focus, textarea:focus {
+    outline:none;
+    border-color:#00ffd5;
+}
+
+/* BUTTON */
+button {
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+
+    background:#00ffd5;
+    color:black;
+    font-weight:500;
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+button:hover {
+    transform:translateY(-2px);
+}
+
+/* CONTACT INFO */
+.info {
+    margin-top:20px;
+    font-size:13px;
+    color:#aaa;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<div class="navbar">
+
+
+<div class="nav-left">
+    <a href="index.html" class="logo">KHA TRAN</a>
+</div>
+
+<div>
+    <a href="contact.html" class="nav-link active">Contact</a>
+</div>
+
+
+</div>
+
+<!-- CONTENT -->
+
+<div class="container">
+
+
+<div class="contact-card">
+
+    <h1>Contact</h1>
+    <p>Get in touch for investment opportunities or property inquiries.</p>
+
+    <input placeholder="Your Name">
+    <input placeholder="Email">
+    <textarea rows="5" placeholder="Message"></textarea>
+
+    <button>Send Message</button>
+
+    <div class="info">
+        📞 0909 123 456 <br>
+        📧 kha@email.com
+    </div>
+
+</div>
+
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+emailjs.init("tk3k256P-tSD5IV0W"); 
+</script>
+</body>
+
+<script>
+    const btn = document.querySelector("button");
+
+    btn.onclick = async () => {
+
+        const nameInput = document.querySelector('input[placeholder="Your Name"]');
+        const emailInput = document.querySelector('input[placeholder="Email"]');
+        const messageInput = document.querySelector('textarea');
+
+        const name = nameInput.value;
+        const email = emailInput.value;
+        const message = messageInput.value;
+
+        if(!name || !email || !message){
+            alert("Please fill all fields");
+            return;
+        }
+
+        btn.innerText = "Sending...";
+        btn.disabled = true;
+
+        try {
+            await emailjs.send(
+                "service_4uxcigl",
+                "template_czyk2u6",
+                {
+                    name,
+                    email,
+                    message
+                }
+            );
+
+            nameInput.value = "";
+            emailInput.value = "";
+            messageInput.value = "";
+
+            btn.innerText = "Sent!";
+            setTimeout(()=>{
+                btn.innerText = "Send Message";
+                btn.disabled = false;
+            }, 1000);
+
+        } catch(err){
+            console.error(err);
+            btn.innerText = "Send Failed";
+            btn.disabled = false;
+        }
+    };
+</script>
+</html>
