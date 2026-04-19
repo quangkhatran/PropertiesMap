@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -8,22 +9,41 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
 <style>
-.logo {
-    font-family: 'Playfair Display';
-    font-size: 20px;
-    letter-spacing: 2px;
-    color: white;
-    text-decoration: none;
-}
-
 body {
-    padding-top: 70px;
+    padding-top:70px;
     margin:0;
     font-family:Inter;
     background:#0b0f14;
     color:white;
 }
 
+/* NAVBAR */
+.navbar {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 40px;
+}
+
+.logo {
+    font-family:'Playfair Display';
+    font-size:20px;
+    letter-spacing:2px;
+    color:white;
+    text-decoration:none;
+}
+
+.nav-links a {
+    color:#ccc;
+    text-decoration:none;
+    margin-left:20px;
+}
+
+.nav-links a:hover {
+    color:#00ffd5;
+}
+
+/* HERO */
 .hero {
     height:60vh;
     background-size:cover;
@@ -38,10 +58,10 @@ body {
     font-size:40px;
 }
 
-.section {
-    padding:40px;
-}
+/* SECTION */
+.section { padding:40px; }
 
+/* GALLERY */
 .gallery {
     display:grid;
     grid-template-columns:repeat(3,1fr);
@@ -58,9 +78,7 @@ body {
     transition:0.3s;
 }
 
-.gallery img:hover {
-    transform:scale(1.03);
-}
+.gallery img:hover { transform:scale(1.03); }
 
 /* MAP */
 #detail-map {
@@ -71,25 +89,40 @@ body {
     overflow:hidden;
 }
 
-.price-marker {
-    transform: translate(-50%, -100%);
+/* NEARBY CARD */
+.place-card {
+    background:#111;
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:10px;
+    cursor:pointer;
+    transition:0.2s;
 }
 
-.marker-box {
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-    color:black;
+.place-card:hover {
+    border:1px solid #00ffd5;
+    transform:translateY(-2px);
+}
+
+.img-row {
+    display:flex;
+    gap:6px;
+    margin-bottom:10px;
+}
+
+.img-row img {
+    width:33.33%;
+    height:100px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
 /* VIEWER */
 .viewer {
-    position: fixed;
-    top:0; left:0;
-    width:100%;
-    height:100%;
-    background: rgba(0,0,0,0.95);
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100%;
+    background:rgba(0,0,0,0.95);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -102,221 +135,71 @@ body {
     border-radius:12px;
 }
 
-.close {
-    position:absolute;
-    top:-40px;
-    right:0;
-    font-size:30px;
-    cursor:pointer;
-    color:white;
-}
+.viewer-content { position:relative; }
 
-
-
-.prev { left:10px; }
-.next { right:10px; }
-
-.back-btn {
-    position: fixed;
-    top: 90px;
-    left: 20px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    padding: 10px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 14px;
-    color: white;
-    z-index: 11000;
-}
-
-.legend {
-    background: rgba(15,20,25,0.9);
-    padding: 10px 12px;
-    border-radius: 10px;
-    font-size: 12px;
-    color: #ddd;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.legend b {
-    display:block;
-    margin-bottom:6px;
-    color:white;
-}
-
-.legend div {
-    display:flex;
-    align-items:center;
-    margin-bottom:5px;
-}
-
-.legend span {
-    width:10px;
-    height:10px;
-    border-radius:50%;
-    margin-right:6px;
-}
-
-.contact-floating {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    display: flex;
-    align-items: center;
-    gap: 10px;
-
-    padding: 10px 14px;
-    border-radius: 16px;
-
-    background: rgba(15,20,25,0.85);
-    backdrop-filter: blur(12px);
-
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-
-    z-index: 99999;
-    transition: all 0.25s ease;
-}
-
-/* avatar */
-.contact-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #00ffd5;
-    color: black;
-    font-weight: 600;
-    font-size: 13px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-/* info */
-.contact-info {
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-.contact-info .name {
-    font-weight: 500;
-}
-
-.contact-info .phone {
-    color: #aaa;
-}
-
-.contact-info .email {
-    color: #aaa;
-}
-/* buttons */
-.actions {
-    display: flex;
-    gap: 6px;
-}
-
-.btn {
-    padding: 6px 10px;
-    border-radius: 8px;
-    background: #00ffd5;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-}
-
-.btn.call {
-    background: #00FF00;
-    color: black;
-}
-
-.viewer {
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.viewer img {
-    max-width:100%;
-    max-height:90vh;
-    border-radius:12px;
-    transition: transform 0.2s ease;
-    touch-action: none;
-}
-
-<<<<<<< HEAD
 .nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-
-    width: 44px;
-    height: 44px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(0,0,0,0.5);
-    border-radius: 50%;
-
-    font-size: 26px;     
-    color: white;        
-    cursor: pointer;
-
-    z-index: 10000;      
-}
-
-.prev {
-    left: 20px;   /* 🔥 tăng lên cho đẹp */
-}
-
-.next {
-    right: 20px;
-=======
-.navbar {
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:44px;
+    height:44px;
     display:flex;
-    justify-content:space-between; /* 🔥 FIX */
     align-items:center;
-    padding:0 40px;
->>>>>>> 84ce747 (new code)
+    justify-content:center;
+    background:rgba(0,0,0,0.5);
+    border-radius:50%;
+    font-size:26px;
+    color:white;
+    cursor:pointer;
 }
 
-.nav-links a {
-    color:#ccc;
-    text-decoration:none;
-    margin-left:20px;
+.prev { left:20px; }
+.next { right:20px; }
+
+/* BACK */
+.back-btn {
+    position:fixed;
+    top:90px;
+    left:20px;
+    background:rgba(0,0,0,0.6);
+    padding:10px 16px;
+    border-radius:8px;
+    cursor:pointer;
+    z-index:11000;
 }
 
-.nav-links a:hover {
-    color:#00ffd5;
+/* CONTACT */
+.contact-floating {
+    position:fixed;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:10px;
+    padding:10px 14px;
+    border-radius:16px;
+    background:rgba(15,20,25,0.85);
+    backdrop-filter:blur(12px);
 }
-<<<<<<< HEAD
 
-.viewer-content {
-    position: relative;
+.contact-avatar {
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#00ffd5;
+    color:black;
+    display:flex;
+    align-items:center;
+    justify-content:center;
 }
-
-.nav:hover {
-    background: rgba(0,0,0,0.8);
-    transform: translateY(-50%) scale(1.1);
-}
-=======
->>>>>>> 84ce747 (new code)
 </style>
+
 </head>
 
 <body>
 
 <div class="navbar">
     <a href="index.html" class="logo">KHA TRAN</a>
-
     <div class="nav-links">
         <a href="contact.html">Contact</a>
     </div>
@@ -326,7 +209,11 @@ body {
 
 <div id="project"></div>
 
+<h3 style="margin-top:30px;">Nearby Places</h3>
+<div id="nearby-list"></div>
+
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script src="data.js"></script>
 
 <script>
@@ -335,31 +222,6 @@ const id = params.get("id");
 
 const project = assets.find(p => p.id === id);
 const el = document.getElementById("project");
-
-function getColor(type){
-    switch(type){
-        case "Office": return "#3b82f6";
-        case "Villa": return "#22c55e";
-        case "Hotel": return "#facc15";
-        case "Apartments": return "#a855f7";
-        default: return "#9ca3af";
-    }
-}
-
-// ===== DISTANCE =====
-function getDistance(lat1, lon1, lat2, lon2){
-    const R = 6371;
-    const dLat = (lat2 - lat1) * Math.PI/180;
-    const dLon = (lon2 - lon1) * Math.PI/180;
-
-    const a =
-        Math.sin(dLat/2)**2 +
-        Math.cos(lat1 * Math.PI/180) *
-        Math.cos(lat2 * Math.PI/180) *
-        Math.sin(dLon/2)**2;
-
-    return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-}
 
 if(project){
     el.innerHTML = `
@@ -370,393 +232,66 @@ if(project){
     <div class="section">
         <p>Type: ${project.type}</p>
         <p>Address: ${project.address || ""}</p>
-        <p>Price: ${project.price} ${project.priceUnit}</p>
-        ${project.isForRent ? `<p style="color:#00ffd5">Rent: ${project.rent} ${project.rentUnit}</p>` : ""}
 
         <div id="detail-map"></div>
 
-        <h3 style="margin-top:30px">Gallery</h3>
-
+        <h3>Gallery</h3>
         <div class="gallery">
-            ${(project.images || []).map(img => `
-                <img src="${img}">
-            `).join("")}
+            ${(project.images || []).map(img => `<img src="${img}">`).join("")}
         </div>
     </div>
     `;
-
-    initGallery();
-    initDetailMap(project);
-} else {
-    el.innerHTML = "<p>Project not found</p>";
 }
 
-async function loadNearbyPlaces(lat, lng, map){
+/* ===== IMAGE ===== */
+function getPlaceImages(p){
+    const photos = p.photos || [];
 
-    const query = `
-    [out:json];
-    (
-      node["amenity"="restaurant"](around:800,${lat},${lng});
-      node["amenity"="cafe"](around:800,${lat},${lng});
-      node["amenity"="school"](around:800,${lat},${lng});
-      node["shop"="supermarket"](around:800,${lat},${lng});
-      node["amenity"="hospital"](around:800,${lat},${lng});
+    let imgs = photos.slice(0,3).map(ph =>
+        `http://localhost:3000/api/photo?ref=${ph.photo_reference}`
     );
-    out;
-    `;
 
-    const url = "https://overpass.kumi.systems/api/interpreter?data=" + encodeURIComponent(query);
-
-    try {
-        const res = await fetch(url);
-        const data = await res.json();
-
-        console.log("POI:", data);
-
-        data.elements.forEach(p => {
-
-            let iconHtml = "📍"; // default
-
-            if(p.tags.amenity === "restaurant") iconHtml = "🍽";
-            if(p.tags.amenity === "cafe") iconHtml = "☕";
-            if(p.tags.amenity === "school") iconHtml = "🏫";
-            if(p.tags.shop === "supermarket") iconHtml = "🛒";
-            if(p.tags.amenity === "hospital") iconHtml = "🏥";
-
-            let bg = "#111";
-
-            if(p.tags.amenity === "restaurant") bg = "#f97316";
-            if(p.tags.amenity === "cafe") bg = "#a855f7";
-            if(p.tags.amenity === "school") bg = "#22c55e";
-            if(p.tags.shop === "supermarket") bg = "#3b82f6";
-            if(p.tags.amenity === "hospital") bg = "#ef4444";
-
-            const icon = L.divIcon({
-                className: "",
-                html: `<div style="
-                    font-size:14px;
-                    background:${bg};
-                    padding:6px;
-                    border-radius:50%;
-                    color:white;
-                    transform: translate(-50%, -50%);
-                ">${iconHtml}</div>`
-            });
-
-            L.marker([p.lat, p.lon], {icon})
-                .addTo(map)
-                .bindPopup(p.tags.name || "Unknown");
-        });
-
-    } catch(e){
-        console.error("POI error:", e);
-    }
-}
-
-// ===== MAP =====
-function initDetailMap(project){
-    if(!project.lat || !project.lng) return;
-
-    const map = L.map('detail-map', {
-        zoomControl: true,
-        scrollWheelZoom: true,
-        touchZoom: true,
-        doubleClickZoom: true
-    });
-
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {attribution: '&copy; OpenStreetMap & Carto'}).addTo(map);
-
-    map.setView([project.lat, project.lng], 14);
-
-    loadNearbyPlaces(project.lat, project.lng, map);
-
-    // ===== MAIN PROJECT =====
-    const mainIcon = L.divIcon({
-        className:"price-marker",
-        html:`<div class="marker-box" style="
-            background:${getColor(project.type)};
-            font-weight:700;
-            border:2px solid white;
-            box-shadow:0 8px 25px rgba(0,0,0,0.6);
-        ">${project.price} ${project.priceUnit}</div>`,
-        iconAnchor:[40,40]
-    });
-
-    L.marker([project.lat, project.lng], {icon: mainIcon})
-        .addTo(map)
-        .bindPopup("<b>" + project.name + "</b>")
-        .openPopup();
-
-    // ===== DISTANCE FUNCTION =====
-    function getDistance(lat1, lon1, lat2, lon2){
-        const R = 6371;
-        const dLat = (lat2 - lat1) * Math.PI/180;
-        const dLon = (lon2 - lon1) * Math.PI/180;
-
-        const a =
-            Math.sin(dLat/2)**2 +
-            Math.cos(lat1 * Math.PI/180) *
-            Math.cos(lat2 * Math.PI/180) *
-            Math.sin(dLon/2)**2;
-
-        return R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+    while(imgs.length < 3){
+        imgs.push("https://via.placeholder.com/400x250?text=No+Image");
     }
 
-    // ===== NEARBY =====
-    const radius = 500; // km
-
-    assets.forEach(a=>{
-        if(a.id === project.id) return;
-        if(!a.lat || !a.lng) return;
-
-        const dist = getDistance(project.lat, project.lng, a.lat, a.lng);
-        
-        if(dist <= radius){
-            const color = getColor(a.type);
-            const icon = L.divIcon({
-                className:"price-marker",
-                html:`<div style="
-                        padding:5px 8px;
-                        border-radius:16px;
-                        font-size:11px;
-                        background:${color};
-                        color:black;
-                        opacity:0.75;
-                        box-shadow:0 6px 18px rgba(0,0,0,0.4);
-                    ">${a.price} ${a.priceUnit}</div>`,
-                iconAnchor:[30,30]
-            });
-
-            const m = L.marker([a.lat,a.lng],{icon}).addTo(map);
-
-            m.on("click",()=>{
-                window.location.href = a.link;
-            });
-
-            m.bindPopup(`
-                <b>${a.name}</b><br>
-                ${a.price} ${a.priceUnit}<br>
-                ${a.isForRent ? `Rent: ${a.rent} ${a.rentUnit}<br>` : ""}
-                ${dist.toFixed(1)} km
-            `);
-        }
-    });
-
-    // ===== LEGEND =====
-    const legend = L.control({ position: "bottomright" });
-
-    legend.onAdd = function(){
-        const div = L.DomUtil.create("div", "legend");
-
-        const types = [...new Set(assets.map(a => a.type))];
-
-        div.innerHTML = `<b>Property Types</b>`;
-
-        types.forEach(t=>{
-            div.innerHTML += `
-            <div>
-                <span style="background:${getColor(t)}"></span>
-                ${t}
-            </div>`;
-        });
-
-        return div;
-    };
-
-    legend.addTo(map);
+    return imgs;
 }
 
+/* ===== NEARBY ===== */
+async function loadNearby(lat,lng,map){
+    const res = await fetch(`http://localhost:3000/api/nearby?lat=${lat}&lng=${lng}`);
+    const data = await res.json();
 
-// ===== GALLERY =====
-function initGallery(){
-    let currentIndex = 0;
+    const container = document.getElementById("nearby-list");
 
-    const imgs = el.querySelectorAll(".gallery img");
-    const images = Array.from(imgs).map(img => img.src);
+    data.results.slice(0,10).forEach(p=>{
+        const imgs = getPlaceImages(p);
 
-    imgs.forEach((img, index) => {
-        img.addEventListener("click", () => {
-            currentIndex = index;
-            openViewer();
-        });
-    });
-
-    function openViewer(){
-        const overlay = document.createElement("div");
-        overlay.className = "viewer";
-
-        overlay.innerHTML = `
-            <div class="viewer-content" style="position:relative;">
-                <span class="close">×</span>
-
-                <div class="nav prev">‹</div>
-                <div class="nav next">›</div>
-
-                <img src="${images[currentIndex]}" id="viewer-img">
+        container.innerHTML += `
+        <div class="place-card">
+            <div class="img-row">
+                ${imgs.map(img=>`<img src="${img}">`).join("")}
             </div>
-        `;
-
-        document.body.appendChild(overlay);
-
-        const img = overlay.querySelector("#viewer-img");
-        overlay.querySelector(".next").onclick = next;
-        overlay.querySelector(".prev").onclick = prev;
-
-        let startX = 0;
-        let isSwiping = false;
-
-        let scale = 1;
-        let lastScale = 1;
-        let startDistance = 0;
-
-        let lastTap = 0;
-
-        // ===== CLEANUP =====
-        function closeViewer(){
-            document.removeEventListener("keydown", keyHandler);
-            overlay.remove();
-        }
-
-        // ===== NAV =====
-        function next(){
-            currentIndex = (currentIndex + 1) % images.length;
-            img.src = images[currentIndex];
-            resetZoom();
-        }
-
-        function prev(){
-            currentIndex = (currentIndex - 1 + images.length) % images.length;
-            img.src = images[currentIndex];
-            resetZoom();
-        }
-
-        function resetZoom(){
-            scale = 1;
-            lastScale = 1;
-            img.style.transform = "scale(1)";
-        }
-
-        // ===== KEYBOARD =====
-        function keyHandler(e){
-            if(e.key === "Escape") closeViewer();
-            if(e.key === "ArrowRight") next();
-            if(e.key === "ArrowLeft") prev();
-        }
-        document.addEventListener("keydown", keyHandler);
-
-        // ===== CLICK OUTSIDE =====
-        overlay.addEventListener("click",(e)=>{
-            if(!e.target.closest(".viewer-content")){
-                closeViewer();
-            }
-        });
-
-        overlay.querySelector(".close").onclick = closeViewer;
-
-        // ===== TOUCH START =====
-        overlay.addEventListener("touchstart", (e)=>{
-            if(e.touches.length === 1){
-                startX = e.touches[0].clientX;
-                isSwiping = true;
-            }
-
-            if(e.touches.length === 2){
-                isSwiping = false;
-                startDistance = getDistance(e.touches);
-            }
-        });
-
-        // ===== TOUCH MOVE =====
-        overlay.addEventListener("touchmove", (e)=>{
-            if(e.touches.length === 2){
-                const newDistance = getDistance(e.touches);
-                scale = lastScale * (newDistance / startDistance);
-                scale = Math.max(1, Math.min(scale, 3));
-
-                img.style.transform = `scale(${scale})`;
-            }
-        });
-
-        // ===== TOUCH END =====
-        overlay.addEventListener("touchend", (e)=>{
-
-            // 👉 SWIPE
-            if(isSwiping && e.changedTouches.length === 1){
-                const endX = e.changedTouches[0].clientX;
-                const diff = endX - startX;
-
-                if(Math.abs(diff) > 50){
-                    if(diff < 0) next();
-                    else prev();
-                }
-            }
-
-            // 👉 PINCH END
-            lastScale = scale;
-
-            // 👉 DOUBLE TAP
-            const now = Date.now();
-            if(now - lastTap < 300){
-                scale = scale > 1 ? 1 : 2;
-                img.style.transform = `scale(${scale})`;
-                lastScale = scale;
-            }
-            lastTap = now;
-
-            isSwiping = false;
-        });
-
-        function getDistance(touches){
-            const dx = touches[0].clientX - touches[1].clientX;
-            const dy = touches[0].clientY - touches[1].clientY;
-            return Math.sqrt(dx*dx + dy*dy);
-        }
-    }
+            <b>${p.name}</b>
+        </div>`;
+    });
 }
 
+/* ===== MAP ===== */
+function initMap(){
+    if(!project) return;
 
-// NAV
-document.querySelector(".back-btn").onclick = () => {
-    if(document.referrer){
-        window.history.back();
-    } else {
-        window.location.href = "index.html";
-    }
-};
-</script>
+    const map = L.map('detail-map').setView([project.lat, project.lng], 14);
 
-<div class="contact-floating">
-    <div class="contact-avatar">KT</div>
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
 
-    <div class="contact-info">
-        <div class="name">Kha Tran</div>
-        <div class="phone">0909 123 456</div>
-        <div class="email">kha@email.</div>
-    </div>
+    L.marker([project.lat, project.lng]).addTo(map);
 
-    <div class="actions">
-        <a href="tel:0909123456" class="btn call">Call</a>
-        <a href="mailto:kha@email.com" class="btn">Email</a>
-    </div>
-</div>
+    loadNearby(project.lat, project.lng, map);
+}
 
-<script>
-let lastScroll = 0;
-const bar = document.querySelector(".contact-floating");
-
-window.addEventListener("scroll", () => {
-    const current = window.scrollY;
-
-    if(current > lastScroll){
-        bar.style.transform = "translateY(80px)";
-        bar.style.opacity = "0.6";
-    } else {
-        bar.style.transform = "translateY(0)";
-        bar.style.opacity = "1";
-    }
-
-    lastScroll = current;
-});
+initMap();
 </script>
 
 </body>

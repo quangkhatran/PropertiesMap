@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
@@ -13,7 +14,7 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
 
 .navbar {
     display:flex;
-    justify-content:space-between; /* 🔥 KEY */
+    justify-content:space-between;
     align-items:center;
     padding:0 40px;
 }
@@ -25,11 +26,8 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     letter-spacing:2px;
     color:white;
     text-decoration:none;
-<<<<<<< HEAD
     height:60px;
     line-height:60px;
-=======
->>>>>>> 84ce747 (new code)
 }
 
 /* CONTACT */
@@ -93,14 +91,6 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     display:flex;
     align-items:center;
     gap:6px;
-
-    transition: 
-        transform 0.18s ease,
-        box-shadow 0.18s ease,
-        filter 0.18s ease;
-}
-
-.marker-box {
     transition: all 0.2s ease;
 }
 
@@ -136,24 +126,18 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-
     display: flex;
     align-items: center;
     gap: 10px;
-
     padding: 10px 14px;
     border-radius: 16px;
-
     background: rgba(15,20,25,0.85);
     backdrop-filter: blur(12px);
-
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-
     z-index: 99999;
     transition: all 0.25s ease;
 }
 
-/* avatar */
 .contact-avatar {
     width: 34px;
     height: 34px;
@@ -162,31 +146,16 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     color: black;
     font-weight: 600;
     font-size: 13px;
-
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* info */
 .contact-info {
     font-size: 12px;
     line-height: 1.2;
 }
 
-.contact-info .name {
-    font-weight: 500;
-}
-
-.contact-info .phone {
-    color: #aaa;
-}
-
-.contact-info .email {
-    color: #aaa;
-}
-
-/* buttons */
 .actions {
     display: flex;
     gap: 6px;
@@ -206,10 +175,9 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     color: black;
 }
 
-<<<<<<< HEAD
+/* MOBILE */
 @media (max-width: 768px) {
 
-    /* NAVBAR */
     .navbar {
         position: fixed;
         top:0;
@@ -225,7 +193,6 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
     .logo { font-size:16px; }
     .nav-link { font-size:13px; }
 
-    /* MAP FULL SCREEN */
     #map {
         position: fixed;
         top:60px;
@@ -235,30 +202,23 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
         z-index:1;
     }
 
-    /* HIDE DESKTOP SIDEBAR */
     .sidebar {
         position: fixed;
         left:0;
         right:0;
         bottom:0;
-
         height:65vh;
-
         background:#0b0f14;
         border-top-left-radius:20px;
         border-top-right-radius:20px;
-
         z-index:2000;
         overflow:auto;
-
         padding:16px;
-
         transform: translateY(70%);
         transition: 0.3s ease;
         box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
     }
 
-    /* HANDLE */
     .sidebar::before {
         content:"";
         width:40px;
@@ -269,433 +229,55 @@ body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
         margin:0 auto 10px;
     }
 
-    /* FIX BODY */
     body {
         padding-top:60px;
     }
 
-    /* REMOVE DESKTOP LAYOUT */
     .dashboard {
         display:block;
         height:auto;
     }
 }
-=======
->>>>>>> 84ce747 (new code)
-
 </style>
+
 </head>
 
 <body>
 
 <div class="navbar">
-
-    <!-- LEFT -->
-    <div class="nav-left">
-        <a href="index.html" class="logo">KHA TRAN</a>
-    </div>
-
-    <!-- RIGHT -->
-    <div class="nav-right">
-        <a href="contact.html" class="nav-link">Contact</a>
-    </div>
-
-   
-
+    <a href="index.html" class="logo">KHA TRAN</a>
+    <a href="contact.html" class="nav-link">Contact</a>
 </div>
 
 <div class="dashboard">
     <div class="sidebar">
-
         <input id="search" class="search-box" placeholder="Search..." />
         <select id="city-filter" class="search-box"><option value="">All Cities</option></select>
         <select id="country-filter" class="search-box"><option value="">All Countries</option></select>
-        <select id="type-filter" class="search-box">
-            <option value="">All Types</option>
-        </select>
+        <select id="type-filter" class="search-box"><option value="">All Types</option></select>
 
-        <input id="price-min" class="search-box" placeholder="Min Price">
-        <input id="price-max" class="search-box" placeholder="Max Price">
+```
+    <input id="price-min" class="search-box" placeholder="Min Price">
+    <input id="price-max" class="search-box" placeholder="Max Price">
+    <input id="rent-min" class="search-box" placeholder="Min Rent">
+    <input id="rent-max" class="search-box" placeholder="Max Rent">
 
-        <input id="rent-min" class="search-box" placeholder="Min Rent">
-        <input id="rent-max" class="search-box" placeholder="Max Rent">
-        <div id="asset-list"></div>
-    </div>
-
-    <div id="map"></div>
+    <div id="asset-list"></div>
 </div>
 
-<div id="hover-card">
-    <img id="hover-img" style="width:100%;height:150px;object-fit:cover;">
-    <div style="padding:10px">
-        <h4 id="hover-title"></h4>
-        <p id="hover-price" style="color:#00ffd5"></p>
-        <p id="hover-rent" style="color:#00ffd5"></p>
-    </div>
-</div>
+<div id="map"></div>
+```
 
-<div class="contact-floating">
-    <div class="contact-avatar">KT</div>
-
-    <div class="contact-info">
-        <div class="name">Kha Tran</div>
-        <div class="phone">0909 123 456</div>
-        <div class="email">kha@email.com</div>
-    </div>
-
-    <div class="actions">
-        <a href="tel:0909123456" class="btn call">Call</a>
-        <a href="mailto:kha@email.com" class="btn">Email</a>
-    </div>
 </div>
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script src="data.js"></script>
 
 <script>
-// ===== STATE =====
-let markers = [];
-let markerMap = {};
-
-// ===== DOM =====
-const search = document.getElementById("search");
-const cityFilter = document.getElementById("city-filter");
-const countryFilter = document.getElementById("country-filter");
-const assetList = document.getElementById("asset-list");
-
-const hoverCard = document.getElementById("hover-card");
-const hoverImg = document.getElementById("hover-img");
-const hoverTitle = document.getElementById("hover-title");
-const hoverPrice = document.getElementById("hover-price");
-const hoverRent = document.getElementById("hover-rent");
-
-// ===== MAP =====
 const map = L.map('map');
-
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {attribution: '&copy; OpenStreetMap & Carto'}).addTo(map);
-
-// ===== COLOR =====
-function getColor(type){
-    switch(type){
-        case "Office": return "#3b82f6";
-        case "Villa": return "#22c55e";
-        case "Hotel": return "#facc15";
-        case "Apartment": return "#a855f7";
-        default: return "#9ca3af";
-    }
-}
-
-// ===== INIT =====
-init();
-
-function init(){
-    initFilters();
-    renderAll(assets);
-    initEvents();
-    initLegend();
-}
-
-function initLegend(){
-    const legend = L.control({ position: "bottomright" });
-
-    legend.onAdd = function(){
-        const div = L.DomUtil.create("div", "legend");
-
-        const types = [...new Set(assets.map(a => a.type))];
-
-        div.innerHTML = `<b style="margin-bottom:6px;display:block;">Property Types</b>`;
-
-        types.forEach(t=>{
-            div.innerHTML += `
-                <div style="display:flex;align-items:center;margin-bottom:6px;">
-                    <span style="
-                        width:10px;
-                        height:10px;
-                        border-radius:50%;
-                        margin-right:8px;
-                        background:${getColor(t)};
-                    "></span>
-                    ${t}
-                </div>
-            `;
-        });
-
-        return div;
-    };
-
-    legend.addTo(map);
-}
-
-// ===== FILTER =====
-function initFilters(){
-    [...new Set(assets.map(a=>a.city))].forEach(c=>{
-        cityFilter.innerHTML += `<option value="${c}">${c}</option>`;
-    });
-
-    [...new Set(assets.map(a=>a.country))].forEach(c=>{
-        countryFilter.innerHTML += `<option value="${c}">${c}</option>`;
-    });
-    [...new Set(assets.map(a=>a.type))].forEach(t=>{
-        document.getElementById("type-filter").innerHTML += `<option value="${t}">${t}</option>`;
-    });
-}
-
-function applyFilters(){
-
-    const keyword = search.value.toLowerCase();
-    const city = cityFilter.value;
-    const country = countryFilter.value;
-    const type = document.getElementById("type-filter").value;
-
-    const priceMin = +document.getElementById("price-min").value || 0;
-    const priceMax = +document.getElementById("price-max").value || Infinity;
-
-    const rentMin = +document.getElementById("rent-min").value || 0;
-    const rentMax = +document.getElementById("rent-max").value || Infinity;
-
-    const filtered = assets.filter(a => {
-
-        const matchBasic =
-            (!city || a.city === city) &&
-            (!country || a.country === country) &&
-            (!type || a.type === type) &&
-            (
-                a.name.toLowerCase().includes(keyword) ||
-                (a.type||"").toLowerCase().includes(keyword)
-            );
-
-        const matchPrice =
-            a.price >= priceMin &&
-            a.price <= priceMax;
-
-        const isFilteringRent = rentMin > 0 || rentMax < Infinity;
-
-        const matchRent = isFilteringRent
-            ? (a.isForRent && a.rent >= rentMin && a.rent <= rentMax)
-            : true;
-
-        return matchBasic && matchPrice && matchRent;
-    });
-
-    renderAll(filtered);
-}
-
-// ===== RENDER =====
-function renderAll(data){
-    renderAssets(data);
-    renderMarkers(data);
-}
-
-function renderAssets(data){
-    assetList.innerHTML="";
-    data.forEach(a=>{
-        assetList.innerHTML += `
-        <div class="asset-card" data-id="${a.id}">
-            <div class="card-img"><img src="${a.images?.[0] || ""}"></div>
-            <div class="card-content">
-                <h3>${a.name}</h3>
-                <p>${a.address}</p>
-                <p class="price">Price: ${a.price} ${a.priceUnit}</p>
-                ${a.isForRent ? `<p class="rent">Rent: ${a.rent} ${a.rentUnit}</p>` : ""}
-            </div>
-        </div>`;
-    });
-}
-
-// ===== MARKERS =====
-function renderMarkers(data){
-    markers.forEach(m=>map.removeLayer(m));
-    markers=[];
-    markerMap={};
-
-    const bounds=[];
-
-    data.forEach(a=>{
-        if(a.lat && a.lng){
-
-            const color = getColor(a.type);
-
-            const icon = L.divIcon({
-                className:"price-marker",
-                html:`<div class="marker-box" style="background:${color}; box-shadow:0 6px 18px rgba(0,0,0,0.4);">${a.price} ${a.priceUnit}</div>`,
-                iconAnchor: [40, 40]
-            });
-
-            const marker=L.marker([a.lat,a.lng],{icon}).addTo(map);
-
-            marker.on("click", () => {
-                window.location.href = a.link;
-            });
-
-            marker.on("mouseover",()=>{
-                showHover(a);
-
-                activateMarker(marker);
-
-                const el=document.querySelector(`[data-id="${a.id}"]`);
-                if(el){
-                    el.style.transform="translateY(-5px) scale(1.02)";
-                    el.style.border="1px solid #00ffd5";
-                }
-            });
-
-            marker.on("mouseout",()=>{
-                hideHover();
-
-                deactivateMarker(marker);
-
-                const el=document.querySelector(`[data-id="${a.id}"]`);
-                if(el){
-                    el.style.transform="";
-                    el.style.border="";
-                }
-            });
-
-            marker.on("mousemove",moveHover);
-
-            markers.push(marker);
-            markerMap[a.id]=marker;
-            bounds.push([a.lat,a.lng]);
-        }
-    });
-
-    if(bounds.length){
-        map.fitBounds(bounds);
-    }
-}
-
-function activateMarker(marker){
-    const el = marker._icon?.querySelector(".marker-box");
-    if(!el) return;
-
-    el.classList.add("marker-active");
-}
-
-function deactivateMarker(marker){
-    const el = marker._icon?.querySelector(".marker-box");
-    if(!el) return;
-
-    el.classList.remove("marker-active");
-}
-
-// ===== HOVER =====
-function showHover(a){
-    hoverImg.src=a.images?.[0] || "";
-    hoverTitle.innerText=a.name;
-    hoverPrice.innerText="Price: " + a.price + " " + a.priceUnit;
-    if(a.isForRent){
-        hoverRent.style.display = "block";
-        hoverRent.innerText = "Rent: " + a.rent + " " + a.rentUnit;
-    } else {
-        hoverRent.style.display = "none";
-    }
-    hoverCard.style.display="block";
-}
-
-function moveHover(e){
-    hoverCard.style.left=e.originalEvent.clientX+20+"px";
-    hoverCard.style.top=e.originalEvent.clientY+20+"px";
-}
-
-function hideHover(){
-    hoverCard.style.display="none";
-}
-
-// ===== EVENTS =====
-function initEvents(){
-
-    document.getElementById("type-filter").addEventListener("change", applyFilters);
-    document.getElementById("price-min").addEventListener("input", applyFilters);
-    document.getElementById("price-max").addEventListener("input", applyFilters);
-    document.getElementById("rent-min").addEventListener("input", applyFilters);
-    document.getElementById("rent-max").addEventListener("input", applyFilters);
-
-    document.addEventListener("mouseover",e=>{
-        const card=e.target.closest(".asset-card");
-        if(card){
-            const marker=markerMap[card.dataset.id];
-            if(marker){
-                activateMarker(marker);
-            }
-        }
-    });
-
-    document.addEventListener("mouseout",e=>{
-        const card=e.target.closest(".asset-card");
-        if(card){
-            const marker=markerMap[card.dataset.id];
-            if(marker){
-                deactivateMarker(marker);
-            }
-        }
-    });
-
-    document.addEventListener("click",e=>{
-        const card=e.target.closest(".asset-card");
-        if(card){
-            const a=assets.find(x=>x.id===card.dataset.id);
-            window.location.href=a.link;
-        }
-    });
-
-    search.addEventListener("input",applyFilters);
-    cityFilter.addEventListener("change",applyFilters);
-    countryFilter.addEventListener("change",applyFilters);
-}
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
 </script>
-<script>
-let lastScroll = 0;
-const bar = document.querySelector(".contact-floating");
 
-window.addEventListener("scroll", () => {
-    const current = window.scrollY;
-
-    if(current > lastScroll){
-        bar.style.transform = "translateY(80px)";
-        bar.style.opacity = "0.6";
-    } else {
-        bar.style.transform = "translateY(0)";
-        bar.style.opacity = "1";
-    }
-
-    lastScroll = current;
-});
-</script>
-<<<<<<< HEAD
-
-<script>
-const sheet = document.querySelector(".sidebar");
-
-let startY = 0;
-let currentY = 0;
-
-sheet.addEventListener("touchstart", (e)=>{
-    startY = e.touches[0].clientY;
-});
-
-sheet.addEventListener("touchmove", (e)=>{
-    currentY = e.touches[0].clientY;
-    const diff = currentY - startY;
-
-    if(diff > 0){
-        sheet.style.transform = `translateY(${70 + diff/5}%)`;
-    }
-});
-
-sheet.addEventListener("touchend", ()=>{
-    const diff = currentY - startY;
-
-    if(diff > 120){
-        sheet.style.transform = "translateY(75%)"; // đóng sâu hơn
-    } else if(diff < -80){
-        sheet.style.transform = "translateY(0%)"; // mở full
-    } else {
-        sheet.style.transform = "translateY(40%)"; // 🔥 trạng thái giữa
-    }
-});
-
-</script>
-=======
->>>>>>> 84ce747 (new code)
 </body>
 </html>
