@@ -7,251 +7,80 @@
 <title>Proptech Platform</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
 <style>
-body {margin:0;font-family:Inter;background:#0b0f14;color:white;}
+html,body{
+    height:100%;
+    margin:0;
+    font-family:Inter;
+    background:#0b0f14;
+    color:white;
+}
 
-.navbar {
+.navbar{
     display:flex;
     justify-content:space-between;
-    align-items:center;
     padding:0 40px;
 }
 
-/* LOGO */
-.logo {
+.logo{
     font-family:'Playfair Display';
     font-size:20px;
-    letter-spacing:2px;
-    color:white;
-    text-decoration:none;
-    height:60px;
     line-height:60px;
+    color:white;
 }
 
-/* CONTACT */
-.nav-link {
-    font-family:'Playfair Display';
-    font-size:15px;
-    letter-spacing:2px;
-    text-transform:uppercase;
-    color:#ccc;
-}
-
-.nav-link:hover {
-    opacity:1;
-    color:#00ffd5;
-}
-
-.dashboard {
+.dashboard{
     display:flex;
-    height:calc(100vh - 70px);
+    height:calc(100vh - 60px);
 }
 
-html, body {
-    height:100%;
+.sidebar{
+    width:320px;
+    padding:20px;
+    overflow:auto;
+    border-right:1px solid #222;
 }
 
-.sidebar {width:320px;padding:20px;border-right:1px solid #222;overflow:auto;}
-
-#map {
+#map{
     flex:1;
-    height:100%;
-    min-height:400px; /* 🔥 thêm dòng này */
 }
 
-.asset-card {
-    background:#111;border-radius:14px;margin-bottom:15px;cursor:pointer;transition:0.3s;
-}
-.asset-card:hover {transform:translateY(-5px);border: 1px solid #00ffd5;}
-.asset-card.active {border:1px solid #00ffd5;}
-
-.card-img img {width:100%;height:150px;object-fit:cover;}
-.card-content {padding:12px;}
-.price {color:#00ffd5;}
-.rent {color:#00ffd5;}
-
-.search-box {
-    width:100%;padding:10px;margin-bottom:10px;
-    background:#111;border:1px solid #222;border-radius:8px;color:white;
+/* UI */
+.search-box{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+    background:#111;
+    border:1px solid #222;
+    color:white;
 }
 
-/* MARKER */
-.price-marker {
-    transform: translate(-50%, -100%);
-    cursor: pointer;
-}
-
-/* HOVER CARD */
-#hover-card {
-    position:fixed;
-    display:none;
-    width:260px;
+.asset-card{
     background:#111;
     border-radius:12px;
-    overflow:hidden;
-    z-index:9999;
-    box-shadow:0 20px 50px rgba(0,0,0,0.7);
+    margin-bottom:12px;
+    cursor:pointer;
 }
 
-.marker-box {
-    padding:6px 10px;
-    border-radius:20px;
-    font-size:12px;
-    font-weight:600;
-    color:black;
-    display:flex;
-    align-items:center;
-    gap:6px;
-    transition: all 0.2s ease;
+.asset-card:hover{
+    border:1px solid #00ffd5;
 }
 
-.marker-box:hover {
-    transform: translateY(-2px) scale(1.05);
+.card-img img{
+    width:100%;
+    height:140px;
+    object-fit:cover;
 }
 
-.marker-box.marker-active {
-    transform: translateY(-1px) scale(1.04);
-    box-shadow:
-        0 6px 16px rgba(0,0,0,0.35),
-        0 0 4px currentColor;
-    filter: brightness(1.03);
-}
+.card-content{padding:10px;}
+.price{color:#00ffd5;}
 
-.legend {
-    background: rgba(15, 20, 25, 0.85);
-    padding: 12px 14px;
-    border-radius: 10px;
-    font-size: 12px;
-    color: #ddd;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.legend b {
-    color: white;
-    font-weight: 500;
-}
-
-.contact-floating {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: 16px;
-    background: rgba(15,20,25,0.85);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    z-index: 99999;
-    transition: all 0.25s ease;
-}
-
-.contact-avatar {
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #00ffd5;
-    color: black;
-    font-weight: 600;
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.contact-info {
-    font-size: 12px;
-    line-height: 1.2;
-}
-
-.actions {
-    display: flex;
-    gap: 6px;
-}
-
-.btn {
-    padding: 6px 10px;
-    border-radius: 8px;
-    background: #00ffd5;
-    color: white;
-    text-decoration: none;
-    font-size: 12px;
-}
-
-.btn.call {
-    background: #00FF00;
-    color: black;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .navbar {
-        position: fixed;
-        top:0;
-        left:0;
-        right:0;
-        height:60px;
-        padding:0 16px;
-        z-index:2000;
-        background: rgba(10,15,20,0.7);
-        backdrop-filter: blur(10px);
-    }
-
-    .logo { font-size:16px; }
-    .nav-link { font-size:13px; }
-
-    #map {
-        position: fixed;
-        top:60px;
-        left:0;
-        right:0;
-        bottom:0;
-        z-index:1;
-        flex:1;
-        height: calc(100vh - 70px);
-    }
-
-    .sidebar {
-        position: fixed;
-        left:0;
-        right:0;
-        bottom:0;
-        height:65vh;
-        background:#0b0f14;
-        border-top-left-radius:20px;
-        border-top-right-radius:20px;
-        z-index:2000;
-        overflow:auto;
-        padding:16px;
-        transform: translateY(70%);
-        transition: 0.3s ease;
-        box-shadow: 0 -10px 40px rgba(0,0,0,0.6);
-    }
-
-    .sidebar::before {
-        content:"";
-        width:40px;
-        height:5px;
-        background:#555;
-        border-radius:10px;
-        display:block;
-        margin:0 auto 10px;
-    }
-
-    body {
-        padding-top:60px;
-    }
-
-    .dashboard {
-        display:block;
-        height:auto;
-    }
+.place-card{
+    background:#111;
+    padding:10px;
+    margin-top:8px;
+    border-radius:10px;
 }
 </style>
 
@@ -260,70 +89,142 @@ html, body {
 <body>
 
 <div class="navbar">
-    <a href="index.html" class="logo">KHA TRAN</a>
-    <a href="contact.html" class="nav-link">Contact</a>
+    <div class="logo">KHA TRAN</div>
 </div>
 
 <div class="dashboard">
-    <div class="sidebar">
-        <input id="search" class="search-box" placeholder="Search..." />
-        <select id="city-filter" class="search-box"><option value="">All Cities</option></select>
-        <select id="country-filter" class="search-box"><option value="">All Countries</option></select>
-        <select id="type-filter" class="search-box"><option value="">All Types</option></select>
-    <input id="price-min" class="search-box" placeholder="Min Price">
-    <input id="price-max" class="search-box" placeholder="Max Price">
-    <input id="rent-min" class="search-box" placeholder="Min Rent">
-    <input id="rent-max" class="search-box" placeholder="Max Rent">
 
-    <div id="asset-list"></div>
+<div class="sidebar">
+
+<input id="search" class="search-box" placeholder="Search">
+<input id="price-min" class="search-box" placeholder="Min price">
+<input id="price-max" class="search-box" placeholder="Max price">
+
+<div id="asset-list"></div>
+
+<h3>Nearby</h3>
+<div id="nearby-list"></div>
+
 </div>
 
 <div id="map"></div>
 
-
 </div>
-
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script src="data.js"></script>
 
 <script>
-const map = L.map('map').setView([10.78, 106.7], 13);
+let map;
+let markers = [];
 
-L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+// ✅ FIX: khai báo đầy đủ biến
+const search = document.getElementById("search");
+const priceMin = document.getElementById("price-min");
+const priceMax = document.getElementById("price-max");
 
-setTimeout(() => {
-    map.invalidateSize();
-}, 100);
-
-const listEl = document.getElementById("asset-list");
-
-// render list
-assets.forEach(p => {
-
-    // card
-    listEl.innerHTML += `
-    <div class="asset-card">
-        <div class="card-img">
-            <img src="${p.images?.[0]}" />
-        </div>
-        <div class="card-content">
-            <b>${p.name}</b>
-            <p>${p.address || ""}</p>
-            <p class="price">$${p.price || ""}</p>
-        </div>
-    </div>
-    `;
-
-    // marker
-    const marker = L.marker([p.lat, p.lng]).addTo(map);
-
-    marker.on("click", () => {
-        map.setView([p.lat, p.lng], 15);
+function initMap(){
+    map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat:10.78, lng:106.7 },
+        zoom:13,
+        styles:[
+            {elementType:"geometry",stylers:[{color:"#0b0f14"}]},
+            {elementType:"labels.text.fill",stylers:[{color:"#ffffff"}]}
+        ]
     });
 
-});
+    render(assets);
+}
+
+/* RENDER */
+function render(list){
+
+    const el = document.getElementById("asset-list");
+    el.innerHTML="";
+
+    markers.forEach(m=>m.setMap(null));
+    markers=[];
+
+    list.forEach(p=>{
+
+        el.innerHTML+=`
+        <div class="asset-card" onclick="goDetail('${p.id}')">
+            <div class="card-img">
+                <img src="${p.images?.[0]}">
+            </div>
+            <div class="card-content">
+                <b>${p.name}</b>
+                <p>${p.address||""}</p>
+                <p class="price">$${p.price||""}</p>
+            </div>
+        </div>
+        `;
+
+        const marker = new google.maps.Marker({
+            position:{lat:p.lat,lng:p.lng},
+            map:map
+        });
+
+        marker.addListener("click",()=>{
+            map.setCenter({lat:p.lat,lng:p.lng});
+            map.setZoom(15);
+            loadNearby(p.lat,p.lng);
+        });
+
+        markers.push(marker);
+    });
+}
+
+/* FILTER */
+function filter(){
+    const keyword = search.value.toLowerCase();
+    const min = +priceMin.value || 0;
+    const max = +priceMax.value || 999999999;
+
+    const filtered = assets.filter(p=>{
+        return p.name.toLowerCase().includes(keyword)
+        && p.price >= min
+        && p.price <= max;
+    });
+
+    render(filtered);
+}
+
+// ✅ bind event sau khi đã khai báo biến
+search.oninput = filter;
+priceMin.oninput = filter;
+priceMax.oninput = filter;
+
+/* NEARBY */
+async function loadNearby(lat,lng){
+
+    const box=document.getElementById("nearby-list");
+    box.innerHTML="Loading...";
+
+    try{
+        const res = await fetch(`https://propertiesmap.onrender.com/api/nearby?lat=${lat}&lng=${lng}`);
+        const data = await res.json();
+
+        box.innerHTML="";
+
+        data.results.slice(0,8).forEach(p=>{
+            box.innerHTML+=`
+            <div class="place-card">${p.name}</div>
+            `;
+        });
+
+    }catch(e){
+        box.innerHTML="Failed to load";
+    }
+}
+
+function goDetail(id){
+    window.location.href=`project.html?id=${id}`;
+}
 </script>
+
+<!-- ⚠️ nhớ thay API KEY -->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
 
 </body>
 </html>
