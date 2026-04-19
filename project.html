@@ -248,7 +248,7 @@ function getPlaceImages(p){
     const photos = p.photos || [];
 
     let imgs = photos.slice(0,3).map(ph =>
-        `http://localhost:3000/api/photo?ref=${ph.photo_reference}`
+        `https://propertiesmap.onrender.com/api/photo?ref=${ph.photo_reference}`
     );
 
     while(imgs.length < 3){
@@ -260,7 +260,7 @@ function getPlaceImages(p){
 
 /* ===== NEARBY ===== */
 async function loadNearby(lat,lng,map){
-    const res = await fetch(`http://localhost:3000/api/nearby?lat=${lat}&lng=${lng}`);
+    const res = await fetch(`https://propertiesmap.onrender.com/api/nearby?lat=${lat}&lng=${lng}`);
     const data = await res.json();
 
     const container = document.getElementById("nearby-list");

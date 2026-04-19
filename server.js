@@ -1,11 +1,14 @@
 import express from "express";
 import fetch from "node-fetch";
 import cors from "cors";
+import dotenv from "dotenv";
 
 const app = express();
 app.use(cors());
 
-const API_KEY = "AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8";
+dotenv.config();
+
+const API_KEY = process.env.GOOGLE_API_KEY;
 
 // ===== NEARBY =====
 app.get("/api/nearby", async (req, res) => {
