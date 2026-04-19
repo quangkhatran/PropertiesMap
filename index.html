@@ -295,6 +295,34 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').ad
 setTimeout(() => {
     map.invalidateSize();
 }, 100);
+
+const listEl = document.getElementById("asset-list");
+
+// render list
+assets.forEach(p => {
+
+    // card
+    listEl.innerHTML += `
+    <div class="asset-card">
+        <div class="card-img">
+            <img src="${p.images?.[0]}" />
+        </div>
+        <div class="card-content">
+            <b>${p.name}</b>
+            <p>${p.address || ""}</p>
+            <p class="price">$${p.price || ""}</p>
+        </div>
+    </div>
+    `;
+
+    // marker
+    const marker = L.marker([p.lat, p.lng]).addTo(map);
+
+    marker.on("click", () => {
+        map.setView([p.lat, p.lng], 15);
+    });
+
+});
 </script>
 
 </body>
