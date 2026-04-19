@@ -24,6 +24,14 @@ body {
     align-items:center;
     padding:0 40px;
 }
+.dashboard {
+    display:flex;
+    height:calc(100vh - 70px);
+}
+
+html, body {
+    height:100%;
+}
 
 .logo {
     font-family:'Playfair Display';
@@ -195,7 +203,8 @@ body {
 
 #map {
     flex:1;
-    height: calc(100vh - 70px);
+    height:100%;
+    min-height:400px; /* 🔥 thêm dòng này */
 }
 </style>
 
