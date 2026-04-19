@@ -6,332 +6,386 @@
 <title>Project Detail</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 
 <style>
-body {
-    padding-top:70px;
-    margin:0;
-    font-family:Inter;
+body{margin:0;font-family:Inter;background:#0b0f14;color:white;}
+
+.back-btn{
+position:fixed;top:20px;left:20px;z-index:999;
+background:rgba(255,255,255,0.9);color:#111;
+border:none;padding:10px 16px;border-radius:10px;
+font-weight:600;cursor:pointer;
+backdrop-filter: blur(10px);
+box-shadow:0 6px 20px rgba(0,0,0,0.3);
+}
+
+.hero{
+height:60vh;background-size:cover;background-position:center;
+display:flex;align-items:end;padding:40px;position:relative;
+}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.7), transparent);}
+.hero-content{position:relative;z-index:2;}
+.hero-price{font-size:28px;font-weight:700;color:#00ffd5;}
+
+.section{padding:40px;max-width:1100px;margin:auto;}
+
+#info{background:#111;padding:24px;border-radius:16px;}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;}
+
+#map{width:100%;height:420px;border-radius:16px;}
+
+.nearby-filter{display:flex;gap:8px;margin:10px 40px;flex-wrap:wrap;}
+.nearby-filter button{
+padding:6px 10px;border-radius:8px;background:#111;color:white;border:1px solid #333;cursor:pointer;
+}
+.nearby-filter button.active{background:#00ffd5;color:#000;}
+
+.cta{background:#111;padding:30px;border-radius:16px;text-align:center;margin:40px auto;max-width:500px;}
+.cta input{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#0b0f14;color:white;}
+.cta button{margin-top:10px;padding:12px;background:#00ffd5;border:none;border-radius:10px;font-weight:600;cursor:pointer;}
+
+.contact{
+    background:#111;
+    border-radius:16px;
+    padding:40px;
+    max-width:600px;
+    margin:60px auto;
+    text-align:center;
+}
+
+.contact input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:8px;
+    border:1px solid #333;
     background:#0b0f14;
     color:white;
 }
 
-/* NAVBAR */
-.navbar {
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 40px;
-}
-.dashboard {
-    display:flex;
-    height:calc(100vh - 70px);
-}
-
-html, body {
-    height:100%;
-}
-
-.logo {
-    font-family:'Playfair Display';
-    font-size:20px;
-    letter-spacing:2px;
-    color:white;
-    text-decoration:none;
-}
-
-.nav-links a {
-    color:#ccc;
-    text-decoration:none;
-    margin-left:20px;
-}
-
-.nav-links a:hover {
-    color:#00ffd5;
-}
-
-/* HERO */
-.hero {
-    height:60vh;
-    background-size:cover;
-    background-position:center;
-    display:flex;
-    align-items:end;
-    padding:40px;
-}
-
-.hero h1 {
-    font-family:'Playfair Display';
-    font-size:40px;
-}
-
-/* SECTION */
-.section { padding:40px; }
-
-/* GALLERY */
-.gallery {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-top:20px;
-}
-
-.gallery img {
-    width:100%;
-    height:200px;
-    object-fit:cover;
-    border-radius:10px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.gallery img:hover { transform:scale(1.03); }
-
-/* MAP */
-#detail-map {
-    width:100%;
-    height:400px;
-    margin-top:40px;
-    border-radius:16px;
-    overflow:hidden;
-}
-
-/* NEARBY CARD */
-.place-card {
-    background:#111;
-    border-radius:12px;
+.contact button{
+    margin-top:15px;
     padding:12px;
-    margin-bottom:10px;
-    cursor:pointer;
-    transition:0.2s;
-}
-
-.place-card:hover {
-    border:1px solid #00ffd5;
-    transform:translateY(-2px);
-}
-
-.img-row {
-    display:flex;
-    gap:6px;
-    margin-bottom:10px;
-}
-
-.img-row img {
-    width:33.33%;
-    height:100px;
-    object-fit:cover;
+    width:100%;
+    border:none;
     border-radius:10px;
-}
-
-/* VIEWER */
-.viewer {
-    position:fixed;
-    top:0;left:0;
-    width:100%;height:100%;
-    background:rgba(0,0,0,0.95);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-}
-
-.viewer img {
-    max-width:100%;
-    max-height:90vh;
-    border-radius:12px;
-}
-
-.viewer-content { position:relative; }
-
-.nav {
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    width:44px;
-    height:44px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(0,0,0,0.5);
-    border-radius:50%;
-    font-size:26px;
-    color:white;
-    cursor:pointer;
-}
-
-.prev { left:20px; }
-.next { right:20px; }
-
-/* BACK */
-.back-btn {
-    position:fixed;
-    top:90px;
-    left:20px;
-    background:rgba(0,0,0,0.6);
-    padding:10px 16px;
-    border-radius:8px;
-    cursor:pointer;
-    z-index:11000;
-}
-
-/* CONTACT */
-.contact-floating {
-    position:fixed;
-    bottom:20px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    gap:10px;
-    padding:10px 14px;
-    border-radius:16px;
-    background:rgba(15,20,25,0.85);
-    backdrop-filter:blur(12px);
-}
-
-.contact-avatar {
-    width:34px;
-    height:34px;
-    border-radius:50%;
     background:#00ffd5;
-    color:black;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background:rgba(11,15,20,0.8);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid #222;
+    z-index:1000;
+}
+
+.topbar-inner{
+    height:100%;
     display:flex;
     align-items:center;
     justify-content:center;
 }
 
-#map {
-    flex:1;
-    height:100%;
-    min-height:400px; /* 🔥 thêm dòng này */
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Playfair Display", serif;
+    font-size:20px;
+    font-weight:600;
+}
+
+.logo-icon{
+    font-size:22px;
+}
+
+.logo-text{
+    letter-spacing:1px;
+}
+
+body{
+    padding-top:60px;
 }
 </style>
 
 </head>
 
 <body>
-
-<div class="navbar">
-    <a href="index.html" class="logo">KHA TRAN</a>
-    <div class="nav-links">
-        <a href="contact.html">Contact</a>
+<div class="topbar">
+    <div class="topbar-inner">
+        <div class="logo" onclick="location.href='index.html'" style="cursor:pointer;">
+            <span class="logo-icon">🏡</span>
+            <span class="logo-text">Kha Tran</span>
+        </div>
     </div>
 </div>
 
-<div class="back-btn">← Back</div>
+<button class="back-btn" onclick="goBack()">← Back</button>
 
 <div id="project"></div>
 
-<h3 style="margin-top:30px;">Nearby Places</h3>
-<div id="nearby-list"></div>
+<div class="section">
+<h3>Information</h3>
+<div id="info"></div>
+</div>
 
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<div class="section">
+<h3>Map</h3>
+
+<div class="nearby-filter">
+<button onclick="toggleType('cafe')">☕</button>
+<button onclick="toggleType('restaurant')">🍽</button>
+<button onclick="toggleType('bank')">🏦</button>
+<button onclick="toggleType('supermarket')">🛒</button>
+<button onclick="toggleType('school')">🏫</button>
+<button onclick="toggleType('hospital')">🏥</button>
+<button onclick="toggleType('convenience_store')">🏪</button>
+</div>
+
+<div id="map"></div>
+</div>
+
+<div class="section">
+<h3>Gallery</h3>
+<div class="gallery" id="gallery"></div>
+</div>
 
 <script src="data.js"></script>
 
 <script>
-const params = new URLSearchParams(window.location.search);
-const id = params.get("id");
+const id=new URLSearchParams(location.search).get("id");
+const project=assets.find(p=>String(p.id)===id);
 
-const project = assets.find(p => p.id === id);
-const el = document.getElementById("project");
+let map, infoWindow;
+let nearbyData=[];
+let nearbyMarkers=[];
+let activeTypes=["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"];
 
-if(project){
-    el.innerHTML = `
-    <div class="hero" style="background-image:url('${project.images?.[0]}')">
-        <h1>${project.name}</h1>
-    </div>
+function render(){
+document.getElementById("project").innerHTML=`
+<div class="hero" style="background-image:url('${project.images?.[0]||""}')">
+<div class="hero-content">
+<h1>${project.name}</h1>
+<div class="hero-price">${project.price} ${project.priceUnit}</div>
+<div>${project.address}</div>
+</div>
+</div>`;
 
-    <div class="section">
-        <p>Type: ${project.type}</p>
-        <p>Address: ${project.address || ""}</p>
+document.getElementById("info").innerHTML=`
+<div class="info-grid">
+<div>${project.type}</div>
+<div>${project.address}</div>
+<div class="price">${project.price} ${project.priceUnit}</div>
+</div>
+<div style="margin-top:10px;">${project.description||""}</div>`;
 
-        <div id="detail-map"></div>
+document.getElementById("gallery").innerHTML=
+project.images.map(i=>`<img src="${i}">`).join("");
 
-        <h3>Gallery</h3>
-        <div class="gallery">
-            ${(project.images || []).map(img => `<img src="${img}">`).join("")}
-        </div>
-    </div>
-    `;
+document.getElementById("property-field").value = project.name;
 }
 
-/* ===== IMAGE ===== */
-function getPlaceImages(p){
-    const photos = p.photos || [];
-
-    let imgs = photos.slice(0,3).map(ph =>
-        `https://propertiesmap.onrender.com/api/photo?ref=${ph.photo_reference}`
-    );
-
-    while(imgs.length < 3){
-        imgs.push("https://via.placeholder.com/400x250?text=No+Image");
-    }
-
-    return imgs;
-}
-
-async function loadNearby(lat,lng,map){
-    const container = document.getElementById("nearby-list");
-
-    // 🔥 thêm dòng này (QUAN TRỌNG)
-    container.innerHTML = "<p>Loading nearby places...</p>";
-
-    try{
-        const res = await fetch(`https://propertiesmap.onrender.com/api/nearby?lat=${lat}&lng=${lng}`);
-
-        if(!res.ok){
-            throw new Error("API error");
-        }
-
-        const data = await res.json();
-
-        // reset sau khi load xong
-        container.innerHTML = "";
-
-        if(!data.results || data.results.length === 0){
-            container.innerHTML = "<p>No nearby places found</p>";
-            return;
-        }
-
-        data.results.slice(0,10).forEach(p=>{
-            const imgs = getPlaceImages(p);
-
-            container.innerHTML += `
-            <div class="place-card">
-                <div class="img-row">
-                    ${imgs.map(img=>`<img src="${img}">`).join("")}
-                </div>
-                <b>${p.name}</b>
-            </div>`;
-        });
-
-    }catch(err){
-        console.error(err);
-        container.innerHTML = "<p>⚠️ Failed to load nearby places</p>";
-    }
-}
-
-/* ===== MAP ===== */
 function initMap(){
-    if(!project) return;
+render();
 
-    const map = L.map('detail-map').setView([project.lat, project.lng], 14);
+const center={lat:project.lat,lng:project.lng};
 
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+map=new google.maps.Map(document.getElementById("map"),{
+center,zoom:15,mapId:"properties-map"
+});
 
-    setTimeout(() => {
-        map.invalidateSize();
-    }, 100);
+infoWindow=new google.maps.InfoWindow();
 
-    L.marker([project.lat, project.lng]).addTo(map);
+// 🔥 PROPERTY MARKER
+const mainMarker=new google.maps.marker.AdvancedMarkerElement({
+map,position:center
+});
 
-    loadNearby(project.lat, project.lng, map);
+// 🔥 PROPERTY POPUP (FULL)
+infoWindow.setContent(`
+<div style="color:black;max-width:260px;font-family:Inter">
+
+${project.images?.[0]?`
+<img src="${project.images[0]}" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;">
+`:``}
+
+<b>${project.name}</b>
+
+<div style="opacity:0.7;font-size:13px;">
+${project.type}
+</div>
+
+<div style="font-size:13px;">
+${project.address}
+</div>
+
+<div style="margin-top:6px;color:#16a34a;font-weight:700;">
+${project.price} ${project.priceUnit}
+</div>
+
+</div>
+`);
+
+infoWindow.open({map,anchor:mainMarker});
+
+loadNearby(center);
 }
 
-initMap();
+// 🔥 ICON MARKER
+function createNearbyMarker(type){
+const icons={
+restaurant:"🍽️",
+cafe:"☕",
+bank:"🏦",
+supermarket:"🛒",
+school:"🏫",
+hospital:"🏥",
+convenience_store:"🏪"
+};
+const div=document.createElement("div");
+div.style.fontSize="18px";
+div.innerHTML=icons[type]||"📍";
+return div;
+}
+
+// 🔥 LOAD NEARBY
+function loadNearby(center){
+const service=new google.maps.places.PlacesService(map);
+
+["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"]
+.forEach(type=>{
+service.nearbySearch({
+location:center,radius:800,type
+},(res,status)=>{
+if(status!=="OK")return;
+
+res.slice(0,3).forEach(p=>{
+p._type=type;
+nearbyData.push(p);
+});
+
+renderNearby();
+});
+});
+}
+
+// 🔥 RENDER NEARBY (FIXED)
+function renderNearby(){
+
+nearbyMarkers.forEach(m=>m.map=null);
+nearbyMarkers=[];
+
+nearbyData
+.filter(p=>activeTypes.includes(p._type))
+.forEach(p=>{
+
+const marker=new google.maps.marker.AdvancedMarkerElement({
+map,
+position:p.geometry.location,
+content:createNearbyMarker(p._type)
+});
+
+const dist=Math.round(
+google.maps.geometry.spherical.computeDistanceBetween(
+new google.maps.LatLng(project.lat,project.lng),
+p.geometry.location
+)
+);
+
+// 🔥 POPUP XỊN
+marker.addListener("click",()=>{
+infoWindow.setContent(`
+<div style="color:black;max-width:240px;font-family:Inter">
+
+${p.photos?.[0]?`
+<img src="${p.photos[0].getUrl({maxWidth:300})}" 
+style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:8px;">
+`:``}
+
+<b style="font-size:15px;">${p.name}</b>
+
+<div style="font-size:13px;opacity:0.7;margin-bottom:6px;">
+⭐ ${p.rating||"-"} • ${p._type}
+</div>
+
+<div style="font-size:13px;">
+📍 ${dist} m away
+</div>
+
+<div style="margin-top:10px;">
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}"
+style="display:block;text-align:center;padding:6px;background:#111;color:white;border-radius:8px;text-decoration:none;">
+View on Maps →
+</a>
+</div>
+
+</div>
+`);
+infoWindow.open({map,anchor:marker});
+});
+
+nearbyMarkers.push(marker);
+
+});
+}
+
+function toggleType(t){
+activeTypes.includes(t)
+? activeTypes=activeTypes.filter(x=>x!==t)
+: activeTypes.push(t);
+renderNearby();
+}
+
+function goBack(){location.href="index.html";}
 </script>
 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places,marker,geometry&callback=initMap" async defer></script>
+
+<div class="section contact">
+
+    <h2>Contact us</h2>
+    <p>Leave your info and we will contact you shortly</p>
+
+    <form id="contact-form" 
+          action="https://formsubmit.co/quangkhatran@gmail.com" 
+          method="POST">
+
+        <input name="name" placeholder="Your name" required>
+        <input name="phone" placeholder="Phone number" required>
+        <input name="email" placeholder="Email (optional)">
+
+        <!-- hidden -->
+        <input type="hidden" name="property" id="property-field">
+        <input type="hidden" name="_subject" value="New Lead 🚀">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Contact Now</button>
+
+    </form>
+
+    <div id="form-msg"></div>
+
+</div>
+
+<script>
+	const form = document.getElementById("contact-form");
+	const msg = document.getElementById("form-msg");
+
+	form.addEventListener("submit", ()=>{
+	    msg.innerHTML = "Sending...";
+	    msg.style.color = "#00ffd5";
+	});
+</script>
 </body>
 </html>

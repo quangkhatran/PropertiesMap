@@ -180,7 +180,7 @@ const assets = [
 
         link: "project.html?id=p3",
 
-        selected: false
+        selected: true
     },
 
     {
