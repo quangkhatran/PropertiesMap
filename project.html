@@ -258,24 +258,45 @@ function getPlaceImages(p){
     return imgs;
 }
 
-/* ===== NEARBY ===== */
 async function loadNearby(lat,lng,map){
-    const res = await fetch(`https://propertiesmap.onrender.com/api/nearby?lat=${lat}&lng=${lng}`);
-    const data = await res.json();
-
     const container = document.getElementById("nearby-list");
 
-    data.results.slice(0,10).forEach(p=>{
-        const imgs = getPlaceImages(p);
+    // 🔥 thêm dòng này (QUAN TRỌNG)
+    container.innerHTML = "<p>Loading nearby places...</p>";
 
-        container.innerHTML += `
-        <div class="place-card">
-            <div class="img-row">
-                ${imgs.map(img=>`<img src="${img}">`).join("")}
-            </div>
-            <b>${p.name}</b>
-        </div>`;
-    });
+    try{
+        const res = await fetch(`https://propertiesmap.onrender.com/api/nearby?lat=${lat}&lng=${lng}`);
+
+        if(!res.ok){
+            throw new Error("API error");
+        }
+
+        const data = await res.json();
+
+        // reset sau khi load xong
+        container.innerHTML = "";
+
+        if(!data.results || data.results.length === 0){
+            container.innerHTML = "<p>No nearby places found</p>";
+            return;
+        }
+
+        data.results.slice(0,10).forEach(p=>{
+            const imgs = getPlaceImages(p);
+
+            container.innerHTML += `
+            <div class="place-card">
+                <div class="img-row">
+                    ${imgs.map(img=>`<img src="${img}">`).join("")}
+                </div>
+                <b>${p.name}</b>
+            </div>`;
+        });
+
+    }catch(err){
+        console.error(err);
+        container.innerHTML = "<p>⚠️ Failed to load nearby places</p>";
+    }
 }
 
 /* ===== MAP ===== */
