@@ -192,6 +192,11 @@ body {
     align-items:center;
     justify-content:center;
 }
+
+#map {
+    flex:1;
+    height: calc(100vh - 70px);
+}
 </style>
 
 </head>
@@ -306,6 +311,10 @@ function initMap(){
     const map = L.map('detail-map').setView([project.lat, project.lng], 14);
 
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png').addTo(map);
+
+    setTimeout(() => {
+        map.invalidateSize();
+    }, 100);
 
     L.marker([project.lat, project.lng]).addTo(map);
 
