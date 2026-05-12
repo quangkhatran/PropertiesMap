@@ -348,6 +348,7 @@ async function searchYoutube(
 
             }
 
+            
             return {
 
                 title,
@@ -368,15 +369,17 @@ async function searchYoutube(
                   `https://youtube.com/watch?v=${item.id.videoId}`,
 
                 places:
-
                   extractedPlaces &&
                   extractedPlaces.length
 
                   ? extractedPlaces
 
-                  : []
+                  : [],
+
+                source:'youtube'
 
             };
+
 
           }
 
