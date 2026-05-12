@@ -1,0 +1,1273 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proptech Platform</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    box-sizing: border-box;
+}
+body{
+    padding-top:60px;
+    overflow-x:hidden;
+}
+html{margin:0;height:100%;font-family:Inter;background:#0b0f14;color:white;}
+.dashboard{display:flex;height:100vh;}
+.sidebar{width:340px;padding:20px;overflow:auto;border-right:1px solid #222;scroll-behavior: smooth;}
+#map{
+    width:100%;
+    height:100%;
+    z-index:1;
+}
+
+.search-box{width:100%;padding:10px;margin-bottom:10px;background:#111;border:1px solid #222;color:white;}
+
+.asset-card{background:#111;border-radius:12px;margin-bottom:12px;cursor:pointer;}
+.asset-card.active{border:2px solid #00ffd5;}
+
+.card-img img{width:100%;height:140px;object-fit:cover;}
+.card-content{padding:10px;}
+.price{color:#00ffd5;}
+
+.nearby-filter{
+
+top:10px;
+right:10px;
+z-index:999;
+display:flex;
+gap:6px;
+flex-wrap:wrap;
+}
+.nearby-filter button{
+padding:6px 8px;
+border-radius:8px;
+background:#111;
+color:white;
+border:1px solid #333;
+cursor:pointer;
+}
+
+.info {
+    margin-top:20px;
+    font-size:13px;
+    color:#aaa;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Playfair Display", serif;
+   
+    font-weight:600;
+    position:relative;
+
+    font-size:20px;
+    letter-spacing:2px;
+
+    color:white;
+    text-decoration:none;
+
+    transition:
+        color 0.35s ease,
+        text-shadow 0.35s ease,
+        transform 0.35s ease,
+        filter 0.35s ease;
+
+    z-index:1;
+}
+
+.logo::after{
+
+    width:135%;
+    height:160%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,230,120,0.82) 0%,
+            rgba(255,215,80,0.52) 20%,
+            rgba(255,190,50,0.18) 46%,
+            rgba(255,160,20,0.0) 72%
+        );
+
+    filter:blur(14px);
+}
+
+/* glow chính */
+.logo:hover{
+
+    color:#fff6c7;
+
+    transform:translateY(-1px) scale(1.04);
+
+    filter:brightness(1.25);
+
+    text-shadow:
+        0 0 8px rgba(255,240,180,1),
+        0 0 18px rgba(255,225,120,1),
+        0 0 38px rgba(255,210,90,1),
+        0 0 70px rgba(255,190,40,0.95),
+        0 0 120px rgba(255,180,20,0.85);
+}
+
+.logo:hover::after{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.15);
+}
+
+.logo-icon{
+    font-size:22px;
+}
+
+.logo-text{
+    letter-spacing:1px;
+}
+
+body{
+    padding-top:60px;
+}
+
+@media (max-width: 768px){
+
+    /* layout dọc */
+    .dashboard{
+        flex-direction: column;
+        height: auto;
+    }
+
+    /* sidebar full width */
+    .sidebar{
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #222;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+    }
+
+    /* map xuống dưới */
+    #map{
+        height: 350px;
+    }
+
+    /* nearby filter xuống dưới cho dễ bấm */
+    .nearby-filter{
+        top: auto;
+        bottom: 10px;
+        right: 10px;
+    }
+
+    /* contact gọn lại */
+    .contact{
+        padding: 20px;
+    }
+
+    .card-img img{
+        height:100px;
+    }
+}
+
+.asset-card a:hover{
+    background:#00ffd5;
+    color:black;
+}
+
+.navbar {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+
+    padding:0 40px;
+
+    background:rgba(10,15,20,0.6);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #222;
+
+    box-sizing:border-box;
+    
+    z-index: 9999;
+}
+
+.nav-left {
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo {
+    font-family:'Playfair Display';
+    font-size:20px;
+    letter-spacing:2px;
+    color:white;
+    text-decoration:none;
+}
+
+.nav-link {
+    font-family:'Playfair Display';
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ccc;
+    text-decoration:none;
+}
+
+.nav-link:hover {
+    color:#00ffd5;
+}
+
+.nav-link.active {
+    color:#00ffd5;
+}
+
+@media(max-width:768px){
+    .navbar {
+        padding:0 20px;
+    }
+
+    .nav-left {
+        gap:12px;
+        flex-wrap:wrap;
+    }
+
+    .nav-link {
+        font-size:11px;
+    }
+}
+
+.nav-right{
+    margin-left:auto;
+}
+
+#login-btn{
+    padding:6px 12px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+
+.locked{
+    filter: blur(6px);
+    transition: 0.3s;
+}
+
+#admin-panel button{
+    padding:4px 6px;
+    border:none;
+    border-radius:6px;
+    background:#222;
+    color:white;
+    cursor:pointer;
+}
+
+#admin-panel button:hover{
+    background:#00ffd5;
+    color:black;
+}
+
+.auth-input{
+    width:100%;
+    padding:10px;
+    border-radius:6px;
+    border:1px solid #333;
+    background:#000;
+    color:white;
+}
+
+.auth-btn{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:6px;
+    background:#eee;
+    cursor:pointer;
+}
+
+.auth-btn.secondary{
+    background:#ccc;
+}
+
+.contact-section{
+
+    margin-top:60px;
+
+    display:flex;
+    justify-content:center;
+
+    padding:40px;
+
+    background:#0b0f14;
+}
+
+.contact-card {
+
+    width:100%;
+    max-width:600px;
+
+    background:#111;
+
+    border-radius:16px;
+
+    padding:30px 35px;
+
+    box-shadow:
+      0 20px 50px
+      rgba(0,0,0,0.6);
+}
+
+.contact-card h2 {
+
+    font-family:'Playfair Display';
+
+    margin-bottom:10px;
+}
+
+.contact-card p {
+
+    color:#aaa;
+
+    margin-bottom:20px;
+}
+
+.contact-card input,
+.contact-card textarea {
+
+    width:100%;
+
+    padding:12px;
+
+    margin-bottom:14px;
+
+    background:#0b0f14;
+
+    border:1px solid #222;
+
+    border-radius:10px;
+
+    color:white;
+
+    font-size:14px;
+
+    box-sizing:border-box;
+}
+
+.contact-card input:focus,
+.contact-card textarea:focus {
+
+    outline:none;
+
+    border-color:#00ffd5;
+}
+
+.contact-card button {
+
+    width:100%;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#00ffd5;
+
+    color:black;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    transition:0.2s;
+}
+
+.contact-card button:hover {
+
+    transform:translateY(-2px);
+}
+
+.info {
+
+    margin-top:20px;
+
+    font-size:13px;
+
+    color:#aaa;
+}
+</style>
+
+</head>
+
+<body>
+<div class="navbar">
+    <div class="nav-left">
+        <a href="index.html" class="logo">KHA TRAN</a>
+
+        <a href="index.html#home" class="nav-link active">Home</a>
+        <a href="lifestyle.html" class="nav-link">Lifestyle</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <!-- 🔥 RIGHT SIDE -->
+    <div class="nav-right">
+        <button id="login-btn" onclick="openLogin()">Login</button>
+    </div>
+</div>
+
+
+
+<div class="dashboard">
+
+<div class="sidebar">
+    <form autocomplete="off">
+        <input id="search" class="search-box" placeholder="Search">
+        <select id="country" class="search-box"></select>
+        <select id="city" class="search-box"></select>
+        <select id="type" class="search-box"></select>
+
+        <input id="price-min" class="search-box" placeholder="Min price">
+        <input id="price-max" class="search-box" placeholder="Max price">
+
+        <input id="rent-min" class="search-box" placeholder="Min rent">
+        <input id="rent-max" class="search-box" placeholder="Max rent">
+    </form>
+
+    <div id="asset-list"></div>
+</div>
+
+<div style="position:relative;flex:1;height:100%;">
+
+<div class="nearby-filter">
+<button onclick="toggleType('cafe')">☕</button>
+<button onclick="toggleType('restaurant')">🍽</button>
+<button onclick="toggleType('bank')">🏦</button>
+<button onclick="toggleType('supermarket')">🛒</button>
+<button onclick="toggleType('school')">🏫</button>
+<button onclick="toggleType('hospital')">🏥</button>
+<button onclick="toggleType('convenience_store')">🏪</button>
+</div>
+
+<div id="map"></div>
+
+</div>
+
+</div>
+
+
+<div class="contact-section">
+
+    <div class="contact-card">
+
+        <h2>Contact</h2>
+
+        <p>
+            Please leave your info and
+            we will contact you shortly
+        </p>
+
+        <form
+            id="contact-form"
+            action="https://formsubmit.co/quangkhatran@gmail.com"
+            method="POST"
+        >
+
+            <input
+                name="name"
+                placeholder="Your Name"
+                required
+            >
+
+            <input
+                name="email"
+                placeholder="Email"
+            >
+
+            <input
+                name="phone"
+                type="tel"
+                placeholder="Phone Number"
+                required
+            >
+
+            <textarea
+                name="message"
+                rows="5"
+                placeholder="Message"
+            ></textarea>
+
+            <input
+                type="hidden"
+                name="property"
+                id="property-field"
+            >
+
+            <input
+                type="hidden"
+                name="_subject"
+                value="New Lead from Index 🚀"
+            >
+
+            <input
+                type="hidden"
+                name="_captcha"
+                value="false"
+            >
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+        <div class="info">
+            📞 0702106868 <br>
+            📧 quangkhatran@gmail.com
+        </div>
+
+        <div id="form-msg"></div>
+
+    </div>
+
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+    import { 
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    
+    import { 
+      getFirestore, 
+      doc, 
+      getDoc,
+      setDoc,
+      serverTimestamp,
+      updateDoc, 
+      collection, 
+      getDocs, 
+      onSnapshot 
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsUBX4UQSYDJ6PlntatrXutktM-TevIPs",
+      authDomain: "propertiesmap-b304e.firebaseapp.com",
+      projectId: "propertiesmap-b304e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    
+    window.userRole = "guest";
+
+    // expose ra ngoài
+    window.auth = auth;
+    window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+    window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+    window.signOut = signOut;
+
+    window.isLoggedIn = false;
+
+    function openLogin(){
+        document.getElementById("login-modal").style.display = "flex";
+
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+    }
+    window.openLogin = openLogin;
+
+    function login(){
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        signInWithEmailAndPassword(auth, email, pass)
+        .then(()=>{
+            document.getElementById("login-modal").style.display = "none";   
+            updateNavbar(auth.currentUser);
+            updatePriceUI();  
+            updatePopup();
+        })
+        .catch(err=>alert(err.message));
+    }
+    window.login = login;
+
+    window.register = async function(){
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        try{
+            const cred = await createUserWithEmailAndPassword(auth, email, pass);
+
+            await setDoc(doc(db, "users", email.toLowerCase()), {
+                email: email.toLowerCase(),
+                role: "user",
+                status: "pending",   
+                createdAt: serverTimestamp()
+            }, {merge: true});
+
+            alert("Registered successfully. Please wait for admin's approval.");
+            document.getElementById("login-modal").style.display = "none";
+
+        }catch(e){
+            alert(e.message);
+        }
+    }
+    
+
+    function logout(){
+        signOut(auth).then(()=>{
+            window.userRole = "guest";
+            window.userStatus = "guest";
+            updateNavbar(null);
+            updatePriceUI();
+            updatePopup();
+        });
+    }
+    window.logout = logout;
+
+    window.userRole = "guest";
+    window.userStatus = "guest";
+
+    onAuthStateChanged(auth, async (user)=>{
+        window.isLoggedIn = !!user;
+
+        if(user){
+            const ref = doc(db, "users", user.email.toLowerCase());
+            const snap = await getDoc(ref);
+
+            if(snap.exists()){
+                const data = snap.data();
+                window.userRole = data.role;
+                window.userStatus = data.status;
+            }else{
+                window.userRole = "user";
+                window.userStatus = "pending";
+            }
+
+        }else{
+            window.userRole = "guest";
+            window.userStatus = "guest";
+        }
+
+        // 🔥 UPDATE UI TRƯỚC
+        updateNavbar(user);
+        updatePriceUI();
+        updatePopup();
+
+        // 🔥 ADMIN PANEL LOAD SAU CÙNG (QUAN TRỌNG)
+        // if(window.userRole === "admin"){
+        //     initAdminPanel();
+        // } else {
+        //     const panel = document.getElementById("admin-panel");
+        //     if(panel){
+        //         panel.style.display = "none";
+        //     }
+
+        //     if(unsubscribeUsers){
+        //         unsubscribeUsers();
+        //         unsubscribeUsers = null;
+        //     }
+        // }
+    });
+
+    function updateNavbar(user){
+        const btn = document.getElementById("login-btn");
+
+        if(!btn) return;
+
+        if(user){
+
+            if(window.userStatus === "pending" && window.userRole !== "admin"){
+                btn.innerText = "Pending ⏳ (Logout)";
+                btn.onclick = logout;
+                return;
+            }
+
+            if(window.userRole === "admin"){
+                btn.innerText = "Admin 👑 (Logout)";
+            }else if(window.userRole === "vip"){
+                btn.innerText = "VIP 💎 (Logout)";
+            }else{
+                btn.innerText = "User (Logout)";
+            }
+
+            btn.onclick = logout;
+
+        }else{
+            btn.innerText = "Login";
+            btn.onclick = openLogin;
+        }
+    }
+
+    function updatePriceUI(){
+        if(!window.assets) return;
+        render(window.assets);
+    }
+
+    function updatePopup(){
+        if(!map) return;
+
+        if(currentProperty && markers[currentProperty.id]){
+            showPopup(currentProperty, markers[currentProperty.id]);
+        }
+    }
+
+</script>
+
+<script src="data.js"></script>
+
+<script>
+let map, markers={}, infoWindow;
+let nearbyMarkers=[], nearbyData=[];
+let activeTypes=["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"];
+let currentProperty=null;
+
+function goToDetail(id){
+    window.location.href = `project.html?id=${id}`;
+}
+
+function createNearbyMarker(type){
+    const icons={
+        restaurant:"🍽️",
+        cafe:"☕",
+        bank:"🏦",
+        supermarket:"🛒",
+        school:"🏫",
+        hospital:"🏥",
+        convenience_store:"🏪"
+    };
+    const div=document.createElement("div");
+    div.style.fontSize="18px";
+    div.innerHTML=icons[type]||"📍";
+    return div;
+}
+
+const search = document.getElementById("search");
+const country = document.getElementById("country");
+const city = document.getElementById("city");
+const type = document.getElementById("type");
+const priceMin = document.getElementById("price-min");
+const priceMax = document.getElementById("price-max");
+const rentMin = document.getElementById("rent-min");
+const rentMax = document.getElementById("rent-max");
+
+function initMap(){
+    map=new google.maps.Map(document.getElementById("map"),{
+        center:{lat:10.78,lng:106.7},
+        zoom:13,
+        mapId:"a06f0b68f297368151688ee9"
+    });
+
+    infoWindow=new google.maps.InfoWindow();
+
+    initFilters();
+    render(window.assets);
+
+    [search, city, type, priceMin, priceMax, rentMin, rentMax].forEach(el => el.addEventListener("input", applyFilters));
+
+    country.addEventListener("change", ()=>{
+        city.value = "";        // 🔥 RESET CITY TRƯỚC
+        updateCityOptions();   // 🔥 update city theo country
+        applyFilters();        // 🔥 filter lại list
+    });
+
+    const first=assets.find(p=>p.lat&&p.lng);
+    if(first){
+        focusProperty(first.id);
+        document.getElementById("property-field").value = first.name;
+    }
+}
+
+function canViewPrice(){
+    return window.isLoggedIn &&
+           (
+             window.userRole === "admin" ||
+             (window.userStatus === "approved" && window.userRole === "vip")
+           );
+}
+
+function render(list){
+    const el=document.getElementById("asset-list");
+    el.innerHTML="";
+
+    Object.values(markers).forEach(m=>m.map = null);
+    markers={};
+
+    list.forEach(p=>{
+
+        el.innerHTML+=`
+            <div class="asset-card" id="card-${p.id}" onclick="focusProperty('${p.id}')">
+                <div class="card-img"><img src="${p.images?.[0]||""}"></div>
+
+                <div class="card-content">
+
+                    <b>${p.name}</b>
+
+                    <p>${p.address||""}</p>
+
+                    <p class="price">
+                        ${canViewPrice() ? `Price: ${p.price} ${p.priceUnit}` : `🔒 Private listing`}
+                    </p>
+
+                    ${p.rent ? `
+                    <p style="color:#00ffd5;font-size:13px;">
+                        ${canViewPrice() ? `Rent: ${p.rent} ${p.rentUnit}` : `🔒 Private listing`}
+                    </p>` : ""}
+
+                    <a href="project.html?id=${p.id}" 
+                       onclick="event.stopPropagation()"
+                       style="
+                            display:block;
+                            margin-top:8px;
+                            padding:8px;
+                            text-align:center;
+                            background:#222;
+                            color:white;
+                            border-radius:8px;
+                            text-decoration:none;
+                            font-size:13px;
+                       ">
+                       View detail →
+                    </a>
+
+                </div>
+            </div>
+        `;
+
+        const marker=new google.maps.marker.AdvancedMarkerElement({
+            map,
+            position:{lat:p.lat,lng:p.lng}
+        });
+
+        marker.addListener("click",()=>{
+            focusProperty(p.id);
+            showPopup(p,marker);
+            setActive(p.id);
+        });
+
+        markers[p.id]=marker;
+    });
+}
+
+function focusProperty(id){
+    const p=assets.find(x=>x.id==id);
+    if(!p) return;
+
+    currentProperty=p;
+
+    map.panTo({lat:p.lat,lng:p.lng});
+    map.setZoom(15);
+
+    loadNearby(p.lat,p.lng);
+    showPopup(p,markers[id]);
+
+    document.getElementById("property-field").value = p.name;
+    setActive(id);
+}
+
+function setActive(id){
+
+    // remove active tất cả card
+    document.querySelectorAll(".asset-card")
+    .forEach(c => c.classList.remove("active"));
+
+    // add active card hiện tại
+    const card = document.getElementById("card-"+id);
+    if(card){
+        card.classList.add("active");
+
+        // scroll tới card
+        card.scrollIntoView({
+            behavior:"smooth",
+            block:"center"
+        });
+    }
+
+    // reset marker style
+    Object.values(markers).forEach(m=>{
+        if(m.content){
+            m.content.style.transform = "scale(1)";
+        }
+    });
+
+    // highlight marker hiện tại
+    const marker = markers[id];
+    if(marker && marker.content){
+        marker.content.style.transform = "scale(1.4)";
+    }
+}
+
+function showPopup(p,marker){
+    infoWindow.setContent(`
+    <div style="color:black;max-width:260px;font-family:Inter">
+
+        ${p.images?.[0] ? `
+            <img src="${p.images[0]}" 
+                 style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;">
+            ` : ""}
+
+            <b style="font-size:16px;">${p.name}</b>
+
+            <div style="opacity:0.7;font-size:13px;">
+                ${p.type || ""}
+            </div>
+
+            <div style="font-size:13px;">
+                ${p.address || ""}
+            </div>
+
+            <div style="margin-top:6px;font-size:13px;font-weight:bold;color:#00ffd5;">
+                ${canViewPrice() ? `Price: ${p.price} ${p.priceUnit}` : `🔒 Private listing`}
+            </div>
+
+            ${p.rent ? `
+            <div style="margin-top:6px;font-size:13px;color:#00ffd5;">
+                ${canViewPrice() ? `Rent: ${p.rent} ${p.rentUnit}` : `🔒 Private listing`}
+            </div>` : ""}
+
+            <div style="margin-top:12px;">
+                <a href="project.html?id=${p.id}"
+                style="
+                    display:block;
+                    text-align:center;
+                    padding:8px;
+                    background:#111;
+                    color:white;
+                    border-radius:8px;
+                    text-decoration:none;
+                ">
+                View detail →
+                </a>
+            </div>
+
+        </div>
+    `);
+    infoWindow.open({map,anchor:marker});
+}
+
+function loadNearby(lat,lng){
+
+    nearbyData=[];
+    nearbyMarkers.forEach(m=>m.map=null);
+    nearbyMarkers=[];
+
+    const service=new google.maps.places.PlacesService(map);
+
+    activeTypes.forEach(type=>{
+        service.nearbySearch({
+            location:{lat,lng},
+            radius:800,
+            type
+        },(res,status)=>{
+            if(status!=="OK") return;
+
+            res.slice(0,3).forEach(p=>{
+                p._type=type;
+                nearbyData.push(p);
+            });
+
+            renderNearby(lat,lng);
+        });
+    });
+}
+
+function renderNearby(lat,lng){
+
+    nearbyMarkers.forEach(m=>m.map=null);
+    nearbyMarkers=[];
+
+    nearbyData.forEach(p=>{
+
+        const marker=new google.maps.marker.AdvancedMarkerElement({
+            map,
+            position:p.geometry.location,
+            content:createNearbyMarker(p._type)
+        });
+
+        const dist = Math.round(
+            google.maps.geometry.spherical.computeDistanceBetween(
+                new google.maps.LatLng(lat,lng),
+                p.geometry.location
+            )
+        );
+
+        marker.addListener("click",()=>{
+            infoWindow.setContent(`
+                <div style="color:black;max-width:240px;font-family:Inter">
+
+                    ${p.photos?.[0] ? `
+                    <img src="${p.photos[0].getUrl({maxWidth:300})}" 
+                         style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:8px;">
+                    ` : ""}
+
+                    <b style="font-size:15px;">${p.name}</b>
+
+                    <div style="font-size:13px;opacity:0.7;margin-bottom:6px;">
+                        ⭐ ${p.rating || "-"} • ${p._type}
+                    </div>
+
+                    <div style="font-size:13px;">
+                        📍 ${dist} m away
+                    </div>
+
+                    <div style="margin-top:10px;">
+                        <a target="_blank"
+                        href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}"
+                        style="
+                            display:block;
+                            text-align:center;
+                            padding:6px;
+                            background:#111;
+                            color:white;
+                            border-radius:8px;
+                            text-decoration:none;
+                        ">
+                        View on Maps →
+                        </a>
+                    </div>
+
+                </div>
+            `);
+            infoWindow.open({map,anchor:marker});
+        });
+
+        nearbyMarkers.push(marker);
+    });
+}
+
+function toggleNav(){
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("show");
+}
+
+function toggleType(t){
+    activeTypes.includes(t)
+    ? activeTypes = activeTypes.filter(x=>x!==t)
+    : activeTypes.push(t);
+
+    // highlight UI
+    document.querySelectorAll(".nearby-filter button")
+    .forEach(btn=>{
+        const type = btn.innerText;
+    });
+
+    if(currentProperty){
+        loadNearby(currentProperty.lat,currentProperty.lng);
+    }
+}
+
+function initFilters(){
+
+    const countries = [...new Set(assets.map(p=>p.country).filter(Boolean))];
+    const types = [...new Set(assets.map(p=>p.type).filter(Boolean))];
+
+    // COUNTRY
+    country.innerHTML = `<option value="">All Countries</option>` +
+        countries.map(c=>`<option value="${c}">${c}</option>`).join("");
+
+    // CITY (ban đầu = tất cả)
+    updateCityOptions();
+
+    // TYPE
+    type.innerHTML = `<option value="">All Types</option>` +
+        types.map(t=>`<option value="${t}">${t}</option>`).join("");
+}
+
+function updateCityOptions(){
+
+    const selectedCountry = country.value;
+
+    let cities;
+
+    if(selectedCountry){
+        cities = [...new Set(
+            assets
+            .filter(p => p.country === selectedCountry)
+            .map(p => p.city)
+            .filter(Boolean)
+        )];
+    } else {
+        cities = [...new Set(
+            assets.map(p => p.city).filter(Boolean)
+        )];
+    }
+
+    city.innerHTML = `<option value="">All Cities</option>` +
+        cities.map(c=>`<option value="${c}">${c}</option>`).join("");
+}
+
+function applyFilters(){
+
+    let list = [...assets];
+
+    const keyword = search.value.toLowerCase();
+    const c = country.value;
+    const cityVal = city.value;
+    const t = type.value;
+
+    if(keyword){
+        list = list.filter(p =>
+            p.name.toLowerCase().includes(keyword) ||
+            (p.address||"").toLowerCase().includes(keyword)
+        );
+    }
+
+    if(c){
+        list = list.filter(p => p.country === c);
+    }
+
+    if(cityVal){
+        list = list.filter(p => p.city === cityVal);
+    }
+
+    if(t){
+        list = list.filter(p => 
+            (p.type || "").toLowerCase() === t.toLowerCase()
+        );
+    }
+
+    const minP = parseFloat(priceMin.value);
+    const maxP = parseFloat(priceMax.value);
+
+    if(!isNaN(minP)) list = list.filter(p => p.price >= minP);
+    if(!isNaN(maxP)) list = list.filter(p => p.price <= maxP);
+
+    const minR = parseFloat(rentMin.value);
+    const maxR = parseFloat(rentMax.value);
+
+    if(!isNaN(minR)) list = list.filter(p => p.rent >= minR);
+    if(!isNaN(maxR)) list = list.filter(p => p.rent <= maxR);
+
+    render(list);
+    if(list.length){
+        focusProperty(list[0].id);
+    }
+}
+
+
+</script>
+<script>
+    const form = document.getElementById("contact-form");
+    const msg = document.getElementById("form-msg");
+
+    form.addEventListener("submit", ()=>{
+        msg.innerHTML = "Sending...";
+        msg.style.color = "#00ffd5";
+    });
+</script>
+<script>
+    const menu = document.getElementById("nav-menu");
+    const btn = document.querySelector(".hamburger");
+
+    if(menu && btn){
+        document.addEventListener("click", function(e){
+            if(!menu.contains(e.target) && !btn.contains(e.target)){
+                menu.classList.remove("show");
+            }
+        });
+    }
+
+    const loginModal = document.getElementById("login-modal");
+
+    if(loginModal){
+        loginModal.addEventListener("click", function(e){
+            if(e.target === loginModal){
+                loginModal.style.display = "none";
+            }
+        });
+    }
+
+    if(loginModal){
+        document.addEventListener("keydown", function(e){
+            if(e.key === "Escape"){
+                loginModal.style.display = "none";
+            }
+        });
+    }
+
+    function handleModalClick(e){
+        if(e.target.id === "login-modal"){
+            document.getElementById("login-modal").style.display = "none";
+        }
+    }
+
+    document.addEventListener("keydown", (e)=>{
+        if(e.key === "Escape"){
+            document.getElementById("login-modal").style.display = "none";
+        }
+    });
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places,marker,geometry&callback=initMap" async defer></script>
+
+<div id="login-modal"
+    onclick="handleModalClick(event)" 
+    style="
+    position:fixed;
+    top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:5000;
+">
+    <div style="background:#111;padding:30px;border-radius:12px;width:300px;display:flex;flex-direction:column;gap:10px;">
+
+        <h3 style="margin-bottom:10px;">Login</h3>
+
+        <input id="email" placeholder="Email" class="auth-input">
+        <input id="password" type="password" placeholder="Password" class="auth-input">
+        
+        <button onclick="login()" class="auth-btn">Login</button>
+        <button onclick="register()" class="auth-btn secondary">Register</button>
+
+    </div>
+</div>
+
+<div id="admin-panel" style="
+    position:fixed;
+    right:20px;
+    top:90px;
+    width:320px;
+    max-height:70vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:15px;
+    display:none;
+    z-index:9999;
+">
+    <h3 style="margin-bottom:10px;">👑 Admin Panel</h3>
+
+    <div id="user-list"></div>
+</div>
+
+
+    
+
+</body>
+</html>

@@ -1,10 +1,11 @@
 {
-  "name": "propertiesmaplifestyleupdated",
+  "name": "propertiesmap",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "data.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -13,18 +14,14 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/quangkhatran/PropertiesMap/issues"
   },
   "homepage": "https://github.com/quangkhatran/PropertiesMap#readme",
   "dependencies": {
-    "apify": "^3.7.2",
-    "axios": "^1.16.0",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "google-search-results-nodejs": "^2.1.0",
-    "openai": "^6.37.0"
+    "node-fetch": "^3.3.2"
   }
 }

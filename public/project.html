@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Project Detail</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    box-sizing:border-box;
+}
+
+body{margin:0;font-family:Inter;background:#0b0f14;color:white;}
+
+/* wrapper */
+.menu-wrapper{
+    position:absolute;
+    right:20px;
+}
+
+/* nút menu */
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+    padding:6px 10px;
+    border-radius:8px;
+    background:#111;
+}
+
+/* dropdown */
+.dropdown{
+    position:absolute;
+    top:40px;
+    right:0;
+    background:#111;
+    border:1px solid #222;
+    border-radius:12px;
+    display:none;
+    flex-direction:column;
+    min-width:160px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* item */
+.dropdown a{
+    padding:10px;
+    color:white;
+    text-decoration:none;
+    border-bottom:1px solid #222;
+}
+
+.dropdown a:last-child{
+    border-bottom:none;
+}
+
+.dropdown a:hover{
+    background:#00ffd5;
+    color:black;
+}
+
+.hero{
+height:65vh;background-size:cover;background-position:center;
+display:flex;align-items:end;padding:40px;position:relative;
+}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.2), transparent);}
+.hero-content{position:relative;z-index:2;}
+.hero-price{font-size:28px;font-weight:700;color:#00ffd5;}
+
+.section{padding:24px 24px;max-width:1000px;margin:auto;}
+.section + .section{
+    margin-top:10px; /* 🔥 control khoảng cách giữa section */
+}
+
+.section h3{
+    font-size:20px;
+    font-weight:500;
+    letter-spacing:0.5px;
+    margin-bottom:16px;
+    opacity:0.8;
+}
+
+#info{background:#111;padding:24px;border-radius:16px;margin-top:10px;}
+.info-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.gallery img{width:100%;height:200px;object-fit:cover;border-radius:12px;}
+
+#map{width:100%;height:420px;border-radius:16px;}
+
+.nearby-filter{display:flex;gap:8px;margin:8px 0 12px 0;flex-wrap:wrap;}
+.nearby-filter button{
+padding:6px 10px;border-radius:8px;background:#111;color:white;border:1px solid #333;cursor:pointer;
+}
+.nearby-filter button.active{background:#00ffd5;color:#000;}
+
+.cta{background:#111;padding:30px;border-radius:16px;text-align:center;margin:40px auto;max-width:500px;}
+.cta input{width:100%;padding:10px;margin-top:10px;border-radius:8px;border:1px solid #333;background:#0b0f14;color:white;}
+.cta button{margin-top:10px;padding:12px;background:#00ffd5;border:none;border-radius:10px;font-weight:600;cursor:pointer;}
+
+.contact{
+    background:#111;
+    border-radius:16px;
+    padding:40px;
+    max-width:600px;
+    margin:30px auto;
+    text-align:center;
+}
+
+.contact input{
+    width:100%;
+    padding:12px;
+    margin-top:10px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#0b0f14;
+    color:white;
+}
+
+.contact button{
+    margin-top:15px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:10px;
+    background:#00ffd5;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.topbar{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:60px;
+    background:rgba(11,15,20,0.8);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid #222;
+    z-index:1000;
+}
+
+.topbar-inner{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Playfair Display", serif;
+   
+    font-weight:600;
+    position:relative;
+
+    font-size:20px;
+    letter-spacing:2px;
+
+    color:white;
+    text-decoration:none;
+
+    transition:
+        color 0.35s ease,
+        text-shadow 0.35s ease,
+        transform 0.35s ease,
+        filter 0.35s ease;
+
+    z-index:1;
+}
+
+.logo::after{
+
+    width:135%;
+    height:160%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,230,120,0.82) 0%,
+            rgba(255,215,80,0.52) 20%,
+            rgba(255,190,50,0.18) 46%,
+            rgba(255,160,20,0.0) 72%
+        );
+
+    filter:blur(14px);
+}
+
+.logo:hover{
+
+    color:#fff6dc;
+
+    transform:translateY(-1px) scale(1.02);
+
+    filter:brightness(1.08);
+
+    text-shadow:
+        0 0 4px rgba(255,240,180,0.85),
+        0 0 10px rgba(255,225,120,0.65),
+        0 0 22px rgba(255,210,90,0.42);
+}
+
+.logo:hover::after{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.15);
+}
+
+
+.logo-icon{
+    font-size:22px;
+}
+
+.logo-text{
+    letter-spacing:1px;
+}
+
+body{
+    padding-top:60px;
+}
+
+.dropdown{
+    opacity:0;
+    transform:translateY(-10px);
+    transition:0.2s;
+}
+
+.dropdown.show{
+    display:flex;
+    opacity:1;
+    transform:translateY(0);
+}
+
+.lightbox{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+    backdrop-filter:blur(10px);
+}
+
+.lightbox img{
+    max-width:90%;
+    border-radius:12px;
+}
+
+.lightbox .close{
+    position:absolute;
+    top:20px;
+    right:30px;
+    font-size:28px;
+    cursor:pointer;
+}
+
+.lightbox .nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:40px;
+    cursor:pointer;
+    padding:10px;
+    color:white;
+}
+
+.lightbox .prev{left:20px;}
+.lightbox .next{right:20px;}
+
+.lightbox-top{
+    position:relative;
+    z-index:20; /* 🔥 cao nhất */
+}
+
+.lightbox-main{
+    padding:0 60px; /* 🔥 tạo khoảng cho nút */
+}
+
+.lightbox-main img{
+    pointer-events:auto;
+}
+
+.lightbox-top span{
+    background:rgba(0,0,0,0.4);
+    padding:6px 10px;
+    border-radius:8px;
+}
+
+.nav, .lightbox-top span{
+    pointer-events:auto;
+}
+
+.gallery img{
+    transition:0.3s;
+    cursor:pointer;
+}
+
+.gallery img:hover{
+    transform:scale(1.05);
+}
+
+.nav{
+    z-index:10; /* 🔥 cao hơn ảnh */
+    background:rgba(0,0,0,0.4);
+    border-radius:50%;
+}
+
+.navbar {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+
+    padding:0 40px;
+
+    background:rgba(10,15,20,0.6);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #222;
+
+    box-sizing:border-box;
+}
+
+.nav-left {
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo {
+    font-family:'Playfair Display';
+    font-size:20px;
+    letter-spacing:2px;
+    color:white;
+    text-decoration:none;
+}
+
+.nav-link {
+    font-family:'Playfair Display';
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ccc;
+    text-decoration:none;
+}
+
+.nav-link:hover {
+    color:#00ffd5;
+}
+
+.nav-link.active {
+    color:#00ffd5;
+}
+
+@media(max-width:768px){
+    .navbar {
+        padding:0 20px;
+    }
+
+    .nav-left {
+        gap:12px;
+        flex-wrap:wrap;
+    }
+
+    .nav-link {
+        font-size:11px;
+    }
+}
+
+.lightbox{
+    display:none;
+    flex-direction:column;
+    height:100vh;
+}
+
+/* top */
+.lightbox-top{
+    display:flex;
+    justify-content:flex-end;
+    padding:20px;
+    font-size:28px;
+}
+
+/* main */
+.lightbox-main{
+    flex:1;
+    min-height:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+}
+
+.lightbox-main img{
+    max-width:100%;
+    max-height:100%;
+    object-fit:contain; /* 🔥 giữ đúng tỷ lệ */
+    position:relative;
+    z-index:1;
+}
+
+/* thumbs */
+.thumbs{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    overflow-x:auto;
+    justify-content:center;
+    flex-shrink:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+}
+
+.thumbs img{
+    width:80px;
+    height:60px;
+    object-fit:cover;
+    border-radius:6px;
+    opacity:0.5;
+    cursor:pointer;
+}
+
+.thumbs img.active{
+    opacity:1;
+    border:2px solid #00ffd5;
+}
+
+/* ===== RHYTHM SYSTEM ===== */
+
+.info-lux{
+    background:linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0.03),
+        rgba(255,255,255,0.01)
+    );
+    border-radius:16px;
+    padding:28px;
+    border:1px solid rgba(255,255,255,0.04); /* 🔥 thêm */
+}
+
+.info-price{
+    font-size:46px;
+    font-weight:600;
+    letter-spacing:-0.5px;
+}
+
+.info-rent{
+    margin-bottom:16px;
+}
+
+.info-grid-lux{
+    display:grid; 
+    margin-top:16px;
+    row-gap:12px;
+    column-gap:24px; 
+    grid-template-columns:160px 1fr;
+}
+
+.info-description{
+    margin-top:32px;
+    line-height:1.8;
+}
+
+.info-grid-lux span{
+    font-size:11px;
+    letter-spacing:1.6px;
+    text-transform:uppercase;
+    opacity:0.35;
+}
+
+.info-grid-lux strong{
+    margin-bottom:4px;
+   
+}
+
+/* ITEM */
+.info-item-lux{
+    gap:2px;
+}
+
+/* LABEL */
+.info-item-lux span{
+    font-size:11px;
+    letter-spacing:1.4px;
+    opacity:0.5;
+}
+
+/* VALUE */
+.info-item-lux strong{
+    font-size:16px;
+}
+
+/* DESCRIPTION */
+.info-description{
+    margin-top:0;
+    font-size:16px;
+    line-height:1.8;
+    letter-spacing:0.2px;
+    opacity:0.85;
+    max-width:600px;
+}
+
+.info-price{
+    
+    font-size:46px;
+    font-weight:600;
+}
+
+.info-price::after{
+    content:"";
+    display:block;
+    width:36px;
+    height:2px;
+    background:#00ffd5;
+    margin-top:10px;
+    opacity:0.5;
+}
+
+.info-lux{
+    background:linear-gradient(
+        to bottom right,
+        rgba(255,255,255,0.04),
+        rgba(255,255,255,0.01)
+    );
+    border:1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,0.4); 
+}
+
+@keyframes fadeUp{
+    from{
+        opacity:0;
+        transform:translateY(10px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.info-grid-lux strong{
+    max-width:520px;
+    line-height:1.6;
+}
+
+.info-divider{
+    height:1px;
+    background:rgba(255,255,255,0.06);
+    margin:20px 0;
+}
+
+.nav-right{
+    margin-left:auto;
+}
+
+.description-tabs{
+    display:flex;
+    gap:12px;
+    margin-bottom:28px;
+}
+
+.lang-btn{
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    padding:10px 18px;
+
+    border-radius:12px;
+
+    border:1px solid rgba(255,255,255,0.08);
+
+    background:rgba(255,255,255,0.03);
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:0.3s;
+}
+
+.lang-btn.active{
+    background:#00ffd5;
+    color:black;
+}
+
+.description-content{
+    opacity:0;
+    visibility:hidden;
+
+    height:0;
+    overflow:hidden;
+
+    transition:0.25s ease;
+}
+
+.description-content.active{
+    opacity:1;
+    visibility:visible;
+
+    height:auto;
+    overflow:visible;
+}
+
+.info-description{
+    width:100%;
+    max-width:none;
+}
+
+.description-content p{
+
+    margin-bottom:34px;
+
+    font-size:17px;
+    font-weight:300;
+
+    line-height:2.15;
+    letter-spacing:0.25px;
+
+    color:rgba(255,255,255,0.84);
+
+    text-align:justify;
+
+    -webkit-font-smoothing:antialiased;
+}
+
+#login-btn{
+    padding:6px 12px;
+    border-radius:8px;
+    border:1px solid #333;
+    background:#111;
+    color:white;
+    cursor:pointer;
+}
+</style>
+
+</head>
+
+<body>
+<div class="navbar">
+    <div class="nav-left">
+        <a href="index.html" class="logo">KHA TRAN</a>
+
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="lifestyle.html" class="nav-link">Lifestyle</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <!-- 🔥 RIGHT SIDE -->
+    <div class="nav-right">
+        <button id="login-btn" onclick="openLogin()">Login</button>
+    </div>
+</div>
+
+<div id="project"></div>
+
+<div class="section">
+<h3>Information</h3>
+<div id="info"></div>
+</div>
+
+<div class="section">
+<h3>Map</h3>
+
+<div class="nearby-filter">
+<button onclick="toggleType('cafe')">☕</button>
+<button onclick="toggleType('restaurant')">🍽</button>
+<button onclick="toggleType('bank')">🏦</button>
+<button onclick="toggleType('supermarket')">🛒</button>
+<button onclick="toggleType('school')">🏫</button>
+<button onclick="toggleType('hospital')">🏥</button>
+<button onclick="toggleType('convenience_store')">🏪</button>
+</div>
+
+<div id="map"></div>
+</div>
+
+<div class="section">
+<h3>Gallery</h3>
+<div class="gallery" id="gallery"></div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+    import { 
+      getAuth,
+      signInWithEmailAndPassword,
+      createUserWithEmailAndPassword,
+      signOut,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    
+    import { 
+      getFirestore,
+      doc,
+      getDoc,
+      setDoc,
+      serverTimestamp,
+      collection,
+      onSnapshot,
+      updateDoc
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBsUBX4UQSYDJ6PlntatrXutktM-TevIPs",
+      authDomain: "propertiesmap-b304e.firebaseapp.com",
+      projectId: "propertiesmap-b304e"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    
+    window.userRole = "guest";
+
+    // expose ra ngoài
+    window.auth = auth;
+    window.signInWithEmailAndPassword = signInWithEmailAndPassword;
+    window.createUserWithEmailAndPassword = createUserWithEmailAndPassword;
+    window.signOut = signOut;
+
+    window.isLoggedIn = false;
+
+    window.openLogin = function(){
+        document.getElementById("login-modal").style.display = "flex";
+
+        document.getElementById("email").value = "";
+        document.getElementById("password").value = "";
+    }
+
+    window.login = function(){
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        signInWithEmailAndPassword(auth, email, pass)
+        .then(()=>{
+            document.getElementById("login-modal").style.display = "none";     
+        })
+        .catch(err=>alert(err.message));
+    }
+
+    window.register = async function(){
+        const email = document.getElementById("email").value;
+        const pass = document.getElementById("password").value;
+
+        try{
+            const cred = await createUserWithEmailAndPassword(auth, email, pass);
+
+            await setDoc(doc(db, "users", email.toLowerCase()), {
+                email: email.toLowerCase(),
+                role: "user",
+                status: "pending",   
+                createdAt: serverTimestamp()
+            }, {merge: true});
+
+            alert("Registered successfully. Please wait for admin's approval.");
+            document.getElementById("login-modal").style.display = "none";
+
+        }catch(e){
+            alert(e.message);
+        }
+    }
+
+    window.logout = function(){
+        signOut(auth).then(()=>{
+            window.userRole = "guest";
+            window.userStatus = "guest";
+            updateNavbar(null);
+            updatePriceUI();
+            updatePopup();
+        });
+    }
+
+    window.isLoggedIn = false;
+
+    window.userRole = "guest";
+    window.userStatus = "guest";
+
+    onAuthStateChanged(auth, async (user)=>{
+        window.isLoggedIn = !!user;
+
+        if(user){
+            const ref = doc(db, "users", user.email.toLowerCase());
+            const snap = await getDoc(ref);
+
+            if(snap.exists()){
+                const data = snap.data();
+                window.userRole = data.role;
+                window.userStatus = data.status;
+            }else{
+                window.userRole = "user";
+                window.userStatus = "pending";
+            }
+
+        }else{
+            window.userRole = "guest";
+            window.userStatus = "guest";
+        }
+
+        // 🔥 UPDATE UI TRƯỚC
+        updateNavbar(user);
+        updatePriceUI();
+        updatePopup();
+
+    });
+
+    function updateNavbar(user){
+        const btn = document.getElementById("login-btn");
+
+        if(!btn) return;
+
+        if(user){
+
+            if(window.userStatus === "pending" && window.userRole !== "admin"){
+                btn.innerText = "Pending ⏳ (Logout)";
+                btn.onclick = logout;
+                return;
+            }
+
+            if(window.userRole === "admin"){
+                btn.innerText = "Admin 👑 (Logout)";
+            }else if(window.userRole === "vip"){
+                btn.innerText = "VIP 💎 (Logout)";
+            }else{
+                btn.innerText = "User (Logout)";
+            }
+
+            btn.onclick = logout;
+
+        }else{
+            btn.innerText = "Login";
+            btn.onclick = openLogin;
+        }
+    }
+
+    function updatePriceUI(){
+        if(typeof renderProject === "function"){
+            renderProject();
+        }
+    }
+
+    function updatePopup(){
+        if(!map) return;
+
+        if(window.infoWindow && window.mainMarker && window.map){
+            infoWindow.setContent(getPopupContent());
+        }
+    }
+</script>
+
+<script src="data.js"></script>
+
+<script>
+const id=new URLSearchParams(location.search).get("id");
+const project=assets.find(p=>String(p.id)===id);
+if(!project){
+    document.body.innerHTML = "Project not found";
+    throw new Error("Invalid project id");
+}
+
+let map, infoWindow, mainMarker;
+let nearbyData=[];
+let nearbyMarkers=[];
+let activeTypes=["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"];
+
+function canViewPrice(){
+    return window.isLoggedIn &&
+           (
+             window.userRole === "admin" ||
+             (window.userStatus === "approved" && window.userRole === "vip")
+           );
+}
+
+function renderProject(){
+    document.getElementById("project").innerHTML=`
+    <div class="hero" style="background-image:url('${project.images?.[0]||""}')">
+    <div class="hero-content">
+    <h1>${project.name}</h1>
+    <h2>${project.type}</h2>    
+    <div>${project.address}</div>
+    </div>
+    </div>`;
+
+    document.getElementById("info").innerHTML=`
+
+    <div class="info-lux">
+
+        <div class="info-price">
+            ${canViewPrice() ? `Price: ${project.price} ${project.priceUnit}` : "🔒 Private listing"}
+        </div>
+
+        ${project.rent ? `
+            <div class="info-rent">
+                ${canViewPrice() ? `Rent: ${project.rent} ${project.rentUnit}` : "🔒 Private listing"}
+            </div>` : ""}
+
+        <div class="info-grid-lux">
+
+            <span>Property Type</span>
+            <strong>${project.type}</strong>
+
+            <span>Location</span>
+            <strong>${project.address}</strong>
+
+        </div>
+
+        ${project.description ? `
+            <div class="info-divider"></div>
+
+            <div class="info-description">
+
+                <div class="description-tabs">
+
+                    <button class="lang-btn active"
+                            onclick="switchLang('en', event)">
+                        🇬🇧 English
+                    </button>
+
+                    <button class="lang-btn"
+                            onclick="switchLang('vi', event)">
+                        🇻🇳 Tiếng Việt
+                    </button>
+
+                </div>
+
+                <div id="desc-en"
+                    class="description-content active">
+
+                    ${(project.description?.en || [])
+                        .map(text => `<p>${text}</p>`)
+                        .join("")}
+                </div>
+
+                <div id="desc-vi"
+                    class="description-content">
+
+                    ${(project.description?.vi || [])
+                        .map(text => `<p>${text}</p>`)
+                        .join("")}
+                </div>
+
+            </div>
+        ` : ""}
+
+    </div>
+
+    `;
+
+
+    document.getElementById("gallery").innerHTML=
+    project.images.map((i,index)=>`
+    <img src="${i}" onclick="openLightbox(${index})">
+    `).join("")
+
+    document.getElementById("property-field").value = project.name;
+}
+
+function initMap(){
+renderProject();
+
+const center={lat:project.lat,lng:project.lng};
+
+map=new google.maps.Map(document.getElementById("map"),{
+center,zoom:15,mapId:"properties-map"
+});
+
+window.map = map;
+
+infoWindow = window.infoWindow = new google.maps.InfoWindow();
+
+// 🔥 PROPERTY MARKER
+mainMarker = window.mainMarker = new google.maps.marker.AdvancedMarkerElement({
+map,position:center
+});
+
+// 🔥 PROPERTY POPUP (FULL)
+infoWindow.setContent(getPopupContent());
+
+infoWindow.open({map,anchor:mainMarker});
+
+mainMarker.addListener("click", ()=>{
+    infoWindow.open({
+        map,
+        anchor: mainMarker
+    });
+});
+
+mainMarker.element.addEventListener("mouseenter", ()=>{
+    infoWindow.open({
+        map,
+        anchor: mainMarker
+    });
+});
+
+map.addListener("click", ()=>{
+    infoWindow.close();
+});
+
+
+loadNearby(center);
+}
+
+function getPopupContent(){
+    return `
+    <div style="color:black;max-width:260px;font-family:Inter">
+
+    ${project.images?.[0]?`
+    <img src="${project.images[0]}" style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:10px;">
+    `:``}
+
+    <b>${project.name}</b>
+
+    <div style="opacity:0.7;font-size:13px;">
+    ${project.type}
+    </div>
+
+    <div style="font-size:13px;">
+    ${project.address}
+    </div>
+
+    <div style="margin-top:6px;color:#16a34a;font-weight:700;">
+        ${canViewPrice() ? `Price: ${project.price} ${project.priceUnit}` : "🔒 Private listing"}
+    </div>
+
+    ${project.rent ? `
+        <div style="margin-top:6px;color:#16a34a;font-weight:700;">
+            ${canViewPrice() ? `Rent: ${project.rent} ${project.rentUnit}` : "🔒 Private listing"}
+        </div>` : ""}
+
+    </div>
+    `;
+}
+
+// 🔥 ICON MARKER
+function createNearbyMarker(type){
+const icons={
+restaurant:"🍽️",
+cafe:"☕",
+bank:"🏦",
+supermarket:"🛒",
+school:"🏫",
+hospital:"🏥",
+convenience_store:"🏪"
+};
+const div=document.createElement("div");
+div.style.fontSize="18px";
+div.innerHTML=icons[type]||"📍";
+return div;
+}
+
+// 🔥 LOAD NEARBY
+function loadNearby(center){
+const service=new google.maps.places.PlacesService(map);
+
+["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"]
+.forEach(type=>{
+service.nearbySearch({
+location:center,radius:800,type
+},(res,status)=>{
+if(status!=="OK")return;
+
+res.slice(0,3).forEach(p=>{
+p._type=type;
+nearbyData.push(p);
+});
+
+renderNearby();
+});
+});
+}
+
+// 🔥 RENDER NEARBY (FIXED)
+function renderNearby(){
+
+nearbyMarkers.forEach(m=>m.map=null);
+nearbyMarkers=[];
+
+nearbyData
+.filter(p=>activeTypes.includes(p._type))
+.forEach(p=>{
+
+const marker=new google.maps.marker.AdvancedMarkerElement({
+map,
+position:p.geometry.location,
+content:createNearbyMarker(p._type)
+});
+
+const dist=Math.round(
+google.maps.geometry.spherical.computeDistanceBetween(
+new google.maps.LatLng(project.lat,project.lng),
+p.geometry.location
+)
+);
+
+// 🔥 POPUP XỊN
+marker.addListener("click",()=>{
+infoWindow.setContent(`
+<div style="color:black;max-width:240px;font-family:Inter">
+
+${p.photos?.[0]?`
+<img src="${p.photos[0].getUrl({maxWidth:300})}" 
+style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:8px;">
+`:``}
+
+<b style="font-size:15px;">${p.name}</b>
+
+<div style="font-size:13px;opacity:0.7;margin-bottom:6px;">
+⭐ ${p.rating||"-"} • ${p._type}
+</div>
+
+<div style="font-size:13px;">
+📍 ${dist} m away
+</div>
+
+<div style="margin-top:10px;">
+<a target="_blank"
+href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}"
+style="display:block;text-align:center;padding:6px;background:#111;color:white;border-radius:8px;text-decoration:none;">
+View on Maps →
+</a>
+</div>
+
+</div>
+`);
+infoWindow.open({map,anchor:marker});
+});
+
+nearbyMarkers.push(marker);
+
+});
+}
+
+function toggleMenu(){
+    const menu = document.getElementById("dropdown-menu");
+
+    menu.classList.toggle("show");
+}
+
+function toggleNav(){
+    const menu = document.getElementById("nav-menu");
+    menu.classList.toggle("show");
+}
+
+
+
+function toggleType(t){
+activeTypes.includes(t)
+? activeTypes=activeTypes.filter(x=>x!==t)
+: activeTypes.push(t);
+renderNearby();
+}
+
+function goBack(){location.href="index.html";}
+
+document.querySelectorAll(".nav-center a").forEach(link=>{
+    if(link.href === window.location.href){
+        link.classList.add("active");
+    }
+});
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places,marker,geometry&callback=initMap" async defer></script>
+
+<div class="section contact">
+
+    <h2>Contact us</h2>
+    <p>Leave your info and we will contact you shortly</p>
+
+    <form id="contact-form" 
+          action="https://formsubmit.co/quangkhatran@gmail.com" 
+          method="POST">
+
+        <input name="name" placeholder="Your name" required>
+        <input name="phone" placeholder="Phone number" required>
+        <input name="email" placeholder="Email (optional)">
+
+        <!-- hidden -->
+        <input type="hidden" name="property" id="property-field">
+        <input type="hidden" name="_subject" value="New Lead 🚀">
+        <input type="hidden" name="_captcha" value="false">
+
+        <button type="submit">Contact Now</button>
+
+    </form>
+
+    <div id="form-msg"></div>
+
+</div>
+
+<script>
+	const form = document.getElementById("contact-form");
+	const msg = document.getElementById("form-msg");
+
+	form.addEventListener("submit", ()=>{
+	    msg.innerHTML = "Sending...";
+	    msg.style.color = "#00ffd5";
+	});
+</script>
+
+<div id="lightbox" class="lightbox">
+
+    <div class="lightbox-top">
+        <span onclick="closeLightbox()">✕</span>
+    </div>
+
+    <div class="lightbox-main">
+
+        <div class="nav prev" onclick="changeSlide(-1)">‹</div>
+
+        <img id="lightbox-img">
+
+        <div class="nav next" onclick="changeSlide(1)">›</div>
+
+    </div>
+
+    <div id="thumbs" class="thumbs"></div>
+
+</div>
+
+<script>
+    let currentIndex = 0;
+
+    function openLightbox(index){
+        currentIndex = index;
+        document.getElementById("lightbox").style.display = "flex";
+        renderLightbox();
+    }
+
+    function closeLightbox(){
+        document.getElementById("lightbox").style.display = "none";
+    }
+
+    function changeSlide(dir){
+        currentIndex += dir;
+
+        if(currentIndex < 0) currentIndex = project.images.length - 1;
+        if(currentIndex >= project.images.length) currentIndex = 0;
+
+        renderLightbox();
+    }
+
+    function renderLightbox(){
+
+        const img = document.getElementById("lightbox-img");
+        img.src = project.images[currentIndex];
+
+        const thumbs = document.getElementById("thumbs");
+
+        thumbs.innerHTML = project.images.map((src,i)=>`
+            <img src="${src}" 
+                 class="${i===currentIndex?'active':''}"
+                 onclick="openLightbox(${i})">
+        `).join("");
+    }
+
+    let startX = 0;
+
+    document.getElementById("lightbox").addEventListener("touchstart", e=>{
+        startX = e.touches[0].clientX;
+    });
+
+    document.getElementById("lightbox").addEventListener("touchend", e=>{
+        let endX = e.changedTouches[0].clientX;
+
+        if(endX - startX > 50) changeSlide(-1);
+        if(startX - endX > 50) changeSlide(1);
+    });
+
+    document.addEventListener("keydown", e=>{
+        if(document.getElementById("lightbox").style.display !== "flex") return;
+
+        if(e.key === "ArrowRight") changeSlide(1);
+        if(e.key === "ArrowLeft") changeSlide(-1);
+        if(e.key === "Escape") closeLightbox();
+    });
+
+    const imgEl = document.getElementById("lightbox-img");
+    if(imgEl){
+        imgEl.addEventListener("click", ()=>{
+            imgEl.style.transform =
+                imgEl.style.transform === "scale(2)" ? "scale(1)" : "scale(2)";
+        });
+    }
+
+    function switchLang(lang, event){
+
+        document
+            .querySelectorAll(".description-content")
+            .forEach(el=>el.classList.remove("active"));
+
+        document
+            .querySelectorAll(".lang-btn")
+            .forEach(el=>el.classList.remove("active"));
+
+        document
+            .getElementById(`desc-${lang}`)
+            .classList.add("active");
+
+        event.target.classList.add("active");
+    }
+
+    function handleModalClick(e){
+        if(e.target.id === "login-modal"){
+            document.getElementById("login-modal").style.display = "none";
+        }
+    }
+
+    document.addEventListener("keydown", (e)=>{
+        if(e.key === "Escape"){
+            document.getElementById("login-modal").style.display = "none";
+        }
+    });
+</script>
+
+<div id="login-modal"
+    onclick="handleModalClick(event)" 
+    style="
+    position:fixed;
+    top:0;left:0;width:100%;height:100%;
+    background:rgba(0,0,0,0.7);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:5000;
+">
+      <div style="background:#111;padding:30px;border-radius:12px;width:300px;">
+            <h3>Login</h3>
+            <input id="email" placeholder="Email" style="width:100%;margin:8px 0;padding:10px;">
+            <input id="password" type="password" placeholder="Password" style="width:100%;margin:8px 0;padding:10px;">
+            
+            <button onclick="login()" style="width:100%;margin-top:10px;">Login</button>
+            <button onclick="register()" style="width:100%;margin-top:6px;">Register</button>
+      </div>
+</div>
+
+<div id="admin-panel"   
+    style="
+    position:fixed;
+    right:20px;
+    top:90px;
+    width:320px;
+    max-height:70vh;
+    overflow:auto;
+    background:#111;
+    border:1px solid #333;
+    border-radius:12px;
+    padding:15px;
+    display:none;
+    z-index:9999;
+">
+    <h3 style="margin-bottom:10px;">👑 Admin Panel</h3>
+
+    <div id="user-list"></div>
+</div>
+</body>
+</html>

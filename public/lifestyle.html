@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lifestyle | Kha Tran</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#070b11;
+  color:white;
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:72px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 5vw;
+
+  background:rgba(7,11,17,0.6);
+  backdrop-filter:blur(14px);
+
+  border-bottom:1px solid rgba(255,255,255,0.06);
+
+  z-index:999;
+}
+
+.logo{
+  font-family:'Playfair Display',serif;
+  font-size:24px;
+  letter-spacing:2px;
+  color:white;
+  text-decoration:none;
+}
+
+.nav-links{
+  display:flex;
+  gap:28px;
+}
+
+.nav-links a{
+  color:#cbd5e1;
+  text-decoration:none;
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+.nav-links a:hover{
+  color:#00ffd5;
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+  position:relative;
+
+  width:100%;
+  min-height:100vh;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:140px 5vw 80px;
+
+  background:
+    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.72)),
+    url('https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1600&auto=format&fit=crop');
+
+  background-size:cover;
+  background-position:center;
+}
+
+.hero-content{
+  max-width:980px;
+}
+
+.hero-tag{
+  color:#00ffd5;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  font-size:13px;
+  margin-bottom:20px;
+}
+
+.hero h1{
+  font-family:'Playfair Display',serif;
+  font-size:82px;
+  line-height:1.05;
+  margin-bottom:28px;
+}
+
+.hero p{
+  font-size:20px;
+  line-height:1.8;
+  color:#d1d5db;
+  max-width:760px;
+  margin:0 auto 42px;
+}
+
+.search-box{
+  width:100%;
+
+  display:flex;
+  gap:14px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.search-box select,
+.search-box input{
+  width:260px;
+  padding:18px;
+
+  border:none;
+  border-radius:16px;
+
+  background:rgba(255,255,255,0.08);
+  color:white;
+
+  backdrop-filter:blur(10px);
+
+  font-size:15px;
+}
+
+.search-box input::placeholder{
+  color:#9ca3af;
+}
+
+.search-box button{
+  padding:18px 30px;
+
+  border:none;
+  border-radius:16px;
+
+  background:#00ffd5;
+  color:black;
+
+  font-weight:600;
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+.search-box button:hover{
+  transform:translateY(-2px);
+}
+
+/* =========================
+SECTION
+========================= */
+
+.section{
+  padding:90px 5vw;
+}
+
+.section-header{
+  margin-bottom:36px;
+}
+
+.section-label{
+  color:#00ffd5;
+  text-transform:uppercase;
+  letter-spacing:2px;
+  font-size:12px;
+  margin-bottom:12px;
+}
+
+.section-title{
+  font-family:'Playfair Display',serif;
+  font-size:54px;
+  margin-bottom:12px;
+}
+
+.section-subtitle{
+  color:#94a3b8;
+  font-size:17px;
+  line-height:1.8;
+  max-width:700px;
+}
+
+/* =========================
+SOCIAL ROWS
+========================= */
+
+.social-block{
+  margin-bottom:70px;
+}
+
+.social-heading{
+  display:flex;
+  align-items:center;
+  gap:12px;
+
+  font-size:24px;
+  font-weight:600;
+
+  margin-bottom:24px;
+}
+
+.social-row{
+  display:flex;
+  gap:24px;
+  overflow-x:auto;
+  padding-bottom:10px;
+}
+
+.social-row::-webkit-scrollbar{
+  height:8px;
+}
+
+.social-row::-webkit-scrollbar-thumb{
+  background:#1f2937;
+  border-radius:999px;
+}
+
+.social-card{
+  min-width:340px;
+  max-width:340px;
+
+  background:#101826;
+
+  border-radius:24px;
+  overflow:hidden;
+
+  flex-shrink:0;
+
+  transition:0.35s;
+
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+.social-card:hover{
+  transform:translateY(-6px);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.45);
+}
+
+.social-card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.social-content{
+  padding:20px;
+}
+
+.platform-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+
+  font-size:12px;
+
+  padding:7px 12px;
+
+  border-radius:999px;
+
+  background:rgba(255,255,255,0.08);
+
+  margin-bottom:16px;
+}
+
+.social-title{
+  font-size:20px;
+  font-weight:600;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+
+.social-meta{
+  color:#94a3b8;
+  font-size:14px;
+  margin-bottom:16px;
+}
+
+.social-link{
+  display:inline-block;
+  color:#00ffd5;
+  text-decoration:none;
+  font-size:14px;
+}
+
+/* =========================
+AI RECOMMENDATIONS
+========================= */
+
+.recommend-grid{
+  display:flex;
+  flex-wrap:nowrap;
+  gap:28px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  width:100%;
+  scroll-behavior:smooth;
+  scroll-snap-type:x mandatory;
+  padding-bottom:24px;
+}
+
+.recommend-grid::-webkit-scrollbar{
+  height:8px;
+}
+
+.recommend-grid::-webkit-scrollbar-thumb{
+  background:#1f2937;
+  border-radius:999px;
+}
+
+.recommend-card{
+  flex:0 0 520px;
+  width:520px;
+  overflow:hidden;
+  scroll-snap-align:start;
+}
+
+.recommend-card img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:18px;
+  margin-bottom:18px;
+  display:block;
+}
+
+.recommend-card:hover{
+  transform:translateY(-5px);
+}
+
+.recommend-card.active{
+
+  border:2px solid #00ffd5;
+
+  transform:
+    translateY(-6px);
+
+  box-shadow:
+    0 0 30px
+    rgba(0,255,213,0.25);
+
+}
+
+.recommend-rank{
+  font-size:42px;
+  font-family:'Playfair Display',serif;
+  color:#00ffd5;
+  margin-bottom:14px;
+}
+
+.recommend-name{
+  font-size:24px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.recommend-meta{
+  color:#94a3b8;
+  line-height:1.8;
+  margin-bottom:16px;
+}
+
+.mention-bar{
+  width:100%;
+  height:8px;
+  background:#1e293b;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.mention-fill{
+  height:100%;
+  background:#00ffd5;
+}
+
+/* =========================
+MAP
+========================= */
+
+.map-wrapper{
+  width:100%;
+  height:720px;
+
+  border-radius:30px;
+  overflow:hidden;
+
+  border:1px solid rgba(255,255,255,0.05);
+}
+
+#map{
+  width:100%;
+  height:100%;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+  padding:80px 5vw;
+  text-align:center;
+
+  border-top:1px solid rgba(255,255,255,0.05);
+
+  color:#94a3b8;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+  .hero h1{
+    font-size:54px;
+  }
+
+  .section-title{
+    font-size:42px;
+  }
+
+  .map-wrapper{
+    height:500px;
+  }
+
+}
+
+@media(max-width:768px){
+  .recommend-card{
+    min-width:88vw;
+    max-width:88vw;
+  }
+
+  .navbar{
+    padding:0 20px;
+  }
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero{
+    padding-top:120px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:17px;
+  }
+
+  .section{
+    padding:70px 20px;
+  }
+
+  .section-title{
+    font-size:34px;
+  }
+
+  .social-card{
+    min-width:280px;
+  }
+
+  .map-wrapper{
+    height:420px;
+  }
+
+}
+
+iframe{
+  width:100%;
+  height:220px;
+  border:none;
+}
+
+.navbar {
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    display:flex;
+    justify-content:flex-start;
+    align-items:center;
+
+    padding:0 40px;
+
+    background:rgba(10,15,20,0.6);
+    backdrop-filter:blur(12px);
+
+    border-bottom:1px solid #222;
+
+    box-sizing:border-box;
+    
+    z-index: 9999;
+}
+
+.nav-left {
+    display:flex;
+    align-items:center;
+    gap:30px;
+}
+
+.logo {
+    font-family:'Playfair Display';
+    font-size:20px;
+    letter-spacing:2px;
+    color:white;
+    text-decoration:none;
+}
+
+.nav-link {
+    font-family:'Playfair Display';
+    font-size:15px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    color:#ccc;
+    text-decoration:none;
+}
+
+.nav-link:hover {
+    color:#00ffd5;
+}
+
+.nav-link.active {
+    color:#00ffd5;
+}
+
+@media(max-width:768px){
+    .navbar {
+        padding:0 20px;
+    }
+
+    .nav-left {
+        gap:12px;
+        flex-wrap:wrap;
+    }
+
+    .nav-link {
+        font-size:11px;
+    }
+}
+
+.nav-right{
+    margin-left:auto;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:"Playfair Display", serif;
+   
+    font-weight:600;
+    position:relative;
+
+    font-size:20px;
+    letter-spacing:2px;
+
+    color:white;
+    text-decoration:none;
+
+    transition:
+        color 0.35s ease,
+        text-shadow 0.35s ease,
+        transform 0.35s ease,
+        filter 0.35s ease;
+
+    z-index:1;
+}
+
+.logo::after{
+
+    width:135%;
+    height:160%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,230,120,0.82) 0%,
+            rgba(255,215,80,0.52) 20%,
+            rgba(255,190,50,0.18) 46%,
+            rgba(255,160,20,0.0) 72%
+        );
+
+    filter:blur(14px);
+}
+
+/* glow chính */
+.logo:hover{
+
+    color:#fff6c7;
+
+    transform:translateY(-1px) scale(1.04);
+
+    filter:brightness(1.25);
+
+    text-shadow:
+        0 0 8px rgba(255,240,180,1),
+        0 0 18px rgba(255,225,120,1),
+        0 0 38px rgba(255,210,90,1),
+        0 0 70px rgba(255,190,40,0.95),
+        0 0 120px rgba(255,180,20,0.85);
+}
+
+.logo:hover::after{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.15);
+}
+
+.logo-icon{
+    font-size:22px;
+}
+
+.logo-text{
+    letter-spacing:1px;
+}
+
+.gmaps-link{
+
+  color:#00ffd5;
+
+  text-decoration:none;
+
+  font-size:14px;
+
+  font-weight:600;
+
+  transition:0.25s;
+
+}
+
+.gmaps-link:hover{
+
+  opacity:0.8;
+
+  text-decoration:underline;
+
+}
+
+#loading-overlay{
+
+  position:fixed;
+
+  inset:0;
+
+  background:
+    rgba(5,10,15,0.82);
+
+  backdrop-filter:blur(10px);
+
+  display:none;
+
+  justify-content:center;
+
+  align-items:center;
+
+  z-index:99999;
+}
+
+.loading-box{
+
+  text-align:center;
+}
+
+.loader{
+
+  width:64px;
+  height:64px;
+
+  border:
+    4px solid
+    rgba(255,255,255,0.1);
+
+  border-top:
+    4px solid #00ffd5;
+
+  border-radius:50%;
+
+  animation:
+    spin 1s linear infinite;
+
+  margin:auto;
+}
+
+.loading-text{
+
+  margin-top:20px;
+
+  color:white;
+
+  font-size:15px;
+
+  letter-spacing:1px;
+
+  opacity:0.9;
+}
+
+@keyframes spin{
+
+  from{
+    transform:rotate(0deg);
+  }
+
+  to{
+    transform:rotate(360deg);
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+NAVBAR
+========================= -->
+
+<div class="navbar">
+    <div class="nav-left">
+        <a href="index.html" class="logo">KHA TRAN</a>
+
+        <a href="index.html#home" class="nav-link">Home</a>
+        <a href="lifestyle.html" class="nav-link active">Lifestyle</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+</div>
+
+<!-- =========================
+HERO
+========================= -->
+
+<section class="hero">
+
+  <div class="hero-content">
+
+    <div class="hero-tag">
+      AI Lifestyle Discovery Platform
+    </div>
+
+    <h1>
+      Explore The World Around You
+    </h1>
+
+    <p>
+      Discover restaurants, cafes and hidden gems from
+      YouTube, TikTok, Instagram and Facebook.
+      AI aggregates the most recommended places and maps them instantly.
+    </p>
+
+    <div class="search-box">
+
+      <select id="citySelect">
+        <option value="Da Lat">Da Lat</option>
+        <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+        <option value="London">London</option>
+      </select>
+      <select id="categorySelect">
+        <option value="cafes">
+          Cafes
+        </option>
+
+        <option value="restaurants">
+          Restaurants
+        </option>
+
+        <option value="nightlife">
+          Nightlife
+        </option>
+
+        <option value="luxury">
+          Luxury
+        </option>
+
+        <option value="hotels">
+          Hotels
+        </option>
+
+        <option value="architecture">
+          Architecture
+        </option>
+      </select>
+
+      <input
+        type="text"
+        id="customCity"
+        placeholder="Or enter another city..."
+      />
+
+      <button id="exploreBtn">
+        Explore
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+FOOD SECTION
+========================= -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      FOOD
+    </div>
+
+    <div class="section-title">
+      Trending Food Content
+    </div>
+
+    <div class="section-subtitle">
+      Curated from social media creators and lifestyle communities.
+    </div>
+
+  </div>
+
+  <div id="socialSections"></div>
+
+</section>
+
+<!-- =========================
+AI RECOMMENDATIONS
+========================= -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      AI SUMMARY
+    </div>
+
+    <div class="section-title">
+      Most Recommended Places
+    </div>
+
+    <div class="section-subtitle">
+      AI aggregates mentions from social media and ranks the most popular places.
+    </div>
+
+  </div>
+
+  <div class="recommend-grid" id="recommendGrid"></div>
+
+</section>
+
+<!-- =========================
+MAP
+========================= -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      GOOGLE MAPS
+    </div>
+
+    <div class="section-title">
+      Explore On The Map
+    </div>
+
+    <div class="section-subtitle">
+      AI-recommended places visualized geographically.
+    </div>
+
+  </div>
+
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
+
+</section>
+
+<!-- =========================
+FOOTER
+========================= -->
+
+<footer class="footer">
+  © 2026 Kha Tran — Lifestyle Discovery Platform
+</footer>
+
+<script>
+
+/* =========================
+CITY DATA
+========================= */
+
+async function fetchYoutube(
+  city,
+  category='cafes'
+){
+  const response = await fetch(
+    `http://localhost:3000/youtube/${city}?category=${category}`
+  );
+
+  return await response.json();
+}
+
+/* =========================
+MAP
+========================= */
+
+let map;
+
+function initMap(){
+
+  map = new google.maps.Map(document.getElementById('map'),{
+
+    center:{ lat:11.9404, lng:108.4583 },
+    zoom:13,
+
+    
+
+  });
+
+}
+
+/* =========================
+SOCIAL RENDER
+========================= */
+
+function renderSocialSection(type, items){
+
+  return `
+
+    <div class="social-block">
+
+      <div class="social-heading">
+        ${getPlatformEmoji(type)} ${capitalize(type)}
+      </div>
+
+      <div class="social-row">
+
+        ${(items || []).map(item => `
+
+          <div class="social-card">
+
+            ${
+              type === 'youtube'
+
+              ?
+
+              `<iframe
+                src="https://www.youtube.com/embed/${item.videoId}"
+                allowfullscreen
+              ></iframe>`
+
+              :
+
+              `<img
+                src="${item.thumbnail}"
+                alt="${item.title}"
+              />`
+            }
+
+            <div class="social-content">
+
+              <div class="platform-badge">
+                ${getPlatformEmoji(type)} ${capitalize(type)}
+              </div>
+
+              <div class="social-title">
+                ${item.title}
+              </div>
+
+              <div class="social-meta">
+                ${item.creator}
+              </div>
+
+              <a href="${item.url}" class="social-link">
+                Open ${capitalize(type)} →
+              </a>
+
+            </div>
+
+          </div>
+
+        `).join('')}
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+/* =========================
+RENDER AI RECOMMENDATIONS
+========================= */
+
+function renderRecommendations(recommendations){
+  
+  currentRecommendations = recommendations;
+  
+  const maxMentions =
+  Math.max(
+    ...recommendations.map(
+      item => item.mentions
+    )
+  );
+
+  const grid =
+    document.getElementById(
+      'recommendGrid'
+    );
+
+  grid.innerHTML =
+    recommendations.map(
+      (item,index)=>{
+
+        const width = (item.mentions / maxMentions) * 100;
+
+        return `
+
+          <div
+            class="recommend-card"
+            onclick="focusPlace(${index})"
+          >
+
+            <div class="recommend-rank">
+              #${index + 1}
+            </div>
+
+            <img src="${getPlacePhoto(item.place)}">
+
+            <div class="recommend-name">
+              ${item.name}
+            </div>
+
+            <div class="recommend-meta">
+
+              ⭐ ${
+                item.place?.rating || 'N/A'
+              }
+
+              <br><br>
+
+              Mentioned
+              ${item.mentions}
+              times across social media.
+
+              <br><br>
+
+              ${
+                item.place?.address || ''
+              }
+
+              <br><br>
+
+              <a
+                href="
+            https://www.google.com/maps/search/?api=1&query=${item.place?.lat},${item.place?.lng}
+                "
+                target="_blank"
+                class="gmaps-link"
+              >
+                View on Google Maps →
+              </a>
+
+            </div>
+
+            <div class="mention-bar">
+
+              <div
+                class="mention-fill"
+                style="width:${width}%"
+              ></div>
+
+            </div>
+
+          </div>
+
+        `;
+
+      }
+
+    ).join('');
+
+}
+
+/* =========================
+RENDER SOCIAL CONTENT
+========================= */
+
+async function renderCity(
+  city,
+  category='cafes'
+){
+
+    showLoading();
+
+    try{
+
+      const data =
+        await fetchYoutube(
+          city,
+          category
+        );
+
+      const youtube =
+        data.videos.filter(
+          item =>
+            !item.source ||
+            item.source === 'youtube'
+        );
+
+      const facebook =
+        data.videos.filter(
+          item =>
+            item.source === 'facebook'
+        );
+
+      const tiktok =
+        data.videos.filter(
+          item =>
+            item.source === 'tiktok'
+        );
+
+      const recommendations =
+        data.recommendations;
+
+      const container =
+        document.getElementById(
+          'socialSections'
+        );
+
+      container.innerHTML = `
+
+        ${renderSocialSection(
+          'youtube',
+          youtube
+        )}
+
+        ${renderSocialSection(
+          'tiktok',
+          tiktok
+        )}
+
+        ${renderSocialSection(
+          'facebook',
+          facebook
+        )}
+
+      `;
+
+      renderRecommendations(
+        recommendations
+      );
+
+      addMapMarkers(
+        recommendations
+      );
+
+    }catch(err){
+
+      console.log(err);
+
+    }finally{
+
+      hideLoading();
+
+    }
+
+}
+
+/* =========================
+MAP MARKERS
+========================= */
+
+let markers = [];
+let currentRecommendations = [];
+let activeInfoWindow = null;
+
+function addMapMarkers(recommendations){
+
+  markers.forEach(data=>{
+
+    if(data.marker){
+      data.marker.map = null;
+    }
+
+  });
+
+  markers = [];
+
+  const bounds =
+    new google.maps.LatLngBounds();
+
+  recommendations.forEach(
+    (item,index)=>{
+
+      if(
+        !item.place ||
+        !item.place.lat ||
+        !item.place.lng
+      ) return;
+
+      const marker =
+        new google.maps.Marker({
+
+          position:{
+            lat:item.place.lat,
+            lng:item.place.lng
+          },
+
+          map:map,
+
+          title:item.name,
+
+          animation:
+            google.maps.Animation.DROP,
+
+          icon:{
+            url:
+'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          }
+
+        });
+
+      const infoWindow =
+        new google.maps.InfoWindow({
+
+          content:`
+
+            <div style="
+              color:black;
+              padding:10px;
+              min-width:240px;
+            ">
+
+              <h3 style="
+                margin-bottom:10px;
+                font-size:18px;
+              ">
+                ${item.place.name}
+              </h3>
+
+              <p style="
+                margin-bottom:8px;
+              ">
+                ⭐ ${
+                  item.place.rating || 'N/A'
+                }
+              </p>
+
+              <p style="
+                margin-bottom:12px;
+                line-height:1.6;
+              ">
+                ${
+                  item.place.address || ''
+                }
+              </p>
+
+              <a
+                href="
+https://www.google.com/maps/search/?api=1&query=${item.place.lat},${item.place.lng}
+                "
+                target="_blank"
+                style="
+                  color:#2563eb;
+                  text-decoration:none;
+                  font-weight:600;
+                "
+              >
+                View on Google Maps →
+              </a>
+
+            </div>
+
+          `
+
+        });
+
+      marker.addListener(
+        'click',
+        ()=>{
+
+          if(activeInfoWindow){
+            activeInfoWindow.close();
+          }
+
+          activeInfoWindow = infoWindow;
+
+          infoWindow.open({
+            anchor:marker,
+            map
+          });
+
+          document
+            .querySelectorAll(
+              '.recommend-card'
+            )
+            .forEach(card=>
+              card.classList.remove(
+                'active'
+              )
+            );
+
+          const cards =
+            document.querySelectorAll(
+              '.recommend-card'
+            );
+
+          if(cards[index]){
+
+            cards[index]
+              .classList.add(
+                'active'
+              );
+
+            cards[index]
+              .scrollIntoView({
+
+                behavior:'smooth',
+                inline:'center',
+                block:'nearest'
+
+              });
+
+          }
+
+          markers.forEach(data=>{
+
+            data.marker.setAnimation(null);
+
+          });
+
+          marker.setAnimation(
+            google.maps.Animation.BOUNCE
+          );
+
+          setTimeout(()=>{
+
+            marker.setAnimation(null);
+
+          },1200);
+
+        }
+      );
+
+      markers.push({
+        marker,
+        infoWindow,
+        item,
+        id:item.name
+      });
+
+      bounds.extend({
+        lat:item.place.lat,
+        lng:item.place.lng
+      });
+
+    }
+
+  );
+
+  if(markers.length > 0){
+    map.fitBounds(bounds);
+  }
+
+}
+
+function focusPlace(index){
+
+  const recommendation =
+    currentRecommendations[index];
+
+  if(
+    !recommendation ||
+    !recommendation.place
+  ) return;
+
+  const targetMarker =
+    markers.find(data =>
+
+      data.item.name ===
+      recommendation.name
+
+    );
+
+  if(!targetMarker) return;
+
+  map.panTo({
+
+    lat:
+      recommendation.place.lat,
+
+    lng:
+      recommendation.place.lng
+
+  });
+
+  map.setZoom(15);
+
+  if(activeInfoWindow){
+    activeInfoWindow.close();
+  }
+
+  activeInfoWindow =
+    targetMarker.infoWindow;
+
+  /* =========================
+  ACTIVE CARD SYNC
+  ========================= */
+
+  document
+    .querySelectorAll(
+      '.recommend-card'
+    )
+    .forEach(card=>
+      card.classList.remove(
+        'active'
+      )
+    );
+
+  const cards =
+    document.querySelectorAll(
+      '.recommend-card'
+    );
+
+  if(cards[index]){
+    cards[index]
+      .classList.add(
+        'active'
+      );
+  }
+
+  targetMarker.infoWindow.open({
+    anchor:
+      targetMarker.marker,
+    map
+  });
+
+}
+
+/* =========================
+HELPERS
+========================= */
+
+function capitalize(str){
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getPlatformEmoji(type){
+
+  if(type === 'youtube') return '▶️';
+  if(type === 'tiktok') return '🎵';
+  if(type === 'instagram') return '📸';
+  if(type === 'facebook') return '📘';
+
+  return '🌐';
+
+}
+
+function getPlacePhoto(place){
+
+  if(
+    !place ||
+    !place.photos ||
+    !place.photos.length
+  ){
+
+    return `
+https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+    `;
+
+  }
+
+  const ref =
+    place.photos[0]?.photo_reference;
+
+  if(!ref){
+
+    return `
+https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+    `;
+
+  }
+
+  return `
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${ref}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
+  `;
+
+}
+
+/* =========================
+SEARCH
+========================= */
+
+function exploreCity(){
+
+  const dropdown =
+    document.getElementById('citySelect').value;
+
+  const custom =
+    document.getElementById('customCity')
+    .value
+    .trim();
+
+  const category =
+    document.getElementById(
+      'categorySelect'
+    ).value;
+
+  const city = custom || dropdown;
+
+  renderCity(
+    city,
+    category
+  );
+
+}
+
+/* =========================
+INIT
+========================= */
+
+window.onload = () => {
+
+  initMap();
+
+  renderCity(
+    'Da Lat',
+    'cafes'
+  );
+
+  document
+    .getElementById('exploreBtn')
+    .addEventListener('click', exploreCity);
+
+};
+
+/* =========================
+SHOW AND HIDE LOADING
+========================= */
+
+function showLoading(){
+
+  document
+    .getElementById(
+      'loading-overlay'
+    )
+    .style.display = 'flex';
+
+}
+
+function hideLoading(){
+
+  document
+    .getElementById(
+      'loading-overlay'
+    )
+    .style.display = 'none';
+
+}
+
+</script>
+<div id="loading-overlay">
+
+  <div class="loading-box">
+
+    <div class="loader"></div>
+
+    <div class="loading-text">
+      AI is discovering the best places...
+    </div>
+
+  </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
