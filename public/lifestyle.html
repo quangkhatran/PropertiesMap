@@ -938,7 +938,7 @@ async function fetchYoutube(
   category='cafes'
 ){
   const response = await fetch(
-    `http://localhost:3000/youtube/${city}?category=${category}`
+    `/youtube/${city}?category=${category}`
   );
 
   return await response.json();
