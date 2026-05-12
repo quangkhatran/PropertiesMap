@@ -145,15 +145,53 @@ HERO
   width:260px;
   padding:18px;
 
-  border:none;
+  border:
+    1px solid rgba(255,255,255,0.15);
+
   border-radius:16px;
 
-  background:rgba(255,255,255,0.08);
+  background:
+    rgba(255,255,255,0.08);
+
   color:white;
 
   backdrop-filter:blur(10px);
 
   font-size:15px;
+}
+
+/* =========================
+SELECT DROPDOWN FIX
+========================= */
+
+.search-box select{
+
+  appearance:none;
+
+  -webkit-appearance:none;
+
+  -moz-appearance:none;
+
+  cursor:pointer;
+
+}
+
+.search-box select option{
+
+  background:#111827;
+
+  color:white;
+
+  padding:12px;
+
+}
+
+.search-box select option:hover{
+
+  background:#00ffd5;
+
+  color:black;
+
 }
 
 .search-box input::placeholder{
