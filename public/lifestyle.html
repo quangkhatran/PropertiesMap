@@ -968,6 +968,13 @@ SOCIAL RENDER
 ========================= */
 
 function renderSocialSection(type, items){
+  
+  if(
+    !items ||
+    !items.length
+  ){
+    return '';
+  }
 
   return `
 
