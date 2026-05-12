@@ -135,18 +135,26 @@ HERO
   width:100%;
 
   display:flex;
+
   gap:14px;
+
   justify-content:center;
+
+  align-items:flex-start;
+
   flex-wrap:wrap;
 }
 
 .search-box select,
 .search-box input{
+
   width:260px;
-  padding:18px;
+  height:60px;
+
+  padding:0 20px;
 
   border:
-    1px solid rgba(255,255,255,0.15);
+    1px solid rgba(255,255,255,0.12);
 
   border-radius:16px;
 
@@ -155,17 +163,20 @@ HERO
 
   color:white;
 
-  backdrop-filter:blur(10px);
+  backdrop-filter:blur(12px);
 
   font-size:15px;
+
+  outline:none;
+
+  display:flex;
+  align-items:center;
 }
 
-/* =========================
-SELECT DROPDOWN FIX
-========================= */
+/* SELECT FIX */
 
 .search-box select{
-
+  margin-top:1px;
   appearance:none;
 
   -webkit-appearance:none;
@@ -174,7 +185,13 @@ SELECT DROPDOWN FIX
 
   cursor:pointer;
 
+  padding-top:0;
+
+  padding-bottom:0;
+
 }
+
+/* DROPDOWN OPTIONS */
 
 .search-box select option{
 
@@ -182,7 +199,7 @@ SELECT DROPDOWN FIX
 
   color:white;
 
-  padding:12px;
+  font-size:15px;
 
 }
 
@@ -199,18 +216,24 @@ SELECT DROPDOWN FIX
 }
 
 .search-box button{
-  padding:18px 30px;
+
+  height:60px;
+
+  padding:0 34px;
 
   border:none;
   border-radius:16px;
 
   background:#00ffd5;
+
   color:black;
 
   font-weight:600;
+
   cursor:pointer;
 
   transition:0.3s;
+
 }
 
 .search-box button:hover{
