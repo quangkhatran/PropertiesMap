@@ -22,43 +22,13 @@ const search =
 LOCALIZED QUERY BUILDER
 ========================= */
 
-const vietnamCities = [
+const {
 
-  'da lat',
-  'dalat',
-  'ho chi minh city',
-  'saigon',
-  'hcm',
-  'hanoi',
-  'ha noi',
-  'da nang',
-  'hoi an',
-  'nha trang',
-  'phu quoc',
-  'vung tau',
-  'can tho',
-  'ha long',
-  'bien hoa'
+  isVietnamLocation,
+  getVietnameseName,
+  getSubregions
 
-];
-
-const cityAliases = {
-
-  'ho chi minh city':'Sài Gòn',
-  'saigon':'Sài Gòn',
-  'da lat':'Đà Lạt',
-  'dalat':'Đà Lạt',
-  'hanoi':'Hà Nội',
-  'ha noi':'Hà Nội',
-  'da nang':'Đà Nẵng',
-  'hoi an':'Hội An',
-  'nha trang':'Nha Trang',
-  'phu quoc':'Phú Quốc',
-  'vung tau':'Vũng Tàu',
-  'can tho':'Cần Thơ',
-  'ha long':'Hạ Long'
-
-};
+} = require('./geography');
 
 function buildFacebookQueries(
   city,
@@ -69,19 +39,18 @@ function buildFacebookQueries(
     city.toLowerCase();
 
   const isVietnam =
-    vietnamCities.includes(
-      normalizedCity
-    );
+    isVietnamLocation(city);
 
   const localCityName =
-    cityAliases[normalizedCity]
-    || city;
+    getVietnameseName(city);
 
   /* =========================
   VIETNAM
   ========================= */
 
   if(isVietnam){
+    const subregions =
+      getSubregions(city);
 
     const vnQueries = {
 
@@ -135,23 +104,113 @@ function buildFacebookQueries(
 
         `site:facebook.com toà nhà đẹp ${localCityName}`
 
-      ]
+      ],
+
+      land:[
+
+        `site:facebook.com đất nền ${localCityName}`,
+        `site:facebook.com bất động sản ${localCityName}`,
+        `site:facebook.com đầu tư ${localCityName}`,
+        `site:facebook.com quy hoạch ${localCityName}`,
+        `site:facebook.com hạ tầng ${localCityName}`,
+        `site:facebook.com cao tốc ${localCityName}`,
+        `site:facebook.com sân bay ${localCityName}`,
+        `site:facebook.com giá đất ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `đất nền ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `bất động sản ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `quy hoạch ${region}`
+        )
+
+      ],
+
+      house:[
+
+        `site:facebook.com nhà phố ${localCityName}`,
+
+        `site:facebook.com căn hộ ${localCityName}`,
+
+        `site:facebook.com apartment ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com căn hộ ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com apartment ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com nhà phố ${region}`
+        )
+
+      ],
+
+      industrial:[
+
+        `site:facebook.com khu công nghiệp ${localCityName}`,
+
+        `site:facebook.com industrial park ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com khu công nghiệp ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com industrial park ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com logistics ${region}`
+        )
+
+      ],
+
+      commercial:[
+
+        `site:facebook.com shophouse ${localCityName}`,
+
+        `site:facebook.com commercial real estate ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com shophouse ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com commercial real estate ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:facebook.com township ${region}`
+        )
+
+      ],
 
     };
 
     return (
-
       vnQueries[category]
-
-      ||
-
-      [
-
-        `site:facebook.com du lịch ${localCityName}`
-
-      ]
-
-    );
+      || []
+    ).slice(0,1);
 
   }
 
@@ -209,6 +268,36 @@ function buildFacebookQueries(
 
       `site:facebook.com iconic buildings in ${city}`
 
+    ],
+
+    land:[
+
+      `site:facebook.com real estate ${city}`,
+
+      `site:facebook.com land investment ${city}`,
+
+      `site:facebook.com infrastructure ${city}`
+
+    ],
+
+    house:[
+
+      `site:facebook.com apartments ${city}`,
+
+      `site:facebook.com housing market ${city}`
+
+    ],
+
+    industrial:[
+
+      `site:facebook.com industrial real estate ${city}`
+
+    ],
+
+    commercial:[
+
+      `site:facebook.com office market ${city}`
+
     ]
 
   };
@@ -235,9 +324,10 @@ FACEBOOK SEARCH
 
 async function searchFacebook(
   city,
-  category='cafes'
+  category='cafes',
+  mode='lifestyle'
 ){
-  const cacheKey = `facebook-${city}-${category}`;
+  const cacheKey = `facebook-${mode}-${city}-${category}`;;
   
   const cached = getCache(cacheKey);
 
@@ -331,14 +421,17 @@ async function searchFacebook(
                 places =
                   await extractPlaces(`
 
-                    TITLE:
-                    ${item.title || ''}
+                      TITLE:
+                      ${item.title || ''}
 
-                    SOURCE:
-                    ${item.source || ''}
+                      SOURCE:
+                      ${item.source || ''}
 
-                  `);
+                    `,
+                    
+                    mode
 
+                  );
               }catch(err){
 
                 console.log(
@@ -408,7 +501,8 @@ async function searchFacebook(
 
       setCache(
         cacheKey,
-        cleaned
+        cleaned,
+        60 * 60 * 24 * 14
       );
 
       resolve(cleaned);

@@ -12,9 +12,9 @@ const {
   searchFacebook
 } = require('../services/facebook');
 
-const {
-  searchTikTok
-} = require('../services/tiktok');
+// const {
+//   searchTikTok
+// } = require('../services/tiktok');
 
 const router = express.Router();
 
@@ -40,25 +40,28 @@ router.get('/:city', async(req,res)=>{
     const youtube =
       await searchYoutube(
         city,
-        category
+        category,
+        "lifestyle"
       );
 
     const facebook =
       await searchFacebook(
         city,
-        category
+        category,
+        "lifestyle"
       );
     
-    const tiktok =
-      await searchTikTok(
-      city,
-      category
-    );
+    // const tiktok =
+    //   await searchTikTok(
+    //   city,
+    //   category,
+    //   "lifestyle"
+    // );
     
-      const videos = [
+    const videos = [
       ...youtube,
       ...facebook,
-      ...tiktok
+      // ...tiktok
     ];
 
     /* =========================
@@ -89,7 +92,7 @@ router.get('/:city', async(req,res)=>{
     const recommendations =
       Object.entries(mentionMap)
       .sort((a,b)=>b[1]-a[1])
-      .slice(0,10);
+      .slice(0,3);
 
     /* =========================
     GOOGLE PLACES ENRICHMENT

@@ -7,6 +7,9 @@ const path = require('path');
 const youtubeRoutes =
   require('./routes/youtube');
 
+  const realEstateRoutes =
+  require('./routes/realestate');
+
 const app = express();
 
 app.use(cors());
@@ -30,6 +33,8 @@ YOUTUBE API ROUTES
 ========================= */
 
 app.use('/youtube', youtubeRoutes);
+
+app.use('/real-estate', realEstateRoutes);
 
 /* =========================
 STATIC FILES
@@ -60,14 +65,29 @@ MULTI CATEGORY SUPPORT
 
 app.get('/api/categories',(req,res)=>{
 
-  res.json([
+  res.json({
+
+  lifestyle:[
+
     'cafes',
     'restaurants',
     'nightlife',
     'luxury',
     'hotels',
     'architecture'
-  ]);
+
+  ],
+
+  realEstate:[
+
+    'land',
+    'house',
+    'industrial',
+    'commercial'
+
+  ]
+
+});
 
 });
 
@@ -80,15 +100,15 @@ async function preloadHotCities(){
       category:'cafes'
     },
 
-    {
-      city:'Ho Chi Minh City',
-      category:'restaurants'
-    },
+    // {
+    //   city:'Ho Chi Minh City',
+    //   category:'restaurants'
+    // },
 
-    {
-      city:'London',
-      category:'luxury'
-    }
+    // {
+    //   city:'London',
+    //   category:'luxury'
+    // }
 
   ];
 
@@ -104,18 +124,21 @@ async function preloadHotCities(){
 
       await searchYoutube(
         item.city,
-        item.category
+        item.category,
+        "lifestyle"
       );
 
-      await searchFacebook(
-        item.city,
-        item.category
-      );
+      // await searchFacebook(
+      //   item.city,
+      //   item.category,
+      //   "lifestyle"
+      // );
 
-      await searchTikTok(
-        item.city,
-        item.category
-      );
+      // await searchTikTok(
+      //   item.city,
+      //   item.category,
+      //   "lifestyle"
+      // );
 
     }catch(err){
 
@@ -124,6 +147,34 @@ async function preloadHotCities(){
       );
 
     }
+
+  }
+
+  try {
+
+    await searchYoutube(
+        "Dong Nai",
+        "land",
+        "real-estate"
+    );
+
+    // await searchFacebook(
+    //   "Dong Nai",
+    //   "land",
+    //   "real-estate"
+    // );
+
+    // await searchTikTok(
+    //   "Dong Nai",
+    //   "land",
+    //   "real-estate"
+    // );
+
+  } catch(err) {
+
+      console.log(
+        err.message
+      );
 
   }
 

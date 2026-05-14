@@ -13,37 +13,13 @@ const {
 LOCALIZED QUERY BUILDER
 ========================= */
 
-const vietnamCities = [
+const {
 
-  'da lat',
-  'ho chi minh city',
-  'saigon',
-  'hanoi',
-  'da nang',
-  'hoi an',
-  'nha trang',
-  'phu quoc',
-  'vung tau',
-  'can tho',
-  'ha long'
+  isVietnamLocation,
+  getVietnameseName,
+  getSubregions
 
-];
-
-const cityAliases = {
-
-  'ho chi minh city':'Sài Gòn',
-  'saigon':'Sài Gòn',
-  'da lat':'Đà Lạt',
-  'hanoi':'Hà Nội',
-  'da nang':'Đà Nẵng',
-  'hoi an':'Hội An',
-  'nha trang':'Nha Trang',
-  'phu quoc':'Phú Quốc',
-  'vung tau':'Vũng Tàu',
-  'can tho':'Cần Thơ',
-  'ha long':'Hạ Long'
-
-};
+} = require('./geography');
 
 function buildYoutubeQueries(
   city,
@@ -54,19 +30,18 @@ function buildYoutubeQueries(
     city.toLowerCase();
 
   const isVietnam =
-    vietnamCities.includes(
-      normalizedCity
-    );
+    isVietnamLocation(city);
 
   const localCityName =
-    cityAliases[normalizedCity]
-    || city;
+    getVietnameseName(city);
 
   /* =========================
   VIETNAM QUERIES
   ========================= */
 
   if(isVietnam){
+    const subregions =
+      getSubregions(city);
 
     const vnQueries = {
 
@@ -110,24 +85,113 @@ function buildYoutubeQueries(
         `kiến trúc đẹp ở ${localCityName}`,
         `toà nhà đẹp ${localCityName}`
 
+      ],
+
+      land:[
+
+        `đất nền ${localCityName}`,
+        `bất động sản ${localCityName}`,
+        `đầu tư ${localCityName}`,
+        `quy hoạch ${localCityName}`,
+        `hạ tầng ${localCityName}`,
+        `cao tốc ${localCityName}`,
+        `sân bay ${localCityName}`,
+        `giá đất ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `đất nền ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `bất động sản ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `quy hoạch ${region}`
+        )
+
+      ],
+
+      house:[
+
+        `nhà đẹp ${localCityName}`,
+        `chung cư ${localCityName}`,
+        `apartment ${localCityName}`,
+        `real estate ${localCityName}`,
+        `housing market ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `căn hộ ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `nhà phố ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `apartment ${region}`
+        )
+
+      ],
+
+      commercial:[
+
+        `shophouse ${localCityName}`,
+        `commercial real estate ${localCityName}`,
+        `retail property ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `shophouse ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `commercial real estate ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `township ${region}`
+        )
+
+      ],
+
+      industrial:[
+
+        `khu công nghiệp ${localCityName}`,
+        `industrial park ${localCityName}`,
+        `factory investment ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `khu công nghiệp ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `industrial park ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `logistics ${region}`
+        )
+
       ]
 
     };
 
     return (
-
       vnQueries[category]
-
-      ||
-
-      [
-
-        `du lịch ${localCityName}`,
-        `review ${localCityName}`
-
-      ]
-
-    );
+      || []
+    ).slice(0,3);
 
   }
 
@@ -171,6 +235,37 @@ function buildYoutubeQueries(
 
       `${city} architecture guide`
 
+    ],
+
+    land:[
+
+      `land investment in ${city}`,
+      `real estate opportunities in ${city}`,
+      `infrastructure projects in ${city}`,
+      `property hotspot ${city}`
+
+    ],
+
+    house:[
+
+      `best apartments in ${city}`,
+      `housing market ${city}`,
+      `real estate in ${city}`
+
+    ],
+
+    commercial:[
+
+      `commercial real estate ${city}`,
+      `office investment ${city}`
+
+    ],
+
+    industrial:[
+
+      `industrial real estate ${city}`,
+      `industrial park ${city}`
+
     ]
 
   };
@@ -197,11 +292,10 @@ YOUTUBE SEARCH
 
 async function searchYoutube(
   city,
-  category='cafes'
+  category='cafes',
+  mode='lifestyle'
 ){
-
-    const cacheKey =
-      `${city}-${category}`;
+    const cacheKey = `youtube-${mode}-${city}-${category}`;
 
     const cached = getCache(cacheKey);
     console.log("CACHED: ", cached);
@@ -336,7 +430,8 @@ async function searchYoutube(
 
               extractedPlaces =
                 await extractPlaces(
-                  combinedText
+                  combinedText, 
+                  mode 
                 );
 
             }catch(err){
@@ -410,7 +505,8 @@ async function searchYoutube(
 
     setCache(
       cacheKey,
-      cleaned
+      cleaned,
+      60 * 60 * 24 * 7
     );
 
     return cleaned;

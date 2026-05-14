@@ -1,166 +1,43 @@
-const fs = require('fs');
-const path = require('path');
+const NodeCache = require("node-cache");
 
-const CACHE_DURATION =
-  1000 * 60 * 60 * 6; // 6 hours
+const cache = new NodeCache({
+  stdTTL: 60 * 60 * 24 * 14,
+  checkperiod: 120,
+});
 
-const CACHE_FILE =
-  path.join(__dirname,'cache-data.json');
+function getCache(key) {
 
-let cache = {};
+  const data = cache.get(key);
 
-/* =========================
-LOAD CACHE FILE
-========================= */
-
-function loadCache(){
-
-  try{
-
-    if(fs.existsSync(CACHE_FILE)){
-
-      const raw =
-        fs.readFileSync(
-          CACHE_FILE,
-          'utf-8'
-        );
-
-      cache = JSON.parse(raw);
-
-      console.log(
-        'CACHE LOADED'
-      );
-
-    }
-
-  }catch(err){
-
-    console.log(
-      'CACHE LOAD ERROR:',
-      err.message
-    );
-
+  if (data) {
+    console.log("CACHE HIT:", key);
+  } else {
+    console.log("CACHE MISS:", key);
   }
 
+  return data;
 }
-
-/* =========================
-SAVE CACHE FILE
-========================= */
-
-function saveCache(){
-
-  try{
-
-    fs.writeFileSync(
-
-      CACHE_FILE,
-
-      JSON.stringify(
-        cache,
-        null,
-        2
-      )
-
-    );
-
-  }catch(err){
-
-    console.log(
-      'CACHE SAVE ERROR:',
-      err.message
-    );
-
-  }
-
-}
-
-/* =========================
-GET CACHE
-========================= */
-
-function getCache(key){
-
-  const item = cache[key];
-
-  if(!item) return null;
-
-  const now = Date.now();
-
-  const isExpired =
-
-    now - item.timestamp
-    >
-    CACHE_DURATION;
-
-  if(isExpired){
-
-    console.log(
-      'CACHE EXPIRED:',
-      key
-    );
-
-    delete cache[key];
-
-    saveCache();
-
-    return null;
-
-  }
-
-  console.log(
-    'CACHE HIT:',
-    key
-  );
-
-  return item.data;
-
-}
-
-/* =========================
-SET CACHE
-========================= */
 
 function setCache(
   key,
-  data
-){
+  data,
+  ttl = 60 * 60 * 24 * 14
+) {
 
-  cache[key] = {
+  cache.set(key, data, ttl);
 
-    timestamp:
-      Date.now(),
-
-    data
-
-  };
-
-  saveCache();
-
+  console.log("CACHE SAVED:", key);
 }
 
-/* =========================
-CLEAR CACHE
-========================= */
+function clearCache() {
 
-function clearCache(){
+  cache.flushAll();
 
-  cache = {};
-
-  saveCache();
-
+  console.log("CACHE CLEARED");
 }
-
-/* =========================
-EXPORTS
-========================= */
-
-loadCache();
 
 module.exports = {
-
   getCache,
   setCache,
   clearCache
-
 };

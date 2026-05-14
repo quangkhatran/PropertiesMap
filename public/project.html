@@ -876,7 +876,17 @@ if(!project){
 let map, infoWindow, mainMarker;
 let nearbyData=[];
 let nearbyMarkers=[];
-let activeTypes=["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"];
+let activeTypes=[
+    "cafe",
+    "restaurant",
+    "bank",
+    "supermarket",
+    "school",
+    "hospital",
+    "convenience_store"
+];
+
+let nearbyLoaded = false;
 
 function canViewPrice(){
     return window.isLoggedIn &&
@@ -1012,7 +1022,15 @@ map.addListener("click", ()=>{
 });
 
 
-loadNearby(center);
+map.addListener("idle", ()=>{
+
+    if(nearbyLoaded) return;
+
+    nearbyLoaded = true;
+
+    loadNearby(center);
+
+});
 }
 
 function getPopupContent(){
@@ -1070,7 +1088,7 @@ const service=new google.maps.places.PlacesService(map);
 ["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"]
 .forEach(type=>{
 service.nearbySearch({
-location:center,radius:800,type
+location:center,radius:500,type
 },(res,status)=>{
 if(status!=="OK")return;
 

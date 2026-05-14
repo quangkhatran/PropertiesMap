@@ -22,37 +22,13 @@ const search =
 LOCALIZED QUERY BUILDER
 ========================= */
 
-const vietnamCities = [
+const {
 
-  'da lat',
-  'ho chi minh city',
-  'saigon',
-  'hanoi',
-  'da nang',
-  'hoi an',
-  'nha trang',
-  'phu quoc',
-  'vung tau',
-  'can tho',
-  'ha long'
+  isVietnamLocation,
+  getVietnameseName,
+  getSubregions
 
-];
-
-const cityAliases = {
-
-  'ho chi minh city':'Sài Gòn',
-  'saigon':'Sài Gòn',
-  'da lat':'Đà Lạt',
-  'hanoi':'Hà Nội',
-  'da nang':'Đà Nẵng',
-  'hoi an':'Hội An',
-  'nha trang':'Nha Trang',
-  'phu quoc':'Phú Quốc',
-  'vung tau':'Vũng Tàu',
-  'can tho':'Cần Thơ',
-  'ha long':'Hạ Long'
-
-};
+} = require('./geography');
 
 function buildTikTokQueries(
   city,
@@ -63,21 +39,20 @@ function buildTikTokQueries(
     city.toLowerCase();
 
   const isVietnam =
-    vietnamCities.includes(
-      normalizedCity
-    );
+    isVietnamLocation(city);
 
   const localCityName =
-    cityAliases[normalizedCity]
-    || city;
+    getVietnameseName(city);
 
   /* =========================
   VIETNAM
   ========================= */
 
   if(isVietnam){
-
-    const vnQueries = {
+    const subregions =
+        getSubregions(city);
+    
+    const vnQueries = {  
 
       cafes:[
 
@@ -129,23 +104,124 @@ function buildTikTokQueries(
 
         `site:tiktok.com toà nhà đẹp ${localCityName}`
 
-      ]
+      ],
+
+      land:[
+
+        `site:tiktok.com đất nền ${localCityName}`,
+
+        `site:tiktok.com bất động sản ${localCityName}`,
+
+        `site:tiktok.com đầu tư đất ${localCityName}`,
+
+        `site:tiktok.com quy hoạch ${localCityName}`,
+
+        `site:tiktok.com hạ tầng ${localCityName}`,
+
+        `site:tiktok.com sân bay ${localCityName}`,
+
+        `site:tiktok.com cao tốc ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com đất nền ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com bất động sản ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com quy hoạch ${region}`
+        )
+
+      ],
+
+      house:[
+
+        `site:tiktok.com nhà phố ${localCityName}`,
+
+        `site:tiktok.com căn hộ ${localCityName}`,
+
+        `site:tiktok.com apartment ${localCityName}`,
+
+        `site:tiktok.com housing market ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com căn hộ ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com nhà phố ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com apartment ${region}`
+        )
+
+      ],
+
+      industrial:[
+
+        `site:tiktok.com khu công nghiệp ${localCityName}`,
+
+        `site:tiktok.com industrial park ${localCityName}`,
+
+        `site:tiktok.com factory investment ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com khu công nghiệp ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com industrial park ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com logistics ${region}`
+        )
+
+      ],
+
+      commercial:[
+
+        `site:tiktok.com shophouse ${localCityName}`,
+
+        `site:tiktok.com commercial real estate ${localCityName}`,
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com shophouse ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com commercial real estate ${region}`
+        ),
+
+        ...subregions.map(
+          region =>
+            `site:tiktok.com township ${region}`
+        )
+
+      ],
+
+      
 
     };
 
     return (
-
       vnQueries[category]
-
-      ||
-
-      [
-
-        `site:tiktok.com du lịch ${localCityName}`
-
-      ]
-
-    );
+      || []
+    ).slice(0,1);
 
   }
 
@@ -199,7 +275,53 @@ function buildTikTokQueries(
 
       `site:tiktok.com iconic buildings in ${city}`
 
-    ]
+    ],
+
+    land:[
+
+      `site:tiktok.com land investment in ${city}`,
+
+      `site:tiktok.com real estate in ${city}`,
+
+      `site:tiktok.com property market ${city}`,
+
+      `site:tiktok.com infrastructure projects ${city}`,
+
+      `site:tiktok.com urban development ${city}`
+
+    ],
+
+    house:[
+
+      `site:tiktok.com houses in ${city}`,
+
+      `site:tiktok.com apartments in ${city}`,
+
+      `site:tiktok.com luxury homes ${city}`,
+
+      `site:tiktok.com condo market ${city}`
+
+    ],
+
+    industrial:[
+
+      `site:tiktok.com industrial park ${city}`,
+
+      `site:tiktok.com logistics hub ${city}`,
+
+      `site:tiktok.com manufacturing investment ${city}`
+
+    ],
+
+    commercial:[
+
+      `site:tiktok.com commercial real estate ${city}`,
+
+      `site:tiktok.com office market ${city}`,
+
+      `site:tiktok.com mixed-use development ${city}`
+
+    ],
 
   };
 
@@ -225,11 +347,11 @@ TIKTOK SEARCH
 
 async function searchTikTok(
   city,
-  category='cafes'
+  category='cafes',
+  mode='lifestyle'
 ){
 
-  const cacheKey =
-    `tiktok-${city}-${category}`;
+  const cacheKey = `tiktok-${mode}-${city}-${category}`;
 
   const cached =
     getCache(cacheKey);
@@ -328,7 +450,11 @@ async function searchTikTok(
                     SNIPPET:
                     ${item.snippet || ''}
 
-                  `);
+                    `,
+
+                    mode
+
+                  );
 
               }catch(err){
 
@@ -397,7 +523,8 @@ async function searchTikTok(
 
       setCache(
         cacheKey,
-        cleaned
+        cleaned,
+        60 * 60 * 24 * 14
       );
 
       resolve(cleaned);

@@ -9,9 +9,16 @@ const {
   setCache
 } = require('../cache/cache');
 
-async function extractPlaces(text){
+const {
+  getPrompt
+} = require('./prompts');
+
+async function extractPlaces(
+  text,
+  mode = "lifestyle"
+){
   const cacheKey =
-  `ai-${Buffer
+  `${mode}-ai-${Buffer
     .from(text)
     .toString('base64')
     .slice(0,120)
@@ -23,6 +30,9 @@ async function extractPlaces(text){
     return cached;
   }
 
+  console.log("=========================");
+  console.log("PROMPT: ", getPrompt(mode));
+
   const completion =
     await client.chat.completions.create({
 
@@ -31,53 +41,7 @@ async function extractPlaces(text){
       messages:[
         {
           role:'system',
-          content:`
-            You are an expert travel and food
-            data extraction AI.
-
-            Extract ONLY REAL restaurant,
-            cafe, food market, street food,
-            bar, nightlife or food-related
-            place names from the text.
-
-            Rules:
-
-            - Return ONLY JSON array
-            - No explanation
-            - No markdown
-            - No fake names
-            - No generic phrases
-            - Ignore country names
-            - Ignore cities
-            - Ignore cuisines
-            - Ignore descriptions
-
-            - TikTok captions may contain
-              emojis, hashtags and slang
-
-            - Extract actual venue names
-              even if mixed with hashtags
-
-            - Ignore hashtags unless
-              they are actual venue names
-
-            - Social media captions may
-              contain spam words, emojis,
-              uppercase text and trending slang
-
-            - Extract only real physical venues
-
-            GOOD:
-            ["An Cafe","Still Cafe"]
-
-            BAD:
-            ["Best Food In Da Lat"]
-
-            If no places found:
-            return []
-
-            Only include actual venue names.
-          `
+          content: getPrompt(mode)
         },
         {
           role:'user',
@@ -99,7 +63,8 @@ async function extractPlaces(text){
 
     setCache(
       cacheKey,
-      parsed
+      parsed,
+      60 * 60 * 24 * 30
     );
 
     return parsed;

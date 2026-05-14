@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Lifestyle | Kha Tran</title>
+<title>Real Estate Intelligence | Kha Tran</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
@@ -842,46 +842,50 @@ HERO
     </div>
 
     <h1>
-      Explore The World Around You
+      Discover Emerging Real Estate Opportunities
     </h1>
 
     <p>
-      Discover restaurants, cafes and hidden gems from
-      YouTube, TikTok, Instagram and Facebook.
-      AI aggregates the most recommended places and maps them instantly.
+      Discover land, housing and investment opportunities from
+      YouTube and Facebook.
+      AI aggregates the most discussed real estate hotspots
+      and maps them instantly.
     </p>
 
     <div class="search-box">
 
       <select id="citySelect">
+        <option value="Dong Nai">Dong Nai</option>
+        <option value="Nhon Trach">Nhon Trach</option>
+        <option value="Long Thanh">Long Thanh</option>
         <option value="Da Lat">Da Lat</option>
         <option value="Ho Chi Minh City">Ho Chi Minh City</option>
         <option value="London">London</option>
       </select>
       <select id="categorySelect">
-        <option value="cafes">
-          Cafes
-        </option>
+            <option value="land">
+                Land
+            </option>
 
-        <option value="restaurants">
-          Restaurants
-        </option>
+            <option value="house">
+                House / Apartment
+            </option>
 
-        <option value="nightlife">
-          Nightlife
-        </option>
+            <option value="commercial">
+                Commercial
+            </option>
 
-        <option value="luxury">
-          Luxury
-        </option>
+            <option value="luxury">
+                Luxury
+            </option>
 
-        <option value="hotels">
-          Hotels
-        </option>
+            <option value="industrial">
+                Industrial
+            </option>
 
-        <option value="architecture">
-          Architecture
-        </option>
+            <option value="all">
+                All
+            </option>
       </select>
 
       <input
@@ -909,11 +913,11 @@ FOOD SECTION
   <div class="section-header">
 
     <div class="section-label">
-      FOOD
+      REAL ESTATE
     </div>
 
     <div class="section-title">
-      Trending Food Content
+      Trending Real Estate Content
     </div>
 
     <div class="section-subtitle">
@@ -939,7 +943,7 @@ AI RECOMMENDATIONS
     </div>
 
     <div class="section-title">
-      Most Recommended Places
+      Most Recommended Areas
     </div>
 
     <div class="section-subtitle">
@@ -965,7 +969,7 @@ MAP
     </div>
 
     <div class="section-title">
-      Explore On The Map
+      Investment Opportunity Map
     </div>
 
     <div class="section-subtitle">
@@ -1004,21 +1008,25 @@ function debounce(fn, delay = 800){
 
   };
 
-}  
+}
 
 /* =========================
 CITY DATA
 ========================= */
 
-async function fetchYoutube(
+async function fetchRealEstate(
   city,
-  category='cafes'
+  category='land'
 ){
+
   const response = await fetch(
-    `/youtube/${city}?category=${category}`
+
+    `/real-estate/${city}?category=${category}`
+
   );
 
   return await response.json();
+
 }
 
 /* =========================
@@ -1225,7 +1233,7 @@ async function renderCity(
     try{
 
       const data =
-        await fetchYoutube(
+        await fetchRealEstate(
           city,
           category
         );
@@ -1243,11 +1251,11 @@ async function renderCity(
             item.source === 'facebook'
         );
 
-      const tiktok =
-        data.videos.filter(
-          item =>
-            item.source === 'tiktok'
-        );
+      // const tiktok =
+      //   data.videos.filter(
+      //     item =>
+      //       item.source === 'tiktok'
+      //   );
 
       const recommendations =
         data.recommendations;
@@ -1590,24 +1598,39 @@ function getPlacePhoto(place){
   ){
 
     return `
-https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
     `;
 
   }
 
-  const ref =
-    place.photos[0]?.photo_reference;
+  const photo =
+    place.photos[0]
+      ?.photo_reference;
 
-  if(!ref){
+  if(!photo){
 
     return `
-https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
     `;
 
   }
 
+  /* =========================
+  REAL ESTATE CUSTOM IMAGE
+  ========================= */
+
+  if(
+    photo.startsWith('http')
+  ){
+    return photo;
+  }
+
+  /* =========================
+  GOOGLE PLACES IMAGE
+  ========================= */
+
   return `
-https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${ref}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${photo}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
   `;
 
 }
@@ -1649,8 +1672,8 @@ window.onload = () => {
   initMap();
 
   renderCity(
-    'Da Lat',
-    'cafes'
+    'Dong Nai',
+    'land'
   );
 
   const debouncedExplore = debounce(

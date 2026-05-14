@@ -740,9 +740,36 @@ body{
 <script src="data.js"></script>
 
 <script>
+
+function debounce(fn, delay = 800){
+
+    let timeout;
+
+    return (...args)=>{
+
+        clearTimeout(timeout);
+
+        timeout = setTimeout(()=>{
+            fn(...args);
+        }, delay);
+
+    };
+
+}
+
 let map, markers={}, infoWindow;
 let nearbyMarkers=[], nearbyData=[];
-let activeTypes=["cafe","restaurant","bank","supermarket","school","hospital","convenience_store"];
+
+let activeTypes=[
+    "cafe",
+    "restaurant",
+    "bank",
+    "supermarket",
+    "school",
+    "hospital",
+    "convenience_store"
+];
+
 let currentProperty=null;
 
 function goToDetail(id){
@@ -774,8 +801,11 @@ const priceMax = document.getElementById("price-max");
 const rentMin = document.getElementById("rent-min");
 const rentMax = document.getElementById("rent-max");
 
+let nearbyLoadedFor = null;
+
 function initMap(){
-    map=new google.maps.Map(document.getElementById("map"),{
+    
+    map = new google.maps.Map(document.getElementById("map"),{
         center:{lat:10.78,lng:106.7},
         zoom:13,
         mapId:"a06f0b68f297368151688ee9"
@@ -783,10 +813,49 @@ function initMap(){
 
     infoWindow=new google.maps.InfoWindow();
 
+    map.addListener("idle", ()=>{
+
+        if(!currentProperty) return;
+
+        const key =
+        `${currentProperty.lat}-${currentProperty.lng}`;
+
+        if(nearbyLoadedFor === key){
+            return;
+        }
+
+        nearbyLoadedFor = key;
+
+        loadNearby(
+            currentProperty.lat,
+            currentProperty.lng
+        );
+
+    });
+
     initFilters();
+
     render(window.assets);
 
-    [search, city, type, priceMin, priceMax, rentMin, rentMax].forEach(el => el.addEventListener("input", applyFilters));
+    const debouncedApplyFilters =
+        debounce(applyFilters, 800);
+
+    [
+        search,
+        city,
+        type,
+        priceMin,
+        priceMax,
+        rentMin,
+        rentMax
+    ].forEach(el =>
+
+        el.addEventListener(
+            "input",
+            debouncedApplyFilters
+        )
+
+    );
 
     country.addEventListener("change", ()=>{
         city.value = "";        // 🔥 RESET CITY TRƯỚC
@@ -881,7 +950,7 @@ function focusProperty(id){
     map.panTo({lat:p.lat,lng:p.lng});
     map.setZoom(15);
 
-    loadNearby(p.lat,p.lng);
+    // loadNearby(p.lat,p.lng);
     showPopup(p,markers[id]);
 
     document.getElementById("property-field").value = p.name;
@@ -979,7 +1048,7 @@ function loadNearby(lat,lng){
     activeTypes.forEach(type=>{
         service.nearbySearch({
             location:{lat,lng},
-            radius:800,
+            radius:500,
             type
         },(res,status)=>{
             if(status!=="OK") return;
@@ -1063,6 +1132,20 @@ function toggleNav(){
     menu.classList.toggle("show");
 }
 
+const debouncedNearbyReload =
+    debounce(()=>{
+
+        if(currentProperty){
+
+            loadNearby(
+                currentProperty.lat,
+                currentProperty.lng
+            );
+
+        }
+
+    }, 400);
+
 function toggleType(t){
     activeTypes.includes(t)
     ? activeTypes = activeTypes.filter(x=>x!==t)
@@ -1074,9 +1157,9 @@ function toggleType(t){
         const type = btn.innerText;
     });
 
-    if(currentProperty){
-        loadNearby(currentProperty.lat,currentProperty.lng);
-    }
+    nearbyLoadedFor = null;
+
+    debouncedNearbyReload();
 }
 
 function initFilters(){
@@ -1162,8 +1245,13 @@ function applyFilters(){
     if(!isNaN(maxR)) list = list.filter(p => p.rent <= maxR);
 
     render(list);
+    
     if(list.length){
+
+        nearbyLoadedFor = null;
+
         focusProperty(list[0].id);
+
     }
 }
 
