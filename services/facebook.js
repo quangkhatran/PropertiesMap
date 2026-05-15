@@ -364,18 +364,22 @@ async function searchFacebook(
 
             q:q,
 
-            num:5,
+            num:3,
 
-            tbm:'isch'
+            // tbm:'isch'
+            engine:'google'
 
           },
 
           (data)=>{
 
-            const images =
-              data.images_results || [];
+            // const images =
+            //   data.images_results || [];
+            const results =
+                data.organic_results || [];
 
-            allItems.push(...images);
+            // allItems.push(...images);
+            allItems.push(...results);
 
             done();
 
@@ -393,10 +397,15 @@ async function searchFacebook(
 
       allItems.forEach(item=>{
 
+        // uniqueMap[
+        //   item.original ||
+        //   item.link ||
+        //   item.thumbnail
+        // ] = item;
+        
         uniqueMap[
-          item.original ||
           item.link ||
-          item.thumbnail
+          item.title
         ] = item;
 
       });
@@ -411,7 +420,7 @@ async function searchFacebook(
       const enriched =
         await Promise.all(
 
-          allItems.map(
+          allItems.slice(0,2).map(
             async(item)=>{
 
               let places = [];
@@ -449,12 +458,16 @@ async function searchFacebook(
                 creator:
                   'Facebook',
 
+                // thumbnail:
+                //   item.thumbnail ||
+
+                //   item.original ||
+
+                //   'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200',
                 thumbnail:
-                  item.thumbnail ||
+                    item.thumbnail ||
 
-                  item.original ||
-
-                  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1200',
+                    'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop',
 
                 image:
                   item.original ||
@@ -502,7 +515,7 @@ async function searchFacebook(
       setCache(
         cacheKey,
         cleaned,
-        60 * 60 * 24 * 14
+        60 * 60 * 24 * 30
       );
 
       resolve(cleaned);

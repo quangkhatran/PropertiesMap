@@ -14,15 +14,26 @@ const {
 } = require('./prompts');
 
 async function extractPlaces(
-  text,
-  mode = "lifestyle"
+    text,
+    mode = "lifestyle"
 ){
-  const cacheKey =
-  `${mode}-ai-${Buffer
-    .from(text)
-    .toString('base64')
-    .slice(0,120)
-  }`;
+    // const cacheKey =
+    // `${mode}-ai-${Buffer
+    //   .from(text)
+    //   .toString('base64')
+    //   .slice(0,120)
+    // }`;
+    
+    const crypto = require('crypto');
+
+    const hash =
+      crypto
+        .createHash('md5')
+        .update(text)
+        .digest('hex');
+
+    const cacheKey =
+      `${mode}-ai-${hash}`;
 
   const cached = getCache(cacheKey);
 

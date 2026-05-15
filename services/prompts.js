@@ -63,6 +63,14 @@ Extract ONLY REAL:
 - airport areas
 - infrastructure zones
 - investment hotspots
+- bridges
+- highways
+- airports
+- metro projects
+- infrastructure corridors
+- logistics hubs
+- smart cities
+- township developments
 
 Rules:
 

@@ -1,7 +1,7 @@
 const NodeCache = require("node-cache");
 
 const cache = new NodeCache({
-  stdTTL: 60 * 60 * 24 * 14,
+  stdTTL: 60 * 60 * 24 * 30,
   checkperiod: 120,
 });
 
@@ -21,7 +21,7 @@ function getCache(key) {
 function setCache(
   key,
   data,
-  ttl = 60 * 60 * 24 * 14
+  ttl = 60 * 60 * 24 * 30
 ) {
 
   cache.set(key, data, ttl);

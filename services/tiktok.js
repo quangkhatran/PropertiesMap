@@ -389,7 +389,7 @@ async function searchTikTok(
 
             q:q,
 
-            num:8,
+            num:3,
 
             engine:'google'
 
@@ -434,7 +434,7 @@ async function searchTikTok(
       const enriched =
         await Promise.all(
 
-          allItems.map(
+          allItems.slice(0,2).map(
             async(item)=>{
 
               let places = [];

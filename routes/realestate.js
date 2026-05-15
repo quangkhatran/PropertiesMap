@@ -1,8 +1,8 @@
 const express = require('express');
 
-const {
-  searchPlace
-} = require('../services/places');
+// const {
+//   searchPlace
+// } = require('../services/places');
 
 const {
   searchYoutube
@@ -37,6 +37,10 @@ const {
 } = require(
   '../services/pricingAnalysis'
 );
+
+const {
+  generateMarketReport
+} = require('../services/marketReport');
 
 const router = express.Router();
 
@@ -97,6 +101,17 @@ router.get('/:city', async(req,res)=>{
             listings
         );
 
+    const report =
+      await generateMarketReport({
+
+        city,
+        category,
+        videos,
+        listings,
+        pricing
+
+      });
+
     /* =========================
     CALCULATE AND SORT REAL ESTATE SCORES
     ========================= */
@@ -111,108 +126,108 @@ router.get('/:city', async(req,res)=>{
     AGGREGATE PLACE MENTIONS
     ========================= */
 
-    const mentionMap = {};
+    // const mentionMap = {};
 
-    videos.forEach(video=>{
-        (video.places || [])
-            .forEach(place=>{
+    // videos.forEach(video=>{
+    //     (video.places || [])
+    //         .forEach(place=>{
 
-                if(!mentionMap[place]){
-                mentionMap[place] = 0;
-                }
+    //             if(!mentionMap[place]){
+    //             mentionMap[place] = 0;
+    //             }
 
-                mentionMap[place]++;
+    //             mentionMap[place]++;
 
-            });  
-    });
+    //         });  
+    // });
 
     /* =========================
     SORT TOP PLACES
     ========================= */
 
-    const recommendations =
-      Object.entries(mentionMap)
-      .sort((a,b)=>b[1]-a[1])
-      .slice(0,3);
+    // const recommendations =
+    //   Object.entries(mentionMap)
+    //   .sort((a,b)=>b[1]-a[1])
+    //   .slice(0,3);
 
     /* =========================
     GOOGLE PLACES ENRICHMENT
     ========================= */
 
-    const enrichedRecommendations =
-      await Promise.all(
+    // const enrichedRecommendations =
+    //   await Promise.all(
 
-        recommendations.map(
-          async([name,count])=>{
+    //     recommendations.map(
+    //       async([name,count])=>{
 
-            try{
+    //         try{
 
-                const coords = realEstateCoordinates[name];
+    //             const coords = realEstateCoordinates[name];
 
-                return {
+    //             return {
 
-                    name,
+    //                 name,
 
-                    mentions: count,
+    //                 mentions: count,
 
-                    place:{
+    //                 place:{
 
-                        name,
+    //                     name,
 
-                        address: city,
+    //                     address: city,
 
-                        lat:
-                        coords?.lat || null,
+    //                     lat:
+    //                     coords?.lat || null,
 
-                        lng:
-                        coords?.lng || null,
+    //                     lng:
+    //                     coords?.lng || null,
 
-                        rating:null,
+    //                     rating:null,
 
-                        photos:
+    //                     photos:
 
-                        coords?.image
+    //                     coords?.image
 
-                        ?
+    //                     ?
 
-                        [
-                            {
-                            photo_reference:
-                                coords.image
-                            }
-                        ]
+    //                     [
+    //                         {
+    //                         photo_reference:
+    //                             coords.image
+    //                         }
+    //                     ]
 
-                        :
+    //                     :
 
-                        []
+    //                     []
 
-                    }
+    //                 }
 
-                };
+    //             };
 
-            }catch(err){
+    //         }catch(err){
 
-                console.log(
-                    'PLACE ERROR:',
-                    err.response?.data ||
-                    err.message
-                );
+    //             console.log(
+    //                 'PLACE ERROR:',
+    //                 err.response?.data ||
+    //                 err.message
+    //             );
 
-                return {
+    //             return {
 
-                    name,
-                    mentions:count,
-                    place:null
+    //                 name,
+    //                 mentions:count,
+    //                 place:null
 
-                };
+    //             };
 
-            }
+    //         }
 
-          }
+    //       }
 
-        )
+    //     )
 
-      );
+    //   );
 
     /* =========================
     RESPONSE
@@ -221,16 +236,15 @@ router.get('/:city', async(req,res)=>{
     res.json({
 
         city,
-      
         category,
 
         videos,
 
-        recommendations: enrichedRecommendations,
-
         listings,
-        
+
         pricing,
+
+        report
 
     });
 

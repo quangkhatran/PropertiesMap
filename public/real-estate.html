@@ -7,7 +7,7 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script> -->
 
 <style>
 
@@ -381,7 +381,7 @@ SOCIAL ROWS
 AI RECOMMENDATIONS
 ========================= */
 
-.recommend-grid{
+/* .recommend-grid{
   display:flex;
   flex-wrap:nowrap;
   gap:28px;
@@ -465,13 +465,13 @@ AI RECOMMENDATIONS
 .mention-fill{
   height:100%;
   background:#00ffd5;
-}
+} */
 
 /* =========================
 MAP
 ========================= */
 
-.map-wrapper{
+/* .map-wrapper{
   width:100%;
   height:720px;
 
@@ -484,7 +484,7 @@ MAP
 #map{
   width:100%;
   height:100%;
-}
+} */
 
 /* =========================
 FOOTER
@@ -520,10 +520,10 @@ RESPONSIVE
 }
 
 @media(max-width:768px){
-  .recommend-card{
+  /* .recommend-card{
     min-width:88vw;
     max-width:88vw;
-  }
+  } */
 
   .navbar{
     padding:0 20px;
@@ -718,7 +718,7 @@ iframe{
     letter-spacing:1px;
 }
 
-.gmaps-link{
+/* .gmaps-link{
 
   color:#00ffd5;
 
@@ -739,6 +739,7 @@ iframe{
   text-decoration:underline;
 
 }
+*/
 
 #loading-overlay{
 
@@ -758,7 +759,7 @@ iframe{
   align-items:center;
 
   z-index:99999;
-}
+} 
 
 .loading-box{
 
@@ -809,6 +810,109 @@ iframe{
   }
 
 }
+
+.language-switch{
+
+  display:flex;
+
+  gap:12px;
+
+  margin-bottom:28px;
+
+}
+
+.lang-btn{
+
+  padding:12px 22px;
+
+  border-radius:14px;
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  background:#151c28;
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  font-size:14px;
+
+}
+
+.lang-btn:hover{
+
+  border-color:#00ffd5;
+
+}
+
+.lang-btn.active{
+
+  background:#00ffd5;
+
+  color:black;
+
+  font-weight:600;
+
+}
+
+.report-card{
+
+  background:#101826;
+
+  border-radius:28px;
+
+  padding:38px;
+
+  border:
+    1px solid rgba(255,255,255,0.05);
+
+}
+
+.report-title{
+
+  font-size:26px;
+
+  margin-bottom:18px;
+
+  font-weight:600;
+
+}
+
+.report-text{
+
+  color:#cbd5e1;
+
+  line-height:1.9;
+
+  margin-bottom:28px;
+
+}
+
+.report-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+  gap:24px;
+
+  margin-top:28px;
+
+}
+
+.report-box{
+
+  background:#0b1220;
+
+  padding:24px;
+
+  border-radius:20px;
+
+}
 </style>
 </head>
 
@@ -823,7 +927,8 @@ NAVBAR
         <a href="index.html" class="logo">KHA TRAN</a>
 
         <a href="index.html#home" class="nav-link">Home</a>
-        <a href="lifestyle.html" class="nav-link active">Lifestyle</a>
+        <a href="lifestyle.html" class="nav-link">Lifestyle</a>
+        <a href="real-estate.html" class="nav-link active">Real Estate</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
 
@@ -849,7 +954,7 @@ HERO
       Discover land, housing and investment opportunities from
       YouTube and Facebook.
       AI aggregates the most discussed real estate hotspots
-      and maps them instantly.
+      and then it will give you a detailed market analysis.
     </p>
 
     <div class="search-box">
@@ -934,7 +1039,7 @@ FOOD SECTION
 AI RECOMMENDATIONS
 ========================= -->
 
-<section class="section">
+<!-- <section class="section">
 
   <div class="section-header">
 
@@ -954,13 +1059,36 @@ AI RECOMMENDATIONS
 
   <div class="recommend-grid" id="recommendGrid"></div>
 
+</section> -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      AI MARKET REPORT
+    </div>
+
+    <div class="section-title">
+      Real Estate Intelligence Analysis
+    </div>
+
+    <div class="section-subtitle">
+      AI-generated investment insights from social media,
+      listings and market sentiment.
+    </div>
+
+  </div>
+
+  <div id="aiReport"></div>
+
 </section>
 
 <!-- =========================
 MAP
 ========================= -->
 
-<section class="section">
+<!-- <section class="section">
 
   <div class="section-header">
 
@@ -982,7 +1110,7 @@ MAP
     <div id="map"></div>
   </div>
 
-</section>
+</section> -->
 
 <!-- =========================
 FOOTER
@@ -1033,20 +1161,20 @@ async function fetchRealEstate(
 MAP
 ========================= */
 
-let map;
+// let map;
 
-function initMap(){
+// function initMap(){
 
-  map = new google.maps.Map(document.getElementById('map'),{
+//   map = new google.maps.Map(document.getElementById('map'),{
 
-    center:{ lat:11.9404, lng:108.4583 },
-    zoom:13,
+//     center:{ lat:11.9404, lng:108.4583 },
+//     zoom:13,
 
     
 
-  });
+//   });
 
-}
+// }
 
 /* =========================
 SOCIAL RENDER
@@ -1129,95 +1257,95 @@ function renderSocialSection(type, items){
 RENDER AI RECOMMENDATIONS
 ========================= */
 
-function renderRecommendations(recommendations){
+// function renderRecommendations(recommendations){
   
-  currentRecommendations = recommendations;
+//   currentRecommendations = recommendations;
   
-  const maxMentions =
-  Math.max(
-    ...recommendations.map(
-      item => item.mentions
-    )
-  );
+//   const maxMentions =
+//   Math.max(
+//     ...recommendations.map(
+//       item => item.mentions
+//     )
+//   );
 
-  const grid =
-    document.getElementById(
-      'recommendGrid'
-    );
+//   const grid =
+//     document.getElementById(
+//       'recommendGrid'
+//     );
 
-  grid.innerHTML =
-    recommendations.map(
-      (item,index)=>{
+//   grid.innerHTML =
+//     recommendations.map(
+//       (item,index)=>{
 
-        const width = (item.mentions / maxMentions) * 100;
+//         const width = (item.mentions / maxMentions) * 100;
 
-        return `
+//         return `
 
-          <div
-            class="recommend-card"
-            onclick="focusPlace(${index})"
-          >
+//           <div
+//             class="recommend-card"
+//             onclick="focusPlace(${index})"
+//           >
 
-            <div class="recommend-rank">
-              #${index + 1}
-            </div>
+//             <div class="recommend-rank">
+//               #${index + 1}
+//             </div>
 
-            <img src="${getPlacePhoto(item.place)}">
+//             <img src="${getPlacePhoto(item.place)}">
 
-            <div class="recommend-name">
-              ${item.name}
-            </div>
+//             <div class="recommend-name">
+//               ${item.name}
+//             </div>
 
-            <div class="recommend-meta">
+//             <div class="recommend-meta">
 
-              ⭐ ${
-                item.place?.rating || 'N/A'
-              }
+//               ⭐ ${
+//                 item.place?.rating || 'N/A'
+//               }
 
-              <br><br>
+//               <br><br>
 
-              Mentioned
-              ${item.mentions}
-              times across social media.
+//               Mentioned
+//               ${item.mentions}
+//               times across social media.
 
-              <br><br>
+//               <br><br>
 
-              ${
-                item.place?.address || ''
-              }
+//               ${
+//                 item.place?.address || ''
+//               }
 
-              <br><br>
+//               <br><br>
 
-              <a
-                href="
-            https://www.google.com/maps/search/?api=1&query=${item.place?.lat},${item.place?.lng}
-                "
-                target="_blank"
-                class="gmaps-link"
-              >
-                View on Google Maps →
-              </a>
+//               <a
+//                 href="
+//             https://www.google.com/maps/search/?api=1&query=${item.place?.lat},${item.place?.lng}
+//                 "
+//                 target="_blank"
+//                 class="gmaps-link"
+//               >
+//                 View on Google Maps →
+//               </a>
 
-            </div>
+//             </div>
 
-            <div class="mention-bar">
+//             <div class="mention-bar">
 
-              <div
-                class="mention-fill"
-                style="width:${width}%"
-              ></div>
+//               <div
+//                 class="mention-fill"
+//                 style="width:${width}%"
+//               ></div>
 
-            </div>
+//             </div>
 
-          </div>
+//           </div>
 
-        `;
+//         `;
 
-      }
+//       }
 
-    ).join('');
+//     ).join('');
 
-}
+// }
 
 /* =========================
 RENDER SOCIAL CONTENT
@@ -1279,12 +1407,16 @@ async function renderCity(
 
       `;
 
-      renderRecommendations(
-        recommendations
-      );
+      // renderRecommendations(
+      //   recommendations
+      // );
 
-      addMapMarkers(
-        recommendations
+      // addMapMarkers(
+      //   recommendations
+      // );
+
+      renderAIReport(
+        data.report
       );
 
     }catch(err){
@@ -1303,272 +1435,272 @@ async function renderCity(
 MAP MARKERS
 ========================= */
 
-let markers = [];
-let currentRecommendations = [];
-let activeInfoWindow = null;
-
-function addMapMarkers(recommendations){
-
-  markers.forEach(data=>{
-
-    if(data.marker){
-      data.marker.map = null;
-    }
-
-  });
-
-  markers = [];
+// let markers = [];
+// let currentRecommendations = [];
+// let activeInfoWindow = null;
+
+// function addMapMarkers(recommendations){
+
+//   markers.forEach(data=>{
+
+//     if(data.marker){
+//       data.marker.map = null;
+//     }
+
+//   });
+
+//   markers = [];
 
-  const bounds =
-    new google.maps.LatLngBounds();
-
-  recommendations.forEach(
-    (item,index)=>{
-
-      if(
-        !item.place ||
-        !item.place.lat ||
-        !item.place.lng
-      ) return;
-
-      const marker =
-        new google.maps.Marker({
-
-          position:{
-            lat:item.place.lat,
-            lng:item.place.lng
-          },
-
-          map:map,
-
-          title:item.name,
-
-          animation:
-            google.maps.Animation.DROP,
-
-          icon:{
-            url:
-'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-          }
-
-        });
-
-      const infoWindow =
-        new google.maps.InfoWindow({
-
-          content:`
-
-            <div style="
-              color:black;
-              padding:10px;
-              min-width:240px;
-            ">
+//   const bounds =
+//     new google.maps.LatLngBounds();
+
+//   recommendations.forEach(
+//     (item,index)=>{
+
+//       if(
+//         !item.place ||
+//         !item.place.lat ||
+//         !item.place.lng
+//       ) return;
+
+//       const marker =
+//         new google.maps.Marker({
+
+//           position:{
+//             lat:item.place.lat,
+//             lng:item.place.lng
+//           },
+
+//           map:map,
+
+//           title:item.name,
+
+//           animation:
+//             google.maps.Animation.DROP,
+
+//           icon:{
+//             url:
+// 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+//           }
+
+//         });
+
+//       const infoWindow =
+//         new google.maps.InfoWindow({
+
+//           content:`
+
+//             <div style="
+//               color:black;
+//               padding:10px;
+//               min-width:240px;
+//             ">
 
-              <h3 style="
-                margin-bottom:10px;
-                font-size:18px;
-              ">
-                ${item.place.name}
-              </h3>
+//               <h3 style="
+//                 margin-bottom:10px;
+//                 font-size:18px;
+//               ">
+//                 ${item.place.name}
+//               </h3>
 
-              <p style="
-                margin-bottom:8px;
-              ">
-                ⭐ ${
-                  item.place.rating || 'N/A'
-                }
-              </p>
+//               <p style="
+//                 margin-bottom:8px;
+//               ">
+//                 ⭐ ${
+//                   item.place.rating || 'N/A'
+//                 }
+//               </p>
 
-              <p style="
-                margin-bottom:12px;
-                line-height:1.6;
-              ">
-                ${
-                  item.place.address || ''
-                }
-              </p>
+//               <p style="
+//                 margin-bottom:12px;
+//                 line-height:1.6;
+//               ">
+//                 ${
+//                   item.place.address || ''
+//                 }
+//               </p>
 
-              <a
-                href="
-https://www.google.com/maps/search/?api=1&query=${item.place.lat},${item.place.lng}
-                "
-                target="_blank"
-                style="
-                  color:#2563eb;
-                  text-decoration:none;
-                  font-weight:600;
-                "
-              >
-                View on Google Maps →
-              </a>
+//               <a
+//                 href="
+// https://www.google.com/maps/search/?api=1&query=${item.place.lat},${item.place.lng}
+//                 "
+//                 target="_blank"
+//                 style="
+//                   color:#2563eb;
+//                   text-decoration:none;
+//                   font-weight:600;
+//                 "
+//               >
+//                 View on Google Maps →
+//               </a>
 
-            </div>
+//             </div>
 
-          `
+//           `
 
-        });
+//         });
 
-      marker.addListener(
-        'click',
-        ()=>{
+//       marker.addListener(
+//         'click',
+//         ()=>{
 
-          if(activeInfoWindow){
-            activeInfoWindow.close();
-          }
+//           if(activeInfoWindow){
+//             activeInfoWindow.close();
+//           }
 
-          activeInfoWindow = infoWindow;
+//           activeInfoWindow = infoWindow;
 
-          infoWindow.open({
-            anchor:marker,
-            map
-          });
+//           infoWindow.open({
+//             anchor:marker,
+//             map
+//           });
 
-          document
-            .querySelectorAll(
-              '.recommend-card'
-            )
-            .forEach(card=>
-              card.classList.remove(
-                'active'
-              )
-            );
+//           document
+//             .querySelectorAll(
+//               '.recommend-card'
+//             )
+//             .forEach(card=>
+//               card.classList.remove(
+//                 'active'
+//               )
+//             );
 
-          const cards =
-            document.querySelectorAll(
-              '.recommend-card'
-            );
+//           const cards =
+//             document.querySelectorAll(
+//               '.recommend-card'
+//             );
 
-          if(cards[index]){
+//           if(cards[index]){
 
-            cards[index]
-              .classList.add(
-                'active'
-              );
+//             cards[index]
+//               .classList.add(
+//                 'active'
+//               );
 
-            cards[index]
-              .scrollIntoView({
+//             cards[index]
+//               .scrollIntoView({
 
-                behavior:'smooth',
-                inline:'center',
-                block:'nearest'
+//                 behavior:'smooth',
+//                 inline:'center',
+//                 block:'nearest'
 
-              });
+//               });
 
-          }
+//           }
 
-          markers.forEach(data=>{
+//           markers.forEach(data=>{
 
-            data.marker.setAnimation(null);
+//             data.marker.setAnimation(null);
 
-          });
+//           });
 
-          marker.setAnimation(
-            google.maps.Animation.BOUNCE
-          );
+//           marker.setAnimation(
+//             google.maps.Animation.BOUNCE
+//           );
 
-          setTimeout(()=>{
+//           setTimeout(()=>{
 
-            marker.setAnimation(null);
+//             marker.setAnimation(null);
 
-          },1200);
+//           },1200);
 
-        }
-      );
+//         }
+//       );
 
-      markers.push({
-        marker,
-        infoWindow,
-        item,
-        id:item.name
-      });
+//       markers.push({
+//         marker,
+//         infoWindow,
+//         item,
+//         id:item.name
+//       });
 
-      bounds.extend({
-        lat:item.place.lat,
-        lng:item.place.lng
-      });
+//       bounds.extend({
+//         lat:item.place.lat,
+//         lng:item.place.lng
+//       });
 
-    }
+//     }
 
-  );
+//   );
 
-  if(markers.length > 0){
-    map.fitBounds(bounds);
-  }
+//   if(markers.length > 0){
+//     map.fitBounds(bounds);
+//   }
 
-}
+// }
 
-function focusPlace(index){
+// function focusPlace(index){
 
-  const recommendation =
-    currentRecommendations[index];
+//   const recommendation =
+//     currentRecommendations[index];
 
-  if(
-    !recommendation ||
-    !recommendation.place
-  ) return;
+//   if(
+//     !recommendation ||
+//     !recommendation.place
+//   ) return;
 
-  const targetMarker =
-    markers.find(data =>
+//   const targetMarker =
+//     markers.find(data =>
 
-      data.item.name ===
-      recommendation.name
+//       data.item.name ===
+//       recommendation.name
 
-    );
+//     );
 
-  if(!targetMarker) return;
+//   if(!targetMarker) return;
 
-  map.panTo({
+//   map.panTo({
 
-    lat:
-      recommendation.place.lat,
+//     lat:
+//       recommendation.place.lat,
 
-    lng:
-      recommendation.place.lng
+//     lng:
+//       recommendation.place.lng
 
-  });
+//   });
 
-  map.setZoom(15);
+//   map.setZoom(15);
 
-  if(activeInfoWindow){
-    activeInfoWindow.close();
-  }
+//   if(activeInfoWindow){
+//     activeInfoWindow.close();
+//   }
 
-  activeInfoWindow =
-    targetMarker.infoWindow;
+//   activeInfoWindow =
+//     targetMarker.infoWindow;
 
-  /* =========================
-  ACTIVE CARD SYNC
-  ========================= */
+//   /* =========================
+//   ACTIVE CARD SYNC
+//   ========================= */
 
-  document
-    .querySelectorAll(
-      '.recommend-card'
-    )
-    .forEach(card=>
-      card.classList.remove(
-        'active'
-      )
-    );
+//   document
+//     .querySelectorAll(
+//       '.recommend-card'
+//     )
+//     .forEach(card=>
+//       card.classList.remove(
+//         'active'
+//       )
+//     );
 
-  const cards =
-    document.querySelectorAll(
-      '.recommend-card'
-    );
+//   const cards =
+//     document.querySelectorAll(
+//       '.recommend-card'
+//     );
 
-  if(cards[index]){
-    cards[index]
-      .classList.add(
-        'active'
-      );
-  }
+//   if(cards[index]){
+//     cards[index]
+//       .classList.add(
+//         'active'
+//       );
+//   }
 
-  targetMarker.infoWindow.open({
-    anchor:
-      targetMarker.marker,
-    map
-  });
+//   targetMarker.infoWindow.open({
+//     anchor:
+//       targetMarker.marker,
+//     map
+//   });
 
-}
+// }
 
 /* =========================
 HELPERS
@@ -1589,51 +1721,51 @@ function getPlatformEmoji(type){
 
 }
 
-function getPlacePhoto(place){
+// function getPlacePhoto(place){
 
-  if(
-    !place ||
-    !place.photos ||
-    !place.photos.length
-  ){
+//   if(
+//     !place ||
+//     !place.photos ||
+//     !place.photos.length
+//   ){
 
-    return `
-https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
-    `;
+//     return `
+// https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
+//     `;
 
-  }
+//   }
 
-  const photo =
-    place.photos[0]
-      ?.photo_reference;
+//   const photo =
+//     place.photos[0]
+//       ?.photo_reference;
 
-  if(!photo){
+//   if(!photo){
 
-    return `
-https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
-    `;
+//     return `
+// https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
+//     `;
 
-  }
+//   }
 
-  /* =========================
-  REAL ESTATE CUSTOM IMAGE
-  ========================= */
+//   /* =========================
+//   REAL ESTATE CUSTOM IMAGE
+//   ========================= */
 
-  if(
-    photo.startsWith('http')
-  ){
-    return photo;
-  }
+//   if(
+//     photo.startsWith('http')
+//   ){
+//     return photo;
+//   }
 
-  /* =========================
-  GOOGLE PLACES IMAGE
-  ========================= */
+//   /* =========================
+//   GOOGLE PLACES IMAGE
+//   ========================= */
 
-  return `
-https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${photo}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
-  `;
+//   return `
+// https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${photo}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
+//   `;
 
-}
+// }
 
 /* =========================
 SEARCH
@@ -1669,7 +1801,7 @@ INIT
 
 window.onload = () => {
 
-  initMap();
+  // initMap();
 
   renderCity(
     'Dong Nai',
@@ -1730,7 +1862,107 @@ function hideLoading(){
 
 }
 
+/* =========================
+AI REPORT
+========================= */
+
+function renderAIReport(report){
+
+  originalEnglishReport = {
+
+    overview:
+      report.overview || '',
+
+    sentiment:
+      report.sentiment || '',
+
+    pricing:
+      report.pricingSummary || ''
+
+  };
+
+  translatedVietnameseReport = null;
+
+  if(!report) return;
+
+  document.getElementById(
+    'aiReport'
+  ).innerHTML = `
+
+    <div class="report-card">
+
+      <div class="language-switch">
+
+        <button
+          class="lang-btn active"
+          id="btn-en"
+          onclick="switchReportLanguage('en')"
+        >
+          🇬🇧 English
+        </button>
+
+        <button
+          class="lang-btn"
+          id="btn-vi"
+          onclick="switchReportLanguage('vi')"
+        >
+          🇻🇳 Tiếng Việt
+        </button>
+
+      </div>
+
+      <div class="report-title">
+        Market Overview
+      </div>
+
+      <div
+        class="report-text"
+        id="overviewText"
+      >
+        ${report.overview || ''}
+      </div>
+
+      <div class="report-grid">
+
+        <div class="report-box">
+
+        <h3>Market Sentiment</h3>
+
+        <p id="sentimentText">
+          ${report.sentiment || ''}
+        </p>
+
+        </div>
+
+        <div class="report-box">
+
+          <h3>Pricing</h3>
+
+          <p id="pricingText">
+            ${report.pricingSummary || ''}
+          </p>
+
+        </div>
+
+        <div class="report-box">
+
+          <h3>Investment Score</h3>
+
+          <h1>
+            ${report.investmentScore || 0}/10
+          </h1>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+}
+
 </script>
+
 <div id="loading-overlay">
 
   <div class="loading-box">
@@ -1744,6 +1976,110 @@ function hideLoading(){
   </div>
 
 </div>
+
+<script>
+
+let originalEnglishReport = {
+  overview:'',
+  sentiment:'',
+  pricing:''
+};
+
+let translatedVietnameseReport = null;
+
+async function switchReportLanguage(lang){
+
+  const btnEn =
+    document.getElementById('btn-en');
+
+  const btnVi =
+    document.getElementById('btn-vi');
+
+  if(lang === 'en'){
+
+    document.getElementById(
+      'overviewText'
+    ).innerHTML =
+      originalEnglishReport.overview;
+
+    document.getElementById(
+      'sentimentText'
+    ).innerHTML =
+      originalEnglishReport.sentiment;
+
+    document.getElementById(
+      'pricingText'
+    ).innerHTML =
+      originalEnglishReport.pricing;
+
+    btnEn.classList.add('active');
+    btnVi.classList.remove('active');
+
+    return;
+
+  }
+
+  btnVi.innerHTML = 'Translating...';
+
+  try{
+
+    if(!translatedVietnameseReport){
+
+      const response = await fetch(
+        '/translate-report',
+        {
+          method:'POST',
+          headers:{
+            'Content-Type':'application/json'
+          },
+          body:JSON.stringify({
+            overview:
+              originalEnglishReport.overview,
+
+            sentiment:
+              originalEnglishReport.sentiment,
+
+            pricing:
+              originalEnglishReport.pricing
+          })
+        }
+      );
+
+      translatedVietnameseReport =
+        await response.json();
+
+    }
+
+    document.getElementById(
+      'overviewText'
+    ).innerHTML =
+      translatedVietnameseReport.overview;
+
+    document.getElementById(
+      'sentimentText'
+    ).innerHTML =
+      translatedVietnameseReport.sentiment;
+
+    document.getElementById(
+      'pricingText'
+    ).innerHTML =
+      translatedVietnameseReport.pricing;
+
+    btnVi.classList.add('active');
+    btnEn.classList.remove('active');
+
+  }catch(err){
+
+    console.log(err);
+
+  }
+
+  btnVi.innerHTML = '🇻🇳 Tiếng Việt';
+
+}
+
+</script>
+
 </body>
 </html>
 

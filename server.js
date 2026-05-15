@@ -4,6 +4,12 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 
+const OpenAI = require('openai');
+
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY
+});
+
 const youtubeRoutes =
   require('./routes/youtube');
 
@@ -152,11 +158,11 @@ async function preloadHotCities(){
 
   try {
 
-    await searchYoutube(
-        "Dong Nai",
-        "land",
-        "real-estate"
-    );
+    // await searchYoutube(
+    //     "Dong Nai",
+    //     "land",
+    //     "real-estate"
+    // );
 
     // await searchFacebook(
     //   "Dong Nai",
@@ -179,6 +185,83 @@ async function preloadHotCities(){
   }
 
 }
+
+app.post('/translate-report', async (req,res)=>{
+
+  try{
+
+    const {
+      overview,
+      sentiment,
+      pricing
+    } = req.body;
+
+    const prompt = `
+
+Translate the following real estate market report
+into natural professional Vietnamese.
+
+OVERVIEW:
+${overview}
+
+SENTIMENT:
+${sentiment}
+
+PRICING:
+${pricing}
+
+Return ONLY valid JSON:
+
+{
+  "overview":"",
+  "sentiment":"",
+  "pricing":""
+}
+
+`;
+
+    const completion =
+      await openai.chat.completions.create({
+
+        model:'gpt-4.1-mini',
+
+        messages:[
+          {
+            role:'user',
+            content:prompt
+          }
+        ],
+
+        temperature:0.4
+
+      });
+
+    const text =
+      completion.choices[0]
+      .message.content;
+
+    const cleaned =
+      text
+        .replace(/```json/g,'')
+        .replace(/```/g,'')
+        .trim();
+
+    const json =
+      JSON.parse(cleaned);
+
+    res.json(json);
+
+  }catch(err){
+
+    console.log(err);
+
+    res.status(500).json({
+      error:'translate failed'
+    });
+
+  }
+
+});
 
 /* =========================
 START SERVER

@@ -55,6 +55,8 @@ function getVietnameseName(city=""){
 
     "ho chi minh city":"Sài Gòn",
     "saigon":"Sài Gòn",
+    "ho chi minh":"Sài Gòn",
+    "hcm":"Sài Gòn",
 
     "ha noi":"Hà Nội",
     "hanoi":"Hà Nội",
@@ -94,7 +96,6 @@ function getSubregions(city=""){
       "Nhơn Trạch",
       "Long Thành",
       "Biên Hòa",
-      "Trảng Bom",
       "Dĩ An"
     ],
 
@@ -102,7 +103,8 @@ function getSubregions(city=""){
       "Thủ Đức",
       "Quận 2",
       "Quận 9",
-      "Phú Mỹ Hưng"
+      "Phú Mỹ Hưng",
+      "Nhà Bè"
     ],
 
     "da lat":[

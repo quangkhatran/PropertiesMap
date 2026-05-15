@@ -191,7 +191,7 @@ function buildYoutubeQueries(
     return (
       vnQueries[category]
       || []
-    ).slice(0,3);
+    ).slice(0,2);
 
   }
 
@@ -342,7 +342,7 @@ async function searchYoutube(
 
                   q:q,
 
-                  maxResults:2,
+                  maxResults:1,
 
                   type:'video',
 

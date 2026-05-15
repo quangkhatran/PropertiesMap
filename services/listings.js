@@ -103,8 +103,10 @@ function buildListingQueries(
 
     };
 
-    return vnQueries[category]
-    || vnQueries.land;
+    return (
+      vnQueries[category]
+      || vnQueries.land
+    ).slice(0,3);
 
   }
 

@@ -7,7 +7,7 @@ function extractPrices(text=''){
     ),
 
     ...text.matchAll(
-      /(\d+(?:[.,]\d+)?)\s*(triệu\/m²|trieu\/m2)/gi
+      /(\d+(?:[.,]\d+)?)\s*(triệu|tr|million)?\s*\/?\s*(m²|m2)/gi
     )
 
   ];
