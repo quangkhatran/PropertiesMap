@@ -34,7 +34,7 @@ html{margin:0;height:100%;font-family:Inter;background:#0b0f14;color:white;}
 .card-content{padding:10px;}
 .price{color:#00ffd5;}
 
-.nearby-filter{
+/* .nearby-filter{
 
 top:10px;
 right:10px;
@@ -50,7 +50,7 @@ background:#111;
 color:white;
 border:1px solid #333;
 cursor:pointer;
-}
+} */
 
 .info {
     margin-top:20px;
@@ -160,11 +160,11 @@ body{
     }
 
     /* nearby filter xuống dưới cho dễ bấm */
-    .nearby-filter{
+    /* .nearby-filter{
         top: auto;
         bottom: 10px;
         right: 10px;
-    }
+    } */
 
     /* contact gọn lại */
     .contact{
@@ -454,7 +454,7 @@ body{
 
 <div style="position:relative;flex:1;height:100%;">
 
-<div class="nearby-filter">
+<!-- <div class="nearby-filter">
 <button onclick="toggleType('cafe')">☕</button>
 <button onclick="toggleType('restaurant')">🍽</button>
 <button onclick="toggleType('bank')">🏦</button>
@@ -462,7 +462,7 @@ body{
 <button onclick="toggleType('school')">🏫</button>
 <button onclick="toggleType('hospital')">🏥</button>
 <button onclick="toggleType('convenience_store')">🏪</button>
-</div>
+</div> -->
 
 <div id="map"></div>
 
@@ -758,17 +758,18 @@ function debounce(fn, delay = 800){
 }
 
 let map, markers={}, infoWindow;
-let nearbyMarkers=[], nearbyData=[];
 
-let activeTypes=[
-    "cafe",
-    "restaurant",
-    "bank",
-    "supermarket",
-    "school",
-    "hospital",
-    "convenience_store"
-];
+// let nearbyMarkers=[], nearbyData=[];
+
+// let activeTypes=[
+//     "cafe",
+//     "restaurant",
+//     "bank",
+//     "supermarket",
+//     "school",
+//     "hospital",
+//     "convenience_store"
+// ];
 
 let currentProperty=null;
 
@@ -776,21 +777,21 @@ function goToDetail(id){
     window.location.href = `project.html?id=${id}`;
 }
 
-function createNearbyMarker(type){
-    const icons={
-        restaurant:"🍽️",
-        cafe:"☕",
-        bank:"🏦",
-        supermarket:"🛒",
-        school:"🏫",
-        hospital:"🏥",
-        convenience_store:"🏪"
-    };
-    const div=document.createElement("div");
-    div.style.fontSize="18px";
-    div.innerHTML=icons[type]||"📍";
-    return div;
-}
+// function createNearbyMarker(type){
+//     const icons={
+//         restaurant:"🍽️",
+//         cafe:"☕",
+//         bank:"🏦",
+//         supermarket:"🛒",
+//         school:"🏫",
+//         hospital:"🏥",
+//         convenience_store:"🏪"
+//     };
+//     const div=document.createElement("div");
+//     div.style.fontSize="18px";
+//     div.innerHTML=icons[type]||"📍";
+//     return div;
+// }
 
 const search = document.getElementById("search");
 const country = document.getElementById("country");
@@ -801,7 +802,7 @@ const priceMax = document.getElementById("price-max");
 const rentMin = document.getElementById("rent-min");
 const rentMax = document.getElementById("rent-max");
 
-let nearbyLoadedFor = null;
+// let nearbyLoadedFor = null;
 
 function initMap(){
     
@@ -813,25 +814,25 @@ function initMap(){
 
     infoWindow=new google.maps.InfoWindow();
 
-    map.addListener("idle", ()=>{
+    // map.addListener("idle", ()=>{
 
-        if(!currentProperty) return;
+    //     if(!currentProperty) return;
 
-        const key =
-        `${currentProperty.lat}-${currentProperty.lng}`;
+    //     const key =
+    //     `${currentProperty.lat}-${currentProperty.lng}`;
 
-        if(nearbyLoadedFor === key){
-            return;
-        }
+    //     if(nearbyLoadedFor === key){
+    //         return;
+    //     }
 
-        nearbyLoadedFor = key;
+    //     nearbyLoadedFor = key;
 
-        loadNearby(
-            currentProperty.lat,
-            currentProperty.lng
-        );
+    //     loadNearby(
+    //         currentProperty.lat,
+    //         currentProperty.lng
+    //     );
 
-    });
+    // });
 
     initFilters();
 
@@ -1037,130 +1038,130 @@ function showPopup(p,marker){
     infoWindow.open({map,anchor:marker});
 }
 
-function loadNearby(lat,lng){
+// function loadNearby(lat,lng){
 
-    nearbyData=[];
-    nearbyMarkers.forEach(m=>m.map=null);
-    nearbyMarkers=[];
+//     nearbyData=[];
+//     nearbyMarkers.forEach(m=>m.map=null);
+//     nearbyMarkers=[];
 
-    const service=new google.maps.places.PlacesService(map);
+//     const service=new google.maps.places.PlacesService(map);
 
-    activeTypes.forEach(type=>{
-        service.nearbySearch({
-            location:{lat,lng},
-            radius:500,
-            type
-        },(res,status)=>{
-            if(status!=="OK") return;
+//     activeTypes.forEach(type=>{
+//         service.nearbySearch({
+//             location:{lat,lng},
+//             radius:500,
+//             type
+//         },(res,status)=>{
+//             if(status!=="OK") return;
 
-            res.slice(0,3).forEach(p=>{
-                p._type=type;
-                nearbyData.push(p);
-            });
+//             res.slice(0,3).forEach(p=>{
+//                 p._type=type;
+//                 nearbyData.push(p);
+//             });
 
-            renderNearby(lat,lng);
-        });
-    });
-}
+//             renderNearby(lat,lng);
+//         });
+//     });
+// }
 
-function renderNearby(lat,lng){
+// function renderNearby(lat,lng){
 
-    nearbyMarkers.forEach(m=>m.map=null);
-    nearbyMarkers=[];
+//     nearbyMarkers.forEach(m=>m.map=null);
+//     nearbyMarkers=[];
 
-    nearbyData.forEach(p=>{
+//     nearbyData.forEach(p=>{
 
-        const marker=new google.maps.marker.AdvancedMarkerElement({
-            map,
-            position:p.geometry.location,
-            content:createNearbyMarker(p._type)
-        });
+//         const marker=new google.maps.marker.AdvancedMarkerElement({
+//             map,
+//             position:p.geometry.location,
+//             content:createNearbyMarker(p._type)
+//         });
 
-        const dist = Math.round(
-            google.maps.geometry.spherical.computeDistanceBetween(
-                new google.maps.LatLng(lat,lng),
-                p.geometry.location
-            )
-        );
+//         const dist = Math.round(
+//             google.maps.geometry.spherical.computeDistanceBetween(
+//                 new google.maps.LatLng(lat,lng),
+//                 p.geometry.location
+//             )
+//         );
 
-        marker.addListener("click",()=>{
-            infoWindow.setContent(`
-                <div style="color:black;max-width:240px;font-family:Inter">
+//         marker.addListener("click",()=>{
+//             infoWindow.setContent(`
+//                 <div style="color:black;max-width:240px;font-family:Inter">
 
-                    ${p.photos?.[0] ? `
-                    <img src="${p.photos[0].getUrl({maxWidth:300})}" 
-                         style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:8px;">
-                    ` : ""}
+//                     ${p.photos?.[0] ? `
+//                     <img src="${p.photos[0].getUrl({maxWidth:300})}" 
+//                          style="width:100%;height:140px;object-fit:cover;border-radius:10px;margin-bottom:8px;">
+//                     ` : ""}
 
-                    <b style="font-size:15px;">${p.name}</b>
+//                     <b style="font-size:15px;">${p.name}</b>
 
-                    <div style="font-size:13px;opacity:0.7;margin-bottom:6px;">
-                        ⭐ ${p.rating || "-"} • ${p._type}
-                    </div>
+//                     <div style="font-size:13px;opacity:0.7;margin-bottom:6px;">
+//                         ⭐ ${p.rating || "-"} • ${p._type}
+//                     </div>
 
-                    <div style="font-size:13px;">
-                        📍 ${dist} m away
-                    </div>
+//                     <div style="font-size:13px;">
+//                         📍 ${dist} m away
+//                     </div>
 
-                    <div style="margin-top:10px;">
-                        <a target="_blank"
-                        href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}"
-                        style="
-                            display:block;
-                            text-align:center;
-                            padding:6px;
-                            background:#111;
-                            color:white;
-                            border-radius:8px;
-                            text-decoration:none;
-                        ">
-                        View on Maps →
-                        </a>
-                    </div>
+//                     <div style="margin-top:10px;">
+//                         <a target="_blank"
+//                         href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name)}"
+//                         style="
+//                             display:block;
+//                             text-align:center;
+//                             padding:6px;
+//                             background:#111;
+//                             color:white;
+//                             border-radius:8px;
+//                             text-decoration:none;
+//                         ">
+//                         View on Maps →
+//                         </a>
+//                     </div>
 
-                </div>
-            `);
-            infoWindow.open({map,anchor:marker});
-        });
+//                 </div>
+//             `);
+//             infoWindow.open({map,anchor:marker});
+//         });
 
-        nearbyMarkers.push(marker);
-    });
-}
+//         nearbyMarkers.push(marker);
+//     });
+// }
 
 function toggleNav(){
     const menu = document.getElementById("nav-menu");
     menu.classList.toggle("show");
 }
 
-const debouncedNearbyReload =
-    debounce(()=>{
+// const debouncedNearbyReload =
+//     debounce(()=>{
 
-        if(currentProperty){
+//         if(currentProperty){
 
-            loadNearby(
-                currentProperty.lat,
-                currentProperty.lng
-            );
+//             loadNearby(
+//                 currentProperty.lat,
+//                 currentProperty.lng
+//             );
 
-        }
+//         }
 
-    }, 400);
+//     }, 400);
 
-function toggleType(t){
-    activeTypes.includes(t)
-    ? activeTypes = activeTypes.filter(x=>x!==t)
-    : activeTypes.push(t);
+// function toggleType(t){
+//     activeTypes.includes(t)
+//     ? activeTypes = activeTypes.filter(x=>x!==t)
+//     : activeTypes.push(t);
 
-    // highlight UI
-    document.querySelectorAll(".nearby-filter button")
-    .forEach(btn=>{
-        const type = btn.innerText;
-    });
+//     // highlight UI
+//     document.querySelectorAll(".nearby-filter button")
+//     .forEach(btn=>{
+//         const type = btn.innerText;
+//     });
 
-    nearbyLoadedFor = null;
+//     nearbyLoadedFor = null;
 
-    debouncedNearbyReload();
-}
+//     debouncedNearbyReload();
+// }
 
 function initFilters(){
 
@@ -1245,10 +1246,10 @@ function applyFilters(){
     if(!isNaN(maxR)) list = list.filter(p => p.rent <= maxR);
 
     render(list);
-    
+
     if(list.length){
 
-        nearbyLoadedFor = null;
+        // nearbyLoadedFor = null;
 
         focusProperty(list[0].id);
 
@@ -1309,7 +1310,9 @@ function applyFilters(){
     });
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places,marker,geometry&callback=initMap" async defer></script>
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places,marker,geometry&callback=initMap" async defer></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=marker&callback=initMap" async defer></script>
+
 
 <div id="login-modal"
     onclick="handleModalClick(event)" 
