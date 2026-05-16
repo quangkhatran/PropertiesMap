@@ -64,100 +64,193 @@ router.get('/:city', async(req,res)=>{
 
   try{
 
-    const city =
-      req.params.city;
+      const city =
+        req.params.city;
 
-    // Multi-category support
+      const category =
+        req.query.category ||
+        'land';
 
-    const category =
-      req.query.category ||
-      'land';
+      // Search YouTube
 
-    // Search YouTube
-
-    const youtube =
-      await searchYoutube(
-        city,
-        category,
-        "real-estate"
-      );
-
-    const facebook =
-      await searchFacebook(
-        city,
-        category,
-        "real-estate"
-      );
-    
-    // const tiktok =
-    //   await searchTikTok(
-    //   city,
-    //   category,
-    //   "real-estate"
-    // );
-    
-    const videos = [
-      ...youtube,
-      ...facebook,
-      // ...tiktok
-    ];
-
-    const listings = 
-        await searchListings(
-            city,
-            category
+      const youtube =
+        await searchYoutube(
+          city,
+          category,
+          "real-estate"
         );
 
-    const pricing =
-        analyzePricing(
-            listings
+      const facebook =
+        await searchFacebook(
+          city,
+          category,
+          "real-estate"
         );
+      
+      // const tiktok =
+      //   await searchTikTok(
+      //   city,
+      //   category,
+      //   "real-estate"
+      // );
+      
+      const videos = [
+        ...youtube,
+        ...facebook,
+        // ...tiktok
+      ];
 
-    const signals =
-      await analyzeMarketSignals({
+      const listings = 
+          await searchListings(
+              city,
+              category
+          );
 
-        city,
-        category,
-        videos
+      const pricing =
+          analyzePricing(
+              listings
+          );
+
+      const signals =
+        await analyzeMarketSignals({
+
+          city,
+          category,
+          videos
+
+        });
+
+      const hotspots =
+        detectHotspots(videos);
+
+      let report =
+        await generateMarketReport({
+
+          city,
+          category,
+          videos,
+          listings,
+          pricing
+
+        });
+
+    function findScore(items = [], keywords = []){
+
+      const found = items.find(item => {
+
+        const name =
+          (item.name || '').toLowerCase();
+
+        return keywords.some(keyword =>
+          name.includes(keyword)
+        );
 
       });
 
-    const hotspots =
-      detectHotspots(videos);
+      return Number(found?.score) || 0;
+
+    }
+
+    const enReport =
+      report.en || {};
+
+    const fundamentalSignals =
+      enReport.fundamentalSignals || [];
+
+    const marketDrivers =
+      enReport.marketDrivers || [];
+
+    const marketBehavior =
+      enReport.marketBehavior || [];
 
     const investmentScore =
       calculateInvestmentScore({
 
-        infrastructure:
-          signals.infrastructure.score,
+        infrastructureExpansion:
+          findScore(
+            marketDrivers,
+            ['infrastructure']
+          ),
+
+        urbanMigration:
+          findScore(
+            marketDrivers,
+            ['urban', 'migration']
+          ),
+
+        industrialCorporateExpansion:
+          findScore(
+            marketDrivers,
+            ['industrial', 'corporate']
+          ),
+
+        creditCapitalFlow:
+          findScore(
+            marketDrivers,
+            ['credit', 'capital']
+          ),
 
         investmentMomentum:
-          signals.investmentMomentum.score,
+          findScore(
+            marketBehavior,
+            ['momentum']
+          ),
 
         speculativeHeat:
-          signals.speculativeHeat.score,
+          findScore(
+            marketBehavior,
+            ['speculative', 'speculation']
+          ),
 
-        luxuryMigration:
-          signals.luxuryMigration.score,
+        liquidity:
+          findScore(
+            marketBehavior,
+            ['liquidity']
+          ),
 
         marketMaturity:
-          signals.marketMaturity.score
+          findScore(
+            marketBehavior,
+            ['maturity']
+          ),
+        
+        populationScale:
+          findScore(
+            fundamentalSignals,
+            ['population']
+          ),
+
+        grdpStrength:
+          findScore(
+            fundamentalSignals,
+            ['grdp']
+          ),
+
+        tourismDemand:
+          findScore(
+            fundamentalSignals,
+            ['tourism']
+          )
 
       });
 
-    console.log("RAW INVESTMENT SCORE: " ,investmentScore);
+    if(report.en){
+      report.en.investmentScore =
+        investmentScore;
+    }
 
-    const report =
-      await generateMarketReport({
+    if(report.vi){
+      report.vi.investmentScore =
+        investmentScore;
+    }
 
-        city,
-        category,
-        videos,
-        listings,
-        pricing,
-        investmentScore
+    report.investmentScore =
+      investmentScore;
 
-      });
+    console.log(
+      'FINAL INSTITUTIONAL SCORE:',
+      investmentScore
+    );
 
     /* =========================
     CALCULATE AND SORT REAL ESTATE SCORES

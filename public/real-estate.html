@@ -1130,6 +1130,7 @@ NAVBAR
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="lifestyle.html" class="nav-link">Lifestyle</a>
         <a href="real-estate.html" class="nav-link active">Real Estate</a>
+        <a href="compare.html" class="nav-link">Compare</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
 
@@ -1144,7 +1145,7 @@ HERO
   <div class="hero-content">
 
     <div class="hero-tag">
-      AI Lifestyle Discovery Platform
+      AI Real Estate Discovery Platform
     </div>
 
     <h1>
@@ -1245,7 +1246,7 @@ HERO
     </div>
 
     <div class="section-subtitle">
-      Curated from social media creators and lifestyle communities.
+      Curated from social media creators and real estate communities.
     </div>
 
   </div>
@@ -1453,6 +1454,11 @@ function renderInstitutionalReport(data){
       ${renderMemoSection(
         'Market Drivers',
         report.marketDrivers
+      )}
+
+      ${renderMemoSection(
+        'Market Fundamentals',
+        report.fundamentalSignals
       )}
 
       ${renderMemoSection(
@@ -1816,7 +1822,7 @@ function hideLoading(){
     <div class="loader"></div>
 
     <div class="loading-text">
-      AI is discovering the best places...
+      Please wait...
     </div>
 
   </div>

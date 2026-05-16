@@ -123,13 +123,24 @@ async function generateMarketReport({
 
     Connect all signals into one institutional investment memo.
 
-    Market Drivers should explain structural forces:
+    Evaluate these Market Fundamentals:
+
+    - Population Scale
+    - GRDP Strength
+    - Tourism Demand
+
+    Important:
+    Do not invent exact numerical statistics.
+    If exact data is not provided, describe qualitatively.
+    Use terms such as high, medium, low, growing, industrial-driven, tourism-driven.
+
+    After that, Market Drivers should explain structural forces:
     - infrastructure expansion
     - urban migration
     - industrial / corporate expansion
     - credit and capital flow
 
-    Market Behavior should explain:
+    And then, Market Behavior should explain:
     - investment momentum
     - speculative heat
     - liquidity
@@ -139,7 +150,12 @@ async function generateMarketReport({
 
     Do NOT calculate the final Institutional Investment Score.
 
-    Only score these 8 factors from 0 to 10:
+    Only score these 11 factors from 0 to 10:
+
+    Market Fundamentals:
+    - Population Scale
+    - GRDP Strength
+    - Tourism Demand
 
     Market Drivers:
     - Infrastructure Expansion
@@ -168,6 +184,23 @@ async function generateMarketReport({
             "executiveThesis":"",
             "investmentScore":0,
             "scoreExplanation":"",
+            "fundamentalSignals":[
+            {
+                "name":"Population Scale",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"GRDP Strength",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Tourism Demand",
+                "score":0,
+                "analysis":""
+            }
+            ],
             "marketDrivers":[
             {
                 "name":"Infrastructure Expansion",
@@ -228,6 +261,23 @@ async function generateMarketReport({
             "executiveThesis":"",
             "investmentScore":0,
             "scoreExplanation":"",
+            "fundamentalSignals":[
+            {
+                "name":"Population Scale",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"GRDP Strength",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Tourism Demand",
+                "score":0,
+                "analysis":""
+            }
+            ],
             "marketDrivers":[
             {
                 "name":"Infrastructure Expansion",

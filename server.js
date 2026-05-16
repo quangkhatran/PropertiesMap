@@ -34,6 +34,9 @@ const {
   searchTikTok
 } = require('./services/tiktok');
 
+const compareRoutes =
+  require('./routes/compare');
+
 /* =========================
 YOUTUBE API ROUTES
 ========================= */
@@ -41,6 +44,8 @@ YOUTUBE API ROUTES
 app.use('/youtube', youtubeRoutes);
 
 app.use('/real-estate', realEstateRoutes);
+
+app.use('/compare-markets', compareRoutes);
 
 /* =========================
 STATIC FILES

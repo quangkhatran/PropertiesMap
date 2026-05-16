@@ -7,26 +7,33 @@ function calculateInvestmentScore({
   investmentMomentum = 0,
   speculativeHeat = 0,
   liquidity = 0,
-  marketMaturity = 0
+  marketMaturity = 0,
+  populationScale = 0,
+  grdpStrength = 0,
+  tourismDemand = 0
 
 }){
 
   let score = 0;
 
-  score += infrastructureExpansion * 0.18;
-  score += urbanMigration * 0.12;
-  score += industrialCorporateExpansion * 0.15;
-  score += creditCapitalFlow * 0.10;
-  score += investmentMomentum * 0.18;
-  score += liquidity * 0.12;
-  score += marketMaturity * 0.10;
+  score += infrastructureExpansion * 0.14;
+  score += urbanMigration * 0.09;
+  score += industrialCorporateExpansion * 0.12;
+  score += creditCapitalFlow * 0.08;
+  score += investmentMomentum * 0.13;
+  score += liquidity * 0.10;
+  score += marketMaturity * 0.08;
+
+  score += populationScale * 0.08;
+  score += grdpStrength * 0.10;
+  score += tourismDemand * 0.04;
 
   const speculationQuality =
     speculativeHeat <= 6
       ? speculativeHeat
       : 10 - ((speculativeHeat - 6) * 1.5);
 
-  score += speculationQuality * 0.05;
+  score += speculationQuality * 0.04;
 
   score = Math.max(
     0,
