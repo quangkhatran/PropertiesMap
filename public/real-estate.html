@@ -11,6 +11,19 @@
 
 <style>
 
+:root{
+
+  --card-bg:
+    rgba(11, 18, 32, 0.96);
+
+  --card-border:
+    rgba(255,255,255,0.05);
+
+  --card-shadow:
+    0 10px 30px rgba(0,0,0,0.25);
+
+}
+
 *{
   margin:0;
   padding:0;
@@ -97,9 +110,9 @@ HERO
   padding:140px 5vw 80px;
 
   background:
-    linear-gradient(rgba(0,0,0,0.55),rgba(0,0,0,0.72)),
-    url('https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1600&auto=format&fit=crop');
-
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.72)),
+    url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop');
+    
   background-size:cover;
   background-position:center;
 }
@@ -891,7 +904,176 @@ iframe{
 
 }
 
+.signals-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:24px;
+}
+
+.report-box{
+
+  background:var(--card-bg);
+
+  padding:24px;
+
+  border-radius:20px;
+
+  border:
+    1px solid var(--card-border);
+
+}
+
+.final-report{max-width:1280px;margin:auto;}
+.signal-analysis-card{background:#081426;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:32px;margin-bottom:28px;}
+.signal-title{font-size:30px;font-weight:700;margin-bottom:12px;}
+.signal-score{font-size:64px;color:#00ffd5;font-weight:700;margin-bottom:20px;}
+.signal-analysis{line-height:1.9;color:#cbd5e1;}
+.final-section{margin-bottom:60px;}
+.area-card{background:#0b1220;padding:28px;border-radius:22px;margin-bottom:24px;}
+.big-score{font-size:100px;color:#00ffd5;font-weight:700;}
+
+.institutional-report{
+
+  max-width:1280px;
+  margin:auto;
+
+}
+
+.hero-investment-score{
+
+  background:var(--card-bg);
+
+  border-radius:34px;
+
+  padding:50px;
+
+  margin-bottom:50px;
+
+  border:
+    1px solid var(--card-border);
+
+  box-shadow:var(--card-shadow);
+
+  backdrop-filter:blur(12px);
+
+}
+
+.hero-score{
+
+  font-size:120px;
+
+  color:#00ffd5;
+
+  font-weight:700;
+
+  margin-bottom:14px;
+
+}
+
+.hero-label{
+
+  font-size:18px;
+
+  letter-spacing:2px;
+
+  text-transform:uppercase;
+
+  color:#94a3b8;
+
+}
+
 .report-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(auto-fit,minmax(320px,1fr));
+
+  gap:28px;
+
+}
+
+.signal-card{
+
+  background:var(--card-bg);
+
+  border-radius:24px;
+
+  padding:30px;
+
+  border:
+    1px solid var(--card-border);
+
+  box-shadow:var(--card-shadow);
+
+  backdrop-filter:blur(12px);
+
+}
+
+.signal-name{
+
+  font-size:26px;
+
+  font-weight:700;
+
+  margin-bottom:10px;
+
+}
+
+.signal-score-big{
+
+  font-size:72px;
+
+  color:#00ffd5;
+
+  font-weight:700;
+
+  margin-bottom:20px;
+
+}
+
+.signal-analysis{
+
+  color:#cbd5e1;
+
+  line-height:1.9;
+
+  margin-bottom:24px;
+
+}
+
+.signal-drivers{
+
+  padding-left:18px;
+
+  color:#94a3b8;
+
+  line-height:1.9;
+
+  margin-top:18px;
+
+}
+
+.final-risk-box{
+
+  margin-top:40px;
+
+  background:var(--card-bg);
+
+  border:
+    1px solid var(--card-border);
+
+  padding:30px;
+
+  border-radius:24px;
+
+  box-shadow:var(--card-shadow);
+
+  backdrop-filter:blur(12px);
+
+}
+
+.area-grid{
 
   display:grid;
 
@@ -904,13 +1086,32 @@ iframe{
 
 }
 
-.report-box{
+.area-box{
 
-  background:#0b1220;
+  background:var(--card-bg);
 
-  padding:24px;
+  padding:26px;
 
-  border-radius:20px;
+  border-radius:22px;
+
+  border:
+    1px solid var(--card-border);
+
+  box-shadow:var(--card-shadow);
+
+  backdrop-filter:blur(12px);
+
+}
+
+@media(max-width:768px){
+
+  .hero-score{
+    font-size:72px;
+  }
+
+  .signal-score-big{
+    font-size:52px;
+  }
 
 }
 </style>
@@ -953,8 +1154,7 @@ HERO
     <p>
       Discover land, housing and investment opportunities from
       YouTube and Facebook.
-      AI aggregates the most discussed real estate hotspots
-      and then it will give you a detailed market analysis.
+      AI will give you a detailed investment report.
     </p>
 
     <div class="search-box">
@@ -1009,9 +1209,28 @@ HERO
 
 </section>
 
-<!-- =========================
-FOOD SECTION
-========================= -->
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      AI MARKET REPORT
+    </div>
+
+    <div class="section-title">
+      AI Real Estate Intelligence Report
+    </div>
+
+    <div class="section-subtitle">
+      AI-generated investment insights from social media,
+      listings and market sentiment.
+    </div>
+
+  </div>
+
+  <div id="aiReport"></div>
+
+</section>
 
 <section class="section">
 
@@ -1036,88 +1255,11 @@ FOOD SECTION
 </section>
 
 <!-- =========================
-AI RECOMMENDATIONS
-========================= -->
-
-<!-- <section class="section">
-
-  <div class="section-header">
-
-    <div class="section-label">
-      AI SUMMARY
-    </div>
-
-    <div class="section-title">
-      Most Recommended Areas
-    </div>
-
-    <div class="section-subtitle">
-      AI aggregates mentions from social media and ranks the most popular places.
-    </div>
-
-  </div>
-
-  <div class="recommend-grid" id="recommendGrid"></div>
-
-</section> -->
-
-<section class="section">
-
-  <div class="section-header">
-
-    <div class="section-label">
-      AI MARKET REPORT
-    </div>
-
-    <div class="section-title">
-      Real Estate Intelligence Analysis
-    </div>
-
-    <div class="section-subtitle">
-      AI-generated investment insights from social media,
-      listings and market sentiment.
-    </div>
-
-  </div>
-
-  <div id="aiReport"></div>
-
-</section>
-
-<!-- =========================
-MAP
-========================= -->
-
-<!-- <section class="section">
-
-  <div class="section-header">
-
-    <div class="section-label">
-      GOOGLE MAPS
-    </div>
-
-    <div class="section-title">
-      Investment Opportunity Map
-    </div>
-
-    <div class="section-subtitle">
-      AI-recommended places visualized geographically.
-    </div>
-
-  </div>
-
-  <div class="map-wrapper">
-    <div id="map"></div>
-  </div>
-
-</section> -->
-
-<!-- =========================
 FOOTER
 ========================= -->
 
 <footer class="footer">
-  © 2026 Kha Tran — Lifestyle Discovery Platform
+  © 2026 Kha Tran — Real Estate Discovery Platform
 </footer>
 
 <script>
@@ -1156,25 +1298,6 @@ async function fetchRealEstate(
   return await response.json();
 
 }
-
-/* =========================
-MAP
-========================= */
-
-// let map;
-
-// function initMap(){
-
-//   map = new google.maps.Map(document.getElementById('map'),{
-
-//     center:{ lat:11.9404, lng:108.4583 },
-//     zoom:13,
-
-    
-
-//   });
-
-// }
 
 /* =========================
 SOCIAL RENDER
@@ -1253,99 +1376,232 @@ function renderSocialSection(type, items){
 
 }
 
-/* =========================
-RENDER AI RECOMMENDATIONS
-========================= */
+function renderInstitutionalReport(data){
 
-// function renderRecommendations(recommendations){
-  
-//   currentRecommendations = recommendations;
-  
-//   const maxMentions =
-//   Math.max(
-//     ...recommendations.map(
-//       item => item.mentions
-//     )
-//   );
+  const currentLanguage =
+    window.currentLanguage || 'en';
 
-//   const grid =
-//     document.getElementById(
-//       'recommendGrid'
-//     );
+  const report =
+    data.report?.[currentLanguage]
+    || data.report?.en
+    || {};
 
-//   grid.innerHTML =
-//     recommendations.map(
-//       (item,index)=>{
+  const signals =
+    report.signals || {};
 
-//         const width = (item.mentions / maxMentions) * 100;
+  const hotspots =
+    report.emergingAreas || [];
 
-//         return `
+  const container =
+    document.getElementById(
+      'aiReport'
+    );
 
-//           <div
-//             class="recommend-card"
-//             onclick="focusPlace(${index})"
-//           >
+  container.innerHTML = `
 
-//             <div class="recommend-rank">
-//               #${index + 1}
-//             </div>
+    <div class="institutional-report">
+      <div class="language-switch">
 
-//             <img src="${getPlacePhoto(item.place)}">
+        <button
+          class="lang-btn ${
+            currentLanguage === 'en'
+            ? 'active'
+            : ''
+          }"
+          onclick="
+            switchInstitutionalLanguage('en')
+          "
+        >
+          🇬🇧 English
+        </button>
 
-//             <div class="recommend-name">
-//               ${item.name}
-//             </div>
+        <button
+          class="lang-btn ${
+            currentLanguage === 'vi'
+            ? 'active'
+            : ''
+          }"
+          onclick="
+            switchInstitutionalLanguage('vi')
+          "
+        >
+          🇻🇳 Tiếng Việt
+        </button>
 
-//             <div class="recommend-meta">
+      </div>
 
-//               ⭐ ${
-//                 item.place?.rating || 'N/A'
-//               }
+      <div class="hero-investment-score">
 
-//               <br><br>
+        <div class="hero-label">
+          Institutional Investment Score
+        </div>
 
-//               Mentioned
-//               ${item.mentions}
-//               times across social media.
+        <div class="hero-score">
+          ${report.investmentScore || 0}/10
+        </div>
 
-//               <br><br>
+        <div class="signal-analysis">
+          ${report.scoreExplanation || ''}
+        </div>
 
-//               ${
-//                 item.place?.address || ''
-//               }
+        <div class="signal-analysis">
+          ${report.executiveThesis || ''}
+        </div>
 
-//               <br><br>
+      </div>
 
-//               <a
-//                 href="
-//             https://www.google.com/maps/search/?api=1&query=${item.place?.lat},${item.place?.lng}
-//                 "
-//                 target="_blank"
-//                 class="gmaps-link"
-//               >
-//                 View on Google Maps →
-//               </a>
+      ${renderMemoSection(
+        'Market Drivers',
+        report.marketDrivers
+      )}
 
-//             </div>
+      ${renderMemoSection(
+        'Market Behavior',
+        report.marketBehavior
+      )}
 
-//             <div class="mention-bar">
+      <div class="final-risk-box">
 
-//               <div
-//                 class="mention-fill"
-//                 style="width:${width}%"
-//               ></div>
+        <div class="signal-name">
+          Pricing & Valuation Signals
+        </div>
 
-//             </div>
+        <div class="signal-analysis">
 
-//           </div>
+          ${
+            typeof report.pricingValuation === 'string'
 
-//         `;
+            ?
 
-//       }
+            report.pricingValuation
 
-//     ).join('');
+            :
 
-// }
+            `
+              <strong>
+                Observed Range:
+              </strong>
+              ${report.pricingValuation?.observedRange || ''}
+
+              <br><br>
+
+              <strong>
+                Market Direction:
+              </strong>
+              ${report.pricingValuation?.marketDirection || ''}
+
+              <br><br>
+
+              ${report.pricingValuation?.reasoning || ''}
+            `
+          }
+
+        </div>
+
+      </div>
+
+      <div class="final-risk-box">
+
+        <div class="signal-name">
+          Market Risks
+        </div>
+
+        <div class="signal-analysis">
+          <strong>
+            Key Risk Factors
+          </strong>
+        </div>
+        <ul class="signal-drivers">
+
+          ${(report.risks || [])
+            .map(risk=>`
+
+              <li>${risk}</li>
+
+            `).join('')}
+
+        </ul>
+
+      </div>
+
+      <div class="final-section">
+
+        <div class="section-title"
+             style="margin-top:50px;">
+          Emerging Opportunity Zones
+        </div>
+
+        <div class="area-grid">
+
+          ${hotspots.map(area=>`
+
+            <div class="area-box">
+
+              <div class="signal-name">
+                ${area.name}
+              </div>
+
+              <div class="signal-analysis">
+                ${area.summary}
+              </div>
+
+              <br>
+
+              <strong>
+                Opportunity:
+              </strong>
+
+              <div class="signal-analysis">
+                ${area.opportunity}
+              </div>
+
+              <br>
+
+              <strong>
+                Risk:
+              </strong>
+
+              <div class="signal-analysis">
+                ${area.risk}
+              </div>
+
+            </div>
+
+          `).join('')}
+
+        </div>
+
+      </div>
+
+      <div class="final-risk-box">
+
+        <div class="signal-name">
+          Final Conclusion
+        </div>
+
+        <div class="signal-analysis">
+          ${report.conclusion || ''}
+        </div>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+function formatSignalName(name=''){
+
+  return name
+
+    .replace(/([A-Z])/g,' $1')
+
+    .replace(/^./,str=>
+      str.toUpperCase()
+    );
+
+}
 
 /* =========================
 RENDER SOCIAL CONTENT
@@ -1415,9 +1671,15 @@ async function renderCity(
       //   recommendations
       // );
 
-      renderAIReport(
-        data.report
-      );
+ 
+
+      window.latestReport = data.report;
+      window.latestRealEstateData = data;
+      console.log("=============");
+      console.log("DATA: ", data); 
+
+      renderInstitutionalReport(data);
+      
 
     }catch(err){
 
@@ -1431,276 +1693,6 @@ async function renderCity(
 
 }
 
-/* =========================
-MAP MARKERS
-========================= */
-
-// let markers = [];
-// let currentRecommendations = [];
-// let activeInfoWindow = null;
-
-// function addMapMarkers(recommendations){
-
-//   markers.forEach(data=>{
-
-//     if(data.marker){
-//       data.marker.map = null;
-//     }
-
-//   });
-
-//   markers = [];
-
-//   const bounds =
-//     new google.maps.LatLngBounds();
-
-//   recommendations.forEach(
-//     (item,index)=>{
-
-//       if(
-//         !item.place ||
-//         !item.place.lat ||
-//         !item.place.lng
-//       ) return;
-
-//       const marker =
-//         new google.maps.Marker({
-
-//           position:{
-//             lat:item.place.lat,
-//             lng:item.place.lng
-//           },
-
-//           map:map,
-
-//           title:item.name,
-
-//           animation:
-//             google.maps.Animation.DROP,
-
-//           icon:{
-//             url:
-// 'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
-//           }
-
-//         });
-
-//       const infoWindow =
-//         new google.maps.InfoWindow({
-
-//           content:`
-
-//             <div style="
-//               color:black;
-//               padding:10px;
-//               min-width:240px;
-//             ">
-
-//               <h3 style="
-//                 margin-bottom:10px;
-//                 font-size:18px;
-//               ">
-//                 ${item.place.name}
-//               </h3>
-
-//               <p style="
-//                 margin-bottom:8px;
-//               ">
-//                 ⭐ ${
-//                   item.place.rating || 'N/A'
-//                 }
-//               </p>
-
-//               <p style="
-//                 margin-bottom:12px;
-//                 line-height:1.6;
-//               ">
-//                 ${
-//                   item.place.address || ''
-//                 }
-//               </p>
-
-//               <a
-//                 href="
-// https://www.google.com/maps/search/?api=1&query=${item.place.lat},${item.place.lng}
-//                 "
-//                 target="_blank"
-//                 style="
-//                   color:#2563eb;
-//                   text-decoration:none;
-//                   font-weight:600;
-//                 "
-//               >
-//                 View on Google Maps →
-//               </a>
-
-//             </div>
-
-//           `
-
-//         });
-
-//       marker.addListener(
-//         'click',
-//         ()=>{
-
-//           if(activeInfoWindow){
-//             activeInfoWindow.close();
-//           }
-
-//           activeInfoWindow = infoWindow;
-
-//           infoWindow.open({
-//             anchor:marker,
-//             map
-//           });
-
-//           document
-//             .querySelectorAll(
-//               '.recommend-card'
-//             )
-//             .forEach(card=>
-//               card.classList.remove(
-//                 'active'
-//               )
-//             );
-
-//           const cards =
-//             document.querySelectorAll(
-//               '.recommend-card'
-//             );
-
-//           if(cards[index]){
-
-//             cards[index]
-//               .classList.add(
-//                 'active'
-//               );
-
-//             cards[index]
-//               .scrollIntoView({
-
-//                 behavior:'smooth',
-//                 inline:'center',
-//                 block:'nearest'
-
-//               });
-
-//           }
-
-//           markers.forEach(data=>{
-
-//             data.marker.setAnimation(null);
-
-//           });
-
-//           marker.setAnimation(
-//             google.maps.Animation.BOUNCE
-//           );
-
-//           setTimeout(()=>{
-
-//             marker.setAnimation(null);
-
-//           },1200);
-
-//         }
-//       );
-
-//       markers.push({
-//         marker,
-//         infoWindow,
-//         item,
-//         id:item.name
-//       });
-
-//       bounds.extend({
-//         lat:item.place.lat,
-//         lng:item.place.lng
-//       });
-
-//     }
-
-//   );
-
-//   if(markers.length > 0){
-//     map.fitBounds(bounds);
-//   }
-
-// }
-
-// function focusPlace(index){
-
-//   const recommendation =
-//     currentRecommendations[index];
-
-//   if(
-//     !recommendation ||
-//     !recommendation.place
-//   ) return;
-
-//   const targetMarker =
-//     markers.find(data =>
-
-//       data.item.name ===
-//       recommendation.name
-
-//     );
-
-//   if(!targetMarker) return;
-
-//   map.panTo({
-
-//     lat:
-//       recommendation.place.lat,
-
-//     lng:
-//       recommendation.place.lng
-
-//   });
-
-//   map.setZoom(15);
-
-//   if(activeInfoWindow){
-//     activeInfoWindow.close();
-//   }
-
-//   activeInfoWindow =
-//     targetMarker.infoWindow;
-
-//   /* =========================
-//   ACTIVE CARD SYNC
-//   ========================= */
-
-//   document
-//     .querySelectorAll(
-//       '.recommend-card'
-//     )
-//     .forEach(card=>
-//       card.classList.remove(
-//         'active'
-//       )
-//     );
-
-//   const cards =
-//     document.querySelectorAll(
-//       '.recommend-card'
-//     );
-
-//   if(cards[index]){
-//     cards[index]
-//       .classList.add(
-//         'active'
-//       );
-//   }
-
-//   targetMarker.infoWindow.open({
-//     anchor:
-//       targetMarker.marker,
-//     map
-//   });
-
-// }
 
 /* =========================
 HELPERS
@@ -1720,52 +1712,6 @@ function getPlatformEmoji(type){
   return '🌐';
 
 }
-
-// function getPlacePhoto(place){
-
-//   if(
-//     !place ||
-//     !place.photos ||
-//     !place.photos.length
-//   ){
-
-//     return `
-// https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
-//     `;
-
-//   }
-
-//   const photo =
-//     place.photos[0]
-//       ?.photo_reference;
-
-//   if(!photo){
-
-//     return `
-// https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1200&auto=format&fit=crop
-//     `;
-
-//   }
-
-//   /* =========================
-//   REAL ESTATE CUSTOM IMAGE
-//   ========================= */
-
-//   if(
-//     photo.startsWith('http')
-//   ){
-//     return photo;
-//   }
-
-//   /* =========================
-//   GOOGLE PLACES IMAGE
-//   ========================= */
-
-//   return `
-// https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${photo}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
-//   `;
-
-// }
 
 /* =========================
 SEARCH
@@ -1861,106 +1807,6 @@ function hideLoading(){
     .style.display = 'none';
 
 }
-
-/* =========================
-AI REPORT
-========================= */
-
-function renderAIReport(report){
-
-  originalEnglishReport = {
-
-    overview:
-      report.overview || '',
-
-    sentiment:
-      report.sentiment || '',
-
-    pricing:
-      report.pricingSummary || ''
-
-  };
-
-  translatedVietnameseReport = null;
-
-  if(!report) return;
-
-  document.getElementById(
-    'aiReport'
-  ).innerHTML = `
-
-    <div class="report-card">
-
-      <div class="language-switch">
-
-        <button
-          class="lang-btn active"
-          id="btn-en"
-          onclick="switchReportLanguage('en')"
-        >
-          🇬🇧 English
-        </button>
-
-        <button
-          class="lang-btn"
-          id="btn-vi"
-          onclick="switchReportLanguage('vi')"
-        >
-          🇻🇳 Tiếng Việt
-        </button>
-
-      </div>
-
-      <div class="report-title">
-        Market Overview
-      </div>
-
-      <div
-        class="report-text"
-        id="overviewText"
-      >
-        ${report.overview || ''}
-      </div>
-
-      <div class="report-grid">
-
-        <div class="report-box">
-
-        <h3>Market Sentiment</h3>
-
-        <p id="sentimentText">
-          ${report.sentiment || ''}
-        </p>
-
-        </div>
-
-        <div class="report-box">
-
-          <h3>Pricing</h3>
-
-          <p id="pricingText">
-            ${report.pricingSummary || ''}
-          </p>
-
-        </div>
-
-        <div class="report-box">
-
-          <h3>Investment Score</h3>
-
-          <h1>
-            ${report.investmentScore || 0}/10
-          </h1>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  `;
-}
-
 </script>
 
 <div id="loading-overlay">
@@ -1979,103 +1825,55 @@ function renderAIReport(report){
 
 <script>
 
-let originalEnglishReport = {
-  overview:'',
-  sentiment:'',
-  pricing:''
-};
+function switchInstitutionalLanguage(lang){
 
-let translatedVietnameseReport = null;
+  window.currentLanguage = lang;
 
-async function switchReportLanguage(lang){
+  if(window.latestRealEstateData){
 
-  const btnEn =
-    document.getElementById('btn-en');
-
-  const btnVi =
-    document.getElementById('btn-vi');
-
-  if(lang === 'en'){
-
-    document.getElementById(
-      'overviewText'
-    ).innerHTML =
-      originalEnglishReport.overview;
-
-    document.getElementById(
-      'sentimentText'
-    ).innerHTML =
-      originalEnglishReport.sentiment;
-
-    document.getElementById(
-      'pricingText'
-    ).innerHTML =
-      originalEnglishReport.pricing;
-
-    btnEn.classList.add('active');
-    btnVi.classList.remove('active');
-
-    return;
+    renderInstitutionalReport(
+      window.latestRealEstateData
+    );
 
   }
 
-  btnVi.innerHTML = 'Translating...';
+}
 
-  try{
+function renderMemoSection(title, items=[]){
 
-    if(!translatedVietnameseReport){
+  return `
+    <div class="final-section">
 
-      const response = await fetch(
-        '/translate-report',
-        {
-          method:'POST',
-          headers:{
-            'Content-Type':'application/json'
-          },
-          body:JSON.stringify({
-            overview:
-              originalEnglishReport.overview,
+      <div class="section-title">
+        ${title}
+      </div>
 
-            sentiment:
-              originalEnglishReport.sentiment,
+      <div class="report-grid">
 
-            pricing:
-              originalEnglishReport.pricing
-          })
-        }
-      );
+        ${items.map(item=>`
 
-      translatedVietnameseReport =
-        await response.json();
+          <div class="signal-card">
 
-    }
+            <div class="signal-name">
+              ${item.name}
+            </div>
 
-    document.getElementById(
-      'overviewText'
-    ).innerHTML =
-      translatedVietnameseReport.overview;
+            <div class="signal-score-big">
+              ${item.score}/10
+            </div>
 
-    document.getElementById(
-      'sentimentText'
-    ).innerHTML =
-      translatedVietnameseReport.sentiment;
+            <div class="signal-analysis">
+              ${item.analysis}
+            </div>
 
-    document.getElementById(
-      'pricingText'
-    ).innerHTML =
-      translatedVietnameseReport.pricing;
+          </div>
 
-    btnVi.classList.add('active');
-    btnEn.classList.remove('active');
+        `).join('')}
 
-  }catch(err){
+      </div>
 
-    console.log(err);
-
-  }
-
-  btnVi.innerHTML = '🇻🇳 Tiếng Việt';
-
+    </div>
+  `;
 }
 
 </script>

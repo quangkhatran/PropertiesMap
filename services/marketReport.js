@@ -16,7 +16,8 @@ async function generateMarketReport({
     category,
     videos,
     listings,
-    pricing
+    pricing,
+    investmentScore
 
 }){
     const cacheKey =
@@ -64,6 +65,15 @@ async function generateMarketReport({
         CATEGORY:
         ${category}
 
+        OFFICIAL INVESTMENT SCORE:
+        ${investmentScore}/10
+
+        IMPORTANT:
+        You MUST use this exact investment score in both:
+        en.investmentScore
+        vi.investmentScore
+        Do not invent another investment score.
+
         SOCIAL CONTENT:
         ${condensedVideos.slice(0,12000)}
 
@@ -86,8 +96,7 @@ async function generateMarketReport({
             role:'system',
             content:`
 
-    You are a world-class real estate
-    investment strategist.
+    You are a world-class institutional real estate intelligence strategist.
 
     Analyze:
 
@@ -100,24 +109,181 @@ async function generateMarketReport({
     - speculative risk
     - pricing trends
 
+    For every signal score:
+
+    - explain WHY the score was given
+    - identify specific infrastructure catalysts
+    - explain investor psychology
+    - distinguish organic demand vs speculation
+    - mention legal/liquidity quality
+    - explain urbanization drivers
+    - explain industrial/FDI impact
+
+    Do not create repetitive sections.
+
+    Connect all signals into one institutional investment memo.
+
+    Market Drivers should explain structural forces:
+    - infrastructure expansion
+    - urban migration
+    - industrial / corporate expansion
+    - credit and capital flow
+
+    Market Behavior should explain:
+    - investment momentum
+    - speculative heat
+    - liquidity
+    - market maturity
+
+    Avoid repeating the same point in multiple sections.
+
+    Do NOT calculate the final Institutional Investment Score.
+
+    Only score these 8 factors from 0 to 10:
+
+    Market Drivers:
+    - Infrastructure Expansion
+    - Urban Migration
+    - Industrial / Corporate Expansion
+    - Credit and Capital Flow
+
+    Market Behavior:
+    - Investment Momentum
+    - Speculative Heat
+    - Liquidity
+    - Market Maturity
+
+    Always return exactly these factor names.
+    Do not invent different factor names.
+
+    Set investmentScore to 0.
+    The backend will calculate the final Institutional Investment Score.
+
     Return ONLY valid JSON.
 
     FORMAT:
 
     {
-    "overview":"",
-    "sentiment":"",
-    "opportunities":[
-        ""
-    ],
-    "risks":[
-        ""
-    ],
-    "emergingAreas":[
-        ""
-    ],
-    "pricingSummary":"",
-    "investmentScore":0
+        "en":{
+            "executiveThesis":"",
+            "investmentScore":0,
+            "scoreExplanation":"",
+            "marketDrivers":[
+            {
+                "name":"Infrastructure Expansion",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Urban Migration",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Industrial / Corporate Expansion",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Credit and Capital Flow",
+                "score":0,
+                "analysis":""
+            }
+            ],
+            "marketBehavior":[
+            {
+                "name":"Investment Momentum",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Speculative Heat",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Liquidity",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Market Maturity",
+                "score":0,
+                "analysis":""
+            }
+            ],
+            "pricingValuation":"",
+            "emergingAreas":[
+            {
+                "name":"",
+                "summary":"",
+                "opportunity":"",
+                "risk":""
+            }
+            ],
+            "risks":[""],
+            "conclusion":""
+        },
+        "vi":{
+            "executiveThesis":"",
+            "investmentScore":0,
+            "scoreExplanation":"",
+            "marketDrivers":[
+            {
+                "name":"Infrastructure Expansion",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Urban Migration",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Industrial / Corporate Expansion",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Credit and Capital Flow",
+                "score":0,
+                "analysis":""
+            }
+            ],
+            "marketBehavior":[
+            {
+                "name":"Investment Momentum",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Speculative Heat",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Liquidity",
+                "score":0,
+                "analysis":""
+            },
+            {
+                "name":"Market Maturity",
+                "score":0,
+                "analysis":""
+            }
+            ],
+            "pricingValuation":"",
+            "emergingAreas":[
+            {
+                "name":"",
+                "summary":"",
+                "opportunity":"",
+                "risk":""
+            }
+            ],
+            "risks":[""],
+            "conclusion":""
+        }
     }
 
     `
@@ -141,6 +307,16 @@ async function generateMarketReport({
             .message
             .content
         );
+
+        if(result.en){
+            result.en.investmentScore = investmentScore;
+        }
+
+        if(result.vi){
+            result.vi.investmentScore = investmentScore;
+        }
+
+        result.investmentScore = investmentScore;
 
         setCache(
             cacheKey,

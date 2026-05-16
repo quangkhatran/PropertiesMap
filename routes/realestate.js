@@ -42,6 +42,18 @@ const {
   generateMarketReport
 } = require('../services/marketReport');
 
+const {
+  analyzeMarketSignals
+} = require('../services/marketSignals');
+
+const {
+  detectHotspots
+} = require('../services/hotspotDetector');
+
+const {
+  calculateInvestmentScore
+} = require('../services/investmentScore');
+
 const router = express.Router();
 
 /* =========================
@@ -101,6 +113,40 @@ router.get('/:city', async(req,res)=>{
             listings
         );
 
+    const signals =
+      await analyzeMarketSignals({
+
+        city,
+        category,
+        videos
+
+      });
+
+    const hotspots =
+      detectHotspots(videos);
+
+    const investmentScore =
+      calculateInvestmentScore({
+
+        infrastructure:
+          signals.infrastructure.score,
+
+        investmentMomentum:
+          signals.investmentMomentum.score,
+
+        speculativeHeat:
+          signals.speculativeHeat.score,
+
+        luxuryMigration:
+          signals.luxuryMigration.score,
+
+        marketMaturity:
+          signals.marketMaturity.score
+
+      });
+
+    console.log("RAW INVESTMENT SCORE: " ,investmentScore);
+
     const report =
       await generateMarketReport({
 
@@ -108,7 +154,8 @@ router.get('/:city', async(req,res)=>{
         category,
         videos,
         listings,
-        pricing
+        pricing,
+        investmentScore
 
       });
 
@@ -122,130 +169,29 @@ router.get('/:city', async(req,res)=>{
 
     videos.sort((a,b)=> b.realEstateScore - a.realEstateScore);
 
-    /* =========================
-    AGGREGATE PLACE MENTIONS
-    ========================= */
-
-    // const mentionMap = {};
-
-    // videos.forEach(video=>{
-    //     (video.places || [])
-    //         .forEach(place=>{
-
-    //             if(!mentionMap[place]){
-    //             mentionMap[place] = 0;
-    //             }
-
-    //             mentionMap[place]++;
-
-    //         });  
-    // });
-
-    /* =========================
-    SORT TOP PLACES
-    ========================= */
-
-    // const recommendations =
-    //   Object.entries(mentionMap)
-    //   .sort((a,b)=>b[1]-a[1])
-    //   .slice(0,3);
-
-    /* =========================
-    GOOGLE PLACES ENRICHMENT
-    ========================= */
-
-    // const enrichedRecommendations =
-    //   await Promise.all(
-
-    //     recommendations.map(
-    //       async([name,count])=>{
-
-    //         try{
-
-    //             const coords = realEstateCoordinates[name];
-
-    //             return {
-
-    //                 name,
-
-    //                 mentions: count,
-
-    //                 place:{
-
-    //                     name,
-
-    //                     address: city,
-
-    //                     lat:
-    //                     coords?.lat || null,
-
-    //                     lng:
-    //                     coords?.lng || null,
-
-    //                     rating:null,
-
-    //                     photos:
-
-    //                     coords?.image
-
-    //                     ?
-
-    //                     [
-    //                         {
-    //                         photo_reference:
-    //                             coords.image
-    //                         }
-    //                     ]
-
-    //                     :
-
-    //                     []
-
-    //                 }
-
-    //             };
-
-    //         }catch(err){
-
-    //             console.log(
-    //                 'PLACE ERROR:',
-    //                 err.response?.data ||
-    //                 err.message
-    //             );
-
-    //             return {
-
-    //                 name,
-    //                 mentions:count,
-    //                 place:null
-
-    //             };
-
-    //         }
-
-    //       }
-
-    //     )
-
-    //   );
 
     /* =========================
     RESPONSE
-    ========================= */
+    ========================= */ 
 
     res.json({
-
         city,
+
         category,
-
+        
         videos,
-
+        
         listings,
-
+        
         pricing,
-
-        report
-
+        
+        report,
+        
+        signals,
+        
+        hotspots,
+        
+        investmentScore
     });
 
   }catch(err){
