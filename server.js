@@ -163,11 +163,11 @@ async function preloadHotCities(){
 
   try {
 
-    // await searchYoutube(
-    //     "Dong Nai",
-    //     "land",
-    //     "real-estate"
-    // );
+    await searchYoutube(
+        "Nhon Trach",
+        "land",
+        "real-estate"
+    );
 
     // await searchFacebook(
     //   "Dong Nai",

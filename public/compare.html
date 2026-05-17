@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Compare Markets | Kha Tran</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
     body{
@@ -490,6 +490,39 @@ LIQUID GLASS COMPARE INPUTS
 
 }
 
+.charts-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:22px;
+  margin-top:32px;
+}
+
+.chart-card{
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.025)
+    );
+  border:1px solid rgba(255,255,255,0.09);
+  border-radius:22px;
+  padding:22px;
+  box-shadow:0 20px 70px rgba(0,0,0,0.28);
+  backdrop-filter:blur(16px);
+}
+
+.chart-card h3{
+  margin:0 0 18px;
+  text-align:center;
+  font-size:15px;
+  color:white;
+}
+
+.chart-card canvas{
+  width:100% !important;
+  height:260px !important;
+}
+
   </style>
 </head>
 
@@ -529,30 +562,90 @@ LIQUID GLASS COMPARE INPUTS
       <option value="industrial">Industrial</option>
     </select>
 
-    <label>
-      <input type="checkbox" value="Dong Nai" checked>
-      Dong Nai
-    </label>
+    <select class="market-select">
+      <option value="">None</option>
+      <option value="Nhon Trach" selected>Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
 
-    <label>
-      <input type="checkbox" value="Nhon Trach" checked>
-      Nhon Trach
-    </label>
+    <select class="market-select">
+      <option value="">None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh" selected>Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
 
-    <label>
-      <input type="checkbox" value="Long Thanh" checked>
-      Long Thanh
-    </label>
+    <select class="market-select">
+      <option value="">None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong" selected>Binh Duong</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
 
-    <label>
-      <input type="checkbox" value="Binh Duong">
-      Binh Duong
-    </label>
+    <select class="market-select">
+      <option value="" selected>None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
 
-    <label>
-      <input type="checkbox" value="Long An">
-      Long An
-    </label>
+    <select class="market-select">
+      <option value="" selected>None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
 
     <button onclick="compareMarkets()">
       Compare
@@ -566,6 +659,8 @@ LIQUID GLASS COMPARE INPUTS
 
   <div id="summary" class="grid"></div>
 
+  <div id="charts" class="charts-grid"></div>
+
   <div id="table"></div>
 </div>
 <script>
@@ -573,8 +668,11 @@ LIQUID GLASS COMPARE INPUTS
 async function compareMarkets(){
 
   const cities =
-    [...document.querySelectorAll('input[type="checkbox"]:checked')]
-      .map(input => input.value);
+    [...document.querySelectorAll('.market-select')]
+      .map(select => select.value)
+      .filter(value => value !== '');
+
+  const uniqueCities = [...new Set(cities)];
 
   const category =
     document.getElementById('category').value;
@@ -586,7 +684,7 @@ async function compareMarkets(){
         'Content-Type':'application/json'
       },
       body:JSON.stringify({
-        cities,
+        cities: uniqueCities,
         category
       })
     });
@@ -670,6 +768,130 @@ function renderComparison(comparison){
     </table>
 
   `;
+
+renderCharts(comparison.markets);
+
+}
+
+let chartInstances = [];
+
+function renderCharts(markets){
+  chartInstances.forEach(chart => chart.destroy());
+  chartInstances = [];
+
+  const chartsContainer = document.getElementById('charts');
+
+  const indicators = [
+    {
+      title: 'Score',
+      key: 'investmentScore',
+      color: '#00ffd5'
+    },
+    {
+      title: 'Infrastructure',
+      key: 'infrastructure',
+      color: '#3da5ff'
+    },
+    {
+      title: 'Momentum',
+      key: 'investmentMomentum',
+      color: '#7c5cff'
+    },
+    {
+      title: 'Speculation',
+      key: 'speculativeHeat',
+      color: '#ff7a00'
+    },
+    {
+      title: 'Liquidity',
+      key: 'liquidity',
+      color: '#4db8ff'
+    },
+    {
+      title: 'Maturity',
+      key: 'marketMaturity',
+      color: '#8be84b'
+    },
+    {
+      title: 'Population',
+      key: 'populationScale',
+      color: '#ffd000'
+    },
+    {
+      title: 'GRDP',
+      key: 'grdpStrength',
+      color: '#ff3da7'
+    },
+    {
+      title: 'Tourism',
+      key: 'tourismDemand',
+      color: '#00d5d5'
+    }
+  ];
+
+  chartsContainer.innerHTML = indicators.map((indicator, index) => `
+    <div class="chart-card">
+      <h3>${indicator.title} (/10)</h3>
+      <canvas id="chart-${index}"></canvas>
+    </div>
+  `).join('');
+
+  indicators.forEach((indicator, index) => {
+    const ctx = document.getElementById(`chart-${index}`);
+
+    const chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: markets.map(m => m.city),
+        datasets: [{
+          label: indicator.title,
+          data: markets.map(m => Number(m[indicator.key])),
+          backgroundColor: indicator.color,
+          borderRadius: 8,
+          barThickness: 28
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            display: false
+          },
+          tooltip: {
+            callbacks: {
+              label: context => `${context.raw}/10`
+            }
+          }
+        },
+        scales: {
+          y: {
+            min: 0,
+            max: 10,
+            ticks: {
+              color: 'rgba(255,255,255,0.75)',
+              stepSize: 2
+            },
+            grid: {
+              color: 'rgba(255,255,255,0.08)'
+            }
+          },
+          x: {
+            ticks: {
+              color: 'rgba(255,255,255,0.85)',
+              maxRotation: 0,
+              autoSkip: false
+            },
+            grid: {
+              display: false
+            }
+          }
+        }
+      }
+    });
+
+    chartInstances.push(chart);
+  });
 }
 
 compareMarkets();
