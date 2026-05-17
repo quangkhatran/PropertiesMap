@@ -26,6 +26,36 @@ function getScore(report, section, keyword){
   return Number(found?.score) || 0;
 }
 
+
+function formatRawPrice(pricing = {}){
+
+  return (
+    pricing.averagePriceText ||
+    pricing.avgPriceText ||
+    pricing.pricePerSqmText ||
+    pricing.priceText ||
+    pricing.averagePricePerSqmText ||
+    pricing.averagePrice ||
+    pricing.avgPrice ||
+    pricing.pricePerSqm ||
+    'N/A'
+  );
+}
+
+function formatRawPriceGrowth(pricing = {}){
+
+  return (
+    pricing.growthYoYText ||
+    pricing.priceGrowthYoYText ||
+    pricing.growthText ||
+    pricing.priceGrowthText ||
+    pricing.growthYoY ||
+    pricing.priceGrowthYoY ||
+    pricing.growth ||
+    'N/A'
+  );
+}
+
 function buildMarketSnapshot(data){
 
   const report =
@@ -71,6 +101,18 @@ function buildMarketSnapshot(data){
     tourismDemand:
         getScore(report,'fundamentalSignals','tourism'),
 
+    priceScore:
+      Number(data.pricing?.priceScore || 0),
+
+    rawPrice:
+      data.pricing?.averagePriceText || 'N/A',
+
+    priceGrowthScore:
+      Number(data.pricing?.priceGrowthScore || 0),
+
+    rawPriceGrowth:
+      data.pricing?.growthYoYText || 'N/A',
+
     thesis:
       report?.en?.executiveThesis || '',
 
@@ -114,6 +156,12 @@ function compareMarkets(markets = []){
   const mostMature =
     rankBy(markets,'marketMaturity')[0];
 
+  const bestPrice =
+    rankBy(markets,'priceScore')[0];
+
+  const strongestPriceGrowth =
+    rankBy(markets,'priceGrowthScore')[0];
+
   const averageScore =
     getAverage(
       markets.map(m => m.investmentScore)
@@ -138,6 +186,12 @@ function compareMarkets(markets = []){
       highestSpeculation:
         highestSpeculation?.city || null,
 
+      bestPrice:
+        bestPrice?.city || null,
+
+      strongestPriceGrowth:
+        strongestPriceGrowth?.city || null,
+
       mostMature:
         mostMature?.city || null
     },
@@ -147,7 +201,9 @@ function compareMarkets(markets = []){
       infrastructure: rankBy(markets,'infrastructure'),
       liquidity: rankBy(markets,'liquidity'),
       speculativeHeat: rankBy(markets,'speculativeHeat'),
-      marketMaturity: rankBy(markets,'marketMaturity')
+      marketMaturity: rankBy(markets,'marketMaturity'),
+      priceScore: rankBy(markets,'priceScore'),
+      priceGrowthScore: rankBy(markets,'priceGrowthScore')
     }
   };
 }

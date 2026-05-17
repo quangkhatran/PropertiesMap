@@ -636,6 +636,12 @@ th i{
   vertical-align:middle;
 }
 
+.raw-price-cell{
+  white-space:nowrap;
+  color:rgba(255,255,255,0.88);
+  font-weight:600;
+}
+
 .loading-box{
   margin-top:30px;
   padding:22px 26px;
@@ -797,16 +803,53 @@ th i{
   animation:fadeIn 0.25s ease;
 }
 
-@keyframes fadeIn{
-  from{
-    opacity:0;
-    transform:translateY(6px);
-  }
 
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
+.deep-dive-links{
+  margin-top:42px;
+  padding:30px;
+  border-radius:28px;
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.025)
+  );
+  border:1px solid rgba(0,255,213,0.14);
+  box-shadow:0 24px 80px rgba(0,0,0,0.34);
+}
+
+.deep-dive-links h2{
+  margin:0 0 20px;
+  color:#00ffd5;
+  font-family:'Playfair Display', serif;
+  font-size:30px;
+}
+
+.deep-dive-buttons{
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
+}
+
+.deep-dive-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  padding:14px 20px;
+  border-radius:16px;
+
+  background:#00ffd5;
+  color:#041018;
+  text-decoration:none;
+  font-weight:800;
+
+  box-shadow:0 12px 34px rgba(0,255,213,0.22);
+  transition:0.25s ease;
+}
+
+.deep-dive-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 18px 44px rgba(0,255,213,0.34);
 }
 
   </style>
@@ -857,9 +900,11 @@ th i{
       <option value="Thu Thiem">Thu Thiem</option>
       <option value="Vung Tau">Vung Tau</option>
       <option value="Da Lat">Da Lat</option>
-      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
       <option value="Cam Ranh">Cam Ranh</option>
       <option value="Can Tho">Can Tho</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Nha Be">Nha Be</option>
       <option value="Ca Mau">Ca Mau</option>
       <option value="London">London</option>
       <option value="New York">New York</option>
@@ -874,9 +919,11 @@ th i{
       <option value="Thu Thiem">Thu Thiem</option>
       <option value="Vung Tau">Vung Tau</option>
       <option value="Da Lat">Da Lat</option>
-      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
       <option value="Cam Ranh">Cam Ranh</option>
       <option value="Can Tho">Can Tho</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Nha Be">Nha Be</option>
       <option value="Ca Mau">Ca Mau</option>
       <option value="London">London</option>
       <option value="New York">New York</option>
@@ -891,9 +938,11 @@ th i{
       <option value="Thu Thiem">Thu Thiem</option>
       <option value="Vung Tau">Vung Tau</option>
       <option value="Da Lat">Da Lat</option>
-      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
       <option value="Cam Ranh">Cam Ranh</option>
       <option value="Can Tho">Can Tho</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Nha Be">Nha Be</option>
       <option value="Ca Mau">Ca Mau</option>
       <option value="London">London</option>
       <option value="New York">New York</option>
@@ -908,9 +957,11 @@ th i{
       <option value="Thu Thiem">Thu Thiem</option>
       <option value="Vung Tau">Vung Tau</option>
       <option value="Da Lat">Da Lat</option>
-      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
       <option value="Cam Ranh">Cam Ranh</option>
       <option value="Can Tho">Can Tho</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Nha Be">Nha Be</option>
       <option value="Ca Mau">Ca Mau</option>
       <option value="London">London</option>
       <option value="New York">New York</option>
@@ -925,9 +976,11 @@ th i{
       <option value="Thu Thiem">Thu Thiem</option>
       <option value="Vung Tau">Vung Tau</option>
       <option value="Da Lat">Da Lat</option>
-      <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
       <option value="Cam Ranh">Cam Ranh</option>
       <option value="Can Tho">Can Tho</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Nha Be">Nha Be</option>
       <option value="Ca Mau">Ca Mau</option>
       <option value="London">London</option>
       <option value="New York">New York</option>
@@ -960,6 +1013,8 @@ th i{
 <div id="aiReport" class="ai-report hidden"></div>
 
 <div id="forecastCharts" class="charts-grid"></div>
+
+<div id="deepDiveLinks" class="deep-dive-links"></div>
 </div>
 <script>
 
@@ -1132,6 +1187,26 @@ function renderComparison(comparison){
   <i class='bx bxs-plane-alt'></i>
   Tourism
 </th>
+
+<th>
+  <i class='bx bx-purchase-tag'></i>
+  Price Score
+</th>
+
+<th>
+  <i class='bx bx-money'></i>
+  Raw Price
+</th>
+
+<th>
+  <i class='bx bx-rocket'></i>
+  Growth Score
+</th>
+
+<th>
+  <i class='bx bx-bar-chart-alt-2'></i>
+  Raw Growth
+</th>
         </tr>
       </thead>
 
@@ -1148,6 +1223,19 @@ function renderComparison(comparison){
             <td>${m.populationScale}/10</td>
             <td>${m.grdpStrength}/10</td>
             <td>${m.tourismDemand}/10</td>
+            <td>${m.priceScore}/10</td>
+            <td class="raw-price-cell">${m.rawPrice}</td>
+            <td>${
+              Number(m.priceGrowthScore) > 0
+                ? `${m.priceGrowthScore}/10`
+                : '—'
+            }</td>
+            <td class="raw-price-cell">${
+              m.rawPriceGrowth &&
+              m.rawPriceGrowth !== 'N/A'
+                ? m.rawPriceGrowth
+                : '—'
+            }</td>
           </tr>
         `).join('')}
       </tbody>
@@ -1157,10 +1245,40 @@ function renderComparison(comparison){
 
 renderCharts(comparison.markets);
 generateCompareReport(comparison);
+renderDeepDiveLinks(comparison.markets);
 
 }
 
 let chartInstances = [];
+
+
+function parseRawPrice(value){
+
+  if(!value || value === 'N/A' || value === '—'){
+    return null;
+  }
+
+  const match =
+    String(value).match(/(\d+(?:[.,]\d+)?)/);
+
+  return match
+    ? Number(match[1].replace(',', '.'))
+    : null;
+}
+
+function parseRawGrowth(value){
+
+  if(!value || value === 'N/A' || value === '—'){
+    return null;
+  }
+
+  const match =
+    String(value).match(/(\d+(?:[.,]\d+)?)/);
+
+  return match
+    ? Number(match[1].replace(',', '.'))
+    : null;
+}
 
 function renderCharts(markets, forecast = []){
   chartInstances.forEach(chart => chart.destroy());
@@ -1231,6 +1349,41 @@ function renderCharts(markets, forecast = []){
       futureKey: 'futureTourism',
       color: '#00d5d5',
       icon: 'bxs-plane-alt'
+    },
+    {
+      title: 'Price Score',
+      key: 'priceScore',
+      futureKey: 'futurePriceScore',
+      color: '#ffaa00',
+      icon: 'bx-purchase-tag'
+    },
+    {
+      title: 'Growth Score',
+      key: 'priceGrowthScore',
+      futureKey: 'futurePriceGrowthScore',
+      color: '#00ff99',
+      icon: 'bx-rocket',
+      noDataAsNull: true
+    },
+    {
+      title: 'Raw Price',
+      key: 'rawPrice',
+      color: '#00c2ff',
+      icon: 'bx-money',
+      isCurrency: true,
+      parseValue: parseRawPrice,
+      noFuture: true,
+      noDataAsNull: true
+    },
+    {
+      title: 'Raw Growth',
+      key: 'rawPriceGrowth',
+      color: '#ff5fd2',
+      icon: 'bx-bar-chart-alt-2',
+      isPercent: true,
+      parseValue: parseRawGrowth,
+      noFuture: true,
+      noDataAsNull: true
     }
   ];
 
@@ -1238,7 +1391,16 @@ function renderCharts(markets, forecast = []){
   <div class="chart-card">
 
     <div class="chart-header">
-      <h3>${indicator.title} (/10)</h3>
+      <h3>
+        ${indicator.title}
+        ${
+          indicator.isCurrency
+            ? '(triệu/m²)'
+            : indicator.isPercent
+            ? '(% YoY)'
+            : '(/10)'
+        }
+      </h3>
 
       <div class="chart-icon">
         <i class='bx ${indicator.icon}'></i>
@@ -1260,7 +1422,15 @@ function renderCharts(markets, forecast = []){
     datasets: [
       {
         label: 'Current',
-        data: markets.map(m => Number(m[indicator.key])),
+        data: markets.map(m => {
+          const value = indicator.parseValue
+            ? indicator.parseValue(m[indicator.key])
+            : Number(m[indicator.key]);
+
+          return indicator.noDataAsNull && (!value || value <= 0)
+            ? null
+            : value;
+        }),
         backgroundColor: indicator.color,
         borderRadius: 8,
         barThickness: 18
@@ -1268,8 +1438,22 @@ function renderCharts(markets, forecast = []){
       {
         label: 'Future',
         data: markets.map(m => {
+
+          if(indicator.noFuture){
+            return null;
+          }
+
           const futureMarket = forecast.find(f => f.city === m.city);
-          return futureMarket ? Number(futureMarket[indicator.futureKey]) : null;
+
+          if(!futureMarket){
+            return null;
+          }
+
+          const value = Number(futureMarket[indicator.futureKey]);
+
+          return indicator.noDataAsNull && (!value || value <= 0)
+            ? null
+            : value;
         }),
         backgroundColor: 'rgba(255,255,255,0.35)',
         borderRadius: 8,
@@ -1291,14 +1475,44 @@ function renderCharts(markets, forecast = []){
       },
       tooltip: {
         callbacks: {
-          label: context => `${context.dataset.label}: ${context.raw}/10`
+          label: context => {
+            const value = context.raw;
+
+            if(value === null){
+              return `${context.dataset.label}: No data`;
+            }
+
+            if(indicator.isCurrency){
+              return `${context.dataset.label}: ${value} triệu/m²`;
+            }
+
+            if(indicator.isPercent){
+              return `${context.dataset.label}: ${value}% YoY`;
+            }
+
+            return `${context.dataset.label}: ${value}/10`;
+          }
         }
       }
     },
     scales: {
       y: {
         min: 0,
-        max: 10,
+        max: indicator.isCurrency
+          ? Math.max(
+              10,
+              ...markets.map(m =>
+                parseRawPrice(m.rawPrice) || 0
+              )
+            ) * 1.2
+          : indicator.isPercent
+          ? Math.max(
+              2,
+              ...markets.map(m =>
+                parseRawGrowth(m.rawPriceGrowth) || 0
+              )
+            ) * 1.4
+          : 10,
         ticks: {
           color: 'rgba(255,255,255,0.75)',
           stepSize: 2
@@ -1471,6 +1685,18 @@ function renderForecastCharts(forecast){
       key:'futureTourism',
       color:'#00d5d5',
       icon:'bxs-plane-alt'
+    },
+    {
+      title:'Future Price Score',
+      key:'futurePriceScore',
+      color:'#ffaa00',
+      icon:'bx-purchase-tag'
+    },
+    {
+      title:'Future Price Growth Score',
+      key:'futurePriceGrowthScore',
+      color:'#00ff99',
+      icon:'bx-rocket'
     }
   ];
 
@@ -1484,7 +1710,16 @@ function renderForecastCharts(forecast){
   container.innerHTML += indicators.map((indicator, index) => `
     <div class="chart-card">
       <div class="chart-header">
-        <h3>${indicator.title} (/10)</h3>
+        <h3>
+        ${indicator.title}
+        ${
+          indicator.isCurrency
+            ? '(triệu/m²)'
+            : indicator.isPercent
+            ? '(% YoY)'
+            : '(/10)'
+        }
+      </h3>
         <div class="chart-icon">
           <i class='bx ${indicator.icon}'></i>
         </div>
@@ -1515,7 +1750,17 @@ function renderForecastCharts(forecast){
           legend:{ display:false },
           tooltip:{
             callbacks:{
-              label: context => `${context.raw}/10`
+              label: context => {
+                if(indicator.isCurrency){
+                  return `${context.raw} triệu/m²`;
+                }
+
+                if(indicator.isPercent){
+                  return `${context.raw}% YoY`;
+                }
+
+                return `${context.raw}/10`;
+              }
             }
           }
         },
@@ -1547,6 +1792,30 @@ function renderForecastCharts(forecast){
 
     forecastChartInstances.push(chart);
   });
+}
+
+
+
+function renderDeepDiveLinks(markets){
+
+  const container =
+    document.getElementById('deepDiveLinks');
+
+  container.innerHTML = `
+    <h2>Explore Market Deep Dives</h2>
+
+    <div class="deep-dive-buttons">
+      ${markets.map(m => `
+        <a
+          class="deep-dive-btn"
+          href="real-estate.html?city=${encodeURIComponent(m.city)}&category=${encodeURIComponent(document.getElementById('category').value)}"
+        >
+          <i class='bx bx-map'></i>
+          ${m.city} — View Detail
+        </a>
+      `).join('')}
+    </div>
+  `;
 }
 
 

@@ -246,11 +246,28 @@ IMPORTANT:
 - Use only the provided data.
 - Do not invent exact facts, dates, prices, or infrastructure projects unless already implied by market names.
 - Explain WHY the top market has the highest score based on the metrics.
-- Compare infrastructure, momentum, speculation, liquidity, maturity, population, GRDP, and tourism.
+- Compare infrastructure, momentum, speculation, liquidity, maturity, population, GRDP, tourism, price score, raw price, price growth score, and raw price growth.
 - Explain current market strengths and weaknesses.
 - Then provide a 3–5 year future outlook.
 - Mention that the forecast is a scenario, not a certainty.
-- Return valid JSON only in this exact structure:
+
+PRICING AND VALUATION ANALYSIS IS REQUIRED:
+- You MUST deeply analyze pricing and valuation.
+- For each market, analyze current raw price per square meter when available.
+- For each market, analyze raw price growth when available.
+- If raw price or raw growth is N/A, clearly say that pricing data is unavailable instead of treating it as zero.
+- Compare price levels between markets.
+- Explain whether each market looks undervalued, fairly valued, expensive, or potentially overheated based only on the provided price score and raw price data.
+- Explain whether price growth appears sustainable or speculative based on momentum, speculation, liquidity, and price growth score.
+- Explain affordability versus long-term upside.
+- Explain which markets have asymmetric upside potential.
+- Price and growth data must strongly influence the final investment conclusion.
+- When selecting the best investment market, consider BOTH fundamentals and valuation.
+- A market with strong infrastructure but already expensive may have lower upside.
+- A cheaper market with strong future infrastructure may have better long-term opportunity.
+- If price data is missing for a market, state that the conclusion has lower confidence.
+
+Return valid JSON only in this exact structure:
 
 {
   "reportHtmlEn": "<h2>AI Market Report</h2>...",
@@ -266,14 +283,17 @@ IMPORTANT:
       "futureMaturity": 7,
       "futurePopulation": 8,
       "futureGRDP": 8,
-      "futureTourism": 6
+      "futureTourism": 6,
+      "futurePriceScore": 7,
+      "futurePriceGrowthScore": 8
     }
   ],
   "futureWinner": "Market Name"
 }
 
-For every market, forecast all future fields: futureScore, futureInfrastructure, futureMomentum, futureSpeculation, futureLiquidity, futureMaturity, futurePopulation, futureGRDP, futureTourism.
+For every market, forecast all future fields: futureScore, futureInfrastructure, futureMomentum, futureSpeculation, futureLiquidity, futureMaturity, futurePopulation, futureGRDP, futureTourism, futurePriceScore, futurePriceGrowthScore.
 All future values must be numbers from 0 to 10.
+Do not forecast raw price or raw price growth values. Only forecast score fields from 0 to 10.
 `;
 
     const completion = await openai.chat.completions.create({

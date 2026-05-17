@@ -1164,12 +1164,15 @@ HERO
         <option value="Nhon Trach">Nhon Trach</option>
         <option value="Long Thanh">Long Thanh</option>
         <option value="Dong Nai">Dong Nai</option>
-        <option value="Long Thanh">Thu Thiem</option>
-        <option value="Da Lat">Da Lat</option>
-        <option value="Ho Chi Minh City">Ho Chi Minh City</option>
+        <option value="Binh Duong">Binh Duong</option>
+        <option value="Thu Thiem">Thu Thiem</option>
         <option value="Vung Tau">Vung Tau</option>
+        <option value="Da Lat">Da Lat</option>
+        <option value="Ho Chi Minh">Ho Chi Minh</option>        
         <option value="Cam Ranh">Cam Ranh</option>
         <option value="Can Tho">Can Tho</option>
+        <option value="Can Gio">Can Gio</option>
+        <option value="Nha Be">Nha Be</option>
         <option value="Ca Mau">Ca Mau</option>
         <option value="London">London</option>
         <option value="New York">New York</option>
@@ -1753,6 +1756,42 @@ function exploreCity(){
 
 }
 
+
+function getQueryParams(){
+
+  const params =
+    new URLSearchParams(window.location.search);
+
+  return {
+    city: params.get('city'),
+    category: params.get('category')
+  };
+
+}
+
+function setSelectValueIfExists(selectId, value){
+
+  const select =
+    document.getElementById(selectId);
+
+  if(!select || !value){
+    return false;
+  }
+
+  const option =
+    [...select.options].find(item =>
+      item.value.toLowerCase() === value.toLowerCase()
+    );
+
+  if(option){
+    select.value = option.value;
+    return true;
+  }
+
+  return false;
+}
+
+
 /* =========================
 INIT
 ========================= */
@@ -1761,9 +1800,49 @@ window.onload = () => {
 
   // initMap();
 
+  const {
+    city,
+    category
+  } = getQueryParams();
+
+  const defaultCity =
+    'Nhon Trach';
+
+  const defaultCategory =
+    'land';
+
+  const selectedCity =
+    city || defaultCity;
+
+  const selectedCategory =
+    category || defaultCategory;
+
+  const cityExistsInDropdown =
+    setSelectValueIfExists(
+      'citySelect',
+      selectedCity
+    );
+
+  if(city && !cityExistsInDropdown){
+
+    document.getElementById('customCity').value =
+      city;
+
+  } else {
+
+    document.getElementById('customCity').value =
+      '';
+
+  }
+
+  setSelectValueIfExists(
+    'categorySelect',
+    selectedCategory
+  );
+
   renderCity(
-    'Nhon Trach',
-    'land'
+    selectedCity,
+    selectedCategory
   );
 
   const debouncedExplore = debounce(
