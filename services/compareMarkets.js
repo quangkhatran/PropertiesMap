@@ -101,6 +101,9 @@ function compareMarkets(markets = []){
 
   const strongestInfrastructure =
     rankBy(markets,'infrastructure')[0];
+  
+  const bestMomentum =
+  rankBy(markets,'investmentMomentum')[0];
 
   const bestLiquidity =
     rankBy(markets,'liquidity')[0];
@@ -120,11 +123,11 @@ function compareMarkets(markets = []){
     markets,
 
     summary:{
-      averageScore:
-        Math.round(averageScore * 10) / 10,
-
       topMarket:
         rankedByScore[0]?.city || null,
+
+      bestMomentum:
+        bestMomentum?.city || null,
 
       strongestInfrastructure:
         strongestInfrastructure?.city || null,

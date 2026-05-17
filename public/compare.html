@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Compare Markets | Kha Tran</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
@@ -523,6 +524,291 @@ LIQUID GLASS COMPARE INPUTS
   height:260px !important;
 }
 
+.kpi-card{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.kpi-icon{
+  width:64px;
+  height:64px;
+  border-radius:18px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:34px;
+
+  background:rgba(0,255,213,0.10);
+  border:1px solid rgba(0,255,213,0.35);
+  color:#00ffd5;
+
+  box-shadow:
+    0 0 22px rgba(0,255,213,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.kpi-content{
+  flex:1;
+}
+
+.kpi-content div{
+  color:rgba(255,255,255,0.75);
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.kpi-content h2{
+  margin:0;
+  font-size:24px;
+}
+
+.kpi-content .score{
+  font-size:48px;
+  line-height:1;
+}
+
+.kpi-card:nth-child(1) .kpi-icon{
+  color:#00ffd5;
+  border-color:rgba(0,255,213,0.35);
+  background:rgba(0,255,213,0.10);
+  box-shadow:0 0 24px rgba(0,255,213,0.22);
+}
+
+.kpi-card:nth-child(2) .kpi-icon{
+  color:#00aaff;
+  border-color:rgba(0,170,255,0.35);
+  background:rgba(0,170,255,0.10);
+  box-shadow:0 0 24px rgba(0,170,255,0.22);
+}
+
+.kpi-card:nth-child(3) .kpi-icon{
+  color:#8a5cff;
+  border-color:rgba(138,92,255,0.35);
+  background:rgba(138,92,255,0.10);
+  box-shadow:0 0 24px rgba(138,92,255,0.22);
+}
+
+.kpi-card:nth-child(4) .kpi-icon{
+  color:#2196ff;
+  border-color:rgba(33,150,255,0.35);
+  background:rgba(33,150,255,0.10);
+  box-shadow:0 0 24px rgba(33,150,255,0.22);
+}
+
+.kpi-card:nth-child(5) .kpi-icon{
+  color:#ff7a00;
+  border-color:rgba(255,122,0,0.35);
+  background:rgba(255,122,0,0.10);
+  box-shadow:0 0 24px rgba(255,122,0,0.22);
+}
+
+.chart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.chart-icon{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:22px;
+
+  background:rgba(255,255,255,0.05);
+
+  border:1px solid rgba(255,255,255,0.08);
+
+  color:white;
+}
+
+th i{
+  margin-right:6px;
+  font-size:16px;
+  vertical-align:middle;
+}
+
+.loading-box{
+  margin-top:30px;
+  padding:22px 26px;
+  border-radius:22px;
+
+  display:flex;
+  align-items:center;
+  gap:18px;
+
+  background:linear-gradient(
+    135deg,
+    rgba(255,255,255,0.10),
+    rgba(255,255,255,0.035)
+  );
+
+  border:1px solid rgba(0,255,213,0.20);
+  box-shadow:0 18px 60px rgba(0,0,0,0.28);
+  backdrop-filter:blur(18px);
+}
+
+.loading-box strong{
+  color:#00ffd5;
+  font-size:17px;
+}
+
+.loading-box p{
+  margin:6px 0 0;
+  color:rgba(255,255,255,0.70);
+  font-size:14px;
+}
+
+.loading-spinner{
+  width:34px;
+  height:34px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,0.16);
+  border-top-color:#00ffd5;
+  animation:spin 0.8s linear infinite;
+}
+
+.hidden{
+  display:none !important;
+}
+
+@keyframes spin{
+  to{
+    transform:rotate(360deg);
+  }
+}
+
+.ai-report{
+  margin-top:42px;
+  padding:34px;
+  border-radius:28px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.09),
+      rgba(255,255,255,0.025)
+    );
+
+  border:1px solid rgba(0,255,213,0.14);
+  box-shadow:0 24px 80px rgba(0,0,0,0.34);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+
+  color:rgba(255,255,255,0.84);
+  line-height:1.75;
+}
+
+.ai-report h2{
+  color:#00ffd5;
+  font-family:'Playfair Display', serif;
+  font-size:34px;
+  margin:0 0 18px;
+}
+
+.ai-report h3{
+  color:white;
+  font-size:20px;
+  margin-top:28px;
+}
+
+.ai-report p{
+  margin:10px 0;
+}
+
+.ai-report ul{
+  padding-left:22px;
+}
+
+.ai-report li{
+  margin-bottom:8px;
+}
+
+.ai-report strong{
+  color:#00ffd5;
+}
+
+.forecast-title{
+  grid-column:1 / -1;
+  margin-top:20px;
+  padding:28px;
+  border-radius:24px;
+
+  background:rgba(0,255,213,0.06);
+  border:1px solid rgba(0,255,213,0.16);
+}
+
+.forecast-title h2{
+  margin:0 0 8px;
+  color:#00ffd5;
+  font-family:'Playfair Display', serif;
+  font-size:32px;
+}
+
+.forecast-title p{
+  margin:0;
+  color:rgba(255,255,255,0.7);
+}
+
+.report-language-toggle{
+  display:flex;
+  gap:12px;
+  margin-bottom:28px;
+}
+
+.lang-btn{
+  padding:10px 18px;
+  border-radius:14px;
+
+  border:1px solid rgba(255,255,255,0.12);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.04)
+    );
+
+  color:white;
+
+  cursor:pointer;
+  transition:0.25s ease;
+}
+
+.lang-btn.active{
+  background:#00ffd5;
+  color:#041018;
+  font-weight:700;
+
+  box-shadow:
+    0 12px 28px rgba(0,255,213,0.22);
+}
+
+.report-language{
+  animation:fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
   </style>
 </head>
 
@@ -657,15 +943,38 @@ LIQUID GLASS COMPARE INPUTS
 <div class="compare-content">
 
 
-  <div id="summary" class="grid"></div>
+  <div id="loading" class="loading-box hidden">
+  <div class="loading-spinner"></div>
+  <div>
+    <strong>Analyzing markets...</strong>
+    <p>AI is comparing infrastructure, liquidity, speculation and market scores.</p>
+  </div>
+</div>
 
-  <div id="charts" class="charts-grid"></div>
+<div id="summary" class="grid"></div>
 
-  <div id="table"></div>
+<div id="charts" class="charts-grid"></div>
+
+<div id="table"></div>
+
+<div id="aiReport" class="ai-report hidden"></div>
+
+<div id="forecastCharts" class="charts-grid"></div>
 </div>
 <script>
 
 async function compareMarkets(){
+
+  const loading = document.getElementById('loading');
+  const summaryEl = document.getElementById('summary');
+  const chartsEl = document.getElementById('charts');
+  const tableEl = document.getElementById('table');
+
+  loading.classList.remove('hidden');
+
+  summaryEl.innerHTML = '';
+  chartsEl.innerHTML = '';
+  tableEl.innerHTML = '';
 
   const cities =
     [...document.querySelectorAll('.market-select')]
@@ -677,24 +986,40 @@ async function compareMarkets(){
   const category =
     document.getElementById('category').value;
 
-  const response =
-    await fetch('/compare-markets', {
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json'
-      },
-      body:JSON.stringify({
-        cities: uniqueCities,
-        category
-      })
-    });
+  try{
+    const response =
+      await fetch('/compare-markets', {
+        method:'POST',
+        headers:{
+          'Content-Type':'application/json'
+        },
+        body:JSON.stringify({
+          cities: uniqueCities,
+          category
+        })
+      });
 
-  const data =
-    await response.json();
+    const data =
+      await response.json();
 
-  renderComparison(
-    data.comparison
-  );
+    renderComparison(data.comparison);
+
+  } catch(error){
+
+    tableEl.innerHTML = `
+      <div class="card">
+        <h2>Something went wrong</h2>
+        <p>Please try comparing the markets again.</p>
+      </div>
+    `;
+
+    console.error(error);
+
+  } finally{
+
+    loading.classList.add('hidden');
+
+  }
 }
 
 function renderComparison(comparison){
@@ -704,32 +1029,57 @@ function renderComparison(comparison){
 
   document.getElementById('summary').innerHTML = `
 
-    <div class="card">
+  <div class="card kpi-card">
+    <div class="kpi-icon">
+      <i class='bx bx-trophy'></i>
+    </div>
+    <div class="kpi-content">
       <div>Top Market</div>
       <h2>${summary.topMarket}</h2>
     </div>
+  </div>
 
-    <div class="card">
-      <div>Average Score</div>
-      <div class="score">${summary.averageScore}/10</div>
+  <div class="card kpi-card">
+  <div class="kpi-icon">
+    <i class='bx bx-trending-up'></i>
+  </div>
+  <div class="kpi-content">
+    <div>Best Momentum</div>
+    <h2>${summary.bestMomentum}</h2>
+  </div>
+</div>
+
+  <div class="card kpi-card">
+    <div class="kpi-icon">
+      <i class='bx bx-buildings'></i>
     </div>
-
-    <div class="card">
+    <div class="kpi-content">
       <div>Strongest Infrastructure</div>
       <h2>${summary.strongestInfrastructure}</h2>
     </div>
+  </div>
 
-    <div class="card">
+  <div class="card kpi-card">
+    <div class="kpi-icon">
+      <i class='bx bx-droplet'></i>
+    </div>
+    <div class="kpi-content">
       <div>Best Liquidity</div>
       <h2>${summary.bestLiquidity}</h2>
     </div>
+  </div>
 
-    <div class="card">
+  <div class="card kpi-card">
+    <div class="kpi-icon">
+      <i class='bx bx-line-chart'></i>
+    </div>
+    <div class="kpi-content">
       <div>Highest Speculation</div>
       <h2>${summary.highestSpeculation}</h2>
     </div>
+  </div>
 
-  `;
+`;
 
   document.getElementById('table').innerHTML = `
 
@@ -737,15 +1087,51 @@ function renderComparison(comparison){
       <thead>
         <tr>
           <th>Market</th>
-          <th>Score</th>
-          <th>Infrastructure</th>
-          <th>Momentum</th>
-          <th>Speculation</th>
-          <th>Liquidity</th>
-          <th>Maturity</th>
-          <th>Population</th>
-          <th>GRDP</th>
-          <th>Tourism</th>
+
+<th>
+  <i class='bx bx-star'></i>
+  Score
+</th>
+
+<th>
+  <i class='bx bx-buildings'></i>
+  Infrastructure
+</th>
+
+<th>
+  <i class='bx bx-trending-up'></i>
+  Momentum
+</th>
+
+<th>
+  <i class='bx bx-line-chart'></i>
+  Speculation
+</th>
+
+<th>
+  <i class='bx bx-droplet'></i>
+  Liquidity
+</th>
+
+<th>
+  <i class='bx bx-leaf'></i>
+  Maturity
+</th>
+
+<th>
+  <i class='bx bx-group'></i>
+  Population
+</th>
+
+<th>
+  <i class='bx bx-bar-chart-alt'></i>
+  GRDP
+</th>
+
+<th>
+  <i class='bx bxs-plane-alt'></i>
+  Tourism
+</th>
         </tr>
       </thead>
 
@@ -770,129 +1156,399 @@ function renderComparison(comparison){
   `;
 
 renderCharts(comparison.markets);
+generateCompareReport(comparison);
 
 }
 
 let chartInstances = [];
 
-function renderCharts(markets){
+function renderCharts(markets, forecast = []){
   chartInstances.forEach(chart => chart.destroy());
   chartInstances = [];
 
   const chartsContainer = document.getElementById('charts');
 
   const indicators = [
-    {
+      {
       title: 'Score',
       key: 'investmentScore',
-      color: '#00ffd5'
+      futureKey: 'futureScore',
+      color: '#00ffd5',
+      icon: 'bx-star'
     },
     {
       title: 'Infrastructure',
       key: 'infrastructure',
-      color: '#3da5ff'
+      futureKey: 'futureInfrastructure',
+      color: '#3da5ff',
+      icon: 'bx-buildings'
     },
     {
       title: 'Momentum',
       key: 'investmentMomentum',
-      color: '#7c5cff'
+      futureKey: 'futureMomentum',
+      color: '#7c5cff',
+      icon: 'bx-trending-up'
     },
     {
       title: 'Speculation',
       key: 'speculativeHeat',
-      color: '#ff7a00'
+      futureKey: 'futureSpeculation',
+      color: '#ff7a00',
+      icon: 'bx-line-chart'
     },
     {
       title: 'Liquidity',
       key: 'liquidity',
-      color: '#4db8ff'
+      futureKey: 'futureLiquidity',
+      color: '#4db8ff',
+      icon: 'bx-droplet'
     },
     {
       title: 'Maturity',
       key: 'marketMaturity',
-      color: '#8be84b'
+      futureKey: 'futureMaturity',
+      color: '#8be84b',
+      icon: 'bx-leaf'
     },
     {
       title: 'Population',
       key: 'populationScale',
-      color: '#ffd000'
+      futureKey: 'futurePopulation',
+      color: '#ffd000',
+      icon: 'bx-group'
     },
     {
       title: 'GRDP',
       key: 'grdpStrength',
-      color: '#ff3da7'
+      futureKey: 'futureGRDP',
+      color: '#ff3da7',
+      icon: 'bx-bar-chart-alt'
     },
     {
       title: 'Tourism',
       key: 'tourismDemand',
-      color: '#00d5d5'
+      futureKey: 'futureTourism',
+      color: '#00d5d5',
+      icon: 'bxs-plane-alt'
     }
   ];
 
   chartsContainer.innerHTML = indicators.map((indicator, index) => `
-    <div class="chart-card">
+  <div class="chart-card">
+
+    <div class="chart-header">
       <h3>${indicator.title} (/10)</h3>
-      <canvas id="chart-${index}"></canvas>
+
+      <div class="chart-icon">
+        <i class='bx ${indicator.icon}'></i>
+      </div>
     </div>
-  `).join('');
+
+    <canvas id="chart-${index}"></canvas>
+
+  </div>
+`).join('');
 
   indicators.forEach((indicator, index) => {
     const ctx = document.getElementById(`chart-${index}`);
 
     const chart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: markets.map(m => m.city),
-        datasets: [{
-          label: indicator.title,
-          data: markets.map(m => Number(m[indicator.key])),
-          backgroundColor: indicator.color,
-          borderRadius: 8,
-          barThickness: 28
+  type: 'bar',
+  data: {
+    labels: markets.map(m => m.city),
+    datasets: [
+      {
+        label: 'Current',
+        data: markets.map(m => Number(m[indicator.key])),
+        backgroundColor: indicator.color,
+        borderRadius: 8,
+        barThickness: 18
+      },
+      {
+        label: 'Future',
+        data: markets.map(m => {
+          const futureMarket = forecast.find(f => f.city === m.city);
+          return futureMarket ? Number(futureMarket[indicator.futureKey]) : null;
+        }),
+        backgroundColor: 'rgba(255,255,255,0.35)',
+        borderRadius: 8,
+        barThickness: 18
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: true,
+        labels: {
+          color: 'rgba(255,255,255,0.75)',
+          boxWidth: 10,
+          usePointStyle: true
+        }
+      },
+      tooltip: {
+        callbacks: {
+          label: context => `${context.dataset.label}: ${context.raw}/10`
+        }
+      }
+    },
+    scales: {
+      y: {
+        min: 0,
+        max: 10,
+        ticks: {
+          color: 'rgba(255,255,255,0.75)',
+          stepSize: 2
+        },
+        grid: {
+          color: 'rgba(255,255,255,0.08)'
+        }
+      },
+      x: {
+        ticks: {
+          color: 'rgba(255,255,255,0.85)',
+          maxRotation: 0,
+          autoSkip: false
+        },
+        grid: {
+          display: false
+        }
+      }
+    }
+  }
+});
+
+    chartInstances.push(chart);
+  });
+}
+
+
+async function generateCompareReport(comparison){
+
+  const aiReportEl = document.getElementById('aiReport');
+  const forecastChartsEl = document.getElementById('forecastCharts');
+  const category = document.getElementById('category').value;
+
+  aiReportEl.classList.remove('hidden');
+  aiReportEl.innerHTML = `
+    <h2>AI Market Report</h2>
+    <p><strong>Generating analysis...</strong> AI is reading the table, graphs and market scores.</p>
+  `;
+
+  forecastChartsEl.innerHTML = '';
+
+  try{
+    const response = await fetch('/compare-markets/generate-compare-report', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body:JSON.stringify({
+        summary: comparison.summary,
+        markets: comparison.markets,
+        category
+      })
+    });
+
+    if(!response.ok){
+      throw new Error(`Report API failed: ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    aiReportEl.innerHTML = `
+  <div class="report-language-toggle">
+    <button class="lang-btn active" onclick="showReportLanguage('en')">
+      English
+    </button>
+
+    <button class="lang-btn" onclick="showReportLanguage('vi')">
+      Tiếng Việt
+    </button>
+  </div>
+
+  <div id="report-en" class="report-language">
+    ${data.reportHtmlEn}
+  </div>
+
+  <div id="report-vi" class="report-language hidden">
+    ${data.reportHtmlVi}
+  </div>
+`;
+
+    if(data.forecast && data.forecast.length){
+      renderCharts(comparison.markets, data.forecast);
+    }
+
+  } catch(error){
+
+    aiReportEl.innerHTML = `
+      <h2>AI Market Report</h2>
+      <p>Could not generate the report right now. Please try again.</p>
+    `;
+
+    console.error(error);
+  }
+}
+
+
+function showReportLanguage(lang){
+
+  const en =
+    document.getElementById('report-en');
+
+  const vi =
+    document.getElementById('report-vi');
+
+  const buttons =
+    document.querySelectorAll('.lang-btn');
+
+  buttons.forEach(btn =>
+    btn.classList.remove('active')
+  );
+
+  if(lang === 'en'){
+
+    en.classList.remove('hidden');
+    vi.classList.add('hidden');
+
+    buttons[0].classList.add('active');
+
+  } else {
+
+    vi.classList.remove('hidden');
+    en.classList.add('hidden');
+
+    buttons[1].classList.add('active');
+  }
+}
+
+let forecastChartInstances = [];
+
+function renderForecastCharts(forecast){
+
+  forecastChartInstances.forEach(chart => chart.destroy());
+  forecastChartInstances = [];
+
+  const container = document.getElementById('forecastCharts');
+
+  const indicators = [
+    {
+      title:'Future Score',
+      key:'futureScore',
+      color:'#00ffd5',
+      icon:'bx-star'
+    },
+    {
+      title:'Future Infrastructure',
+      key:'futureInfrastructure',
+      color:'#3da5ff',
+      icon:'bx-buildings'
+    },
+    {
+      title:'Future Momentum',
+      key:'futureMomentum',
+      color:'#7c5cff',
+      icon:'bx-trending-up'
+    },
+    {
+      title:'Future Speculation',
+      key:'futureSpeculation',
+      color:'#ff7a00',
+      icon:'bx-dollar-circle'
+    },
+    {
+      title:'Future Liquidity',
+      key:'futureLiquidity',
+      color:'#4db8ff',
+      icon:'bx-droplet'
+    },
+    {
+      title:'Future Tourism',
+      key:'futureTourism',
+      color:'#00d5d5',
+      icon:'bxs-plane-alt'
+    }
+  ];
+
+  container.innerHTML = `
+    <div class="forecast-title">
+      <h2>AI Forecast Scenario</h2>
+      <p>Projected 3–5 year outlook based on current market scores and investment signals.</p>
+    </div>
+  `;
+
+  container.innerHTML += indicators.map((indicator, index) => `
+    <div class="chart-card">
+      <div class="chart-header">
+        <h3>${indicator.title} (/10)</h3>
+        <div class="chart-icon">
+          <i class='bx ${indicator.icon}'></i>
+        </div>
+      </div>
+      <canvas id="forecast-chart-${index}"></canvas>
+    </div>
+  `).join('');
+
+  indicators.forEach((indicator, index) => {
+    const ctx = document.getElementById(`forecast-chart-${index}`);
+
+    const chart = new Chart(ctx, {
+      type:'bar',
+      data:{
+        labels:forecast.map(m => m.city),
+        datasets:[{
+          label:indicator.title,
+          data:forecast.map(m => Number(m[indicator.key])),
+          backgroundColor:indicator.color,
+          borderRadius:8,
+          barThickness:28
         }]
       },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            display: false
-          },
-          tooltip: {
-            callbacks: {
+      options:{
+        responsive:true,
+        maintainAspectRatio:false,
+        plugins:{
+          legend:{ display:false },
+          tooltip:{
+            callbacks:{
               label: context => `${context.raw}/10`
             }
           }
         },
-        scales: {
-          y: {
-            min: 0,
-            max: 10,
-            ticks: {
-              color: 'rgba(255,255,255,0.75)',
-              stepSize: 2
+        scales:{
+          y:{
+            min:0,
+            max:10,
+            ticks:{
+              color:'rgba(255,255,255,0.75)',
+              stepSize:2
             },
-            grid: {
-              color: 'rgba(255,255,255,0.08)'
+            grid:{
+              color:'rgba(255,255,255,0.08)'
             }
           },
-          x: {
-            ticks: {
-              color: 'rgba(255,255,255,0.85)',
-              maxRotation: 0,
-              autoSkip: false
+          x:{
+            ticks:{
+              color:'rgba(255,255,255,0.85)',
+              maxRotation:0,
+              autoSkip:false
             },
-            grid: {
-              display: false
+            grid:{
+              display:false
             }
           }
         }
       }
     });
 
-    chartInstances.push(chart);
+    forecastChartInstances.push(chart);
   });
 }
+
 
 compareMarkets();
 
