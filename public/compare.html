@@ -8,6 +8,12 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
   <style>
+    html,
+    body{
+      width:100%;
+      overflow-x:hidden;
+    }
+
     body{
   background:#070b11;
   color:white;
@@ -112,7 +118,11 @@
 
     box-sizing:border-box;
     
-    z-index: 9999;
+    z-index: 99999;
+    transform:translateZ(0);
+    -webkit-transform:translateZ(0);
+    isolation:isolate;
+    -webkit-backdrop-filter:blur(12px);
 }
 
 .nav-left {
@@ -234,9 +244,12 @@
 .compare-content{
   position:relative;
   z-index:5;
-  max-width:1400px;
+
+  width:min(100% - 32px, 1280px);
+
   margin:48px auto 0 auto;
-  padding:0 5vw 120px;
+
+  padding:0 0 120px;
 }
 
 .hero-controls{
@@ -272,32 +285,62 @@ table{
 }
 
 @media(max-width:768px){
+
+  body{
+    overflow-x:hidden;
+  }
+
   .compare-hero{
-    min-height:760px;
+    min-height:auto;
+    height:auto;
+    padding:120px 0 70px;
   }
 
   .compare-hero-content{
-    padding:0 24px;
+    width:100%;
+    padding:0 16px;
   }
 
   .compare-hero h1{
     font-size:48px;
+    line-height:1.02;
   }
 
   .compare-hero p{
     font-size:17px;
+    line-height:1.7;
   }
 
   .compare-content{
-    margin:36px auto 0 auto;
-    padding:0 20px 90px;
+    width:calc(100% - 24px);
+    margin:28px auto 0;
+    padding-bottom:90px;
   }
 
   .hero-controls{
+    width:100%;
     margin-top:28px;
-    padding:18px;
+    padding:14px;
     border-radius:22px;
   }
+
+  .grid,
+  .charts-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .card,
+  .chart-card,
+  .ai-report,
+  .deep-dive-links{
+    width:100%;
+    min-width:0;
+  }
+
+  table{
+    min-width:920px;
+  }
+
 }
 
 /* =========================
@@ -853,12 +896,18 @@ th i{
 }
 
 
+.table-wrapper{
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
 /* =========================
 COMPARE HIGHEST / LOWEST KPI CARDS
 ========================= */
 
 #summary.grid{
-  grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));
 }
 
 .compare-metric-card{
@@ -1116,7 +1165,9 @@ COMPARE HIGHEST / LOWEST KPI CARDS
 
 <div id="charts" class="charts-grid"></div>
 
-<div id="table"></div>
+<div class="table-wrapper">
+  <div id="table"></div>
+</div>
 
 <div id="aiReport" class="ai-report hidden"></div>
 
