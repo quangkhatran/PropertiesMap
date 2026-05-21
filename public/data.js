@@ -18,9 +18,9 @@ const assets = [
           "Đây là cơ hội hiếm có để trải nghiệm phong cách sống thượng lưu ngay giữa một trong những khu vực đáng sống nhất của Thành phố Hồ Chí Minh."
           ]
         },
-        city: "Hochiminh",
+        city: "Ho Chi Minh",
         country: "Vietnam",
-        address: "228B Dien Bien Phu Street, Xuan Hoa Ward, Hochiminh City, Vietnam",
+        address: "228B Dien Bien Phu Street, Xuan Hoa Ward, Ho Chi Minh City, Vietnam",
 
         lat: 10.781890757003193, 
         lng: 106.68861278232475,
@@ -82,9 +82,9 @@ const assets = [
           "Cộng đồng tại khu vực này được biết đến với sự đoàn kết, văn minh, lịch sự và đa dạng văn hoá, tạo nên một môi trường đô thị hiện đại nơi nhiều phong cách sống và nền văn hoá cùng tồn tại hài hoà."
           ],
         },  
-        city: "Hochiminh",
+        city: "Ho Chi Minh",
         country: "Vietnam",
-        address: "102 Cao Thang Street, Ban Co Ward, Hochiminh City, Vietnam",
+        address: "102 Cao Thang Street, Ban Co Ward, Ho Chi Minh City, Vietnam",
 
         lat: 10.772116044883491, 
         lng: 106.68029573722461,
@@ -192,9 +192,9 @@ const assets = [
           "Khách sạn được thiết kế theo phong cách kiến trúc Địa Trung Hải, mang lại cảm giác gần gũi với biển cả, gợi lên không khí nghỉ dưỡng của nắng, gió và đại dương, đồng thời tạo nên một chút cảm giác phiêu lưu của những chuyến hải trình ra khơi. Đây là không gian lý tưởng dành cho những ai muốn tận hưởng trọn vẹn tinh thần nghỉ dưỡng ven biển."
           ]
         },
-        city: "Hochiminh",
+        city: "Ho Chi Minh",
         country: "Vietnam",
-        address: "19/5 Ho Quy Ly, Vung Tau Ward, Hochiminh City, Vietnam",
+        address: "19/5 Ho Quy Ly, Vung Tau Ward, Ho Chi Minh City, Vietnam",
 
         lat: 10.339172643391048, 
         lng: 107.09027562606835,
@@ -355,20 +355,20 @@ const assets = [
 
     {
         id: "p6",
-        name: "Dalat Hotel",
+        name: "Da Lat Hotel",
         type: "Hotel",
         description: {
           en:[
-          "This hotel features beautiful French-inspired architecture combined with elegant Indochine-style interiors, creating an atmosphere that feels warm, relaxing, sophisticated, and deeply connected to nature. The harmonious blend of classic European aesthetics and traditional Southeast Asian influences gives the property a timeless charm while offering guests a peaceful and comfortable retreat in the heart of Dalat.",
+          "This hotel features beautiful French-inspired architecture combined with elegant Indochine-style interiors, creating an atmosphere that feels warm, relaxing, sophisticated, and deeply connected to nature. The harmonious blend of classic European aesthetics and traditional Southeast Asian influences gives the property a timeless charm while offering guests a peaceful and comfortable retreat in the heart of Da Lat.",
           "The hotel is strategically located along a major road, making transportation, guest drop-off, and vehicle access exceptionally convenient. This is considered a significant advantage, especially highly appreciated by large tour bus drivers and travel operators due to the ease of navigation and parking access. In addition, the property includes a spacious garage capable of accommodating a large number of cars and motorbikes, allowing guests traveling with private vehicles to park securely overnight.",
-          "From the hotel, it takes only around 10 minutes by car to reach Dalat Market, approximately 6 minutes to Dalat Flower Gardens, and about 4 minutes to the famous Valley of Love.",
-          "One of the hotel’s most remarkable highlights is the breathtaking rear-facing valley view. From the balconies, guests can overlook a beautiful valley below and experience the changing scenery throughout the day — from peaceful sunrise moments and romantic sunsets to mystical fog drifting across the hills. At night, the glowing lights from the greenhouse farms cultivating vegetables and flowers create a magical landscape unique to Dalat.",
-          "Dalat is well known for its cool climate year-round, lush greenery, colorful flowers, fresh mountain air, and excellent local cuisine. These qualities have made the city one of Vietnam’s top tourist destinations for many years. With the growing popularity of nature-focused travel and wellness tourism, Dalat is expected to attract even more domestic and international visitors in the future."
+          "From the hotel, it takes only around 10 minutes by car to reach Da Lat Market, approximately 6 minutes to Da Lat Flower Gardens, and about 4 minutes to the famous Valley of Love.",
+          "One of the hotel’s most remarkable highlights is the breathtaking rear-facing valley view. From the balconies, guests can overlook a beautiful valley below and experience the changing scenery throughout the day — from peaceful sunrise moments and romantic sunsets to mystical fog drifting across the hills. At night, the glowing lights from the greenhouse farms cultivating vegetables and flowers create a magical landscape unique to Da Lat.",
+          "Da Lat is well known for its cool climate year-round, lush greenery, colorful flowers, fresh mountain air, and excellent local cuisine. These qualities have made the city one of Vietnam’s top tourist destinations for many years. With the growing popularity of nature-focused travel and wellness tourism, Da Lat is expected to attract even more domestic and international visitors in the future."
           ],
           vi:[
           "Khách sạn này sở hữu kiến trúc Pháp tuyệt đẹp kết hợp cùng nội thất phong cách Indochine sang trọng, tạo nên cảm giác vừa thư giãn, thoải mái vừa hài hoà với thiên nhiên. Sự kết hợp tinh tế giữa nét cổ điển châu Âu và văn hoá Đông Dương mang đến một không gian nghỉ dưỡng đầy ấm áp, thanh lịch và vượt thời gian ngay giữa lòng Đà Lạt.",
           "Khách sạn nằm trên một tuyến đường lớn giúp việc di chuyển đến khách sạn, đón trả khách và đỗ xe trở nên đặc biệt thuận tiện. Đây là một lợi thế rất lớn và được nhiều tài xế xe khách du lịch đánh giá rất cao nhờ khả năng tiếp cận dễ dàng. Ngoài ra, khách sạn còn sở hữu garage rộng lớn có thể chứa được nhiều ôtô và xe máy, giúp khách đi xe riêng có thể yên tâm gửi xe qua đêm.",
-          "Từ khách sạn, chỉ mất khoảng 10 phút lái xe để đến Dalat Market, khoảng 6 phút để đến Dalat Flower Gardens và chỉ khoảng 4 phút để đến Valley of Love nổi tiếng.",
+          "Từ khách sạn, chỉ mất khoảng 10 phút lái xe để đến Da Lat Market, khoảng 6 phút để đến Da Lat Flower Gardens và chỉ khoảng 4 phút để đến Valley of Love nổi tiếng.",
           "Một trong những điểm đặc biệt nhất của khách sạn chính là view thung lũng tuyệt đẹp phía sau toà nhà. Từ các ban công, du khách có thể phóng tầm mắt xuống thung lũng bên dưới để chiêm ngưỡng nhiều khoảnh khắc rất đặc trưng của Đà Lạt — từ bình minh nhẹ nhàng, hoàng hôn lãng mạn đến những làn sương mù bao phủ khắp đồi núi. Vào ban đêm, ánh đèn rực sáng từ các nhà kính trồng rau và hoa dưới thung lũng tạo nên một khung cảnh vô cùng thơ mộng và đặc biệt.",
           "Đà Lạt từ lâu nổi tiếng với khí hậu mát mẻ quanh năm, cây cối xanh tươi, hoa lá rực rỡ, không khí trong lành và nền ẩm thực hấp dẫn. Chính những điều đó đã giúp Đà Lạt luôn trở thành một trong những điểm du lịch thu hút đông đảo du khách hàng đầu của Việt Nam. Trong tương lai, thành phố này được kỳ vọng sẽ tiếp tục thu hút ngày càng nhiều khách du lịch trong và ngoài nước."
           ],
@@ -617,7 +617,7 @@ window.socialSources = {
         ]
       },
       {
-        name: "Dalat Food Review",
+        name: "Da Lat Food Review",
         platform: "Instagram",
         url: "https://www.instagram.com/dalatfoodreview",
         places: [
@@ -627,7 +627,7 @@ window.socialSources = {
         ]
       },
       {
-        name: "Dalat Eating",
+        name: "Da Lat Eating",
         platform: "Facebook",
         url: "https://www.facebook.com/dalateating",
         places: [
@@ -639,7 +639,7 @@ window.socialSources = {
 
     drink: [
       {
-        name: "Dalat Coffee Holic",
+        name: "Da Lat Coffee Holic",
         platform: "Instagram",
         url: "https://www.instagram.com/dalatcoffeeholic",
         places: [
@@ -652,7 +652,7 @@ window.socialSources = {
 
     music: [
       {
-        name: "Dalat Acoustic",
+        name: "Da Lat Acoustic",
         platform: "Facebook",
         url: "https://www.facebook.com/dalatacoustic",
         places: [
@@ -664,11 +664,11 @@ window.socialSources = {
 
     sports: [
       {
-        name: "Dalat Pickleball Club",
+        name: "Da Lat Pickleball Club",
         platform: "Facebook",
         url: "https://www.facebook.com/dalatpickleball",
         places: [
-          "Dalat Sports Center"
+          "Da Lat Sports Center"
         ]
       }
     ]
