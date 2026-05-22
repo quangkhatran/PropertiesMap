@@ -3,26 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Real Estate Intelligence | Kha Tran</title>
+<title>Lifestyle | Kha Tran</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script> -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script>
 
 <style>
-
-:root{
-
-  --card-bg:
-    rgba(11, 18, 32, 0.96);
-
-  --card-border:
-    rgba(255,255,255,0.05);
-
-  --card-shadow:
-    0 10px 30px rgba(0,0,0,0.25);
-
-}
 
 *{
   margin:0;
@@ -110,9 +97,9 @@ HERO
   padding:140px 5vw 80px;
 
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.72)),
-    url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop');
-    
+    linear-gradient(rgba(0,0,0,0.28), rgba(0,0,0,0.55)),
+    url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop');
+
   background-size:cover;
   background-position:center;
 }
@@ -394,7 +381,7 @@ SOCIAL ROWS
 AI RECOMMENDATIONS
 ========================= */
 
-/* .recommend-grid{
+.recommend-grid{
   display:flex;
   flex-wrap:nowrap;
   gap:28px;
@@ -478,13 +465,13 @@ AI RECOMMENDATIONS
 .mention-fill{
   height:100%;
   background:#00ffd5;
-} */
+}
 
 /* =========================
 MAP
 ========================= */
 
-/* .map-wrapper{
+.map-wrapper{
   width:100%;
   height:720px;
 
@@ -497,7 +484,7 @@ MAP
 #map{
   width:100%;
   height:100%;
-} */
+}
 
 /* =========================
 FOOTER
@@ -533,10 +520,10 @@ RESPONSIVE
 }
 
 @media(max-width:768px){
-  /* .recommend-card{
+  .recommend-card{
     min-width:88vw;
     max-width:88vw;
-  } */
+  }
 
   .navbar{
     padding:0 20px;
@@ -731,7 +718,7 @@ iframe{
     letter-spacing:1px;
 }
 
-/* .gmaps-link{
+.gmaps-link{
 
   color:#00ffd5;
 
@@ -752,7 +739,6 @@ iframe{
   text-decoration:underline;
 
 }
-*/
 
 #loading-overlay{
 
@@ -772,7 +758,7 @@ iframe{
   align-items:center;
 
   z-index:99999;
-} 
+}
 
 .loading-box{
 
@@ -820,297 +806,6 @@ iframe{
 
   to{
     transform:rotate(360deg);
-  }
-
-}
-
-.language-switch{
-
-  display:flex;
-
-  gap:12px;
-
-  margin-bottom:28px;
-
-}
-
-.lang-btn{
-
-  padding:12px 22px;
-
-  border-radius:14px;
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-  background:#151c28;
-
-  color:white;
-
-  cursor:pointer;
-
-  transition:0.3s;
-
-  font-size:14px;
-
-}
-
-.lang-btn:hover{
-
-  border-color:#00ffd5;
-
-}
-
-.lang-btn.active{
-
-  background:#00ffd5;
-
-  color:black;
-
-  font-weight:600;
-
-}
-
-.report-card{
-
-  background:#101826;
-
-  border-radius:28px;
-
-  padding:38px;
-
-  border:
-    1px solid rgba(255,255,255,0.05);
-
-}
-
-.report-title{
-
-  font-size:26px;
-
-  margin-bottom:18px;
-
-  font-weight:600;
-
-}
-
-.report-text{
-
-  color:#cbd5e1;
-
-  line-height:1.9;
-
-  margin-bottom:28px;
-
-}
-
-.signals-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:24px;
-}
-
-.report-box{
-
-  background:var(--card-bg);
-
-  padding:24px;
-
-  border-radius:20px;
-
-  border:
-    1px solid var(--card-border);
-
-}
-
-.final-report{max-width:1280px;margin:auto;}
-.signal-analysis-card{background:#081426;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:32px;margin-bottom:28px;}
-.signal-title{font-size:30px;font-weight:700;margin-bottom:12px;}
-.signal-score{font-size:64px;color:#00ffd5;font-weight:700;margin-bottom:20px;}
-.signal-analysis{line-height:1.9;color:#cbd5e1;}
-.final-section{margin-bottom:60px;}
-.area-card{background:#0b1220;padding:28px;border-radius:22px;margin-bottom:24px;}
-.big-score{font-size:100px;color:#00ffd5;font-weight:700;}
-
-.institutional-report{
-
-  max-width:1280px;
-  margin:auto;
-
-}
-
-.hero-investment-score{
-
-  background:var(--card-bg);
-
-  border-radius:34px;
-
-  padding:50px;
-
-  margin-bottom:50px;
-
-  border:
-    1px solid var(--card-border);
-
-  box-shadow:var(--card-shadow);
-
-  backdrop-filter:blur(12px);
-
-}
-
-.hero-score{
-
-  font-size:120px;
-
-  color:#00ffd5;
-
-  font-weight:700;
-
-  margin-bottom:14px;
-
-}
-
-.hero-label{
-
-  font-size:18px;
-
-  letter-spacing:2px;
-
-  text-transform:uppercase;
-
-  color:#94a3b8;
-
-}
-
-.report-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(320px,1fr));
-
-  gap:28px;
-
-}
-
-.signal-card{
-
-  background:var(--card-bg);
-
-  border-radius:24px;
-
-  padding:30px;
-
-  border:
-    1px solid var(--card-border);
-
-  box-shadow:var(--card-shadow);
-
-  backdrop-filter:blur(12px);
-
-}
-
-.signal-name{
-
-  font-size:26px;
-
-  font-weight:700;
-
-  margin-bottom:10px;
-
-}
-
-.signal-score-big{
-
-  font-size:72px;
-
-  color:#00ffd5;
-
-  font-weight:700;
-
-  margin-bottom:20px;
-
-}
-
-.signal-analysis{
-
-  color:#cbd5e1;
-
-  line-height:1.9;
-
-  margin-bottom:24px;
-
-}
-
-.signal-drivers{
-
-  padding-left:18px;
-
-  color:#94a3b8;
-
-  line-height:1.9;
-
-  margin-top:18px;
-
-}
-
-.final-risk-box{
-
-  margin-top:40px;
-
-  background:var(--card-bg);
-
-  border:
-    1px solid var(--card-border);
-
-  padding:30px;
-
-  border-radius:24px;
-
-  box-shadow:var(--card-shadow);
-
-  backdrop-filter:blur(12px);
-
-}
-
-.area-grid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(auto-fit,minmax(280px,1fr));
-
-  gap:24px;
-
-  margin-top:28px;
-
-}
-
-.area-box{
-
-  background:var(--card-bg);
-
-  padding:26px;
-
-  border-radius:22px;
-
-  border:
-    1px solid var(--card-border);
-
-  box-shadow:var(--card-shadow);
-
-  backdrop-filter:blur(12px);
-
-}
-
-@media(max-width:768px){
-
-  .hero-score{
-    font-size:72px;
-  }
-
-  .signal-score-big{
-    font-size:52px;
   }
 
 }
@@ -1221,6 +916,135 @@ VIP ACCESS GATE
 
 .login-card h3{
   text-align:center;
+}
+
+#vip-gate{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(5,10,15,0.88);
+
+    backdrop-filter:blur(12px);
+
+    z-index:999999;
+}
+
+.vip-box{
+
+    width:min(92vw, 520px);
+
+    padding:48px 36px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.03)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.45);
+
+    backdrop-filter:blur(20px);
+}
+
+.vip-icon{
+
+    font-size:64px;
+
+    margin-bottom:18px;
+}
+
+.vip-box h1{
+
+    font-family:'Playfair Display', serif;
+
+    font-size:42px;
+
+    margin-bottom:14px;
+}
+
+.vip-box p{
+
+    color:rgba(255,255,255,0.72);
+
+    line-height:1.7;
+
+    margin-bottom:34px;
+}
+
+.vip-actions{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.vip-actions button{
+
+    height:58px;
+
+    border:none;
+
+    border-radius:18px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.25s ease;
+}
+
+.vip-actions button:hover{
+
+    transform:translateY(-2px);
+}
+
+.vip-actions button:first-child{
+
+    background:#00ffd5;
+
+    color:#041018;
+
+    box-shadow:
+        0 12px 34px rgba(0,255,213,0.24);
+}
+
+.secondary-btn{
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color:white;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+}
+
+.ghost-btn{
+
+    background:transparent;
+
+    color:rgba(255,255,255,0.72);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
 }
 
 
@@ -1336,8 +1160,8 @@ NAVBAR
         <a href="index.html" class="logo">KHA TRAN</a>
 
         <a href="index.html#home" class="nav-link">Home</a>
-        <a href="lifestyle.html" class="nav-link">Lifestyle</a>
-        <a href="real-estate.html" class="nav-link active">Real Estate</a>
+        <a href="lifestyle.html" class="nav-link active">Lifestyle</a>
+        <a href="real-estate.html" class="nav-link">Real Estate</a>
         <a href="compare.html" class="nav-link">Compare</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
@@ -1357,92 +1181,50 @@ HERO
   <div class="hero-content">
 
     <div class="hero-tag">
-      AI Real Estate Discovery Platform
+      AI Lifestyle Discovery Platform
     </div>
 
     <h1>
-      Discover Emerging Real Estate Opportunities
+      Explore The World Around You
     </h1>
 
     <p>
-      Discover land, housing and investment opportunities from
-      YouTube and Facebook.
-      AI will give you a detailed investment report.
+      Discover restaurants, cafes and hidden gems from
+      YouTube, TikTok, Instagram and Facebook.
+      AI aggregates the most recommended places and maps them instantly.
     </p>
 
     <div class="search-box">
 
       <select id="citySelect">
-        <option value="Nhon Trach" selected>Nhon Trach</option>
-        <option value="Long Thanh">Long Thanh</option>
-        <option value="Dong Nai">Dong Nai</option>
-        <option value="Binh Duong">Binh Duong</option>
-        <option value="Vung Tau">Vung Tau</option>
         <option value="Da Lat">Da Lat</option>
-        <option value="Ho Chi Minh">Ho Chi Minh</option>
-        <option value="Thu Thiem">Thu Thiem</option>
-        <option value="Thao Dien">Thao Dien</option>
-        <option value="Thu Duc">Thu Duc</option>
-        <option value="Quan 1">Quan 1</option>
-        <option value="Quan 2">Quan 2</option>
-        <option value="Quan 3">Quan 3</option>
-        <option value="Quan 4">Quan 4</option>
-        <option value="Quan 5">Quan 5</option>
-        <option value="Quan 7">Quan 7</option>
-        <option value="Quan 9">Quan 9</option>
-        <option value="Quan 10">Quan 10</option>
-        <option value="Nha Be">Nha Be</option>
-        <option value="Can Gio">Can Gio</option>
-        <option value="Phu My Hung">Phu My Hung</option>
-        <option value="Khanh Hoa">Khanh Hoa</option>
-        <option value="Cam Ranh">Cam Ranh</option>
-        <option value="Nha Trang">Nha Trang</option>
-        <option value="Ninh Thuan">Ninh Thuan</option>
-        <option value="Binh Thuan">Binh Thuan</option>
-        <option value="Can Tho">Can Tho</option>
-        <option value="Ca Mau">Ca Mau</option>
-        <option value="Phu Quoc">Phu Quoc</option>
-        <option value="Soc Trang">Soc Trang</option>
-        <option value="Buon Ma Thuot">Buon Ma Thuot</option>
-        <option value="Dak Lak">Dak Lak</option>
-        <option value="Dak Nong">Dak Nong</option>
-        <option value="Hue">Hue</option>
-        <option value="Da Nang">Da Nang</option>
-        <option value="Hoi An">Hoi An</option>
-        <option value="Gia Lai">Gia Lai</option>
-        <option value="Quy Nhon">Quy Nhon</option>
-        <option value="Binh Dinh">Binh Dinh</option>
-        <option value="An Giang">An Giang</option>
-        <option value="Tay Ninh">Tay Ninh</option>
-        <option value="Long An">Long An</option>
-        <option value="Vinh Long">Vinh Long</option>
+        <option value="Ho Chi Minh City">Ho Chi Minh City</option>
         <option value="London">London</option>
-        <option value="New York">New York</option>
       </select>
       <select id="categorySelect">
-            <option value="land">
-                Land
-            </option>
+        <option value="cafes">
+          Cafes
+        </option>
 
-            <option value="house">
-                House / Apartment
-            </option>
+        <option value="restaurants">
+          Restaurants
+        </option>
 
-            <option value="commercial">
-                Commercial
-            </option>
+        <option value="nightlife">
+          Nightlife
+        </option>
 
-            <option value="luxury">
-                Luxury
-            </option>
+        <option value="luxury">
+          Luxury
+        </option>
 
-            <option value="industrial">
-                Industrial
-            </option>
+        <option value="hotels">
+          Hotels
+        </option>
 
-            <option value="all">
-                All
-            </option>
+        <option value="architecture">
+          Architecture
+        </option>
       </select>
 
       <input
@@ -1461,43 +1243,24 @@ HERO
 
 </section>
 
-<section class="section">
-
-  <div class="section-header">
-
-    <div class="section-label">
-      AI MARKET REPORT
-    </div>
-
-    <div class="section-title">
-      AI Real Estate Intelligence Report
-    </div>
-
-    <div class="section-subtitle">
-      AI-generated investment insights from social media,
-      listings and market sentiment.
-    </div>
-
-  </div>
-
-  <div id="aiReport"></div>
-
-</section>
+<!-- =========================
+FOOD SECTION
+========================= -->
 
 <section class="section">
 
   <div class="section-header">
 
     <div class="section-label">
-      REAL ESTATE
+      FOOD
     </div>
 
     <div class="section-title">
-      Trending Real Estate Content
+      Trending Food Content
     </div>
 
     <div class="section-subtitle">
-      Curated from social media creators and real estate communities.
+      Curated from social media creators and lifestyle communities.
     </div>
 
   </div>
@@ -1507,11 +1270,65 @@ HERO
 </section>
 
 <!-- =========================
+AI RECOMMENDATIONS
+========================= -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      AI SUMMARY
+    </div>
+
+    <div class="section-title">
+      Most Recommended Places
+    </div>
+
+    <div class="section-subtitle">
+      AI aggregates mentions from social media and ranks the most popular places.
+    </div>
+
+  </div>
+
+  <div class="recommend-grid" id="recommendGrid"></div>
+
+</section>
+
+<!-- =========================
+MAP
+========================= -->
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
+      GOOGLE MAPS
+    </div>
+
+    <div class="section-title">
+      Explore On The Map
+    </div>
+
+    <div class="section-subtitle">
+      AI-recommended places visualized geographically.
+    </div>
+
+  </div>
+
+  <div class="map-wrapper">
+    <div id="map"></div>
+  </div>
+
+</section>
+
+<!-- =========================
 FOOTER
 ========================= -->
 
 <footer class="footer">
-  © 2026 Kha Tran — Real Estate Discovery Platform
+  © 2026 Kha Tran — Lifestyle Discovery Platform
 </footer>
 
 <script>
@@ -1530,24 +1347,39 @@ function debounce(fn, delay = 800){
 
   };
 
-}
+}  
 
 /* =========================
 CITY DATA
 ========================= */
 
-async function fetchRealEstate(
+async function fetchYoutube(
   city,
-  category='land'
+  category='cafes'
 ){
-
   const response = await fetch(
-
-    `/real-estate/${city}?category=${category}`
-
+    `/youtube/${city}?category=${category}`
   );
 
   return await response.json();
+}
+
+/* =========================
+MAP
+========================= */
+
+let map;
+
+function initMap(){
+
+  map = new google.maps.Map(document.getElementById('map'),{
+
+    center:{ lat:11.9404, lng:108.4583 },
+    zoom:13,
+
+    
+
+  });
 
 }
 
@@ -1628,235 +1460,97 @@ function renderSocialSection(type, items){
 
 }
 
-function renderInstitutionalReport(data){
+/* =========================
+RENDER AI RECOMMENDATIONS
+========================= */
 
-  const currentLanguage =
-    window.currentLanguage || 'en';
+function renderRecommendations(recommendations){
+  
+  currentRecommendations = recommendations;
+  
+  const maxMentions =
+  Math.max(
+    ...recommendations.map(
+      item => item.mentions
+    )
+  );
 
-  const report =
-    data.report?.[currentLanguage]
-    || data.report?.en
-    || {};
-
-  const signals =
-    report.signals || {};
-
-  const hotspots =
-    report.emergingAreas || [];
-
-  const container =
+  const grid =
     document.getElementById(
-      'aiReport'
+      'recommendGrid'
     );
 
-  container.innerHTML = `
+  grid.innerHTML =
+    recommendations.map(
+      (item,index)=>{
 
-    <div class="institutional-report">
-      <div class="language-switch">
+        const width = (item.mentions / maxMentions) * 100;
 
-        <button
-          class="lang-btn ${
-            currentLanguage === 'en'
-            ? 'active'
-            : ''
-          }"
-          onclick="
-            switchInstitutionalLanguage('en')
-          "
-        >
-          🇬🇧 English
-        </button>
+        return `
 
-        <button
-          class="lang-btn ${
-            currentLanguage === 'vi'
-            ? 'active'
-            : ''
-          }"
-          onclick="
-            switchInstitutionalLanguage('vi')
-          "
-        >
-          🇻🇳 Tiếng Việt
-        </button>
+          <div
+            class="recommend-card"
+            onclick="focusPlace(${index})"
+          >
 
-      </div>
+            <div class="recommend-rank">
+              #${index + 1}
+            </div>
 
-      <div class="hero-investment-score">
+            <img src="${getPlacePhoto(item.place)}">
 
-        <div class="hero-label">
-          Institutional Investment Score
-        </div>
+            <div class="recommend-name">
+              ${item.name}
+            </div>
 
-        <div class="hero-score">
-          ${report.investmentScore || 0}/10
-        </div>
+            <div class="recommend-meta">
 
-        <div class="signal-analysis">
-          ${report.scoreExplanation || ''}
-        </div>
-
-        <div class="signal-analysis">
-          ${report.executiveThesis || ''}
-        </div>
-
-      </div>
-
-      ${renderMemoSection(
-        'Market Drivers',
-        report.marketDrivers
-      )}
-
-      ${renderMemoSection(
-        'Market Fundamentals',
-        report.fundamentalSignals
-      )}
-
-      ${renderMemoSection(
-        'Market Behavior',
-        report.marketBehavior
-      )}
-
-      <div class="final-risk-box">
-
-        <div class="signal-name">
-          Pricing & Valuation Signals
-        </div>
-
-        <div class="signal-analysis">
-
-          ${
-            typeof report.pricingValuation === 'string'
-
-            ?
-
-            report.pricingValuation
-
-            :
-
-            `
-              <strong>
-                Observed Range:
-              </strong>
-              ${report.pricingValuation?.observedRange || ''}
+              ⭐ ${
+                item.place?.rating || 'N/A'
+              }
 
               <br><br>
 
-              <strong>
-                Market Direction:
-              </strong>
-              ${report.pricingValuation?.marketDirection || ''}
+              Mentioned
+              ${item.mentions}
+              times across social media.
 
               <br><br>
 
-              ${report.pricingValuation?.reasoning || ''}
-            `
-          }
+              ${
+                item.place?.address || ''
+              }
 
-        </div>
+              <br><br>
 
-      </div>
-
-      <div class="final-risk-box">
-
-        <div class="signal-name">
-          Market Risks
-        </div>
-
-        <div class="signal-analysis">
-          <strong>
-            Key Risk Factors
-          </strong>
-        </div>
-        <ul class="signal-drivers">
-
-          ${(report.risks || [])
-            .map(risk=>`
-
-              <li>${risk}</li>
-
-            `).join('')}
-
-        </ul>
-
-      </div>
-
-      <div class="final-section">
-
-        <div class="section-title"
-             style="margin-top:50px;">
-          Emerging Opportunity Zones
-        </div>
-
-        <div class="area-grid">
-
-          ${hotspots.map(area=>`
-
-            <div class="area-box">
-
-              <div class="signal-name">
-                ${area.name}
-              </div>
-
-              <div class="signal-analysis">
-                ${area.summary}
-              </div>
-
-              <br>
-
-              <strong>
-                Opportunity:
-              </strong>
-
-              <div class="signal-analysis">
-                ${area.opportunity}
-              </div>
-
-              <br>
-
-              <strong>
-                Risk:
-              </strong>
-
-              <div class="signal-analysis">
-                ${area.risk}
-              </div>
+              <a
+                href="
+            https://www.google.com/maps/search/?api=1&query=${item.place?.lat},${item.place?.lng}
+                "
+                target="_blank"
+                class="gmaps-link"
+              >
+                View on Google Maps →
+              </a>
 
             </div>
 
-          `).join('')}
+            <div class="mention-bar">
 
-        </div>
+              <div
+                class="mention-fill"
+                style="width:${width}%"
+              ></div>
 
-      </div>
+            </div>
 
-      <div class="final-risk-box">
+          </div>
 
-        <div class="signal-name">
-          Final Conclusion
-        </div>
+        `;
 
-        <div class="signal-analysis">
-          ${report.conclusion || ''}
-        </div>
+      }
 
-      </div>
-
-    </div>
-
-  `;
-
-}
-
-function formatSignalName(name=''){
-
-  return name
-
-    .replace(/([A-Z])/g,' $1')
-
-    .replace(/^./,str=>
-      str.toUpperCase()
-    );
+    ).join('');
 
 }
 
@@ -1874,7 +1568,7 @@ async function renderCity(
     try{
 
       const data =
-        await fetchRealEstate(
+        await fetchYoutube(
           city,
           category
         );
@@ -1892,11 +1586,11 @@ async function renderCity(
             item.source === 'facebook'
         );
 
-      // const tiktok =
-      //   data.videos.filter(
-      //     item =>
-      //       item.source === 'tiktok'
-      //   );
+      const tiktok =
+        data.videos.filter(
+          item =>
+            item.source === 'tiktok'
+        );
 
       const recommendations =
         data.recommendations;
@@ -1920,23 +1614,13 @@ async function renderCity(
 
       `;
 
-      // renderRecommendations(
-      //   recommendations
-      // );
+      renderRecommendations(
+        recommendations
+      );
 
-      // addMapMarkers(
-      //   recommendations
-      // );
-
- 
-
-      window.latestReport = data.report;
-      window.latestRealEstateData = data;
-      console.log("=============");
-      console.log("DATA: ", data); 
-
-      renderInstitutionalReport(data);
-      
+      addMapMarkers(
+        recommendations
+      );
 
     }catch(err){
 
@@ -1950,6 +1634,276 @@ async function renderCity(
 
 }
 
+/* =========================
+MAP MARKERS
+========================= */
+
+let markers = [];
+let currentRecommendations = [];
+let activeInfoWindow = null;
+
+function addMapMarkers(recommendations){
+
+  markers.forEach(data=>{
+
+    if(data.marker){
+      data.marker.map = null;
+    }
+
+  });
+
+  markers = [];
+
+  const bounds =
+    new google.maps.LatLngBounds();
+
+  recommendations.forEach(
+    (item,index)=>{
+
+      if(
+        !item.place ||
+        !item.place.lat ||
+        !item.place.lng
+      ) return;
+
+      const marker =
+        new google.maps.Marker({
+
+          position:{
+            lat:item.place.lat,
+            lng:item.place.lng
+          },
+
+          map:map,
+
+          title:item.name,
+
+          animation:
+            google.maps.Animation.DROP,
+
+          icon:{
+            url:
+'https://maps.google.com/mapfiles/ms/icons/red-dot.png'
+          }
+
+        });
+
+      const infoWindow =
+        new google.maps.InfoWindow({
+
+          content:`
+
+            <div style="
+              color:black;
+              padding:10px;
+              min-width:240px;
+            ">
+
+              <h3 style="
+                margin-bottom:10px;
+                font-size:18px;
+              ">
+                ${item.place.name}
+              </h3>
+
+              <p style="
+                margin-bottom:8px;
+              ">
+                ⭐ ${
+                  item.place.rating || 'N/A'
+                }
+              </p>
+
+              <p style="
+                margin-bottom:12px;
+                line-height:1.6;
+              ">
+                ${
+                  item.place.address || ''
+                }
+              </p>
+
+              <a
+                href="
+https://www.google.com/maps/search/?api=1&query=${item.place.lat},${item.place.lng}
+                "
+                target="_blank"
+                style="
+                  color:#2563eb;
+                  text-decoration:none;
+                  font-weight:600;
+                "
+              >
+                View on Google Maps →
+              </a>
+
+            </div>
+
+          `
+
+        });
+
+      marker.addListener(
+        'click',
+        ()=>{
+
+          if(activeInfoWindow){
+            activeInfoWindow.close();
+          }
+
+          activeInfoWindow = infoWindow;
+
+          infoWindow.open({
+            anchor:marker,
+            map
+          });
+
+          document
+            .querySelectorAll(
+              '.recommend-card'
+            )
+            .forEach(card=>
+              card.classList.remove(
+                'active'
+              )
+            );
+
+          const cards =
+            document.querySelectorAll(
+              '.recommend-card'
+            );
+
+          if(cards[index]){
+
+            cards[index]
+              .classList.add(
+                'active'
+              );
+
+            cards[index]
+              .scrollIntoView({
+
+                behavior:'smooth',
+                inline:'center',
+                block:'nearest'
+
+              });
+
+          }
+
+          markers.forEach(data=>{
+
+            data.marker.setAnimation(null);
+
+          });
+
+          marker.setAnimation(
+            google.maps.Animation.BOUNCE
+          );
+
+          setTimeout(()=>{
+
+            marker.setAnimation(null);
+
+          },1200);
+
+        }
+      );
+
+      markers.push({
+        marker,
+        infoWindow,
+        item,
+        id:item.name
+      });
+
+      bounds.extend({
+        lat:item.place.lat,
+        lng:item.place.lng
+      });
+
+    }
+
+  );
+
+  if(markers.length > 0){
+    map.fitBounds(bounds);
+  }
+
+}
+
+function focusPlace(index){
+
+  const recommendation =
+    currentRecommendations[index];
+
+  if(
+    !recommendation ||
+    !recommendation.place
+  ) return;
+
+  const targetMarker =
+    markers.find(data =>
+
+      data.item.name ===
+      recommendation.name
+
+    );
+
+  if(!targetMarker) return;
+
+  map.panTo({
+
+    lat:
+      recommendation.place.lat,
+
+    lng:
+      recommendation.place.lng
+
+  });
+
+  map.setZoom(15);
+
+  if(activeInfoWindow){
+    activeInfoWindow.close();
+  }
+
+  activeInfoWindow =
+    targetMarker.infoWindow;
+
+  /* =========================
+  ACTIVE CARD SYNC
+  ========================= */
+
+  document
+    .querySelectorAll(
+      '.recommend-card'
+    )
+    .forEach(card=>
+      card.classList.remove(
+        'active'
+      )
+    );
+
+  const cards =
+    document.querySelectorAll(
+      '.recommend-card'
+    );
+
+  if(cards[index]){
+    cards[index]
+      .classList.add(
+        'active'
+      );
+  }
+
+  targetMarker.infoWindow.open({
+    anchor:
+      targetMarker.marker,
+    map
+  });
+
+}
 
 /* =========================
 HELPERS
@@ -1967,6 +1921,37 @@ function getPlatformEmoji(type){
   if(type === 'facebook') return '📘';
 
   return '🌐';
+
+}
+
+function getPlacePhoto(place){
+
+  if(
+    !place ||
+    !place.photos ||
+    !place.photos.length
+  ){
+
+    return `
+https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+    `;
+
+  }
+
+  const ref =
+    place.photos[0]?.photo_reference;
+
+  if(!ref){
+
+    return `
+https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
+    `;
+
+  }
+
+  return `
+https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${ref}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
+  `;
 
 }
 
@@ -1998,93 +1983,17 @@ function exploreCity(){
 
 }
 
-
-function getQueryParams(){
-
-  const params =
-    new URLSearchParams(window.location.search);
-
-  return {
-    city: params.get('city'),
-    category: params.get('category')
-  };
-
-}
-
-function setSelectValueIfExists(selectId, value){
-
-  const select =
-    document.getElementById(selectId);
-
-  if(!select || !value){
-    return false;
-  }
-
-  const option =
-    [...select.options].find(item =>
-      item.value.toLowerCase() === value.toLowerCase()
-    );
-
-  if(option){
-    select.value = option.value;
-    return true;
-  }
-
-  return false;
-}
-
-
 /* =========================
 INIT
 ========================= */
 
 window.onload = () => {
 
-  // initMap();
-
-  const {
-    city,
-    category
-  } = getQueryParams();
-
-  const defaultCity =
-    'Nhon Trach';
-
-  const defaultCategory =
-    'land';
-
-  const selectedCity =
-    city || defaultCity;
-
-  const selectedCategory =
-    category || defaultCategory;
-
-  const cityExistsInDropdown =
-    setSelectValueIfExists(
-      'citySelect',
-      selectedCity
-    );
-
-  if(city && !cityExistsInDropdown){
-
-    document.getElementById('customCity').value =
-      city;
-
-  } else {
-
-    document.getElementById('customCity').value =
-      '';
-
-  }
-
-  setSelectValueIfExists(
-    'categorySelect',
-    selectedCategory
-  );
+  initMap();
 
   renderCity(
-    selectedCity,
-    selectedCategory
+    'Da Lat',
+    'cafes'
   );
 
   const debouncedExplore = debounce(
@@ -2140,8 +2049,8 @@ function hideLoading(){
     .style.display = 'none';
 
 }
-</script>
 
+</script>
 <div id="loading-overlay">
 
   <div class="loading-box">
@@ -2149,68 +2058,12 @@ function hideLoading(){
     <div class="loader"></div>
 
     <div class="loading-text">
-      Please wait...
+      AI is discovering the best places...
     </div>
 
   </div>
 
 </div>
-
-<script>
-
-function switchInstitutionalLanguage(lang){
-
-  window.currentLanguage = lang;
-
-  if(window.latestRealEstateData){
-
-    renderInstitutionalReport(
-      window.latestRealEstateData
-    );
-
-  }
-
-}
-
-function renderMemoSection(title, items=[]){
-
-  return `
-    <div class="final-section">
-
-      <div class="section-title">
-        ${title}
-      </div>
-
-      <div class="report-grid">
-
-        ${items.map(item=>`
-
-          <div class="signal-card">
-
-            <div class="signal-name">
-              ${item.name}
-            </div>
-
-            <div class="signal-score-big">
-              ${item.score}/10
-            </div>
-
-            <div class="signal-analysis">
-              ${item.analysis}
-            </div>
-
-          </div>
-
-        `).join('')}
-
-      </div>
-
-    </div>
-  `;
-}
-
-</script>
-
 
 
 <div id="vip-gate-overlay">
@@ -2220,7 +2073,7 @@ function renderMemoSection(title, items=[]){
     <h1 id="vip-gate-title">VIP Access Only</h1>
 
     <p id="vip-gate-message">
-      Please login or contact admin to ask for permission
+      Please contact admin to ask for permision
     </p>
 
     <div class="vip-actions">
@@ -2394,7 +2247,7 @@ function renderMemoSection(title, items=[]){
       window.userRole = "guest";
       window.userStatus = "guest";
       updateNavbar(null);
-      showGate("VIP Access Only", "Please login or contact admin to ask for permission", true);
+      showGate("VIP Access Only", "Please contact admin to ask for permision", true);
       return;
     }
 
@@ -2415,7 +2268,7 @@ function renderMemoSection(title, items=[]){
     if(hasVipAccess()){
       allowAccess();
     }else{
-      showGate("VIP Access Only", "Please login or contact admin to ask for permission", false);
+      showGate("VIP Access Only", "Please contact admin to ask for permision", false);
     }
   });
 

@@ -809,6 +809,343 @@ iframe{
   }
 
 }
+
+
+/* =========================
+VIP ACCESS GATE
+========================= */
+.nav-right{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+#login-btn{
+  width:auto;
+  padding:8px 14px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.16);
+  background:rgba(255,255,255,0.08);
+  color:white;
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:600;
+}
+
+#login-btn:hover{
+  background:#00ffd5;
+  color:#041018;
+  transform:translateY(-1px);
+}
+
+.auth-input{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid #333;
+  background:#070b11;
+  color:white;
+  box-sizing:border-box;
+}
+
+.auth-btn{
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  background:#00ffd5;
+  color:#041018;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.auth-btn.secondary{
+  background:#cbd5e1;
+}
+
+#vip-gate-overlay,
+#login-modal{
+  position:fixed;
+  inset:0;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,0.82);
+  z-index:999999;
+  padding:22px;
+}
+
+#vip-gate-overlay{
+  display:flex;
+}
+
+#login-modal{
+  display:none;
+}
+
+.vip-gate-card,
+.login-card{
+  width:min(92vw,420px);
+  padding:30px;
+  border-radius:22px;
+  background:linear-gradient(135deg,rgba(16,24,38,0.98),rgba(7,11,17,0.98));
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 30px 90px rgba(0,0,0,0.55);
+  text-align:center;
+}
+
+.vip-gate-card h2,
+.login-card h3{
+  margin:0 0 12px;
+  font-family:'Playfair Display',serif;
+}
+
+.vip-gate-card p{
+  color:#cbd5e1;
+  line-height:1.65;
+  margin:0 0 20px;
+}
+
+.login-card{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  text-align:left;
+}
+
+.login-card h3{
+  text-align:center;
+}
+
+#vip-gate{
+
+    position:fixed;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+        rgba(5,10,15,0.88);
+
+    backdrop-filter:blur(12px);
+
+    z-index:999999;
+}
+
+.vip-box{
+
+    width:min(92vw, 520px);
+
+    padding:48px 36px;
+
+    border-radius:28px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,0.10),
+            rgba(255,255,255,0.03)
+        );
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+
+    box-shadow:
+        0 25px 80px rgba(0,0,0,0.45);
+
+    backdrop-filter:blur(20px);
+}
+
+.vip-icon{
+
+    font-size:64px;
+
+    margin-bottom:18px;
+}
+
+.vip-box h1{
+
+    font-family:'Playfair Display', serif;
+
+    font-size:42px;
+
+    margin-bottom:14px;
+}
+
+.vip-box p{
+
+    color:rgba(255,255,255,0.72);
+
+    line-height:1.7;
+
+    margin-bottom:34px;
+}
+
+.vip-actions{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:14px;
+}
+
+.vip-actions button{
+
+    height:58px;
+
+    border:none;
+
+    border-radius:18px;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:0.25s ease;
+}
+
+.vip-actions button:hover{
+
+    transform:translateY(-2px);
+}
+
+.vip-actions button:first-child{
+
+    background:#00ffd5;
+
+    color:#041018;
+
+    box-shadow:
+        0 12px 34px rgba(0,255,213,0.24);
+}
+
+.secondary-btn{
+
+    background:
+        rgba(255,255,255,0.08);
+
+    color:white;
+
+    border:
+        1px solid rgba(255,255,255,0.10);
+}
+
+.ghost-btn{
+
+    background:transparent;
+
+    color:rgba(255,255,255,0.72);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+}
+
+
+
+/* =========================
+VIP ACCESS GATE BUTTONS
+========================= */
+#vip-gate-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:22px;
+  background:rgba(5,10,15,0.88);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:999999;
+}
+
+#vip-gate-overlay .vip-box{
+  width:min(92vw,520px);
+  padding:48px 36px;
+  border-radius:28px;
+  text-align:center;
+  background:linear-gradient(135deg,rgba(255,255,255,0.10),rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.10);
+  box-shadow:0 25px 80px rgba(0,0,0,0.45);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+}
+
+#vip-gate-overlay .vip-icon{
+  font-size:64px;
+  margin-bottom:18px;
+}
+
+#vip-gate-overlay h1,
+#vip-gate-overlay h2{
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  margin:0 0 14px;
+  color:white;
+}
+
+#vip-gate-overlay p{
+  color:rgba(255,255,255,0.72);
+  line-height:1.7;
+  margin:0 0 34px;
+}
+
+#vip-gate-overlay .vip-actions{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+#vip-gate-overlay .vip-actions button{
+  width:100%;
+  height:58px;
+  border:none;
+  border-radius:18px;
+  font-size:15px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.25s ease;
+}
+
+#vip-gate-overlay .vip-actions button:hover{
+  transform:translateY(-2px);
+}
+
+#vip-gate-login{
+  background:#00ffd5;
+  color:#041018;
+  box-shadow:0 12px 34px rgba(0,255,213,0.24);
+}
+
+#vip-gate-overlay .secondary-btn{
+  background:rgba(255,255,255,0.08);
+  color:white;
+  border:1px solid rgba(255,255,255,0.10);
+}
+
+#vip-gate-overlay .ghost-btn{
+  background:transparent;
+  color:rgba(255,255,255,0.72);
+  border:1px solid rgba(255,255,255,0.08);
+}
+
+@media(max-width:768px){
+  #vip-gate-overlay .vip-box{
+    padding:36px 24px;
+  }
+
+  #vip-gate-overlay h1,
+  #vip-gate-overlay h2{
+    font-size:34px;
+  }
+}
+
 </style>
 </head>
 
@@ -827,6 +1164,10 @@ NAVBAR
         <a href="real-estate.html" class="nav-link">Real Estate</a>
         <a href="compare.html" class="nav-link">Compare</a>
         <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+
+    <div class="nav-right">
+        <button id="login-btn" onclick="openLogin()">Login</button>
     </div>
 
 </div>
@@ -1723,6 +2064,223 @@ function hideLoading(){
   </div>
 
 </div>
+
+
+<div id="vip-gate-overlay">
+  <div class="vip-box vip-gate-card">
+    <div class="vip-icon">🔒</div>
+
+    <h1 id="vip-gate-title">VIP Access Only</h1>
+
+    <p id="vip-gate-message">
+      Please login or contact admin to ask for permission
+    </p>
+
+    <div class="vip-actions">
+      <button id="vip-gate-login" onclick="openLogin()" style="display:none;">
+        Login
+      </button>
+
+      <button
+        class="secondary-btn"
+        onclick="window.location.href='contact.html'"
+      >
+        Contact Admin
+      </button>
+
+      <button
+        class="ghost-btn"
+        onclick="window.location.href='index.html'"
+      >
+        Return to Homepage
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="login-modal">
+  <div class="login-card">
+    <h3>Login</h3>
+    <input id="email" type="email" placeholder="Email" class="auth-input">
+    <input id="password" type="password" placeholder="Password" class="auth-input">
+    <button onclick="login()" class="auth-btn">Login</button>
+    <button onclick="register()" class="auth-btn secondary">Register</button>
+  </div>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsUBX4UQSYDJ6PlntatrXutktM-TevIPs",
+    authDomain: "propertiesmap-b304e.firebaseapp.com",
+    projectId: "propertiesmap-b304e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  window.isLoggedIn = false;
+  window.userRole = "guest";
+  window.userStatus = "guest";
+
+  function showGate(title, message, showLogin){
+    const overlay = document.getElementById("vip-gate-overlay");
+    const titleEl = document.getElementById("vip-gate-title");
+    const messageEl = document.getElementById("vip-gate-message");
+    const loginBtn = document.getElementById("vip-gate-login");
+
+    if(titleEl) titleEl.innerText = title;
+    if(messageEl) messageEl.innerText = message;
+    if(loginBtn) loginBtn.style.display = showLogin ? "block" : "none";
+    if(overlay) overlay.style.display = "flex";
+  }
+
+  function allowAccess(){
+    const overlay = document.getElementById("vip-gate-overlay");
+    if(overlay) overlay.style.display = "none";
+  }
+
+  function hasVipAccess(){
+    return window.userRole === "admin" ||
+      (window.userRole === "vip" && window.userStatus === "approved");
+  }
+
+  function updateNavbar(user){
+    const btn = document.getElementById("login-btn");
+    if(!btn) return;
+
+    if(!user){
+      btn.innerText = "Login";
+      btn.onclick = openLogin;
+      return;
+    }
+
+    if(window.userRole === "admin"){
+      btn.innerText = "Admin 👑 (Logout)";
+    }else if(window.userRole === "vip" && window.userStatus === "approved"){
+      btn.innerText = "VIP 💎 (Logout)";
+    }else if(window.userStatus === "pending"){
+      btn.innerText = "Pending ⏳ (Logout)";
+    }else{
+      btn.innerText = "User (Logout)";
+    }
+
+    btn.onclick = logout;
+  }
+
+  function openLogin(){
+    const modal = document.getElementById("login-modal");
+    if(modal) modal.style.display = "flex";
+
+    const email = document.getElementById("email");
+    const password = document.getElementById("password");
+    if(email) email.value = "";
+    if(password) password.value = "";
+  }
+  window.openLogin = openLogin;
+
+  function closeLogin(){
+    const modal = document.getElementById("login-modal");
+    if(modal) modal.style.display = "none";
+  }
+
+  async function login(){
+    const email = document.getElementById("email").value.trim();
+    const pass = document.getElementById("password").value;
+
+    try{
+      await signInWithEmailAndPassword(auth, email, pass);
+      closeLogin();
+    }catch(err){
+      alert(err.message);
+    }
+  }
+  window.login = login;
+
+  async function register(){
+    const email = document.getElementById("email").value.trim().toLowerCase();
+    const pass = document.getElementById("password").value;
+
+    try{
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+
+      await setDoc(doc(db, "users", cred.user.email.toLowerCase()), {
+        email: cred.user.email.toLowerCase(),
+        role: "user",
+        status: "pending",
+        createdAt: serverTimestamp()
+      }, { merge:true });
+
+      alert("Registered successfully. Please wait for admin's approval.");
+      closeLogin();
+    }catch(err){
+      alert(err.message);
+    }
+  }
+  window.register = register;
+
+  async function logout(){
+    await signOut(auth);
+  }
+  window.logout = logout;
+
+  onAuthStateChanged(auth, async (user)=>{
+    window.isLoggedIn = !!user;
+
+    if(!user){
+      window.userRole = "guest";
+      window.userStatus = "guest";
+      updateNavbar(null);
+      showGate("VIP Access Only", "Please login or contact admin to ask for permission", true);
+      return;
+    }
+
+    const ref = doc(db, "users", user.email.toLowerCase());
+    const snap = await getDoc(ref);
+
+    if(snap.exists()){
+      const data = snap.data();
+      window.userRole = data.role || "user";
+      window.userStatus = data.status || "pending";
+    }else{
+      window.userRole = "user";
+      window.userStatus = "pending";
+    }
+
+    updateNavbar(user);
+
+    if(hasVipAccess()){
+      allowAccess();
+    }else{
+      showGate("VIP Access Only", "Please contact admin to ask for permission", false);
+    }
+  });
+
+  document.getElementById("login-modal")?.addEventListener("click", (e)=>{
+    if(e.target.id === "login-modal") closeLogin();
+  });
+
+  document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape") closeLogin();
+  });
+</script>
+
 </body>
 </html>
 

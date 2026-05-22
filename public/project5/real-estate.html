@@ -2220,7 +2220,7 @@ function renderMemoSection(title, items=[]){
     <h1 id="vip-gate-title">VIP Access Only</h1>
 
     <p id="vip-gate-message">
-      Please login or contact admin to ask for permission
+      Please contact admin to ask for permision
     </p>
 
     <div class="vip-actions">
@@ -2394,7 +2394,7 @@ function renderMemoSection(title, items=[]){
       window.userRole = "guest";
       window.userStatus = "guest";
       updateNavbar(null);
-      showGate("VIP Access Only", "Please login or contact admin to ask for permission", true);
+      showGate("VIP Access Only", "Please contact admin to ask for permision", true);
       return;
     }
 
@@ -2415,7 +2415,7 @@ function renderMemoSection(title, items=[]){
     if(hasVipAccess()){
       allowAccess();
     }else{
-      showGate("VIP Access Only", "Please login or contact admin to ask for permission", false);
+      showGate("VIP Access Only", "Please contact admin to ask for permision", false);
     }
   });
 
