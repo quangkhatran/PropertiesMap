@@ -37,6 +37,10 @@ const {
 const compareRoutes =
   require('./routes/compare');
 
+const {
+  getMarketNews
+} = require('./services/marketNews');
+
 /* =========================
 YOUTUBE API ROUTES
 ========================= */
@@ -271,6 +275,58 @@ Return ONLY valid JSON:
 /* =========================
 START SERVER
 ========================= */
+/* =========================
+MARKET WATCH API
+========================= */
+
+app.get('/api/market-news', async (req,res)=>{
+
+  try{
+
+    const city =
+      req.query.city || 'Nhon Trach';
+
+    const category =
+      req.query.category || 'land';
+
+    const lang =
+      req.query.lang || 'en';
+
+    const result =
+      await getMarketNews(
+        [city],
+        {
+          category,
+          lang
+        }
+      );
+
+    res.json({
+      success:true,
+      city,
+      category,
+      lang,
+      insight:result.insight,
+      insight_vi:result.insight_vi,
+      marketTemperature:result.marketTemperature,
+      temperatureScore:result.temperatureScore,
+      news:result.news
+    });
+
+  }catch(err){
+
+    console.log(err);
+
+    res.status(500).json({
+      success:false,
+      error:'market news failed',
+      news:[],
+      insight:'Market Watch is temporarily unavailable.'
+    });
+
+  }
+
+});
 
 const PORT = process.env.PORT || 3000;
 

@@ -923,7 +923,7 @@ iframe{
 
 }
 
-.final-report{max-width:1280px;margin:auto;}
+.final-report{max-width:1600px;margin:auto;}
 .signal-analysis-card{background:#081426;border:1px solid rgba(255,255,255,0.05);border-radius:24px;padding:32px;margin-bottom:28px;}
 .signal-title{font-size:30px;font-weight:700;margin-bottom:12px;}
 .signal-score{font-size:64px;color:#00ffd5;font-weight:700;margin-bottom:20px;}
@@ -934,7 +934,7 @@ iframe{
 
 .institutional-report{
 
-  max-width:1280px;
+  max-width:1600px;
   margin:auto;
 
 }
@@ -1115,6 +1115,251 @@ iframe{
 
 }
 
+/* =========================
+LIVE MARKET WATCH
+========================= */
+
+.market-watch-panel{
+  background:linear-gradient(135deg,rgba(0,255,213,0.08),rgba(11,18,32,0.92));
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:30px;
+  padding:34px;
+  box-shadow:var(--card-shadow);
+}
+
+.market-watch-toolbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  margin-bottom:24px;
+  flex-wrap:wrap;
+}
+
+.market-watch-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(0,255,213,0.12);
+  color:#00ffd5;
+  font-size:13px;
+  font-weight:700;
+}
+
+.market-news-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:22px;
+}
+
+.market-news-card{
+  background:rgba(11,18,32,0.92);
+  border:1px solid rgba(255,255,255,0.06);
+  border-radius:22px;
+  padding:24px;
+  transition:0.3s ease;
+}
+
+.market-news-card:hover{
+  transform:translateY(-4px);
+  border-color:rgba(0,255,213,0.35);
+}
+
+.market-news-meta{
+  color:#94a3b8;
+  font-size:13px;
+  margin-bottom:14px;
+  line-height:1.6;
+}
+
+.market-news-title{
+  font-size:20px;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:12px;
+}
+
+.market-news-summary{
+  color:#cbd5e1;
+  line-height:1.75;
+  font-size:15px;
+  margin-bottom:18px;
+}
+
+.market-news-link{
+  color:#00ffd5;
+  text-decoration:none;
+  font-size:14px;
+  font-weight:700;
+}
+
+.market-watch-empty{
+  color:#94a3b8;
+  line-height:1.8;
+}
+
+
+.nav-news-badge{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:20px;
+  height:20px;
+  padding:0 6px;
+  margin-left:6px;
+  border-radius:999px;
+  background:#00ffd5;
+  color:#041018;
+  font-size:11px;
+  font-weight:800;
+  line-height:1;
+  box-shadow:0 0 18px rgba(0,255,213,0.45);
+}
+
+.market-insight-box{
+  margin-bottom:24px;
+  padding:24px;
+  border-radius:24px;
+  background:linear-gradient(135deg,rgba(0,255,213,0.12),rgba(255,255,255,0.035));
+  border:1px solid rgba(0,255,213,0.18);
+}
+
+.market-insight-label{
+  color:#00ffd5;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  margin-bottom:10px;
+}
+
+.market-insight-text{
+  color:#dbeafe;
+  line-height:1.8;
+  font-size:16px;
+}
+
+
+
+
+.market-temperature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-bottom:24px;
+}
+.market-temperature-card{
+  padding:20px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.market-temperature-card span{
+  display:block;
+  color:#94a3b8;
+  font-size:12px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+  font-weight:800;
+}
+.market-temperature-card strong{
+  font-size:24px;
+  color:#00ffd5;
+}
+.market-filter-bar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:24px;
+}
+.market-filter-btn{
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:rgba(255,255,255,0.06);
+  color:#cbd5e1;
+  font-weight:800;
+  cursor:pointer;
+}
+.market-filter-btn.active,
+.market-filter-btn:hover{
+  background:#00ffd5;
+  color:#041018;
+}
+.market-card-signal-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:14px;
+}
+.market-signal-pill{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(0,255,213,0.10);
+  color:#00ffd5;
+  font-size:12px;
+  font-weight:800;
+}
+.market-trend-pill{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.07);
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:800;
+}
+.watchlist-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.watchlist-save-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  background:#00ffd5;
+  color:#041018;
+  font-weight:800;
+  cursor:pointer;
+}
+.watchlist-box{
+  margin-top:26px;
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.watchlist-box h3{
+  margin:0 0 14px;
+  font-family:'Playfair Display',serif;
+}
+.watchlist-items{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.watch-chip{
+  border:1px solid rgba(0,255,213,0.22);
+  background:rgba(0,255,213,0.08);
+  color:#dbeafe;
+  padding:9px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.watch-chip button{
+  margin-left:8px;
+  background:transparent;
+  border:none;
+  color:#ffb4a2;
+  cursor:pointer;
+}
 
 /* =========================
 VIP ACCESS GATE
@@ -1224,6 +1469,124 @@ VIP ACCESS GATE
 }
 
 
+
+
+.market-temperature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-bottom:24px;
+}
+.market-temperature-card{
+  padding:20px;
+  border-radius:22px;
+  background:rgba(255,255,255,0.045);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.market-temperature-card span{
+  display:block;
+  color:#94a3b8;
+  font-size:12px;
+  letter-spacing:1.6px;
+  text-transform:uppercase;
+  margin-bottom:8px;
+  font-weight:800;
+}
+.market-temperature-card strong{
+  font-size:24px;
+  color:#00ffd5;
+}
+.market-filter-bar{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:24px;
+}
+.market-filter-btn{
+  padding:10px 14px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:rgba(255,255,255,0.06);
+  color:#cbd5e1;
+  font-weight:800;
+  cursor:pointer;
+}
+.market-filter-btn.active,
+.market-filter-btn:hover{
+  background:#00ffd5;
+  color:#041018;
+}
+.market-card-signal-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:14px;
+}
+.market-signal-pill{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(0,255,213,0.10);
+  color:#00ffd5;
+  font-size:12px;
+  font-weight:800;
+}
+.market-trend-pill{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.07);
+  color:#dbeafe;
+  font-size:12px;
+  font-weight:800;
+}
+.watchlist-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:20px;
+}
+.watchlist-save-btn{
+  padding:10px 14px;
+  border:none;
+  border-radius:999px;
+  background:#00ffd5;
+  color:#041018;
+  font-weight:800;
+  cursor:pointer;
+}
+.watchlist-box{
+  margin-top:26px;
+  padding:22px;
+  border-radius:24px;
+  background:rgba(255,255,255,0.035);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.watchlist-box h3{
+  margin:0 0 14px;
+  font-family:'Playfair Display',serif;
+}
+.watchlist-items{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.watch-chip{
+  border:1px solid rgba(0,255,213,0.22);
+  background:rgba(0,255,213,0.08);
+  color:#dbeafe;
+  padding:9px 12px;
+  border-radius:999px;
+  cursor:pointer;
+  font-weight:700;
+}
+.watch-chip button{
+  margin-left:8px;
+  background:transparent;
+  border:none;
+  color:#ffb4a2;
+  cursor:pointer;
+}
 
 /* =========================
 VIP ACCESS GATE BUTTONS
@@ -1361,6 +1724,217 @@ VIP CLOSE BUTTON FIX
   transform:rotate(90deg) !important;
 }
 
+
+/* =========================
+MULTI WATCH DASHBOARD
+========================= */
+.watch-dashboard{margin-bottom:26px;padding:22px;border-radius:24px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.watch-dashboard-header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.watch-dashboard-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700}
+.watch-dashboard-subtitle{color:#94a3b8;font-size:14px;line-height:1.6}
+.watch-dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.watch-market-card{padding:18px;border-radius:20px;background:rgba(11,18,32,.88);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:.25s ease}
+.watch-market-card:hover{transform:translateY(-3px);border-color:rgba(0,255,213,.38)}
+.watch-market-card.active{border-color:#00ffd5;box-shadow:0 0 26px rgba(0,255,213,.20)}
+.watch-market-city{font-weight:800;font-size:16px;margin-bottom:6px}
+.watch-market-category{color:#94a3b8;font-size:13px;margin-bottom:14px}
+.watch-market-kpis{display:flex;gap:8px;flex-wrap:wrap}
+.watch-market-pill{display:inline-flex;padding:7px 9px;border-radius:999px;background:rgba(0,255,213,.10);color:#00ffd5;font-size:12px;font-weight:800}
+.watch-market-pill.secondary{background:rgba(255,255,255,.07);color:#dbeafe}
+
+
+/* =========================
+CUSTOM NOTIFICATION TOAST
+========================= */
+.app-toast{
+  position:fixed;
+  top:92px;
+  right:28px;
+  width:min(92vw,390px);
+  padding:18px 18px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,255,213,0.16),
+      rgba(11,18,32,0.96)
+    );
+  border:1px solid rgba(0,255,213,0.26);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.45),
+    0 0 26px rgba(0,255,213,0.14);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  z-index:9999999;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-12px) scale(0.98);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+.app-toast.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0) scale(1);
+}
+
+.app-toast-icon{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,255,213,0.18);
+  color:#00ffd5;
+  font-size:20px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.app-toast-content{
+  flex:1;
+  min-width:0;
+}
+
+.app-toast-title{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:#00ffd5;
+  margin-bottom:6px;
+}
+
+.app-toast-message{
+  color:#dbeafe;
+  line-height:1.65;
+  font-size:14px;
+}
+
+.app-toast-close{
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+
+.app-toast-close:hover{
+  background:#00ffd5;
+  color:#041018;
+}
+
+@media(max-width:768px){
+  .app-toast{
+    top:82px;
+    right:14px;
+    left:14px;
+    width:auto;
+  }
+}
+
+
+
+/* =========================
+BILINGUAL LANGUAGE SWITCHER
+========================= */
+.news-language-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  margin-right:10px;
+}
+.news-language-switch button{
+  height:34px;
+  padding:0 14px;
+  border:none;
+  border-radius:999px;
+  background:transparent;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.news-language-switch button.active{
+  background:#00ffd5;
+  color:#041018;
+  box-shadow:0 0 18px rgba(0,255,213,0.35);
+}
+@media(max-width:768px){
+  .news-language-switch{
+    margin-right:4px;
+  }
+  .news-language-switch button{
+    height:30px;
+    padding:0 10px;
+    font-size:11px;
+  }
+}
+
+
+/* =========================
+REAL ESTATE PAGE WIDTH FIX
+========================= */
+.report-container,
+.report-card,
+.ai-report,
+.final-conclusion,
+.conclusion-card,
+.market-watch-section,
+.market-watch-wrapper,
+.market-watch-panel,
+#marketWatch,
+#marketWatchSection{
+  width:min(100% - 10vw, 1600px) !important;
+  max-width:1600px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+}
+
+.report-container,
+.ai-report{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+.market-watch-section,
+.market-watch-wrapper{
+  padding-left:0 !important;
+  padding-right:0 !important;
+}
+
+@media(max-width:768px){
+  .report-container,
+  .report-card,
+  .ai-report,
+  .final-conclusion,
+  .conclusion-card,
+  .market-watch-section,
+  .market-watch-wrapper,
+  .market-watch-panel,
+  #marketWatch,
+  #marketWatchSection{
+    width:calc(100% - 32px) !important;
+    max-width:calc(100% - 32px) !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1377,12 +1951,20 @@ NAVBAR
         <a href="index.html#home" class="nav-link">Home</a>
         <a href="lifestyle.html" class="nav-link">Lifestyle</a>
         <a href="real-estate.html" class="nav-link active">Real Estate</a>
+        <a href="market-watch.html" class="nav-link">Real Estate News <span id="marketNewsNavBadge" class="nav-news-badge">0</span></a>
         <a href="compare.html" class="nav-link">Compare</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </div>
 
     <div class="nav-right">
-        <button id="login-btn" onclick="openLogin()">Login</button>
+
+
+    <div class="news-language-switch" id="newsLanguageSwitch">
+      <button id="langEnBtn" onclick="setNewsLanguage('en')">English</button>
+      <button id="langViBtn" onclick="setNewsLanguage('vi')">Vietnamese</button>
+    </div>
+
+    <button id="login-btn" onclick="openLogin()">Login</button>
     </div>
 
 </div>
@@ -1528,6 +2110,78 @@ HERO
   <div class="section-header">
 
     <div class="section-label">
+      LIVE MARKET WATCH
+    </div>
+
+    <div class="section-title">
+      Daily News & Investment Signals
+    </div>
+
+    <div class="section-subtitle">
+      Fresh updates on FDI, infrastructure, industrial parks, airport developments and real estate signals for the selected market.
+    </div>
+
+  </div>
+
+  <div class="market-watch-panel">
+
+    <div class="market-watch-toolbar">
+      <div class="market-watch-badge" id="marketWatchBadge">
+        🛰️ Live updates
+      </div>
+      <div class="market-watch-empty" id="marketWatchStatus">
+        Loading market updates...
+      </div>
+    </div>
+
+    <div class="market-temperature-grid">
+      <div class="market-temperature-card">
+        <span>Market Temperature</span>
+        <strong id="marketTemperature">Loading...</strong>
+      </div>
+      <div class="market-temperature-card">
+        <span>Trend Direction</span>
+        <strong id="marketTrendDirection">Loading...</strong>
+      </div>
+    </div>
+
+
+    <div class="watch-dashboard" id="marketWatchDashboard">
+      <div class="watch-dashboard-header">
+        <div>
+          <div class="watch-dashboard-title">My Markets</div>
+          <div class="watch-dashboard-subtitle">Your saved markets with live temperature, trend and signal count.</div>
+        </div>
+      </div>
+      <div id="marketWatchDashboardGrid" class="watch-dashboard-grid"></div>
+    </div>
+
+    <div class="watchlist-actions">
+      <button class="watchlist-save-btn" onclick="saveCurrentMarketWatchlist()">
+        Save Watchlist
+      </button>
+    </div>
+
+    <div id="marketFilterBar" class="market-filter-bar"></div>
+
+    <div id="marketInsightBox" class="market-insight-box" style="display:none;"></div>
+
+    <div id="marketNewsList" class="market-news-grid"></div>
+
+    <div class="watchlist-box">
+      <h3>Saved Watchlist</h3>
+      <div id="marketWatchlistItems" class="watchlist-items"></div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section">
+
+  <div class="section-header">
+
+    <div class="section-label">
       REAL ESTATE
     </div>
 
@@ -1554,6 +2208,159 @@ FOOTER
 </footer>
 
 <script>
+
+const NEWS_I18N = {
+  en:{ aiInsight:'AI Insight' },
+  vi:{ aiInsight:'Nhận định AI' }
+};
+
+window.currentNewsLanguage =
+  localStorage.getItem('preferredNewsLanguage') ||
+  localStorage.getItem('preferredLanguage') ||
+  'en';
+
+function updateLanguageButtons(){
+  document
+    .getElementById('langEnBtn')
+    ?.classList.toggle(
+      'active',
+      window.currentNewsLanguage === 'en'
+    );
+
+  document
+    .getElementById('langViBtn')
+    ?.classList.toggle(
+      'active',
+      window.currentNewsLanguage === 'vi'
+    );
+}
+
+function getLocalizedField(item,baseField){
+  if(!item){
+    return '';
+  }
+
+  if(window.currentNewsLanguage === 'vi'){
+    return (
+      item[`${baseField}_vi`] ||
+      item[`${baseField}Vi`] ||
+      item[`vi${baseField.charAt(0).toUpperCase()}${baseField.slice(1)}`] ||
+      item[baseField] ||
+      ''
+    );
+  }
+
+  return item[baseField] || '';
+}
+
+function getLocalizedInsight(data){
+  if(!data){
+    return '';
+  }
+
+  if(window.currentNewsLanguage === 'vi'){
+    return (
+      data.insight_vi ||
+      data.insightVi ||
+      data.viInsight ||
+      data.insight ||
+      ''
+    );
+  }
+
+  return data.insight || '';
+}
+
+function getAiInsightLabel(){
+  return (
+    NEWS_I18N[window.currentNewsLanguage]?.aiInsight ||
+    NEWS_I18N.en.aiInsight
+  );
+}
+
+async function setNewsLanguage(lang){
+  window.currentNewsLanguage = lang;
+
+  localStorage.setItem(
+    'preferredNewsLanguage',
+    lang
+  );
+
+  localStorage.setItem(
+    'preferredLanguage',
+    lang
+  );
+
+  updateLanguageButtons();
+
+  const city =
+    window.currentCity ||
+    window.currentMarketWatchCity ||
+    window.currentRealEstateCity ||
+    'Nhon Trach';
+
+  const category =
+    window.currentCategory ||
+    window.currentMarketWatchCategory ||
+    window.currentRealEstateCategory ||
+    'land';
+
+  if(typeof loadNews === 'function'){
+    await loadNews(
+      city,
+      category,
+      { silent:true }
+    );
+  }
+
+  if(typeof loadMarketWatch === 'function'){
+    await loadMarketWatch(
+      city,
+      category,
+      { silent:true }
+    );
+  }
+
+  if(window.savePreferredLanguageToUser){
+    try{
+      await window.savePreferredLanguageToUser(lang);
+    }catch(e){}
+  }
+}
+
+
+
+
+
+function showToast(title,message,icon='✓'){
+  const toast=document.getElementById('appToast');
+  const toastTitle=document.getElementById('appToastTitle');
+  const toastMessage=document.getElementById('appToastMessage');
+  const toastIcon=document.getElementById('appToastIcon');
+
+  if(!toast){
+    return;
+  }
+
+  toastTitle.innerText=title;
+  toastMessage.innerText=message;
+  toastIcon.innerText=icon;
+
+  toast.classList.add('show');
+
+  clearTimeout(window.appToastTimer);
+  window.appToastTimer=setTimeout(()=>{
+    hideToast();
+  },3600);
+}
+
+function hideToast(){
+  const toast=document.getElementById('appToast');
+  if(toast){
+    toast.classList.remove('show');
+  }
+}
+
 
 function debounce(fn, delay = 800){
 
@@ -1900,6 +2707,444 @@ function formatSignalName(name=''){
 }
 
 /* =========================
+LIVE MARKET WATCH
+========================= */
+
+let allMarketWatchNews = [];
+let activeMarketFilter = 'All';
+const MARKET_FILTERS = ['All','FDI','Infrastructure','Airport','Industrial','Real Estate','General'];
+
+function escapeHtml(value=''){
+
+  return String(value)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;')
+    .replace(/'/g,'&#039;');
+
+}
+
+function formatMarketDate(value){
+
+  if(!value){
+    return '';
+  }
+
+  const date = new Date(value);
+
+  if(Number.isNaN(date.getTime())){
+    return value;
+  }
+
+  return date.toLocaleDateString('en-GB',{
+    day:'2-digit',
+    month:'short',
+    year:'numeric'
+  });
+
+}
+
+function renderMarketFilters(){
+
+  const filterBar = document.getElementById('marketFilterBar');
+
+  if(!filterBar){
+    return;
+  }
+
+  filterBar.innerHTML = MARKET_FILTERS.map(filter=>`
+    <button
+      class="market-filter-btn ${activeMarketFilter === filter ? 'active' : ''}"
+      onclick="setMarketFilter('${filter}')"
+    >
+      ${filter}
+    </button>
+  `).join('');
+
+}
+
+function setMarketFilter(filter){
+
+  activeMarketFilter = filter;
+  renderMarketFilters();
+  renderMarketNewsCards(window.currentMarketWatchCity || 'Nhon Trach');
+
+}
+
+function getFilteredMarketNews(){
+
+  if(activeMarketFilter === 'All'){
+    return allMarketWatchNews;
+  }
+
+  return allMarketWatchNews.filter(item =>
+    (item.signalType || item.category || 'General') === activeMarketFilter ||
+    item.category === activeMarketFilter
+  );
+
+}
+
+function calculateMarketTrend(news=[]){
+
+  if(!news.length){
+    return '→ Neutral';
+  }
+
+  const avg = news.reduce((sum,item)=>
+    sum + (item.impactScore || 0), 0
+  ) / news.length;
+
+  const strongCount = news.filter(item =>
+    (item.impactScore || 0) >= 8
+  ).length;
+
+  if(strongCount >= 2 || avg >= 7.2){
+    return '↗ Strong Positive';
+  }
+
+  if(avg >= 6){
+    return '↗ Positive';
+  }
+
+  if(news.some(item =>
+    (item.trendDirection || '').includes('Risk')
+  )){
+    return '↘ Watch Risk';
+  }
+
+  return '→ Neutral';
+
+}
+
+function renderMarketNewsCards(city){
+
+  const list = document.getElementById('marketNewsList');
+
+  if(!list){
+    return;
+  }
+
+  const news = getFilteredMarketNews();
+
+  list.innerHTML = news.map(item => `
+
+    <div class="market-news-card">
+
+      <div class="market-card-signal-row">
+        <span class="market-signal-pill">
+          ${escapeHtml(item.signalIcon || '🛰️')} ${escapeHtml(item.signalType || item.category || 'General')}
+        </span>
+        <span class="market-trend-pill">
+          ${escapeHtml(item.trendDirection || '→ Neutral')}
+        </span>
+      </div>
+
+      <div class="market-news-meta">
+        ${escapeHtml(item.location || city)}
+        ·
+        ${escapeHtml(item.category || 'Market')}
+        ·
+        Impact ${escapeHtml(item.impactScore || 5)}/10
+        ${item.publishedAt ? `· ${escapeHtml(formatMarketDate(item.publishedAt))}` : ''}
+      </div>
+
+      <div class="market-news-title">
+        ${escapeHtml(getLocalizedField(item,'title') || 'Market update')}
+      </div>
+
+      <div class="market-news-summary">
+        ${escapeHtml(getLocalizedField(item,'summary') || '')}
+      </div>
+
+      <a
+        href="${escapeHtml(item.url || '#')}"
+        class="market-news-link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Read source →
+      </a>
+
+    </div>
+
+  `).join('');
+
+}
+
+async function loadMarketWatch(city, category='land', options = {}){
+
+  const list = document.getElementById('marketNewsList');
+  const status = document.getElementById('marketWatchStatus');
+  const badge = document.getElementById('marketWatchBadge');
+  const navBadge = document.getElementById('marketNewsNavBadge');
+  const insightBox = document.getElementById('marketInsightBox');
+  const temperatureEl = document.getElementById('marketTemperature');
+  const trendEl = document.getElementById('marketTrendDirection');
+
+  if(!list){
+    return;
+  }
+
+  if(!options.silent){
+    list.innerHTML = '';
+  }
+
+  if(status){
+    status.innerText = `Loading fresh updates for ${city}...`;
+  }
+
+  try{
+
+    const response = await fetch(
+      `/api/market-news?city=${encodeURIComponent(city)}&category=${encodeURIComponent(category)}&lang=${encodeURIComponent(window.currentNewsLanguage)}`
+    );
+
+    const data = await response.json();
+
+    allMarketWatchNews = Array.isArray(data.news)
+      ? data.news.slice(0,12)
+      : [];
+
+    if(badge){
+      badge.innerText = `🛰️ ${allMarketWatchNews.length} live updates`;
+    }
+
+    if(navBadge){
+      navBadge.innerText = allMarketWatchNews.length;
+      navBadge.style.display = allMarketWatchNews.length ? 'inline-flex' : 'none';
+    }
+
+    if(temperatureEl){
+      temperatureEl.innerText = data.marketTemperature || 'WATCHING →';
+    }
+
+    if(trendEl){
+      trendEl.innerText = calculateMarketTrend(allMarketWatchNews);
+    }
+
+    if(insightBox){
+      const localizedInsight=getLocalizedInsight(data);if(localizedInsight){
+        insightBox.style.display = 'block';
+        insightBox.innerHTML = `
+          <div class="market-insight-label">AI Insight</div>
+          <div class="market-insight-text">${escapeHtml(data.insight)}</div>
+        `;
+      }else{
+        insightBox.style.display = 'none';
+      }
+    }
+
+    renderMarketFilters();
+
+    if(!allMarketWatchNews.length){
+      if(status){
+        status.innerText = 'No fresh market updates found yet.';
+      }
+      return;
+    }
+
+    if(status){
+      const updatedAt = new Date().toLocaleTimeString('en-GB',{
+        hour:'2-digit',
+        minute:'2-digit'
+      });
+
+      status.innerText = `Latest signals for ${city} · Auto-refreshed ${updatedAt}`;
+    }
+
+    renderMarketNewsCards(city);
+
+  }catch(err){
+
+    console.log(err);
+
+    if(status){
+      status.innerText = 'Market Watch API is not available yet. Please check /api/market-news on the backend.';
+    }
+
+  }
+
+}
+
+function getMarketWatchlist(){
+
+  if(Array.isArray(window.marketWatchlistCache)){
+    return window.marketWatchlistCache;
+  }
+
+  try{
+    return JSON.parse(localStorage.getItem('marketWatchlist') || '[]');
+  }catch(err){
+    return [];
+  }
+
+}
+
+async function setMarketWatchlist(items){
+
+  window.marketWatchlistCache = items;
+
+  localStorage.setItem(
+    'marketWatchlist',
+    JSON.stringify(items)
+  );
+
+  if(window.saveMarketWatchlistToUser){
+    await window.saveMarketWatchlistToUser(items);
+  }
+
+  renderMarketWatchlist();
+
+}
+
+async function saveCurrentMarketWatchlist(){
+
+  if(!window.currentFirebaseUser){
+    showToast('Login Required', 'Please login before saving your watchlist.', '🔐');
+    if(window.openLogin){
+      window.openLogin();
+    }
+    return;
+  }
+
+  const city =
+    window.currentMarketWatchCity ||
+    document.getElementById('customCity').value ||
+    document.getElementById('citySelect').value;
+
+  const category =
+    window.currentMarketWatchCategory ||
+    document.getElementById('categorySelect').value;
+
+  const items = getMarketWatchlist();
+
+  if(!items.some(item =>
+    item.city === city && item.category === category
+  )){
+    items.push({
+      city,
+      category,
+      savedAt:new Date().toISOString()
+    });
+  }
+
+  await setMarketWatchlist(items);
+
+  showToast('Watchlist Saved', `${city} · ${category} has been added to your market dashboard.`, '✓');
+
+}
+
+async function removeMarketWatchlist(index){
+
+  const items = getMarketWatchlist();
+  items.splice(index,1);
+  await setMarketWatchlist(items);
+
+}
+
+function openMarketWatchlist(city, category){
+
+  document.getElementById('customCity').value = '';
+  setSelectValueIfExists('citySelect', city);
+  setSelectValueIfExists('categorySelect', category);
+
+  renderCity(city, category);
+
+}
+
+function renderMarketWatchlist(){
+
+  const container = document.getElementById('marketWatchlistItems');
+
+  if(!container){
+    return;
+  }
+
+  const items = getMarketWatchlist();
+
+  if(!window.currentFirebaseUser){
+    container.innerHTML = `<span class="market-watch-empty">${'AI Insight'}</span>`;
+    return;
+  }
+
+  if(!items.length){
+    container.innerHTML = `<span class="market-watch-empty">${'AI Insight'}</span>`;
+    return;
+  }
+
+  container.innerHTML = items.map((item,index)=>`
+    <span
+      class="watch-chip"
+      onclick="openMarketWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')"
+    >
+      ${escapeHtml(item.city)} · ${escapeHtml(item.category)}
+      <button onclick="event.stopPropagation();removeMarketWatchlist(${index})">×</button>
+    </span>
+  `).join('');
+
+}
+
+
+function getMarketWatchKey(city,category){return `${String(city||'').toLowerCase()}::${String(category||'').toLowerCase()}`;}
+function isActiveMarketWatchItem(item){return String(item.city||'').toLowerCase()===String(window.currentMarketWatchCity||'').toLowerCase()&&String(item.category||'').toLowerCase()===String(window.currentMarketWatchCategory||'').toLowerCase();}
+function updateMarketWatchDashboardCache(city,category,data){
+  window.marketWatchDashboardCache=window.marketWatchDashboardCache||{};
+  window.marketWatchDashboardCache[getMarketWatchKey(city,category)]={city,category,count:Array.isArray(data.news)?data.news.length:0,temperature:data.marketTemperature||'WATCHING →',trend:calculateMarketTrend(Array.isArray(data.news)?data.news:[]),updatedAt:new Date().toISOString()};
+}
+async function getMarketWatchDashboardSummary(item){
+  window.marketWatchDashboardCache=window.marketWatchDashboardCache||{};
+  const key=getMarketWatchKey(item.city,item.category);
+  if(window.marketWatchDashboardCache[key])return window.marketWatchDashboardCache[key];
+  try{
+    const res=await fetch(`/api/market-news?city=${encodeURIComponent(item.city)}&category=${encodeURIComponent(item.category)}`);
+    const data=await res.json();
+    updateMarketWatchDashboardCache(item.city,item.category,data);
+    return window.marketWatchDashboardCache[key];
+  }catch(err){
+    return {city:item.city,category:item.category,count:0,temperature:'WATCHING →',trend:'→ Neutral'};
+  }
+}
+async function renderMarketWatchDashboard(){
+  const container=document.getElementById('marketWatchDashboardGrid');
+  if(!container)return;
+  const items=getMarketWatchlist();
+  if(!window.currentFirebaseUser){container.innerHTML=`<div class="market-watch-empty">${'AI Insight'}</div>`;return;}
+  if(!items.length){container.innerHTML=`<div class="market-watch-empty">${'AI Insight'}</div>`;return;}
+  container.innerHTML=items.map(item=>`<div class="watch-market-card ${isActiveMarketWatchItem(item)?'active':''}" onclick="openMarketWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')"><div class="watch-market-city">${escapeHtml(item.city)}</div><div class="watch-market-category">${escapeHtml(item.category)}</div><div class="watch-market-kpis"><span class="watch-market-pill secondary">Loading...</span></div></div>`).join('');
+  const summaries=await Promise.all(items.map(item=>getMarketWatchDashboardSummary(item)));
+  container.innerHTML=items.map((item,index)=>{const s=summaries[index]||{};return `<div class="watch-market-card ${isActiveMarketWatchItem(item)?'active':''}" onclick="openMarketWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')"><div class="watch-market-city">${escapeHtml(item.city)}</div><div class="watch-market-category">${escapeHtml(item.category)}</div><div class="watch-market-kpis"><span class="watch-market-pill">${escapeHtml(s.temperature||'WATCHING →')}</span><span class="watch-market-pill secondary">${escapeHtml(s.trend||'→ Neutral')}</span><span class="watch-market-pill secondary">${escapeHtml(s.count||0)} signals</span></div></div>`}).join('');
+}
+
+function startMarketWatchAutoRefresh(city, category){
+
+  window.currentMarketWatchCity = city;
+  window.currentMarketWatchCategory = category;
+
+  if(window.marketWatchRefreshTimer){
+    clearInterval(window.marketWatchRefreshTimer);
+  }
+
+  window.marketWatchRefreshTimer = setInterval(()=>{
+
+    if(document.hidden){
+      return;
+    }
+
+    if(window.currentMarketWatchCity){
+      loadMarketWatch(
+        window.currentMarketWatchCity,
+        window.currentMarketWatchCategory || 'land',
+        { silent:true }
+      );
+    }
+
+  }, 300000);
+
+}
+
+
+/* =========================
 RENDER SOCIAL CONTENT
 ========================= */
 
@@ -1975,6 +3220,19 @@ async function renderCity(
       console.log("DATA: ", data); 
 
       renderInstitutionalReport(data);
+
+      window.currentRealEstateCity = city;
+      window.currentRealEstateCategory = category;
+
+      loadMarketWatch(
+        city,
+        category
+      );
+
+      startMarketWatchAutoRefresh(
+        city,
+        category
+      );
       
 
     }catch(err){
@@ -2030,6 +3288,16 @@ function exploreCity(){
 
   const city = custom || dropdown;
 
+  applyRealEstateSelection(
+    city,
+    category
+  );
+
+  syncRealEstateUrl(
+    city,
+    category
+  );
+
   renderCity(
     city,
     category
@@ -2073,6 +3341,53 @@ function setSelectValueIfExists(selectId, value){
 }
 
 
+
+function syncRealEstateUrl(city,category){
+  const params = new URLSearchParams(window.location.search);
+  params.set('city', city);
+  params.set('category', category);
+
+  const newUrl =
+    `${window.location.pathname}?${params.toString()}`;
+
+  window.history.replaceState(
+    { city, category },
+    '',
+    newUrl
+  );
+}
+
+function applyRealEstateSelection(city,category){
+
+  const cityExistsInDropdown =
+    setSelectValueIfExists(
+      'citySelect',
+      city
+    );
+
+  if(city && !cityExistsInDropdown){
+
+    document.getElementById('customCity').value =
+      city;
+
+  }else{
+
+    document.getElementById('customCity').value =
+      '';
+
+  }
+
+  setSelectValueIfExists(
+    'categorySelect',
+    category
+  );
+
+  window.currentRealEstateCity = city;
+  window.currentRealEstateCategory = category;
+
+}
+
+
 /* =========================
 INIT
 ========================= */
@@ -2098,26 +3413,13 @@ window.onload = () => {
   const selectedCategory =
     category || defaultCategory;
 
-  const cityExistsInDropdown =
-    setSelectValueIfExists(
-      'citySelect',
-      selectedCity
-    );
+  applyRealEstateSelection(
+    selectedCity,
+    selectedCategory
+  );
 
-  if(city && !cityExistsInDropdown){
-
-    document.getElementById('customCity').value =
-      city;
-
-  } else {
-
-    document.getElementById('customCity').value =
-      '';
-
-  }
-
-  setSelectValueIfExists(
-    'categorySelect',
+  syncRealEstateUrl(
+    selectedCity,
     selectedCategory
   );
 
@@ -2125,6 +3427,9 @@ window.onload = () => {
     selectedCity,
     selectedCategory
   );
+
+  renderMarketFilters();
+  renderMarketWatchlist();
 
   const debouncedExplore = debounce(
     () => {
@@ -2136,6 +3441,16 @@ window.onload = () => {
 
       const category =
         document.getElementById('categorySelect').value;
+
+      applyRealEstateSelection(
+        city,
+        category
+      );
+
+      syncRealEstateUrl(
+        city,
+        category
+      );
 
       renderCity(city, category);
 
@@ -2155,6 +3470,33 @@ window.onload = () => {
     .addEventListener('click', exploreCity);
 
 };
+
+
+window.addEventListener('popstate',()=>{
+
+  const {
+    city,
+    category
+  } = getQueryParams();
+
+  const selectedCity =
+    city || 'Nhon Trach';
+
+  const selectedCategory =
+    category || 'land';
+
+  applyRealEstateSelection(
+    selectedCity,
+    selectedCategory
+  );
+
+  renderCity(
+    selectedCity,
+    selectedCategory
+  );
+
+});
+
 
 /* =========================
 SHOW AND HIDE LOADING
@@ -2322,6 +3664,61 @@ function renderMemoSection(title, items=[]){
   const auth = getAuth(app);
   const db = getFirestore(app);
 
+  window.currentFirebaseUser = null;
+  window.marketWatchlistCache = [];
+
+  window.loadMarketWatchlistFromUser = async function(){
+    const user = auth.currentUser;
+
+    if(!user){
+      window.currentFirebaseUser = null;
+      window.marketWatchlistCache = [];
+      if(window.renderMarketWatchlist){
+        window.renderMarketWatchlist();
+      }
+      return [];
+    }
+
+    window.currentFirebaseUser = user;
+
+    const ref = doc(db, "users", user.email.toLowerCase());
+    const snap = await getDoc(ref);
+
+    const data = snap.exists() ? snap.data() : {};
+    const items = Array.isArray(data.marketWatchlist) ? data.marketWatchlist : [];
+
+    window.marketWatchlistCache = items;
+
+    localStorage.setItem(
+      'marketWatchlist',
+      JSON.stringify(items)
+    );
+
+    if(window.renderMarketWatchlist){
+      window.renderMarketWatchlist();
+    }
+
+    return items;
+  };
+
+  window.saveMarketWatchlistToUser = async function(items){
+    const user = auth.currentUser;
+
+    if(!user){
+      throw new Error('Please login before saving watchlist.');
+    }
+
+    const ref = doc(db, "users", user.email.toLowerCase());
+
+    await setDoc(ref, {
+      email:user.email.toLowerCase(),
+      marketWatchlist:items,
+      watchlistUpdatedAt:serverTimestamp()
+    }, { merge:true });
+
+    return true;
+  };
+
   window.isLoggedIn = false;
   window.userRole = "guest";
   window.userStatus = "guest";
@@ -2433,6 +3830,11 @@ function renderMemoSection(title, items=[]){
     if(!user){
       window.userRole = "guest";
       window.userStatus = "guest";
+      window.currentFirebaseUser = null;
+      window.marketWatchlistCache = [];
+      if(window.renderMarketWatchlist){
+        window.renderMarketWatchlist();
+      }
       updateNavbar(null);
       showGate("VIP Access Only", "Please login or contact admin to ask for permission", true);
       return;
@@ -2452,6 +3854,8 @@ function renderMemoSection(title, items=[]){
 
     updateNavbar(user);
 
+    await window.loadMarketWatchlistFromUser();
+
     if(hasVipAccess()){
       allowAccess();
     }else{
@@ -2467,6 +3871,16 @@ function renderMemoSection(title, items=[]){
     if(e.key === "Escape") closeLogin();
   });
 </script>
+
+
+<div id="appToast" class="app-toast" role="status" aria-live="polite">
+  <div class="app-toast-icon" id="appToastIcon">✓</div>
+  <div class="app-toast-content">
+    <div class="app-toast-title" id="appToastTitle">Saved</div>
+    <div class="app-toast-message" id="appToastMessage">Your changes have been saved.</div>
+  </div>
+  <button class="app-toast-close" onclick="hideToast()" aria-label="Close">×</button>
+</div>
 
 </body>
 </html>

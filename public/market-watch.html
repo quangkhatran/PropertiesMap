@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Market Watch</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#070b11;color:white;font-family:Inter,Arial,sans-serif}.navbar{height:70px;display:flex;align-items:center;gap:30px;padding:0 40px;background:rgba(10,15,20,.72);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);position:fixed;top:0;left:0;right:0;z-index:99}.logo{font-family:'Playfair Display',serif;font-size:20px;letter-spacing:2px;color:white;text-decoration:none;font-weight:700}.nav-link{font-family:'Playfair Display',serif;font-size:14px;letter-spacing:2px;text-transform:uppercase;color:#cbd5e1;text-decoration:none}.nav-link.active,.nav-link:hover{color:#00ffd5}.nav-news-badge{display:inline-flex;align-items:center;justify-content:center;min-width:20px;height:20px;padding:0 6px;margin-left:6px;border-radius:999px;background:#00ffd5;color:#041018;font-size:11px;font-weight:800;box-shadow:0 0 18px rgba(0,255,213,.45)}.page{padding:130px 5vw 80px}.hero{max-width:1100px}.label{color:#00ffd5;letter-spacing:3px;text-transform:uppercase;font-size:12px;font-weight:800;margin-bottom:14px}.hero h1{font-family:'Playfair Display',serif;font-size:68px;line-height:1.02;margin:0 0 20px}.hero p{max-width:760px;color:#94a3b8;line-height:1.8;font-size:18px}.controls{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}.controls input,.controls select{height:56px;min-width:220px;padding:0 18px;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.07);color:white;outline:none}.controls select option{background:#101826}.controls button{height:56px;padding:0 24px;border:none;border-radius:16px;background:#00ffd5;color:#041018;font-weight:800;cursor:pointer}.controls button.secondary{background:rgba(255,255,255,.08);color:white;border:1px solid rgba(255,255,255,.12)}.panel{margin-top:46px;padding:34px;border-radius:30px;background:linear-gradient(135deg,rgba(0,255,213,.08),rgba(11,18,32,.94));border:1px solid rgba(255,255,255,.08)}.toolbar{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:24px}.badge{display:inline-flex;padding:10px 14px;border-radius:999px;background:rgba(0,255,213,.12);color:#00ffd5;font-size:13px;font-weight:800}.status{color:#94a3b8}.temperature-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:24px}.temperature-card{padding:20px;border-radius:22px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.08)}.temperature-card span{display:block;color:#94a3b8;font-size:12px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;font-weight:800}.temperature-card strong{font-size:26px;color:#00ffd5}.filters{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}.filter-btn{padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.06);color:#cbd5e1;font-weight:800;cursor:pointer}.filter-btn.active,.filter-btn:hover{background:#00ffd5;color:#041018}.insight{margin-bottom:24px;padding:24px;border-radius:24px;background:linear-gradient(135deg,rgba(0,255,213,.12),rgba(255,255,255,.035));border:1px solid rgba(0,255,213,.18);display:none}.insight-label{color:#00ffd5;font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}.insight-text{color:#dbeafe;line-height:1.8;font-size:16px}.watchlist{margin-top:24px;padding:22px;border-radius:24px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}.watchlist h3{margin:0 0 14px;font-family:'Playfair Display',serif}.watchlist-items{display:flex;gap:10px;flex-wrap:wrap}.watch-chip{border:1px solid rgba(0,255,213,.22);background:rgba(0,255,213,.08);color:#dbeafe;padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:700}.watch-chip button{margin-left:8px;background:transparent;border:none;color:#ffb4a2;cursor:pointer}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}.card{background:rgba(11,18,32,.94);border:1px solid rgba(255,255,255,.06);border-radius:22px;padding:24px;transition:.3s}.card:hover{transform:translateY(-4px);border-color:rgba(0,255,213,.35)}.meta{color:#94a3b8;font-size:13px;margin-bottom:14px;line-height:1.6}.signal-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.signal-pill{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(0,255,213,.10);color:#00ffd5;font-size:12px;font-weight:800}.trend-pill{display:inline-flex;padding:7px 10px;border-radius:999px;background:rgba(255,255,255,.07);color:#dbeafe;font-size:12px;font-weight:800}.title{font-size:20px;font-weight:800;line-height:1.45;margin-bottom:12px}.summary{color:#cbd5e1;line-height:1.75;font-size:15px;margin-bottom:18px}.link{color:#00ffd5;text-decoration:none;font-size:14px;font-weight:800}.nav-right{margin-left:auto}.login-btn{padding:8px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.08);color:white;cursor:pointer;font-weight:800}.login-btn:hover{background:#00ffd5;color:#041018}.auth-input{width:100%;padding:12px;border-radius:10px;border:1px solid #333;background:#070b11;color:white}.auth-btn{width:100%;padding:12px;border:none;border-radius:10px;background:#00ffd5;color:#041018;font-weight:800;cursor:pointer}.auth-btn.secondary{background:#cbd5e1}.login-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,.82);z-index:999999;padding:22px}.login-card{width:min(92vw,420px);padding:30px;border-radius:22px;background:linear-gradient(135deg,rgba(16,24,38,.98),rgba(7,11,17,.98));border:1px solid rgba(255,255,255,.10);box-shadow:0 30px 90px rgba(0,0,0,.55);display:flex;flex-direction:column;gap:12px}.login-card h3{margin:0 0 8px;text-align:center;font-family:'Playfair Display',serif}.watchlist-user-note{margin-bottom:12px;color:#94a3b8;font-size:14px}@media(max-width:768px){.navbar{padding:0 18px;gap:14px;overflow-x:auto}.nav-link{font-size:11px}.page{padding:110px 20px 60px}.hero h1{font-size:42px}.controls input,.controls select,.controls button{width:100%}}
+
+/* =========================
+MULTI WATCH DASHBOARD
+========================= */
+.watch-dashboard{margin-bottom:26px;padding:22px;border-radius:24px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.08)}
+.watch-dashboard-header{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.watch-dashboard-title{font-family:'Playfair Display',serif;font-size:24px;font-weight:700}
+.watch-dashboard-subtitle{color:#94a3b8;font-size:14px;line-height:1.6}
+.watch-dashboard-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.watch-market-card{padding:18px;border-radius:20px;background:rgba(11,18,32,.88);border:1px solid rgba(255,255,255,.07);cursor:pointer;transition:.25s ease}
+.watch-market-card:hover{transform:translateY(-3px);border-color:rgba(0,255,213,.38)}
+.watch-market-card.active{border-color:#00ffd5;box-shadow:0 0 26px rgba(0,255,213,.20)}
+.watch-market-city{font-weight:800;font-size:16px;margin-bottom:6px}
+.watch-market-category{color:#94a3b8;font-size:13px;margin-bottom:14px}
+.watch-market-kpis{display:flex;gap:8px;flex-wrap:wrap}
+.watch-market-pill{display:inline-flex;padding:7px 9px;border-radius:999px;background:rgba(0,255,213,.10);color:#00ffd5;font-size:12px;font-weight:800}
+.watch-market-pill.secondary{background:rgba(255,255,255,.07);color:#dbeafe}
+
+
+/* =========================
+CUSTOM NOTIFICATION TOAST
+========================= */
+.app-toast{
+  position:fixed;
+  top:92px;
+  right:28px;
+  width:min(92vw,390px);
+  padding:18px 18px;
+  border-radius:22px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(0,255,213,0.16),
+      rgba(11,18,32,0.96)
+    );
+  border:1px solid rgba(0,255,213,0.26);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.45),
+    0 0 26px rgba(0,255,213,0.14);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  z-index:9999999;
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  opacity:0;
+  pointer-events:none;
+  transform:translateY(-12px) scale(0.98);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+.app-toast.show{
+  opacity:1;
+  pointer-events:auto;
+  transform:translateY(0) scale(1);
+}
+
+.app-toast-icon{
+  width:42px;
+  height:42px;
+  flex:0 0 42px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,255,213,0.18);
+  color:#00ffd5;
+  font-size:20px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.18);
+}
+
+.app-toast-content{
+  flex:1;
+  min-width:0;
+}
+
+.app-toast-title{
+  font-size:14px;
+  font-weight:900;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:#00ffd5;
+  margin-bottom:6px;
+}
+
+.app-toast-message{
+  color:#dbeafe;
+  line-height:1.65;
+  font-size:14px;
+}
+
+.app-toast-close{
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  border:none;
+  border-radius:50%;
+  background:rgba(255,255,255,0.08);
+  color:white;
+  cursor:pointer;
+  font-size:18px;
+  line-height:1;
+}
+
+.app-toast-close:hover{
+  background:#00ffd5;
+  color:#041018;
+}
+
+@media(max-width:768px){
+  .app-toast{
+    top:82px;
+    right:14px;
+    left:14px;
+    width:auto;
+  }
+}
+
+
+
+/* =========================
+BILINGUAL LANGUAGE SWITCHER
+========================= */
+.news-language-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  margin-right:10px;
+}
+.news-language-switch button{
+  height:34px;
+  padding:0 14px;
+  border:none;
+  border-radius:999px;
+  background:transparent;
+  color:#cbd5e1;
+  font-size:12px;
+  font-weight:900;
+  cursor:pointer;
+  white-space:nowrap;
+}
+.news-language-switch button.active{
+  background:#00ffd5;
+  color:#041018;
+  box-shadow:0 0 18px rgba(0,255,213,0.35);
+}
+@media(max-width:768px){
+  .news-language-switch{
+    margin-right:4px;
+  }
+  .news-language-switch button{
+    height:30px;
+    padding:0 10px;
+    font-size:11px;
+  }
+}
+
+
+/* =========================
+UNIFIED AUTH BUTTON
+========================= */
+#login-btn,
+.login-btn,
+.auth-user-btn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  min-height:42px;
+  padding:0 14px !important;
+  border-radius:14px !important;
+  border:1px solid rgba(255,255,255,0.16) !important;
+  background:linear-gradient(135deg,rgba(255,255,255,0.11),rgba(255,255,255,0.045)) !important;
+  color:white !important;
+  cursor:pointer;
+  font-family:Inter,Arial,sans-serif;
+  font-size:12px !important;
+  font-weight:800 !important;
+  line-height:1;
+  white-space:nowrap;
+  width:auto !important;
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 10px 26px rgba(0,0,0,0.26);
+  transition:.25s ease;
+}
+
+#login-btn:hover,
+.login-btn:hover,
+.auth-user-btn:hover{
+  transform:translateY(-1px);
+  border-color:rgba(0,255,213,0.42) !important;
+}
+
+.auth-role-pill{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  height:24px;
+  padding:0 9px;
+  border-radius:999px;
+  background:#00ffd5;
+  color:#041018;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:.5px;
+  text-transform:uppercase;
+}
+
+.auth-username{
+  max-width:180px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  color:white;
+  opacity:.95;
+}
+
+.auth-logout-text{
+  color:#cbd5e1;
+  opacity:.9;
+}
+
+@media(max-width:768px){
+  .auth-username{
+    max-width:110px;
+  }
+}
+
+</style>
+</head>
+<body>
+<div class="navbar">
+
+  <a href="index.html" class="logo">KHA TRAN</a>
+  <a href="index.html#home" class="nav-link">Home</a>
+  <a href="lifestyle.html" class="nav-link">Lifestyle</a>
+  <a href="real-estate.html" class="nav-link">Real Estate</a>
+  
+  <a href="market-watch.html" class="nav-link active">
+    Real Estate News
+    <span
+      id="marketNewsNavBadge"
+      class="nav-news-badge"
+      style="display:none;"
+    >
+      0
+    </span>
+  </a>
+  
+  
+  <a href="compare.html" class="nav-link">Compare</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+   
+  <div class="nav-right">
+
+
+    <div class="news-language-switch" id="newsLanguageSwitch">
+      <button id="langEnBtn" onclick="setNewsLanguage('en')">English</button>
+      <button id="langViBtn" onclick="setNewsLanguage('vi')">Vietnamese</button>
+    </div>
+
+    <button id="login-btn" class="login-btn" onclick="openLogin()">Login</button>
+  </div>
+</div>
+
+<main class="page">
+  <section class="hero">
+    <div class="label">Live Market Intelligence</div>
+    <h1>AI Market Watch</h1>
+    <p>Daily updates about FDI, infrastructure, industrial parks, airport developments and real estate signals.</p>
+    <div class="controls">
+      <select id="citySelect"><option value="Nhon Trach" selected>Nhon Trach</option><option value="Long Thanh">Long Thanh</option><option value="Dong Nai">Dong Nai</option><option value="Vung Tau">Vung Tau</option><option value="Da Lat">Da Lat</option><option value="Cam Ranh">Cam Ranh</option><option value="Nha Trang">Nha Trang</option></select>
+      <select id="categorySelect"><option value="land">Land</option><option value="industrial">Industrial</option><option value="commercial">Commercial</option><option value="house">House / Apartment</option><option value="all">All</option></select>
+      <input id="customCity" placeholder="Or enter another city...">
+      <button onclick="runSearch()">Update Feed</button>
+      <button class="secondary" onclick="saveCurrentWatchlist()">Save Watchlist</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="toolbar"><div class="badge" id="newsBadge">🛰️ Live updates</div><div class="status" id="newsStatus">Loading market updates...</div></div>
+    <div class="temperature-row"><div class="temperature-card"><span>Market Temperature</span><strong id="marketTemperature">Loading...</strong></div><div class="temperature-card"><span>Trend Direction</span><strong id="trendDirection">Loading...</strong></div></div>
+
+    <div class="watch-dashboard" id="watchDashboard">
+      <div class="watch-dashboard-header">
+        <div>
+          <div class="watch-dashboard-title">My Markets</div>
+          <div class="watch-dashboard-subtitle">Your saved markets with live temperature, trend and signal count.</div>
+        </div>
+      </div>
+      <div id="watchDashboardGrid" class="watch-dashboard-grid"></div>
+    </div>
+
+    <div class="filters" id="filterBar"></div>
+    <div id="insightBox" class="insight"></div>
+    <div id="newsList" class="grid"></div>
+    <div class="watchlist"><h3>Saved Watchlist</h3><div id="watchlistItems" class="watchlist-items"></div></div>
+  </section>
+</main>
+
+
+<div id="login-modal" class="login-modal">
+  <div class="login-card">
+    <h3>Login</h3>
+    <input id="email" type="email" placeholder="Email" class="auth-input">
+    <input id="password" type="password" placeholder="Password" class="auth-input">
+    <button onclick="login()" class="auth-btn">Login</button>
+    <button onclick="register()" class="auth-btn secondary">Register</button>
+  </div>
+</div>
+
+<script>
+
+const NEWS_I18N = {
+  en:{ aiInsight:'AI Insight' },
+  vi:{ aiInsight:'Nhận định AI' }
+};
+
+window.currentNewsLanguage =
+  localStorage.getItem('preferredNewsLanguage') ||
+  localStorage.getItem('preferredLanguage') ||
+  'en';
+
+function updateLanguageButtons(){
+  document
+    .getElementById('langEnBtn')
+    ?.classList.toggle(
+      'active',
+      window.currentNewsLanguage === 'en'
+    );
+
+  document
+    .getElementById('langViBtn')
+    ?.classList.toggle(
+      'active',
+      window.currentNewsLanguage === 'vi'
+    );
+}
+
+function getLocalizedField(item,baseField){
+  if(!item){
+    return '';
+  }
+
+  if(window.currentNewsLanguage === 'vi'){
+    return (
+      item[`${baseField}_vi`] ||
+      item[`${baseField}Vi`] ||
+      item[`vi${baseField.charAt(0).toUpperCase()}${baseField.slice(1)}`] ||
+      item[baseField] ||
+      ''
+    );
+  }
+
+  return item[baseField] || '';
+}
+
+function getLocalizedInsight(data){
+  if(!data){
+    return '';
+  }
+
+  if(window.currentNewsLanguage === 'vi'){
+    return (
+      data.insight_vi ||
+      data.insightVi ||
+      data.viInsight ||
+      data.insight ||
+      ''
+    );
+  }
+
+  return data.insight || '';
+}
+
+function getAiInsightLabel(){
+  return (
+    NEWS_I18N[window.currentNewsLanguage]?.aiInsight ||
+    NEWS_I18N.en.aiInsight
+  );
+}
+
+async function setNewsLanguage(lang){
+  window.currentNewsLanguage = lang;
+
+  localStorage.setItem(
+    'preferredNewsLanguage',
+    lang
+  );
+
+  localStorage.setItem(
+    'preferredLanguage',
+    lang
+  );
+
+  updateLanguageButtons();
+
+  const city =
+    window.currentCity ||
+    window.currentMarketWatchCity ||
+    window.currentRealEstateCity ||
+    'Nhon Trach';
+
+  const category =
+    window.currentCategory ||
+    window.currentMarketWatchCategory ||
+    window.currentRealEstateCategory ||
+    'land';
+
+  if(typeof loadNews === 'function'){
+    await loadNews(
+      city,
+      category,
+      { silent:true }
+    );
+  }
+
+  if(typeof loadMarketWatch === 'function'){
+    await loadMarketWatch(
+      city,
+      category,
+      { silent:true }
+    );
+  }
+
+  if(window.savePreferredLanguageToUser){
+    try{
+      await window.savePreferredLanguageToUser(lang);
+    }catch(e){}
+  }
+}
+
+
+
+
+
+function showToast(title,message,icon='✓'){
+  const toast=document.getElementById('appToast');
+  const toastTitle=document.getElementById('appToastTitle');
+  const toastMessage=document.getElementById('appToastMessage');
+  const toastIcon=document.getElementById('appToastIcon');
+
+  if(!toast){
+    return;
+  }
+
+  toastTitle.innerText=title;
+  toastMessage.innerText=message;
+  toastIcon.innerText=icon;
+
+  toast.classList.add('show');
+
+  clearTimeout(window.appToastTimer);
+  window.appToastTimer=setTimeout(()=>{
+    hideToast();
+  },3600);
+}
+
+function hideToast(){
+  const toast=document.getElementById('appToast');
+  if(toast){
+    toast.classList.remove('show');
+  }
+}
+
+let allMarketNews = [];
+let activeFilter = 'All';
+const FILTERS = ['All','FDI','Infrastructure','Airport','Industrial','Real Estate','General'];
+function escapeHtml(value=''){return String(value).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');}
+function formatDate(value){const date=new Date(value);if(Number.isNaN(date.getTime())) return value||'';return date.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'});}
+function getSelectedCity(){return document.getElementById('customCity').value.trim()||document.getElementById('citySelect').value;}
+function getSelectedCategory(){return document.getElementById('categorySelect').value;}
+
+function setSelectValueIfExists(selectId,value){
+  const select=document.getElementById(selectId);
+  if(!select||!value)return false;
+  const option=[...select.options].find(item=>item.value.toLowerCase()===String(value).toLowerCase());
+  if(option){
+    select.value=option.value;
+    return true;
+  }
+  return false;
+}
+
+function syncMarketWatchUrl(city,category){
+  const params=new URLSearchParams(window.location.search);
+  params.set('city',city);
+  params.set('category',category);
+  const newUrl=`${window.location.pathname}?${params.toString()}`;
+  window.history.replaceState({city,category},'',newUrl);
+}
+
+function getMarketWatchQueryParams(){
+  const params=new URLSearchParams(window.location.search);
+  return {
+    city:params.get('city'),
+    category:params.get('category')
+  };
+}
+
+function applyMarketSelection(city,category){
+  const cityExists=setSelectValueIfExists('citySelect',city);
+  document.getElementById('customCity').value=cityExists?'':city;
+  setSelectValueIfExists('categorySelect',category);
+  window.currentCity=city;
+  window.currentCategory=category;
+}
+function renderFilters(){document.getElementById('filterBar').innerHTML=FILTERS.map(f=>`<button class="filter-btn ${activeFilter===f?'active':''}" onclick="setFilter('${f}')">${f}</button>`).join('');}
+function setFilter(filter){activeFilter=filter;renderFilters();renderNewsCards();}
+function calculateTrend(news){if(!news.length) return '→ Neutral';const avg=news.reduce((s,i)=>s+(i.impactScore||0),0)/news.length;const strong=news.filter(i=>(i.impactScore||0)>=8).length;if(strong>=2||avg>=7.2)return '↗ Strong Positive';if(avg>=6)return '↗ Positive';if(news.some(i=>(i.trendDirection||'').includes('Risk')))return '↘ Watch Risk';return '→ Neutral';}
+function filteredNews(){return activeFilter==='All'?allMarketNews:allMarketNews.filter(item=>(item.signalType||item.category||'General')===activeFilter || item.category===activeFilter);}
+function renderNewsCards(){const list=document.getElementById('newsList');const news=filteredNews();list.innerHTML=news.map(item=>`<div class="card"><div class="signal-row"><span class="signal-pill">${escapeHtml(item.signalIcon||'🛰️')} ${escapeHtml(item.signalType||item.category||'General')}</span><span class="trend-pill">${escapeHtml(item.trendDirection||'→ Neutral')}</span></div><div class="meta">${escapeHtml(item.location||'Market')} · ${escapeHtml(item.category||'Market')} · Impact ${escapeHtml(item.impactScore||5)}/10 ${item.publishedAt?`· ${escapeHtml(formatDate(item.publishedAt))}`:''}</div><div class="title">${escapeHtml(getLocalizedField(item,'title') || 'Market update')}</div><div class="summary">${escapeHtml(getLocalizedField(item,'summary') || '')}</div><a href="${escapeHtml(item.url||'#')}" class="link" target="_blank" rel="noopener noreferrer">Read source →</a></div>`).join('');}
+async function loadNews(city='Nhon Trach', category='land', options={}){const status=document.getElementById('newsStatus'), badge=document.getElementById('newsBadge'), navBadge=document.getElementById('marketNewsNavBadge'), insightBox=document.getElementById('insightBox');if(!options.silent)document.getElementById('newsList').innerHTML='';status.innerText=`Loading fresh updates for ${city}...`;try{const res=await fetch(`/api/market-news?city=${encodeURIComponent(city)}&category=${encodeURIComponent(category)}&lang=${encodeURIComponent(window.currentNewsLanguage)}`);const data=await res.json();allMarketNews=Array.isArray(data.news)?data.news.slice(0,16):[];updateWatchDashboardCache(city,category,data);renderWatchDashboard();badge.innerText=`🛰️ ${allMarketNews.length} live updates`;
+  
+if(navBadge){
+
+  navBadge.innerText =
+    allMarketNews.length;
+
+  navBadge.style.display =
+    allMarketNews.length
+      ? 'inline-flex'
+      : 'none';
+
+}
+  
+document.getElementById('marketTemperature').innerText=data.marketTemperature||'WATCHING →';document.getElementById('trendDirection').innerText=calculateTrend(allMarketNews);const localizedInsight=getLocalizedInsight(data);if(localizedInsight){insightBox.style.display='block';insightBox.innerHTML=`<div class="insight-label">${getAiInsightLabel()}</div><div class="insight-text">${escapeHtml(localizedInsight)}</div>`}else insightBox.style.display='none';if(!allMarketNews.length){status.innerText='No fresh market updates found yet.';return}const updatedAt=new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});status.innerText=`Latest signals for ${city} · Auto-refreshed ${updatedAt}`;renderNewsCards()}catch(err){console.log(err);status.innerText='Market Watch API is not available yet.'}}
+function runSearch(){
+  const city=getSelectedCity();
+  const category=getSelectedCategory();
+  applyMarketSelection(city,category);
+  syncMarketWatchUrl(city,category);
+  loadNews(city,category);
+}
+function getWatchlist(){
+  if(Array.isArray(window.marketWatchlistCache)){
+    return window.marketWatchlistCache;
+  }
+
+  try{
+    return JSON.parse(localStorage.getItem('marketWatchlist')||'[]');
+  }catch(e){
+    return [];
+  }
+}
+
+async function setWatchlist(items){
+  window.marketWatchlistCache = items;
+
+  localStorage.setItem(
+    'marketWatchlist',
+    JSON.stringify(items)
+  );
+
+  if(window.saveWatchlistToUser){
+    await window.saveWatchlistToUser(items);
+  }
+
+  renderWatchlist();
+}
+
+async function saveCurrentWatchlist(){
+  if(!window.currentFirebaseUser){
+    showToast('Login Required', 'Please login before saving your watchlist.', '🔐');
+    if(window.openLogin){
+      window.openLogin();
+    }
+    return;
+  }
+
+  const city = getSelectedCity();
+  const category = getSelectedCategory();
+  const items = getWatchlist();
+
+  if(!items.some(i=>i.city===city&&i.category===category)){
+    items.push({
+      city,
+      category,
+      savedAt:new Date().toISOString()
+    });
+  }
+
+  await setWatchlist(items);
+  showToast('Watchlist Saved', `${city} · ${category} has been added to your market dashboard.`, '✓');
+}
+
+async function removeWatchlist(index){
+  const items = getWatchlist();
+  items.splice(index,1);
+  await setWatchlist(items);
+}
+
+function openWatchlist(city,category){
+  applyMarketSelection(city,category);
+  syncMarketWatchUrl(city,category);
+  loadNews(city,category);
+  renderWatchDashboard();
+}
+
+function renderWatchlist(){
+  const items = getWatchlist();
+  const container = document.getElementById('watchlistItems');
+
+  if(!container){
+    return;
+  }
+
+  if(!window.currentFirebaseUser){
+    container.innerHTML = `<span class="status">${'AI Insight'}</span>`;
+    return;
+  }
+
+  container.innerHTML = items.length
+    ? items.map((item,i)=>`<span class="watch-chip" onclick="openWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')">${escapeHtml(item.city)} · ${escapeHtml(item.category)} <button onclick="event.stopPropagation();removeWatchlist(${i})">×</button></span>`).join('')
+    : `<span class="status">${'AI Insight'}</span>`;
+
+  renderWatchDashboard();
+}
+
+
+window.addEventListener('popstate',()=>{
+  const params=getMarketWatchQueryParams();
+  const city=params.city||'Nhon Trach';
+  const category=params.category||'land';
+  applyMarketSelection(city,category);
+  loadNews(city,category);
+});
+
+
+function getWatchKey(city,category){return `${String(city||'').toLowerCase()}::${String(category||'').toLowerCase()}`;}
+function isActiveWatchMarket(item){return String(item.city||'').toLowerCase()===String(window.currentCity||'').toLowerCase()&&String(item.category||'').toLowerCase()===String(window.currentCategory||'').toLowerCase();}
+function updateWatchDashboardCache(city,category,data){
+  window.watchDashboardCache=window.watchDashboardCache||{};
+  window.watchDashboardCache[getWatchKey(city,category)]={city,category,count:Array.isArray(data.news)?data.news.length:0,temperature:data.marketTemperature||'WATCHING →',trend:calculateTrend(Array.isArray(data.news)?data.news:[]),updatedAt:new Date().toISOString()};
+}
+async function getWatchDashboardSummary(item){
+  window.watchDashboardCache=window.watchDashboardCache||{};
+  const key=getWatchKey(item.city,item.category);
+  if(window.watchDashboardCache[key])return window.watchDashboardCache[key];
+  try{
+    const res=await fetch(`/api/market-news?city=${encodeURIComponent(item.city)}&category=${encodeURIComponent(item.category)}`);
+    const data=await res.json();
+    updateWatchDashboardCache(item.city,item.category,data);
+    return window.watchDashboardCache[key];
+  }catch(err){
+    return {city:item.city,category:item.category,count:0,temperature:'WATCHING →',trend:'→ Neutral'};
+  }
+}
+async function renderWatchDashboard(){
+  const container=document.getElementById('watchDashboardGrid');
+  if(!container)return;
+  const items=getWatchlist();
+  if(!window.currentFirebaseUser){container.innerHTML=`<div class="status">${'AI Insight'}</div>`;return;}
+  if(!items.length){container.innerHTML=`<div class="status">${'AI Insight'}</div>`;return;}
+  container.innerHTML=items.map(item=>`<div class="watch-market-card ${isActiveWatchMarket(item)?'active':''}" onclick="openWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')"><div class="watch-market-city">${escapeHtml(item.city)}</div><div class="watch-market-category">${escapeHtml(item.category)}</div><div class="watch-market-kpis"><span class="watch-market-pill secondary">Loading...</span></div></div>`).join('');
+  const summaries=await Promise.all(items.map(item=>getWatchDashboardSummary(item)));
+  container.innerHTML=items.map((item,index)=>{const s=summaries[index]||{};return `<div class="watch-market-card ${isActiveWatchMarket(item)?'active':''}" onclick="openWatchlist('${escapeHtml(item.city)}','${escapeHtml(item.category)}')"><div class="watch-market-city">${escapeHtml(item.city)}</div><div class="watch-market-category">${escapeHtml(item.category)}</div><div class="watch-market-kpis"><span class="watch-market-pill">${escapeHtml(s.temperature||'WATCHING →')}</span><span class="watch-market-pill secondary">${escapeHtml(s.trend||'→ Neutral')}</span><span class="watch-market-pill secondary">${escapeHtml(s.count||0)} signals</span></div></div>`}).join('');
+}
+
+function startAutoRefresh(){if(window.newsRefreshTimer)clearInterval(window.newsRefreshTimer);window.newsRefreshTimer=setInterval(()=>{if(document.hidden)return;loadNews(window.currentCity||'Nhon Trach',window.currentCategory||'land',{silent:true})},300000)}
+window.addEventListener('load',()=>{
+  updateLanguageButtons();
+  renderFilters();
+  renderWatchlist();
+
+  const params=getMarketWatchQueryParams();
+
+  const initialCity=params.city||'Nhon Trach';
+  const initialCategory=params.category||'land';
+
+  applyMarketSelection(initialCity,initialCategory);
+  syncMarketWatchUrl(initialCity,initialCategory);
+  loadNews(initialCity,initialCategory);
+  startAutoRefresh();
+});
+</script>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import {
+    getFirestore,
+    doc,
+    getDoc,
+    setDoc,
+    serverTimestamp
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBsUBX4UQSYDJ6PlntatrXutktM-TevIPs",
+    authDomain: "propertiesmap-b304e.firebaseapp.com",
+    projectId: "propertiesmap-b304e"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+
+  window.showGateLoginForm = function(){
+    const form = document.getElementById('gate-login-form');
+
+    if(form){
+      form.style.display = 'block';
+    }
+
+    const email = document.getElementById('email');
+
+    if(email){
+      setTimeout(()=>email.focus(),50);
+    }
+  };
+
+
+  window.currentFirebaseUser = null;
+  window.marketWatchlistCache = [];
+
+  function updateLoginButton(user, userData = {}){
+    const btn = document.getElementById('login-btn');
+    if(!btn){
+      return;
+    }
+
+    if(!user){
+      renderUnifiedAuthButton({
+        loggedIn:false
+      });
+      btn.onclick = openLogin;
+      return;
+    }
+
+    renderUnifiedAuthButton({
+      loggedIn:true,
+      role:userData.role || 'user',
+      email:user.email,
+      username:user.email
+    });
+
+    btn.onclick = logout;
+  }
+
+  function openLogin(){
+    const modal = document.getElementById('login-modal');
+    if(modal){
+      modal.style.display = 'flex';
+    }
+
+    const email = document.getElementById('email');
+    const password = document.getElementById('password');
+    if(email) email.value = '';
+    if(password) password.value = '';
+  }
+  window.openLogin = openLogin;
+
+  function closeLogin(){
+    const modal = document.getElementById('login-modal');
+    if(modal){
+      modal.style.display = 'none';
+    }
+  }
+
+  async function login(){
+    const email = document.getElementById('email').value.trim();
+    const pass = document.getElementById('password').value;
+
+    try{
+      await signInWithEmailAndPassword(auth, email, pass);
+
+      window.location.reload();
+    }catch(err){
+      alert(err.message);
+    }
+  }
+  window.login = login;
+
+  async function register(){
+    const email = document.getElementById('email').value.trim().toLowerCase();
+    const pass = document.getElementById('password').value;
+
+    try{
+      const cred = await createUserWithEmailAndPassword(auth, email, pass);
+
+      await setDoc(doc(db, 'users', cred.user.email.toLowerCase()), {
+        email:cred.user.email.toLowerCase(),
+        role:'user',
+        status:'pending',
+        createdAt:serverTimestamp()
+      }, { merge:true });
+
+      alert('Registered successfully. Please wait for admin approval for VIP pages.');
+      if(typeof closeLogin === 'function'){
+        closeLogin();
+      }
+    }catch(err){
+      alert(err.message);
+    }
+  }
+  window.register = register;
+
+  async function logout(){
+    await signOut(auth);
+  }
+  window.logout = logout;
+
+  window.loadWatchlistFromUser = async function(){
+    const user = auth.currentUser;
+
+    if(!user){
+      window.currentFirebaseUser = null;
+      window.marketWatchlistCache = [];
+      if(window.renderWatchlist){
+        window.renderWatchlist();
+      }
+      return [];
+    }
+
+    window.currentFirebaseUser = user;
+
+    const ref = doc(db, 'users', user.email.toLowerCase());
+    const snap = await getDoc(ref);
+    const data = snap.exists() ? snap.data() : {};
+    const items = Array.isArray(data.marketWatchlist) ? data.marketWatchlist : [];
+
+    window.marketWatchlistCache = items;
+
+    localStorage.setItem(
+      'marketWatchlist',
+      JSON.stringify(items)
+    );
+
+    if(window.renderWatchlist){
+      window.renderWatchlist();
+    }
+
+    return items;
+  };
+
+  window.saveWatchlistToUser = async function(items){
+    const user = auth.currentUser;
+
+    if(!user){
+      throw new Error('Please login before saving watchlist.');
+    }
+
+    const ref = doc(db, 'users', user.email.toLowerCase());
+
+    await setDoc(ref, {
+      email:user.email.toLowerCase(),
+      marketWatchlist:items,
+      watchlistUpdatedAt:serverTimestamp()
+    }, { merge:true });
+
+    return true;
+  };
+
+  function renderVipGate({
+    title = 'VIP Access Only',
+    icon = '🔒',
+    message = 'AI Market Watch is available exclusively for approved VIP members.',
+    showLogin = true
+  } = {}){
+
+    document.body.innerHTML = `
+
+      <div
+        style="
+          min-height:100vh;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          background:#020817;
+          color:white;
+          font-family:Inter,sans-serif;
+          padding:40px;
+        "
+      >
+
+        <div
+          style="
+            position:relative;
+            max-width:560px;
+            width:100%;
+            background:rgba(15,23,42,.86);
+            border:1px solid rgba(255,255,255,.08);
+            border-radius:28px;
+            padding:42px;
+            text-align:center;
+            box-shadow:0 20px 70px rgba(0,0,0,.45);
+          "
+        >
+
+          <a
+            href="index.html"
+            style="
+              position:absolute;
+              top:16px;
+              right:16px;
+              width:38px;
+              height:38px;
+              border-radius:50%;
+              border:1px solid rgba(255,255,255,.14);
+              background:rgba(255,255,255,.08);
+              color:white;
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              text-decoration:none;
+              font-size:24px;
+              line-height:1;
+            "
+          >
+            ×
+          </a>
+
+          <div
+            style="
+              font-size:54px;
+              margin-bottom:18px;
+            "
+          >
+            ${icon}
+          </div>
+
+          <h1
+            style="
+              margin:0 0 16px;
+              font-size:34px;
+              font-family:'Playfair Display',serif;
+            "
+          >
+            ${title}
+          </h1>
+
+          <p
+            style="
+              opacity:.78;
+              line-height:1.8;
+              margin-bottom:24px;
+              font-size:15px;
+            "
+          >
+            ${message}
+          </p>
+
+          <div
+            id="gate-login-form"
+            style="
+              display:none;
+              margin-bottom:18px;
+            "
+          >
+            <input
+              id="email"
+              type="email"
+              placeholder="Email"
+              style="
+                width:100%;
+                height:50px;
+                padding:0 16px;
+                border-radius:14px;
+                border:1px solid rgba(255,255,255,.12);
+                background:#070b11;
+                color:white;
+                outline:none;
+                margin-bottom:10px;
+              "
+            />
+
+            <input
+              id="password"
+              type="password"
+              placeholder="Password"
+              style="
+                width:100%;
+                height:50px;
+                padding:0 16px;
+                border-radius:14px;
+                border:1px solid rgba(255,255,255,.12);
+                background:#070b11;
+                color:white;
+                outline:none;
+              "
+            />
+          </div>
+
+          <div
+            style="
+              display:flex;
+              gap:12px;
+              justify-content:center;
+              flex-wrap:wrap;
+            "
+          >
+
+            ${showLogin ? `
+              <button
+                onclick="showGateLoginForm()"
+                style="
+                  height:50px;
+                  padding:0 24px;
+                  border:none;
+                  border-radius:14px;
+                  background:#00ffd5;
+                  color:#041018;
+                  font-weight:800;
+                  cursor:pointer;
+                "
+              >
+                Login
+              </button>
+            ` : ''}
+
+            <a
+              href="contact.html"
+              style="
+                height:50px;
+                padding:0 24px;
+                border-radius:14px;
+                background:#00ffd5;
+                color:#041018;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                text-decoration:none;
+                font-weight:800;
+              "
+            >
+              ${showLogin ? 'Request VIP Access' : 'Upgrade to VIP'}
+            </a>
+
+            <a
+              href="index.html"
+              style="
+                height:50px;
+                padding:0 24px;
+                border-radius:14px;
+                border:1px solid rgba(255,255,255,.12);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:white;
+                text-decoration:none;
+                font-weight:700;
+              "
+            >
+              Return to homepage
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    `;
+
+  }
+
+  onAuthStateChanged(auth, async (user)=>{
+
+    if(!user){
+
+      window.currentFirebaseUser = null;
+
+      renderVipGate({
+        title:'VIP Access Only',
+        icon:'🔒',
+        message:'AI Market Watch is available exclusively for approved VIP members.',
+        showLogin:true
+      });
+
+      return;
+
+    }
+
+    const ref =
+      doc(db, 'users', user.email.toLowerCase());
+
+    const snap =
+      await getDoc(ref);
+
+    const data =
+      snap.exists()
+        ? snap.data()
+        : {};
+
+    const role =
+      String(data.role || '').toLowerCase();
+
+    const status =
+      String(data.status || '').toLowerCase();
+
+    const isVip =
+      (
+        role === 'vip' ||
+        role === 'admin'
+      ) &&
+      status === 'approved';
+
+    if(!isVip){
+
+      window.currentFirebaseUser = null;
+
+      renderVipGate({
+        title:'VIP Membership Required',
+        icon:'💎',
+        message:'Your account is currently not approved for AI Market Watch access.',
+        showLogin:true
+      });
+
+      return;
+
+    }
+
+    window.currentFirebaseUser = user || null;
+    updateLoginButton(user, data);
+    await window.loadWatchlistFromUser();
+
+  });
+
+  document.getElementById('login-modal')?.addEventListener('click',(e)=>{
+    if(e.target.id === 'login-modal'){
+      closeLogin();
+    }
+  });
+
+  document.addEventListener('keydown',(e)=>{
+    if(e.key === 'Escape'){
+      closeLogin();
+    }
+  });
+
+  document.addEventListener('keydown',(e)=>{
+    if(e.key === 'Enter'){
+      const gateForm = document.getElementById('gate-login-form');
+      const email = document.getElementById('email');
+      const password = document.getElementById('password');
+
+      if(gateForm && gateForm.style.display !== 'none' && email && password){
+        login();
+      }
+    }
+  });
+
+</script>
+
+<div id="appToast" class="app-toast" role="status" aria-live="polite">
+  <div class="app-toast-icon" id="appToastIcon">✓</div>
+  <div class="app-toast-content">
+    <div class="app-toast-title" id="appToastTitle">Saved</div>
+    <div class="app-toast-message" id="appToastMessage">Your changes have been saved.</div>
+  </div>
+  <button class="app-toast-close" onclick="hideToast()" aria-label="Close">×</button>
+</div>
+
+
+<script>
+function renderUnifiedAuthButton(userData={}){
+  const btn =
+    document.getElementById('login-btn');
+
+  if(!btn){
+    return;
+  }
+
+  btn.classList.add('auth-user-btn');
+
+  if(!userData.loggedIn){
+
+    btn.innerHTML = `
+      <span class="auth-role-pill">LOGIN</span>
+    `;
+
+    return;
+  }
+
+  const role =
+    String(userData.role || 'user').toLowerCase();
+
+  const roleLabel =
+    role === 'admin'
+      ? 'Admin 👑'
+      : role === 'vip'
+        ? 'VIP 💎'
+        : 'User';
+
+  const username =
+    userData.username ||
+    userData.email ||
+    'User';
+
+  btn.innerHTML = `
+    <span class="auth-role-pill">${roleLabel}</span>
+    <span class="auth-username">${username}</span>
+    <span class="auth-logout-text">(Logout)</span>
+  `;
+}
+</script>
+
+</body>
+</html>
