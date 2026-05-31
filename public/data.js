@@ -57,6 +57,8 @@ const assets = [
 
         status: "occupied",
 
+        youtubeVideoId: "2dLM4Mfdjuo",
+
         link: "project.html?id=p1",
 
         selected: true
@@ -164,6 +166,8 @@ const assets = [
         priceUnit: "tỷ",
 
         status: "occupied",
+
+        youtubeVideoId: "XWTFvqwzPUU",
 
         link: "project.html?id=p2",
 

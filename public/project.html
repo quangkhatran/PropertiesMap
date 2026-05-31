@@ -722,10 +722,151 @@ UNIFIED AUTH BUTTON
   opacity:.9;
 }
 
+
+/* =========================
+VIP / ADMIN VIDEO SECTION
+========================= */
+.vip-video-card{
+    background:linear-gradient(135deg,rgba(255,255,255,0.06),rgba(255,255,255,0.018));
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:24px;
+    box-shadow:0 18px 45px rgba(0,0,0,0.32);
+}
+
+.vip-video-head{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:18px;
+}
+
+.vip-video-head h3{
+    margin:0;
+    opacity:1;
+}
+
+.vip-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-height:28px;
+    padding:0 12px;
+    border-radius:999px;
+    background:#00ffd5;
+    color:#041018;
+    font-size:11px;
+    font-weight:900;
+    letter-spacing:.8px;
+    text-transform:uppercase;
+    white-space:nowrap;
+}
+
+.youtube-video-wrapper{
+    position:relative;
+    width:100%;
+    padding-bottom:56.25%;
+    border-radius:16px;
+    overflow:hidden;
+    background:#000;
+}
+
+.youtube-video-wrapper iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.vip-video-locked{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:260px;
+    text-align:center;
+    border-radius:16px;
+    border:1px dashed rgba(255,255,255,0.14);
+    background:rgba(0,0,0,0.22);
+    padding:28px;
+}
+
+.vip-video-locked .lock-icon{
+    font-size:38px;
+    margin-bottom:14px;
+}
+
+.vip-video-locked p{
+    color:rgba(255,255,255,0.72);
+    line-height:1.7;
+    margin:8px 0 18px;
+}
+
+.vip-video-locked button{
+    padding:12px 18px;
+    border:none;
+    border-radius:12px;
+    background:#00ffd5;
+    color:#041018;
+    font-weight:900;
+    cursor:pointer;
+}
+
 @media(max-width:768px){
   .auth-username{
     max-width:110px;
   }
+}
+
+
+/* =========================
+VIP PROPERTY VIDEO
+========================= */
+.property-video-section{
+    max-width:1000px;
+    margin:10px auto 0;
+}
+
+.vip-video-card{
+    background:linear-gradient(135deg,rgba(255,255,255,0.055),rgba(255,255,255,0.018));
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 14px 35px rgba(0,0,0,0.32);
+}
+
+.vip-video-title{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin:0 0 14px;
+    font-size:20px;
+    font-weight:600;
+}
+
+.vip-video-subtitle{
+    margin:0 0 18px;
+    color:rgba(255,255,255,0.68);
+    line-height:1.6;
+}
+
+.youtube-video-wrapper{
+    position:relative;
+    width:100%;
+    padding-bottom:56.25%;
+    border-radius:16px;
+    overflow:hidden;
+    background:#000;
+}
+
+.youtube-video-wrapper iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
 }
 
 </style>
@@ -778,6 +919,10 @@ UNIFIED AUTH BUTTON
 <h3>Gallery</h3>
 <div class="gallery" id="gallery"></div>
 </div>
+<div class="section" id="vip-video-section">
+    <div class="vip-video-card" id="vip-video-content"></div>
+</div>
+
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -985,6 +1130,61 @@ function canViewPrice(){
            );
 }
 
+function canViewVipVideo(){
+    return window.isLoggedIn &&
+           (
+             window.userRole === "admin" ||
+             (window.userStatus === "approved" && window.userRole === "vip")
+           );
+}
+
+function getProjectVideoId(){
+    // Cách tốt nhất: thêm youtubeVideoId vào data.js cho từng property.
+    // Ví dụ: youtubeVideoId: "ABC123xyz"
+    return project.youtubeVideoId || project.videoId || "PASTE_YOUTUBE_VIDEO_ID_HERE";
+}
+
+function renderVipVideo(){
+    const videoBox = document.getElementById("vip-video-content");
+    if(!videoBox) return;
+
+    const videoId = getProjectVideoId();
+    const hasRealVideoId = videoId && videoId !== "PASTE_YOUTUBE_VIDEO_ID_HERE";
+
+    if(canViewVipVideo() && hasRealVideoId){
+        videoBox.innerHTML = `
+            <div class="vip-video-head">
+                <h3>VIP Property Video Tour</h3>
+                <span class="vip-badge">VIP / Admin Only</span>
+            </div>
+
+            <div class="youtube-video-wrapper">
+                <iframe
+                    src="https://www.youtube.com/embed/${videoId}"
+                    title="VIP Property Video Tour"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div>
+        `;
+        return;
+    }
+
+    videoBox.innerHTML = `
+        <div class="vip-video-head">
+            <h3>VIP Property Video Tour</h3>
+            <span class="vip-badge">VIP / Admin Only</span>
+        </div>
+
+        <div class="vip-video-locked">
+            <div class="lock-icon">🔒</div>
+            <h3>VIP access required</h3>
+            <p>Only logged-in VIP/Admin accounts can watch this property video.</p>
+            <button onclick="openLogin()">Login to Watch</button>
+        </div>
+    `;
+}
+
 function renderProject(){
     document.getElementById("project").innerHTML=`
     <div class="hero" style="background-image:url('${project.images?.[0]||""}')">
@@ -1065,6 +1265,8 @@ function renderProject(){
     project.images.map((i,index)=>`
     <img src="${i}" onclick="openLightbox(${index})">
     `).join("")
+
+    renderVipVideo();
 
     document.getElementById("property-field").value = project.name;
 }
