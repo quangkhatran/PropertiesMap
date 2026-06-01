@@ -7,7 +7,8 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8&libraries=places"></script>
+<!-- Google Maps only. Removed libraries=places to avoid loading the billable Places library on the frontend. -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8"></script>
 
 <style>
 
@@ -2038,32 +2039,24 @@ function getPlatformEmoji(type){
 
 function getPlacePhoto(place){
 
-  if(
-    !place ||
-    !place.photos ||
-    !place.photos.length
-  ){
+  /*
+    COST OPTIMIZATION:
+    Do not call Google Places Photo API directly from the browser.
+    The May 2026 bill showed Places Photo as the largest usage item.
 
-    return `
-https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
-    `;
+    If the backend later returns a cached image URL, use it.
+    Otherwise use a stable non-Google fallback image.
+  */
 
+  if(place?.cachedPhotoUrl){
+    return place.cachedPhotoUrl;
   }
 
-  const ref =
-    place.photos[0]?.photo_reference;
-
-  if(!ref){
-
-    return `
-https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop
-    `;
-
+  if(place?.photoUrl && !place.photoUrl.includes('maps.googleapis.com/maps/api/place/photo')){
+    return place.photoUrl;
   }
 
-  return `
-https://maps.googleapis.com/maps/api/place/photo?maxwidth=1200&photo_reference=${ref}&key=AIzaSyCdiUVAybjsQqysEAZOzsNlBesXU0bII-8
-  `;
+  return 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1200&auto=format&fit=crop';
 
 }
 
@@ -2099,7 +2092,15 @@ function exploreCity(){
 INIT
 ========================= */
 
-window.onload = () => {
+let lifestyleStarted = false;
+
+function startLifestyleApp(){
+
+  if(lifestyleStarted){
+    return;
+  }
+
+  lifestyleStarted = true;
 
   initMap();
 
@@ -2136,6 +2137,15 @@ window.onload = () => {
     .getElementById('exploreBtn')
     .addEventListener('click', exploreCity);
 
+}
+
+window.startLifestyleApp = startLifestyleApp;
+
+window.onload = () => {
+  /*
+    Do not auto-load Google Places-backed content for guests/bots.
+    The app starts only after Firebase confirms Admin/VIP access.
+  */
 };
 
 /* =========================
@@ -2267,6 +2277,10 @@ function hideLoading(){
   function allowAccess(){
     const overlay = document.getElementById("vip-gate-overlay");
     if(overlay) overlay.style.display = "none";
+
+    if(window.startLifestyleApp){
+      window.startLifestyleApp();
+    }
   }
 
   function hasVipAccess(){

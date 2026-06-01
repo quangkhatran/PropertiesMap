@@ -55,9 +55,32 @@ app.use('/compare-markets', compareRoutes);
 STATIC FILES
 ========================= */
 
+app.use((req,res,next)=>{
+
+  // Keep crawlers from indexing VIP-heavy pages and accidentally triggering client-side API usage.
+  if(
+    req.path.includes('lifestyle') ||
+    req.path.includes('real-estate') ||
+    req.path.includes('market-watch') ||
+    req.path.includes('compare')
+  ){
+    res.setHeader('X-Robots-Tag','noindex, nofollow');
+  }
+
+  next();
+
+});
+
 app.use(
   express.static(
-    path.join(__dirname,'public')
+    path.join(__dirname,'public'),
+    {
+      setHeaders:(res,filePath)=>{
+        if(/\.(js|css|png|jpg|jpeg|webp|svg|ico)$/i.test(filePath)){
+          res.setHeader('Cache-Control','public, max-age=604800');
+        }
+      }
+    }
   )
 );
 
