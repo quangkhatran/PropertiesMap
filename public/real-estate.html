@@ -2219,6 +2219,8 @@ window.currentNewsLanguage =
   localStorage.getItem('preferredLanguage') ||
   'en';
 
+window.currentLanguage = window.currentNewsLanguage;
+
 function updateLanguageButtons(){
   document
     .getElementById('langEnBtn')
@@ -2278,8 +2280,131 @@ function getAiInsightLabel(){
   );
 }
 
+
+const REAL_ESTATE_STATIC_I18N = {
+  en: {
+    heroTag: 'AI Real Estate Discovery Platform',
+    heroTitle: 'Discover Emerging Real Estate Opportunities',
+    heroSubtitle: 'Discover land, housing and investment opportunities from YouTube and Facebook. AI will give you a detailed investment report.',
+    customCityPlaceholder: 'Or enter another city...',
+    explore: 'Explore',
+    aiMarketReport: 'AI MARKET REPORT',
+    aiReportTitle: 'AI Real Estate Intelligence Report',
+    aiReportSubtitle: 'AI-generated investment insights from social media, listings and market sentiment.',
+    liveMarketWatch: 'LIVE MARKET WATCH',
+    dailyNewsTitle: 'Daily News & Investment Signals',
+    dailyNewsSubtitle: 'Fresh updates on FDI, infrastructure, industrial parks, airport developments and real estate signals for the selected market.',
+    liveUpdates: '🛰️ Live updates',
+    loadingMarketUpdates: 'Loading market updates...',
+    marketTemperature: 'Market Temperature',
+    trendDirection: 'Trend Direction',
+    loading: 'Loading...',
+    myMarkets: 'My Markets',
+    myMarketsSubtitle: 'Your saved markets with live temperature, trend and signal count.',
+    saveWatchlist: 'Save Watchlist',
+    savedWatchlist: 'Saved Watchlist',
+    realEstate: 'REAL ESTATE',
+    trendingTitle: 'Trending Real Estate Content',
+    trendingSubtitle: 'Curated from social media creators and real estate communities.',
+    footer: '© 2026 Kha Tran — Real Estate Discovery Platform'
+  },
+  vi: {
+    heroTag: 'NỀN TẢNG KHÁM PHÁ BẤT ĐỘNG SẢN BẰNG AI',
+    heroTitle: 'Khám phá cơ hội bất động sản đang nổi lên',
+    heroSubtitle: 'Khám phá cơ hội đất nền, nhà ở và đầu tư từ YouTube và Facebook. AI sẽ tạo báo cáo đầu tư chi tiết cho bạn.',
+    customCityPlaceholder: 'Hoặc nhập thành phố khác...',
+    explore: 'Khám phá',
+    aiMarketReport: 'BÁO CÁO THỊ TRƯỜNG AI',
+    aiReportTitle: 'Báo cáo trí tuệ bất động sản AI',
+    aiReportSubtitle: 'Nhận định đầu tư do AI tạo từ mạng xã hội, tin đăng và tâm lý thị trường.',
+    liveMarketWatch: 'THEO DÕI THỊ TRƯỜNG TRỰC TIẾP',
+    dailyNewsTitle: 'Tin tức hằng ngày & tín hiệu đầu tư',
+    dailyNewsSubtitle: 'Cập nhật mới về FDI, hạ tầng, khu công nghiệp, sân bay và tín hiệu bất động sản cho thị trường đã chọn.',
+    liveUpdates: '🛰️ Cập nhật trực tiếp',
+    loadingMarketUpdates: 'Đang tải cập nhật thị trường...',
+    marketTemperature: 'Nhiệt độ thị trường',
+    trendDirection: 'Xu hướng thị trường',
+    loading: 'Đang tải...',
+    myMarkets: 'Thị trường của tôi',
+    myMarketsSubtitle: 'Các thị trường đã lưu cùng nhiệt độ, xu hướng và số lượng tín hiệu trực tiếp.',
+    saveWatchlist: 'Lưu Watchlist',
+    savedWatchlist: 'Watchlist đã lưu',
+    realEstate: 'BẤT ĐỘNG SẢN',
+    trendingTitle: 'Nội dung bất động sản nổi bật',
+    trendingSubtitle: 'Được chọn lọc từ các nhà sáng tạo nội dung và cộng đồng bất động sản.',
+    footer: '© 2026 Kha Tran — Nền tảng khám phá bất động sản'
+  }
+};
+
+function updateRealEstateStaticLanguage(lang){
+  const t = REAL_ESTATE_STATIC_I18N[lang] || REAL_ESTATE_STATIC_I18N.en;
+
+  const setText = (selector, value, index = 0) => {
+    const el = document.querySelectorAll(selector)[index];
+    if(el && value){
+      el.innerText = value;
+    }
+  };
+
+  setText('.hero-tag', t.heroTag);
+  setText('.hero h1', t.heroTitle);
+  setText('.hero p', t.heroSubtitle);
+
+  const customCity = document.getElementById('customCity');
+  if(customCity){
+    customCity.placeholder = t.customCityPlaceholder;
+  }
+
+  const exploreBtn = document.getElementById('exploreBtn');
+  if(exploreBtn){
+    exploreBtn.innerText = t.explore;
+  }
+
+  setText('.section-label', t.aiMarketReport, 0);
+  setText('.section-title', t.aiReportTitle, 0);
+  setText('.section-subtitle', t.aiReportSubtitle, 0);
+
+  setText('.section-label', t.liveMarketWatch, 1);
+  setText('.section-title', t.dailyNewsTitle, 1);
+  setText('.section-subtitle', t.dailyNewsSubtitle, 1);
+
+  const marketWatchBadge = document.getElementById('marketWatchBadge');
+  if(marketWatchBadge && !allMarketWatchNews?.length){
+    marketWatchBadge.innerText = t.liveUpdates;
+  }
+
+  const marketWatchStatus = document.getElementById('marketWatchStatus');
+  if(marketWatchStatus && /Loading market updates|Đang tải cập nhật thị trường/.test(marketWatchStatus.innerText)){
+    marketWatchStatus.innerText = t.loadingMarketUpdates;
+  }
+
+  setText('.market-temperature-card span', t.marketTemperature, 0);
+  setText('.market-temperature-card span', t.trendDirection, 1);
+
+  const temp = document.getElementById('marketTemperature');
+  if(temp && /Loading|Đang tải/.test(temp.innerText)){
+    temp.innerText = t.loading;
+  }
+
+  const trend = document.getElementById('marketTrendDirection');
+  if(trend && /Loading|Đang tải/.test(trend.innerText)){
+    trend.innerText = t.loading;
+  }
+
+  setText('.watch-dashboard-title', t.myMarkets);
+  setText('.watch-dashboard-subtitle', t.myMarketsSubtitle);
+  setText('.watchlist-save-btn', t.saveWatchlist);
+  setText('.watchlist-box h3', t.savedWatchlist);
+
+  setText('.section-label', t.realEstate, 2);
+  setText('.section-title', t.trendingTitle, 2);
+  setText('.section-subtitle', t.trendingSubtitle, 2);
+  setText('.footer', t.footer);
+}
+
 async function setNewsLanguage(lang){
   window.currentNewsLanguage = lang;
+  window.currentLanguage = lang;
 
   localStorage.setItem(
     'preferredNewsLanguage',
@@ -2292,6 +2417,14 @@ async function setNewsLanguage(lang){
   );
 
   updateLanguageButtons();
+
+  if(typeof updateRealEstateStaticLanguage === 'function'){
+    updateRealEstateStaticLanguage(lang);
+  }
+
+  if(window.latestRealEstateData){
+    renderInstitutionalReport(window.latestRealEstateData);
+  }
 
   const city =
     window.currentCity ||
@@ -2328,8 +2461,10 @@ async function setNewsLanguage(lang){
   }
 }
 
-
-
+window.addEventListener('DOMContentLoaded', () => {
+  updateLanguageButtons();
+  updateRealEstateStaticLanguage(window.currentNewsLanguage);
+});
 
 
 function showToast(title,message,icon='✓'){
@@ -2498,35 +2633,6 @@ function renderInstitutionalReport(data){
   container.innerHTML = `
 
     <div class="institutional-report">
-      <div class="language-switch">
-
-        <button
-          class="lang-btn ${
-            currentLanguage === 'en'
-            ? 'active'
-            : ''
-          }"
-          onclick="
-            switchInstitutionalLanguage('en')
-          "
-        >
-          🇬🇧 English
-        </button>
-
-        <button
-          class="lang-btn ${
-            currentLanguage === 'vi'
-            ? 'active'
-            : ''
-          }"
-          onclick="
-            switchInstitutionalLanguage('vi')
-          "
-        >
-          🇻🇳 Tiếng Việt
-        </button>
-
-      </div>
 
       <div class="hero-investment-score">
 
@@ -2927,8 +3033,8 @@ async function loadMarketWatch(city, category='land', options = {}){
       const localizedInsight=getLocalizedInsight(data);if(localizedInsight){
         insightBox.style.display = 'block';
         insightBox.innerHTML = `
-          <div class="market-insight-label">AI Insight</div>
-          <div class="market-insight-text">${escapeHtml(data.insight)}</div>
+          <div class="market-insight-label">${escapeHtml(getAiInsightLabel())}</div>
+          <div class="market-insight-text">${escapeHtml(localizedInsight)}</div>
         `;
       }else{
         insightBox.style.display = 'none';
@@ -3223,6 +3329,8 @@ async function renderCity(
 
       window.currentRealEstateCity = city;
       window.currentRealEstateCategory = category;
+      window.currentCity = city;
+      window.currentCategory = category;
 
       loadMarketWatch(
         city,
@@ -3541,15 +3649,8 @@ function hideLoading(){
 
 function switchInstitutionalLanguage(lang){
 
-  window.currentLanguage = lang;
-
-  if(window.latestRealEstateData){
-
-    renderInstitutionalReport(
-      window.latestRealEstateData
-    );
-
-  }
+  // Backward-compatible wrapper: the Top Bar language switch is now the single source of truth.
+  setNewsLanguage(lang);
 
 }
 

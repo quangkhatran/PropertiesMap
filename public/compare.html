@@ -523,6 +523,65 @@ LIQUID GLASS COMPARE INPUTS
     inset 0 1px 0 rgba(255,255,255,0.50);
 }
 
+
+.hero-controls input[type="text"]{
+  width:260px;
+  height:58px;
+
+  padding:0 18px;
+
+  border:
+    1px solid rgba(255,255,255,0.20);
+
+  border-radius:18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.16),
+      rgba(255,255,255,0.06)
+    );
+
+  color:white;
+
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+
+  outline:none;
+
+  font-size:14px;
+  font-weight:600;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 10px 28px rgba(0,0,0,0.18);
+}
+
+.hero-controls input[type="text"]::placeholder{
+  color:rgba(255,255,255,0.62);
+}
+
+.hero-controls input[type="text"]:hover,
+.hero-controls input[type="text"]:focus{
+  border-color:rgba(0,255,213,0.36);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.18),
+      rgba(255,255,255,0.07)
+    );
+
+  transform:translateY(-1px);
+}
+
+@media(max-width:768px){
+  .hero-controls input[type="text"]{
+    width:100%;
+  }
+}
+
+
 /* Keep old dashboard controls from overriding liquid glass */
 .controls.hero-controls{
   margin-top:42px;
@@ -579,7 +638,7 @@ LIQUID GLASS COMPARE INPUTS
 
 .chart-card canvas{
   width:100% !important;
-  height:260px !important;
+  height:360px !important;
 }
 
 .kpi-card{
@@ -1395,6 +1454,123 @@ UNIFIED AUTH BUTTON
   }
 }
 
+/* =========================
+TOP BAR LANGUAGE SWITCHER
+========================= */
+.compare-language-switch{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  padding:5px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  margin-right:10px;
+}
+.compare-language-switch button{
+  height:34px;
+  padding:0 14px !important;
+  border:none !important;
+  border-radius:999px !important;
+  background:transparent !important;
+  color:#cbd5e1 !important;
+  font-size:12px !important;
+  font-weight:900 !important;
+  cursor:pointer;
+  white-space:nowrap;
+  min-height:34px !important;
+  box-shadow:none !important;
+}
+.compare-language-switch button:hover{
+  transform:none !important;
+  box-shadow:none !important;
+}
+.compare-language-switch button.active{
+  background:#00ffd5 !important;
+  color:#041018 !important;
+  box-shadow:0 0 18px rgba(0,255,213,0.35) !important;
+}
+@media(max-width:768px){
+  .compare-language-switch{
+    margin-right:4px;
+  }
+  .compare-language-switch button{
+    height:30px !important;
+    padding:0 10px !important;
+    font-size:11px !important;
+  }
+}
+
+
+/* =========================
+CHART READABILITY FIX
+========================= */
+.chart-card{
+  min-height:440px;
+}
+
+.chart-card canvas{
+  min-height:340px !important;
+}
+
+@media(max-width:768px){
+  .chart-card{
+    min-height:460px;
+  }
+
+  .chart-card canvas{
+    min-height:360px !important;
+  }
+}
+
+
+/* =========================
+ADAPTIVE CHART LAYOUT FIX
+========================= */
+.charts-grid{
+  grid-template-columns:repeat(auto-fit,minmax(520px,1fr)) !important;
+  align-items:stretch;
+}
+
+.chart-card{
+  min-height:520px !important;
+}
+
+.chart-card.wide-chart{
+  grid-column:span 2;
+}
+
+.chart-card.full-chart{
+  grid-column:1 / -1;
+}
+
+.chart-card canvas{
+  height:420px !important;
+  min-height:420px !important;
+}
+
+@media(max-width:1200px){
+  .charts-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .chart-card.wide-chart,
+  .chart-card.full-chart{
+    grid-column:1 / -1;
+  }
+}
+
+@media(max-width:768px){
+  .chart-card{
+    min-height:500px !important;
+  }
+
+  .chart-card canvas{
+    height:390px !important;
+    min-height:390px !important;
+  }
+}
+
 </style>
 </head>
 
@@ -1411,6 +1587,10 @@ UNIFIED AUTH BUTTON
     <a href="contact.html" class="nav-link">Contact</a>
   </div>
   <div class="nav-right">
+    <div class="compare-language-switch" id="compareLanguageSwitch">
+      <button id="compareLangEnBtn" onclick="setCompareLanguage('en')">English</button>
+      <button id="compareLangViBtn" onclick="setCompareLanguage('vi')">Vietnamese</button>
+    </div>
     <button id="login-btn" onclick="openLogin()">Login</button>
   </div>
 </div>  
@@ -1835,9 +2015,88 @@ UNIFIED AUTH BUTTON
       <option value="London">London</option>
       <option value="New York">New York</option>
     </select>
+    <select class="market-select">
+      <option value="" selected>None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Thao Dien">Thao Dien</option>
+      <option value="Thu Duc">Thu Duc</option>
+      <option value="Quan 1">Quan 1</option>
+      <option value="Quan 2">Quan 2</option>
+      <option value="Quan 3">Quan 3</option>
+      <option value="Quan 4">Quan 4</option>
+      <option value="Quan 5">Quan 5</option>
+      <option value="Quan 7">Quan 7</option>
+      <option value="Quan 9">Quan 9</option>
+      <option value="Quan 10">Quan 10</option>
+      <option value="Nha Be">Nha Be</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Phu My Hung">Phu My Hung</option>
+      <option value="Khanh Hoa">Khanh Hoa</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Nha Trang">Nha Trang</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
+
+    <select class="market-select">
+      <option value="" selected>None</option>
+      <option value="Nhon Trach">Nhon Trach</option>
+      <option value="Long Thanh">Long Thanh</option>
+      <option value="Dong Nai">Dong Nai</option>
+      <option value="Binh Duong">Binh Duong</option>
+      <option value="Vung Tau">Vung Tau</option>
+      <option value="Da Lat">Da Lat</option>
+      <option value="Ho Chi Minh">Ho Chi Minh</option>
+      <option value="Thu Thiem">Thu Thiem</option>
+      <option value="Thao Dien">Thao Dien</option>
+      <option value="Thu Duc">Thu Duc</option>
+      <option value="Quan 1">Quan 1</option>
+      <option value="Quan 2">Quan 2</option>
+      <option value="Quan 3">Quan 3</option>
+      <option value="Quan 4">Quan 4</option>
+      <option value="Quan 5">Quan 5</option>
+      <option value="Quan 7">Quan 7</option>
+      <option value="Quan 9">Quan 9</option>
+      <option value="Quan 10">Quan 10</option>
+      <option value="Nha Be">Nha Be</option>
+      <option value="Can Gio">Can Gio</option>
+      <option value="Phu My Hung">Phu My Hung</option>
+      <option value="Khanh Hoa">Khanh Hoa</option>
+      <option value="Cam Ranh">Cam Ranh</option>
+      <option value="Nha Trang">Nha Trang</option>
+      <option value="Can Tho">Can Tho</option>
+      <option value="Ca Mau">Ca Mau</option>
+      <option value="London">London</option>
+      <option value="New York">New York</option>
+    </select>
+    <input
+      type="text"
+      id="customMarketInput"
+      placeholder="Enter custom market..."
+      autocomplete="off"
+    />
 
 
-    <button onclick="compareMarkets()">
+
+
+
+    
+    <input
+      type="text"
+      id="customMarketInput2"
+      placeholder="Enter custom market..."
+      autocomplete="off"
+    />
+<button onclick="compareMarkets()">
       Compare
     </button>
 
@@ -1871,6 +2130,554 @@ UNIFIED AUTH BUTTON
 </div>
 <script>
 
+/* =========================
+CHART READABILITY HELPERS
+========================= */
+if(typeof Chart !== 'undefined'){
+  Chart.defaults.font.family = "Inter, Arial, sans-serif";
+  Chart.defaults.font.size = 11;
+  Chart.defaults.maintainAspectRatio = false;
+}
+
+
+const chartValueLabelPlugin = {
+  id:'chartValueLabelPlugin',
+  afterDatasetsDraw(chart){
+    const {ctx} = chart;
+    ctx.save();
+    ctx.font = '700 10px Inter, Arial, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+
+    chart.data.datasets.forEach((dataset, datasetIndex)=>{
+      const meta = chart.getDatasetMeta(datasetIndex);
+
+      if(meta.hidden){
+        return;
+      }
+
+      meta.data.forEach((bar, index)=>{
+        const value = dataset.data[index];
+
+        if(value === null || value === undefined || Number.isNaN(Number(value))){
+          return;
+        }
+
+        ctx.fillStyle = datasetIndex === 0
+          ? 'rgba(255,255,255,0.92)'
+          : 'rgba(255,255,255,0.62)';
+
+        ctx.fillText(
+          String(value),
+          bar.x,
+          Math.max(bar.y - (datasetIndex === 0 ? 5 : 17), 12)
+        );
+      });
+    });
+
+    ctx.restore();
+  }
+};
+
+if(typeof Chart !== 'undefined'){
+  Chart.register(chartValueLabelPlugin);
+}
+
+function splitChartLabel(label){
+  const text = String(label || '');
+
+  if(text.length <= 9){
+    return text;
+  }
+
+  const parts = text.split(' ');
+
+  if(parts.length > 1){
+    return parts;
+  }
+
+  return text.length > 12
+    ? text.match(/.{1,8}/g)
+    : text;
+}
+
+function getReadableChartOptions(title, isCurrency = false, isPercent = false){
+  return {
+    responsive:true,
+    
+    layout:{
+      padding:{
+        top:18,
+        right:18,
+        bottom:18,
+        left:8
+      }
+    },
+    plugins:{
+      legend:{
+        position:'top',
+        labels:{
+          color:'rgba(255,255,255,0.86)',
+          boxWidth:10,
+          boxHeight:10,
+          padding:14,
+          font:{
+            size:11,
+            weight:'700'
+          }
+        }
+      },
+      tooltip:{
+        callbacks:{
+          title:function(items){
+            return items && items[0] ? items[0].label : '';
+          },
+          label:function(context){
+            const value = context.parsed.y;
+            if(isCurrency){
+              return `${context.dataset.label}: ${value} triệu/m²`;
+            }
+            if(isPercent){
+              return `${context.dataset.label}: ${value}% YoY`;
+            }
+            return `${context.dataset.label}: ${value}/10`;
+          }
+        }
+      }
+    },
+    scales:{
+      x:{
+        offset:true,
+        grid:{
+          display:false
+        },
+        ticks:{
+          color:'rgba(255,255,255,0.88)',
+          autoSkip:false,
+          maxRotation:45,
+          minRotation:35,
+          padding:8,
+          font:{
+            size:10,
+            weight:'700'
+          },
+          callback:function(value){
+            return splitChartLabel(this.getLabelForValue(value));
+          }
+        }
+      },
+      y:{
+        beginAtZero:true,
+        suggestedMax:isCurrency ? undefined : 10,
+        grid:{
+          color:'rgba(255,255,255,0.08)'
+        },
+        ticks:{
+          color:'rgba(255,255,255,0.72)',
+          padding:8,
+          font:{
+            size:10
+          }
+        }
+      }
+    },
+    datasets:{
+      bar:{
+        categoryPercentage:0.64,
+        barPercentage:0.58,
+        maxBarThickness:22
+      }
+    }
+  };
+}
+
+
+const COMPARE_I18N = {
+  en:{
+    navHome:'Home',
+    navLifestyle:'Lifestyle',
+    navRealEstate:'Real Estate',
+    navNews:'Real Estate News',
+    navCompare:'Compare',
+    navContact:'Contact',
+    heroLabel:'AI MARKET COMPARISON',
+    heroTitle:'Cross-Market Intelligence',
+    heroSubtitle:'Compare infrastructure, liquidity, institutional quality and speculative heat across emerging markets.',
+    categoryLand:'Land',
+    categoryHouse:'House / Apartment',
+    categoryCommercial:'Commercial',
+    categoryLuxury:'Luxury',
+    categoryIndustrial:'Industrial',
+    none:'None',
+    compare:'Compare',
+    customMarketPlaceholder:'Enter custom market...',
+    loadingTitle:'Analyzing markets...',
+    loadingText:'AI is comparing infrastructure, liquidity, speculation and market scores.',
+    errorTitle:'Something went wrong',
+    errorText:'Please try comparing the markets again.',
+    noData:'No data available',
+    highest:'Highest Score',
+    lowest:'Lowest Score',
+    market:'Market',
+    score:'Score',
+    infrastructure:'Infrastructure',
+    momentum:'Momentum',
+    speculation:'Speculation',
+    liquidity:'Liquidity',
+    maturity:'Maturity',
+    population:'Population',
+    grdp:'GRDP',
+    tourism:'Tourism',
+    priceScore:'Price Score',
+    rawPrice:'Raw Price',
+    growthScore:'Growth Score',
+    rawGrowth:'Raw Growth',
+    generatingTitle:'AI Market Report',
+    generatingText:'Generating analysis...',
+    generatingSubtext:'AI is reading the table, graphs and market scores.',
+    reportError:'Could not generate the report right now. Please try again.',
+    forecastTitle:'AI Forecast Scenario',
+    forecastText:'Projected 3–5 year outlook based on current market scores and investment signals.',
+    futureScore:'Future Score',
+    futureInfrastructure:'Future Infrastructure',
+    futureMomentum:'Future Momentum',
+    futureSpeculation:'Future Speculation',
+    futureLiquidity:'Future Liquidity',
+    futureTourism:'Future Tourism',
+    futurePriceScore:'Future Price Score',
+    futurePriceGrowthScore:'Future Price Growth Score',
+    deepDiveTitle:'Explore Market Deep Dives',
+    viewDetail:'View Detail',
+    login:'Login',
+    register:'Register',
+    contactAdmin:'Contact Admin',
+    returnHome:'Return to Homepage',
+    vipTitle:'VIP Access Only',
+    vipMessage:'Please login or contact admin to ask for permission'
+  },
+  vi:{
+    navHome:'Trang chủ',
+    navLifestyle:'Lifestyle',
+    navRealEstate:'Bất động sản',
+    navNews:'Tin bất động sản',
+    navCompare:'So sánh',
+    navContact:'Liên hệ',
+    heroLabel:'SO SÁNH THỊ TRƯỜNG BẰNG AI',
+    heroTitle:'Trí tuệ so sánh thị trường',
+    heroSubtitle:'So sánh hạ tầng, thanh khoản, chất lượng tổ chức và mức độ đầu cơ giữa các thị trường mới nổi.',
+    categoryLand:'Đất nền',
+    categoryHouse:'Nhà / Căn hộ',
+    categoryCommercial:'Thương mại',
+    categoryLuxury:'Cao cấp',
+    categoryIndustrial:'Công nghiệp',
+    none:'Không chọn',
+    compare:'So sánh',
+    customMarketPlaceholder:'Nhập khu vực bất kỳ...',
+    loadingTitle:'Đang phân tích thị trường...',
+    loadingText:'AI đang so sánh hạ tầng, thanh khoản, đầu cơ và điểm số thị trường.',
+    errorTitle:'Có lỗi xảy ra',
+    errorText:'Vui lòng thử so sánh lại các thị trường.',
+    noData:'Chưa có dữ liệu',
+    highest:'Điểm cao nhất',
+    lowest:'Điểm thấp nhất',
+    market:'Thị trường',
+    score:'Điểm',
+    infrastructure:'Hạ tầng',
+    momentum:'Động lực',
+    speculation:'Đầu cơ',
+    liquidity:'Thanh khoản',
+    maturity:'Độ trưởng thành',
+    population:'Dân số',
+    grdp:'GRDP',
+    tourism:'Du lịch',
+    priceScore:'Điểm giá',
+    rawPrice:'Giá thực',
+    growthScore:'Điểm tăng trưởng',
+    rawGrowth:'Tăng trưởng thực',
+    generatingTitle:'Báo cáo thị trường AI',
+    generatingText:'Đang tạo phân tích...',
+    generatingSubtext:'AI đang đọc bảng, biểu đồ và điểm số thị trường.',
+    reportError:'Hiện chưa thể tạo báo cáo. Vui lòng thử lại.',
+    forecastTitle:'Kịch bản dự báo AI',
+    forecastText:'Triển vọng 3–5 năm dựa trên điểm số hiện tại và tín hiệu đầu tư.',
+    futureScore:'Điểm tương lai',
+    futureInfrastructure:'Hạ tầng tương lai',
+    futureMomentum:'Động lực tương lai',
+    futureSpeculation:'Đầu cơ tương lai',
+    futureLiquidity:'Thanh khoản tương lai',
+    futureTourism:'Du lịch tương lai',
+    futurePriceScore:'Điểm giá tương lai',
+    futurePriceGrowthScore:'Điểm tăng giá tương lai',
+    deepDiveTitle:'Xem phân tích chi tiết từng thị trường',
+    viewDetail:'Xem chi tiết',
+    login:'Đăng nhập',
+    register:'Đăng ký',
+    contactAdmin:'Liên hệ Admin',
+    returnHome:'Về trang chủ',
+    vipTitle:'Chỉ dành cho VIP',
+    vipMessage:'Vui lòng đăng nhập hoặc liên hệ admin để xin quyền truy cập'
+  }
+};
+
+window.currentCompareLanguage =
+  localStorage.getItem('preferredCompareLanguage') ||
+  localStorage.getItem('preferredLanguage') ||
+  'en';
+
+function tCompare(key){
+  return (
+    COMPARE_I18N[window.currentCompareLanguage]?.[key] ||
+    COMPARE_I18N.en[key] ||
+    key
+  );
+}
+
+function updateCompareLanguageButtons(){
+  document
+    .getElementById('compareLangEnBtn')
+    ?.classList.toggle('active', window.currentCompareLanguage === 'en');
+
+  document
+    .getElementById('compareLangViBtn')
+    ?.classList.toggle('active', window.currentCompareLanguage === 'vi');
+}
+
+function translateCompareStaticPage(){
+  const navMap = [
+    ['index.html#home','navHome'],
+    ['lifestyle.html','navLifestyle'],
+    ['real-estate.html','navRealEstate'],
+    ['market-watch.html','navNews'],
+    ['compare.html','navCompare'],
+    ['contact.html','navContact']
+  ];
+
+  navMap.forEach(([href,key])=>{
+    const el = document.querySelector(`.nav-link[href="${href}"]`);
+    if(el){
+      el.textContent = tCompare(key);
+    }
+  });
+
+  const heroLabel = document.querySelector('.hero-label');
+  if(heroLabel){
+    heroLabel.textContent = tCompare('heroLabel');
+  }
+
+  const heroTitle = document.querySelector('.compare-hero h1');
+  if(heroTitle){
+    heroTitle.textContent = tCompare('heroTitle');
+  }
+
+  const heroSubtitle = document.querySelector('.compare-hero-content > p:not(.hero-label)');
+  if(heroSubtitle){
+    heroSubtitle.textContent = tCompare('heroSubtitle');
+  }
+
+  const category = document.getElementById('category');
+  if(category){
+    const labels = {
+      land:'categoryLand',
+      house:'categoryHouse',
+      commercial:'categoryCommercial',
+      luxury:'categoryLuxury',
+      industrial:'categoryIndustrial'
+    };
+
+    [...category.options].forEach(option=>{
+      if(labels[option.value]){
+        option.textContent = tCompare(labels[option.value]);
+      }
+    });
+  }
+
+  document.querySelectorAll('.market-select option[value=""]').forEach(option=>{
+    option.textContent = tCompare('none');
+  });
+
+
+  const customMarketInput = document.getElementById('customMarketInput');
+  if(customMarketInput){
+    customMarketInput.placeholder = tCompare('customMarketPlaceholder');
+  }
+
+  const customMarketInput2 = document.getElementById('customMarketInput2');
+  if(customMarketInput2){
+    customMarketInput2.placeholder = tCompare('customMarketPlaceholder');
+  }
+
+  const compareButton = document.querySelector('.hero-controls button');
+  if(compareButton){
+    compareButton.textContent = tCompare('compare');
+  }
+
+  const loadingStrong = document.querySelector('#loading strong');
+  if(loadingStrong){
+    loadingStrong.textContent = tCompare('loadingTitle');
+  }
+
+  const loadingText = document.querySelector('#loading p');
+  if(loadingText){
+    loadingText.textContent = tCompare('loadingText');
+  }
+
+  const loginBtn = document.getElementById('login-btn');
+  if(loginBtn && loginBtn.textContent.trim() === 'Login'){
+    loginBtn.textContent = tCompare('login');
+  }
+
+  const vipTitle = document.getElementById('vip-gate-title');
+  if(vipTitle){
+    vipTitle.textContent = tCompare('vipTitle');
+  }
+
+  const vipMessage = document.getElementById('vip-gate-message');
+  if(vipMessage){
+    vipMessage.textContent = tCompare('vipMessage');
+  }
+
+  const vipLogin = document.getElementById('vip-gate-login');
+  if(vipLogin){
+    vipLogin.textContent = tCompare('login');
+  }
+
+  const contactBtn = document.querySelector('#vip-gate-overlay .secondary-btn');
+  if(contactBtn){
+    contactBtn.textContent = tCompare('contactAdmin');
+  }
+
+  const homeBtn = document.querySelector('#vip-gate-overlay .ghost-btn');
+  if(homeBtn){
+    homeBtn.textContent = tCompare('returnHome');
+  }
+
+  const loginTitle = document.querySelector('#login-modal h3');
+  if(loginTitle){
+    loginTitle.textContent = tCompare('login');
+  }
+
+  const loginActionBtn = document.querySelector('#login-modal .auth-btn:not(.secondary)');
+  if(loginActionBtn){
+    loginActionBtn.textContent = tCompare('login');
+  }
+
+  const registerBtn = document.querySelector('#login-modal .auth-btn.secondary');
+  if(registerBtn){
+    registerBtn.textContent = tCompare('register');
+  }
+}
+
+function setCompareLanguage(lang){
+  window.currentCompareLanguage = lang;
+  localStorage.setItem('preferredCompareLanguage', lang);
+  localStorage.setItem('preferredLanguage', lang);
+
+  updateCompareLanguageButtons();
+  translateCompareStaticPage();
+
+  if(window.latestComparisonData){
+    renderComparison(window.latestComparisonData, { skipReport:true });
+  }
+
+  if(window.latestCompareReportData){
+    renderCompareReportFromCache();
+  }
+}
+
+function renderCompareReportFromCache(){
+  const aiReportEl = document.getElementById('aiReport');
+
+  if(!aiReportEl || !window.latestCompareReportData){
+    return;
+  }
+
+  const data = window.latestCompareReportData;
+  const html =
+    window.currentCompareLanguage === 'vi'
+      ? (data.reportHtmlVi || data.reportHtmlEn || '')
+      : (data.reportHtmlEn || data.reportHtmlVi || '');
+
+  aiReportEl.classList.remove('hidden');
+  aiReportEl.innerHTML = `
+    <div id="report-${window.currentCompareLanguage}" class="report-language">
+      ${html}
+    </div>
+  `;
+}
+
+
+if(typeof Chart !== 'undefined' && !Chart.__khaTranReadablePatched){
+  Chart.__khaTranReadablePatched = true;
+  const OriginalChart = Chart;
+
+  window.Chart = function(ctx, config){
+    const isCurrency =
+      config?.data?.datasets?.some(ds => String(ds.label || '').toLowerCase().includes('price')) ||
+      String(config?.options?.plugins?.title?.text || '').toLowerCase().includes('price');
+
+    const isPercent =
+      config?.data?.datasets?.some(ds => String(ds.label || '').toLowerCase().includes('growth')) ||
+      String(config?.options?.plugins?.title?.text || '').toLowerCase().includes('growth');
+
+    const readable = getReadableChartOptions('', isCurrency, isPercent);
+
+    config.options = {
+      ...(config.options || {}),
+      responsive:true,
+      maintainAspectRatio:false,
+      layout:{
+        ...readable.layout,
+        ...((config.options || {}).layout || {})
+      },
+      plugins:{
+        ...readable.plugins,
+        ...((config.options || {}).plugins || {}),
+        legend:{
+          ...readable.plugins.legend,
+          ...(((config.options || {}).plugins || {}).legend || {}),
+          labels:{
+            ...readable.plugins.legend.labels,
+            ...(((((config.options || {}).plugins || {}).legend || {}).labels) || {})
+          }
+        }
+      },
+      scales:{
+        ...((config.options || {}).scales || {}),
+        x:{
+          stacked:false,
+          ...readable.scales.x,
+          ...(((config.options || {}).scales || {}).x || {}),
+          ticks:{
+            ...readable.scales.x.ticks,
+            ...(((((config.options || {}).scales || {}).x || {}).ticks) || {})
+          }
+        },
+        y:{
+          stacked:false,
+          ...readable.scales.y,
+          ...(((config.options || {}).scales || {}).y || {}),
+          ticks:{
+            ...readable.scales.y.ticks,
+            ...(((((config.options || {}).scales || {}).y || {}).ticks) || {})
+          }
+        }
+      },
+      datasets:{
+        ...((config.options || {}).datasets || {}),
+        ...readable.datasets
+      }
+    };
+
+    return new OriginalChart(ctx, config);
+  };
+
+  Object.keys(OriginalChart).forEach(key=>{
+    window.Chart[key] = OriginalChart[key];
+  });
+  window.Chart.prototype = OriginalChart.prototype;
+}
+
+
 async function compareMarkets(){
 
   const loading = document.getElementById('loading');
@@ -1888,6 +2695,26 @@ async function compareMarkets(){
     [...document.querySelectorAll('.market-select')]
       .map(select => select.value)
       .filter(value => value !== '');
+
+  const customMarket =
+    document
+      .getElementById('customMarketInput')
+      ?.value
+      ?.trim();
+
+  if(customMarket){
+    cities.push(customMarket);
+  }
+
+  const customMarket2 =
+    document
+      .getElementById('customMarketInput2')
+      ?.value
+      ?.trim();
+
+  if(customMarket2){
+    cities.push(customMarket2);
+  }
 
   const uniqueCities = [...new Set(cities)];
 
@@ -1910,14 +2737,15 @@ async function compareMarkets(){
     const data =
       await response.json();
 
+    window.latestComparisonData = data.comparison;
     renderComparison(data.comparison);
 
   } catch(error){
 
     tableEl.innerHTML = `
       <div class="card">
-        <h2>Something went wrong</h2>
-        <p>Please try comparing the markets again.</p>
+        <h2>${tCompare('errorTitle')}</h2>
+        <p>${tCompare('errorText')}</p>
       </div>
     `;
 
@@ -2009,7 +2837,7 @@ function createMetricExtremeCard(markets, metric){
         </div>
 
         <div class="metric-empty">
-          No data available
+          ${tCompare('noData')}
         </div>
       </div>
     `;
@@ -2029,7 +2857,7 @@ function createMetricExtremeCard(markets, metric){
 
       <div class="metric-content">
         <div class="metric-side highest">
-          <span>Highest Score</span>
+          <span>${tCompare('highest')}</span>
 
           <strong>
             ${extremes.highest.city}
@@ -2043,7 +2871,7 @@ function createMetricExtremeCard(markets, metric){
         <div class="metric-divider"></div>
 
         <div class="metric-side lowest">
-          <span>Lowest Score</span>
+          <span>${tCompare('lowest')}</span>
 
           <strong>
             ${extremes.lowest.city}
@@ -2058,25 +2886,25 @@ function createMetricExtremeCard(markets, metric){
   `;
 }
 
-function renderComparison(comparison){
+function renderComparison(comparison, options = {}){
 
   const summary =
     comparison.summary;
 
   const metricCards = [
-    { title:'Score', key:'investmentScore', icon:'bx-trophy' },
-    { title:'Infrastructure', key:'infrastructure', icon:'bx-buildings' },
-    { title:'Momentum', key:'investmentMomentum', icon:'bx-trending-up' },
-    { title:'Speculation', key:'speculativeHeat', icon:'bx-line-chart' },
-    { title:'Liquidity', key:'liquidity', icon:'bx-droplet' },
-    { title:'Maturity', key:'marketMaturity', icon:'bx-leaf' },
-    { title:'Population', key:'populationScale', icon:'bx-group' },
-    { title:'GRDP', key:'grdpStrength', icon:'bx-bar-chart-alt' },
-    { title:'Tourism', key:'tourismDemand', icon:'bxs-plane-alt' },
-    { title:'Price Score', key:'priceScore', icon:'bx-purchase-tag' },
-    { title:'Growth Score', key:'priceGrowthScore', icon:'bx-rocket', noDataAsNull:true },
-    { title:'Raw Price', key:'rawPrice', icon:'bx-money', parseValue:parseRawPrice, suffix:' triệu/m²', noDataAsNull:true },
-    { title:'Raw Growth', key:'rawPriceGrowth', icon:'bx-bar-chart-alt-2', parseValue:parseRawGrowth, suffix:'% YoY', noDataAsNull:true }
+    { title:tCompare('score'), key:'investmentScore', icon:'bx-trophy' },
+    { title:tCompare('infrastructure'), key:'infrastructure', icon:'bx-buildings' },
+    { title:tCompare('momentum'), key:'investmentMomentum', icon:'bx-trending-up' },
+    { title:tCompare('speculation'), key:'speculativeHeat', icon:'bx-line-chart' },
+    { title:tCompare('liquidity'), key:'liquidity', icon:'bx-droplet' },
+    { title:tCompare('maturity'), key:'marketMaturity', icon:'bx-leaf' },
+    { title:tCompare('population'), key:'populationScale', icon:'bx-group' },
+    { title:tCompare('grdp'), key:'grdpStrength', icon:'bx-bar-chart-alt' },
+    { title:tCompare('tourism'), key:'tourismDemand', icon:'bxs-plane-alt' },
+    { title:tCompare('priceScore'), key:'priceScore', icon:'bx-purchase-tag' },
+    { title:tCompare('growthScore'), key:'priceGrowthScore', icon:'bx-rocket', noDataAsNull:true },
+    { title:tCompare('rawPrice'), key:'rawPrice', icon:'bx-money', parseValue:parseRawPrice, suffix:' triệu/m²', noDataAsNull:true },
+    { title:tCompare('rawGrowth'), key:'rawPriceGrowth', icon:'bx-bar-chart-alt-2', parseValue:parseRawGrowth, suffix:'% YoY', noDataAsNull:true }
   ];
 
   document.getElementById('summary').innerHTML =
@@ -2089,71 +2917,71 @@ function renderComparison(comparison){
     <table>
       <thead>
         <tr>
-          <th>Market</th>
+          <th>${tCompare('market')}</th>
 
 <th>
   <i class='bx bx-star'></i>
-  Score
+  ${tCompare('score')}
 </th>
 
 <th>
   <i class='bx bx-buildings'></i>
-  Infrastructure
+  ${tCompare('infrastructure')}
 </th>
 
 <th>
   <i class='bx bx-trending-up'></i>
-  Momentum
+  ${tCompare('momentum')}
 </th>
 
 <th>
   <i class='bx bx-line-chart'></i>
-  Speculation
+  ${tCompare('speculation')}
 </th>
 
 <th>
   <i class='bx bx-droplet'></i>
-  Liquidity
+  ${tCompare('liquidity')}
 </th>
 
 <th>
   <i class='bx bx-leaf'></i>
-  Maturity
+  ${tCompare('maturity')}
 </th>
 
 <th>
   <i class='bx bx-group'></i>
-  Population
+  ${tCompare('population')}
 </th>
 
 <th>
   <i class='bx bx-bar-chart-alt'></i>
-  GRDP
+  ${tCompare('grdp')}
 </th>
 
 <th>
   <i class='bx bxs-plane-alt'></i>
-  Tourism
+  ${tCompare('tourism')}
 </th>
 
 <th>
   <i class='bx bx-purchase-tag'></i>
-  Price Score
+  ${tCompare('priceScore')}
 </th>
 
 <th>
   <i class='bx bx-money'></i>
-  Raw Price
+  ${tCompare('rawPrice')}
 </th>
 
 <th>
   <i class='bx bx-rocket'></i>
-  Growth Score
+  ${tCompare('growthScore')}
 </th>
 
 <th>
   <i class='bx bx-bar-chart-alt-2'></i>
-  Raw Growth
+  ${tCompare('rawGrowth')}
 </th>
         </tr>
       </thead>
@@ -2192,7 +3020,10 @@ function renderComparison(comparison){
   `;
 
 renderCharts(comparison.markets);
-generateCompareReport(comparison);
+applyAdaptiveChartLayout(comparison.markets.length);
+if(!options.skipReport){
+  generateCompareReport(comparison);
+}
 renderDeepDiveLinks(comparison.markets);
 
 }
@@ -2228,6 +3059,32 @@ function parseRawGrowth(value){
     : null;
 }
 
+
+function applyAdaptiveChartLayout(marketCount){
+  const cards = document.querySelectorAll('#charts .chart-card');
+
+  cards.forEach(card=>{
+    card.classList.remove('wide-chart','full-chart');
+
+    if(marketCount >= 11){
+      card.classList.add('full-chart');
+    }else if(marketCount >= 8){
+      card.classList.add('wide-chart');
+    }
+  });
+
+  setTimeout(()=>{
+    if(Array.isArray(window.chartInstances)){
+      window.chartInstances.forEach(chart=>{
+        if(chart && typeof chart.resize === 'function'){
+          chart.resize();
+          chart.update('none');
+        }
+      });
+    }
+  },80);
+}
+
 function renderCharts(markets, forecast = []){
   chartInstances.forEach(chart => chart.destroy());
   chartInstances = [];
@@ -2236,77 +3093,77 @@ function renderCharts(markets, forecast = []){
 
   const indicators = [
       {
-      title: 'Score',
+      title: tCompare('score'),
       key: 'investmentScore',
       futureKey: 'futureScore',
       color: '#00ffd5',
       icon: 'bx-star'
     },
     {
-      title: 'Infrastructure',
+      title: tCompare('infrastructure'),
       key: 'infrastructure',
       futureKey: 'futureInfrastructure',
       color: '#3da5ff',
       icon: 'bx-buildings'
     },
     {
-      title: 'Momentum',
+      title: tCompare('momentum'),
       key: 'investmentMomentum',
       futureKey: 'futureMomentum',
       color: '#7c5cff',
       icon: 'bx-trending-up'
     },
     {
-      title: 'Speculation',
+      title: tCompare('speculation'),
       key: 'speculativeHeat',
       futureKey: 'futureSpeculation',
       color: '#ff7a00',
       icon: 'bx-line-chart'
     },
     {
-      title: 'Liquidity',
+      title: tCompare('liquidity'),
       key: 'liquidity',
       futureKey: 'futureLiquidity',
       color: '#4db8ff',
       icon: 'bx-droplet'
     },
     {
-      title: 'Maturity',
+      title: tCompare('maturity'),
       key: 'marketMaturity',
       futureKey: 'futureMaturity',
       color: '#8be84b',
       icon: 'bx-leaf'
     },
     {
-      title: 'Population',
+      title: tCompare('population'),
       key: 'populationScale',
       futureKey: 'futurePopulation',
       color: '#ffd000',
       icon: 'bx-group'
     },
     {
-      title: 'GRDP',
+      title: tCompare('grdp'),
       key: 'grdpStrength',
       futureKey: 'futureGRDP',
       color: '#ff3da7',
       icon: 'bx-bar-chart-alt'
     },
     {
-      title: 'Tourism',
+      title: tCompare('tourism'),
       key: 'tourismDemand',
       futureKey: 'futureTourism',
       color: '#00d5d5',
       icon: 'bxs-plane-alt'
     },
     {
-      title: 'Price Score',
+      title: tCompare('priceScore'),
       key: 'priceScore',
       futureKey: 'futurePriceScore',
       color: '#ffaa00',
       icon: 'bx-purchase-tag'
     },
     {
-      title: 'Growth Score',
+      title: tCompare('growthScore'),
       key: 'priceGrowthScore',
       futureKey: 'futurePriceGrowthScore',
       color: '#00ff99',
@@ -2314,7 +3171,7 @@ function renderCharts(markets, forecast = []){
       noDataAsNull: true
     },
     {
-      title: 'Raw Price',
+      title: tCompare('rawPrice'),
       key: 'rawPrice',
       color: '#00c2ff',
       icon: 'bx-money',
@@ -2324,7 +3181,7 @@ function renderCharts(markets, forecast = []){
       noDataAsNull: true
     },
     {
-      title: 'Raw Growth',
+      title: tCompare('rawGrowth'),
       key: 'rawPriceGrowth',
       color: '#ff5fd2',
       icon: 'bx-bar-chart-alt-2',
@@ -2411,7 +3268,7 @@ function renderCharts(markets, forecast = []){
   },
   options: {
     responsive: true,
-    maintainAspectRatio: false,
+    
     plugins: {
       legend: {
         display: true,
@@ -2496,8 +3353,8 @@ async function generateCompareReport(comparison){
 
   aiReportEl.classList.remove('hidden');
   aiReportEl.innerHTML = `
-    <h2>AI Market Report</h2>
-    <p><strong>Generating analysis...</strong> AI is reading the table, graphs and market scores.</p>
+    <h2>${tCompare('generatingTitle')}</h2>
+    <p><strong>${tCompare('generatingText')}</strong> ${tCompare('generatingSubtext')}</p>
   `;
 
   forecastChartsEl.innerHTML = '';
@@ -2521,25 +3378,8 @@ async function generateCompareReport(comparison){
 
     const data = await response.json();
 
-    aiReportEl.innerHTML = `
-  <div class="report-language-toggle">
-    <button class="lang-btn active" onclick="showReportLanguage('en')">
-      English
-    </button>
-
-    <button class="lang-btn" onclick="showReportLanguage('vi')">
-      Tiếng Việt
-    </button>
-  </div>
-
-  <div id="report-en" class="report-language">
-    ${data.reportHtmlEn}
-  </div>
-
-  <div id="report-vi" class="report-language hidden">
-    ${data.reportHtmlVi}
-  </div>
-`;
+    window.latestCompareReportData = data;
+    renderCompareReportFromCache();
 
     if(data.forecast && data.forecast.length){
       renderCharts(comparison.markets, data.forecast);
@@ -2548,8 +3388,8 @@ async function generateCompareReport(comparison){
   } catch(error){
 
     aiReportEl.innerHTML = `
-      <h2>AI Market Report</h2>
-      <p>Could not generate the report right now. Please try again.</p>
+      <h2>${tCompare('generatingTitle')}</h2>
+      <p>${tCompare('reportError')}</p>
     `;
 
     console.error(error);
@@ -2558,34 +3398,7 @@ async function generateCompareReport(comparison){
 
 
 function showReportLanguage(lang){
-
-  const en =
-    document.getElementById('report-en');
-
-  const vi =
-    document.getElementById('report-vi');
-
-  const buttons =
-    document.querySelectorAll('.lang-btn');
-
-  buttons.forEach(btn =>
-    btn.classList.remove('active')
-  );
-
-  if(lang === 'en'){
-
-    en.classList.remove('hidden');
-    vi.classList.add('hidden');
-
-    buttons[0].classList.add('active');
-
-  } else {
-
-    vi.classList.remove('hidden');
-    en.classList.add('hidden');
-
-    buttons[1].classList.add('active');
-  }
+  setCompareLanguage(lang);
 }
 
 let forecastChartInstances = [];
@@ -2599,49 +3412,49 @@ function renderForecastCharts(forecast){
 
   const indicators = [
     {
-      title:'Future Score',
+      title:tCompare('futureScore'),
       key:'futureScore',
       color:'#00ffd5',
       icon:'bx-star'
     },
     {
-      title:'Future Infrastructure',
+      title:tCompare('futureInfrastructure'),
       key:'futureInfrastructure',
       color:'#3da5ff',
       icon:'bx-buildings'
     },
     {
-      title:'Future Momentum',
+      title:tCompare('futureMomentum'),
       key:'futureMomentum',
       color:'#7c5cff',
       icon:'bx-trending-up'
     },
     {
-      title:'Future Speculation',
+      title:tCompare('futureSpeculation'),
       key:'futureSpeculation',
       color:'#ff7a00',
       icon:'bx-dollar-circle'
     },
     {
-      title:'Future Liquidity',
+      title:tCompare('futureLiquidity'),
       key:'futureLiquidity',
       color:'#4db8ff',
       icon:'bx-droplet'
     },
     {
-      title:'Future Tourism',
+      title:tCompare('futureTourism'),
       key:'futureTourism',
       color:'#00d5d5',
       icon:'bxs-plane-alt'
     },
     {
-      title:'Future Price Score',
+      title:tCompare('futurePriceScore'),
       key:'futurePriceScore',
       color:'#ffaa00',
       icon:'bx-purchase-tag'
     },
     {
-      title:'Future Price Growth Score',
+      title:tCompare('futurePriceGrowthScore'),
       key:'futurePriceGrowthScore',
       color:'#00ff99',
       icon:'bx-rocket'
@@ -2650,8 +3463,8 @@ function renderForecastCharts(forecast){
 
   container.innerHTML = `
     <div class="forecast-title">
-      <h2>AI Forecast Scenario</h2>
-      <p>Projected 3–5 year outlook based on current market scores and investment signals.</p>
+      <h2>${tCompare('forecastTitle')}</h2>
+      <p>${tCompare('forecastText')}</p>
     </div>
   `;
 
@@ -2693,7 +3506,7 @@ function renderForecastCharts(forecast){
       },
       options:{
         responsive:true,
-        maintainAspectRatio:false,
+        
         plugins:{
           legend:{ display:false },
           tooltip:{
@@ -2750,7 +3563,7 @@ function renderDeepDiveLinks(markets){
     document.getElementById('deepDiveLinks');
 
   container.innerHTML = `
-    <h2>Explore Market Deep Dives</h2>
+    <h2>${tCompare('deepDiveTitle')}</h2>
 
     <div class="deep-dive-buttons">
       ${markets.map(m => `
@@ -2759,7 +3572,7 @@ function renderDeepDiveLinks(markets){
           href="real-estate.html?city=${encodeURIComponent(m.city)}&category=${encodeURIComponent(document.getElementById('category').value)}"
         >
           <i class='bx bx-map'></i>
-          ${m.city} — View Detail
+          ${m.city} — ${tCompare('viewDetail')}
         </a>
       `).join('')}
     </div>
@@ -2767,6 +3580,8 @@ function renderDeepDiveLinks(markets){
 }
 
 
+updateCompareLanguageButtons();
+translateCompareStaticPage();
 compareMarkets();
 
 </script>
