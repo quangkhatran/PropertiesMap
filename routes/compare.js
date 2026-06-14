@@ -1,6 +1,7 @@
 const express = require('express');
 
 const OpenAI = require("openai");
+const crypto = require('crypto');
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
@@ -35,6 +36,11 @@ const {
   compareMarkets
 } = require('../services/compareMarkets');
 
+const {
+  getCache,
+  setCache
+} = require('../cache/cache');
+
 const router = express.Router();
 
 function findScore(items = [], keywords = []){
@@ -53,7 +59,68 @@ function findScore(items = [], keywords = []){
   return Number(found?.score) || 0;
 }
 
+
+function normalizeCachePart(value){
+
+  return String(value || '')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g,'-')
+    .replace(/^-+|-+$/g,'');
+}
+
+function buildMarketCacheKey(city, category){
+
+  return [
+    'compare-market-v2',
+    normalizeCachePart(category || 'land'),
+    normalizeCachePart(city)
+  ].join(':');
+}
+
+function buildCompareReportCacheKey(summary, markets, category){
+
+  const payload = JSON.stringify({
+    category: category || 'land',
+    summary: summary || {},
+    markets: markets || []
+  });
+
+  const hash = crypto
+    .createHash('sha256')
+    .update(payload)
+    .digest('hex');
+
+  return `compare-report-v2:${hash}`;
+}
+
 async function getMarketData(city, category){
+
+  const cacheKey =
+    buildMarketCacheKey(city, category);
+
+  console.log(
+    'MARKET CACHE KEY:',
+    cacheKey
+  );
+
+  const cached =
+    getCache(cacheKey);
+
+  if(cached){
+
+    console.log(
+      'MARKET CACHE HIT:',
+      cacheKey
+    );
+
+    return cached;
+  }
+
+  console.log(
+    'MARKET CACHE MISS:',
+    cacheKey
+  );
 
   const youtube =
     await searchYoutube(
@@ -155,7 +222,7 @@ async function getMarketData(city, category){
 
   report.investmentScore = investmentScore;
 
-  return {
+  const result = {
     city,
     category,
     videos,
@@ -164,6 +231,19 @@ async function getMarketData(city, category){
     report,
     investmentScore
   };
+
+  console.log(
+    'MARKET CACHE SAVE:',
+    cacheKey
+  );
+
+  setCache(
+    cacheKey,
+    result,
+    60 * 60 * 24 * 7
+  );
+
+  return result;
 }
 
 router.post('/', async(req,res)=>{
@@ -218,6 +298,36 @@ router.post('/', async(req,res)=>{
 router.post('/generate-compare-report', async (req, res) => {
   try{
     const { summary, markets, category } = req.body;
+
+    const reportCacheKey =
+      buildCompareReportCacheKey(
+        summary,
+        markets,
+        category
+      );
+
+    console.log(
+      'COMPARE REPORT CACHE KEY:',
+      reportCacheKey
+    );
+
+    const cachedReport =
+      getCache(reportCacheKey);
+
+    if(cachedReport){
+
+      console.log(
+        'COMPARE REPORT CACHE HIT:',
+        reportCacheKey
+      );
+
+      return res.json(cachedReport);
+    }
+
+    console.log(
+      'COMPARE REPORT CACHE MISS:',
+      reportCacheKey
+    );
 
     const prompt = `
 You are an AI real estate investment analyst.
@@ -316,6 +426,17 @@ Do not forecast raw price or raw price growth values. Only forecast score fields
 
     const result = JSON.parse(
       completion.choices[0].message.content
+    );
+
+    console.log(
+      'COMPARE REPORT CACHE SAVE:',
+      reportCacheKey
+    );
+
+    setCache(
+      reportCacheKey,
+      result,
+      60 * 60 * 24 * 7
     );
 
     res.json(result);
